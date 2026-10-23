@@ -484,4 +484,63 @@ footer a:hover { color: var(--fg); }
 .checks li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 6px; background: var(--c, var(--a2));
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / 14px no-repeat, linear-gradient(#000, #000);
     -webkit-mask-composite: xor; mask-composite: exclude; }
+
+/* ---------- Game page (WarDecks) ---------- */
+.game-logo { width: min(460px, 100%); height: auto; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.7)); margin: 6px 0 4px -6px; }
+.modes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.mode { padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; gap: 8px; }
+.mode b { font-size: 15px; letter-spacing: .3px; }
+.mode p { margin: 0; color: var(--muted); font-size: 13.5px; }
+.mode .st { margin-top: auto; align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+.mode .st.on { color: #4ade80; background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); }
+.mode .st.soon { color: #fbbf24; background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.28); }
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.rule { border-radius: 20px; border: 1px solid var(--line); background: var(--card); overflow: hidden; }
+.rule img { width: 100%; height: auto; background: radial-gradient(400px 120px at 50% 50%, color-mix(in srgb, var(--c) 18%, transparent), transparent 70%), #0d0b10; padding: 14px 10px; }
+.rule div { padding: 0 20px 20px; }
+.rule h3 { margin: 6px 0 6px; }
+.rule p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.role { border-radius: 20px; border: 1px solid var(--line); background: var(--card); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.role img { width: 100%; height: auto; border-radius: 12px; }
+.role h3 { font-size: 17px; text-align: center; letter-spacing: .5px; text-transform: uppercase; }
+.power { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.power b { display: flex; align-items: center; gap: 7px; color: var(--fg); font-size: 13.5px; margin-bottom: 2px; }
+.power b i { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .5px; padding: 2px 6px; border-radius: 6px; }
+.power b i.off { color: #ffb347; background: rgba(255, 140, 50, 0.14); }
+.power b i.def { color: #4ade80; background: rgba(74, 222, 128, 0.12); }
+.factions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.faction { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--card); }
+.faction img { width: 100%; height: auto; display: block; }
+.faction span { display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-weight: 700; letter-spacing: .5px; }
+.faction span::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--fc); box-shadow: 0 0 10px var(--fc); }
+.heroes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.hero-card { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card); text-align: center; }
+.hero-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transform: scale(1.12); transform-origin: 50% 35%; }
+.hero-card { position: relative; } .hero-card b { position: relative; background: var(--card); }
+.hero-card b { display: block; padding: 10px 6px 2px; letter-spacing: 1px; text-transform: uppercase; font-size: 14px; }
+.hero-card small { display: block; padding-bottom: 12px; color: var(--muted); font-size: 12px; }
+.fields { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.field { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); cursor: zoom-in; }
+.field img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; transition: transform .5s; }
+.field:hover img { transform: scale(1.05); }
+.field span { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 10px 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent); }
+.ranks { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ranks span { font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line2); background: color-mix(in srgb, var(--c) calc(var(--t) * 1%), var(--card)); }
+.ranks svg { width: 14px; height: 14px; color: var(--dim); }
+@media (max-width: 980px) {
+    .modes { grid-template-columns: repeat(2, 1fr); }
+    .rules { grid-template-columns: 1fr; }
+    .roles { grid-template-columns: repeat(2, 1fr); }
+    .factions { grid-template-columns: repeat(2, 1fr); }
+    .heroes { grid-template-columns: repeat(3, 1fr); }
+    .fields { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 640px) {
+    .modes { grid-template-columns: 1fr; }
+    .roles { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .role { padding: 10px; }
+    .factions { grid-template-columns: 1fr; }
+    .fields { grid-template-columns: repeat(2, 1fr); }
+}
 `;
