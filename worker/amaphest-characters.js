@@ -35,11 +35,11 @@ export const AMA_CHARACTERS = [
         facts: [['Designation', 'URSO-02 · AMA-ESS 05'], ['Powers', 'Alpha (heat) and Betha (cold) currents'], ['Gift', 'Amalion in her bloodstream']],
         forms: {
             'ama-ess-jacket': 'Her bomber-style pilot jacket: a symbol of her dual identity, belonging both to Encore and to the family she chose.',
-            'cobalt-armor': 'The AMA-ESS 05 in its cobalt finish.',
+            'cobalt-armor': 'The AMA-ESS 05 in its cobalt finish: Amaphest’s signature armor.',
             'defensive-mode': 'The AMA-ESS 05 configured to protect.',
             'offensive-mode': 'The AMA-ESS 05 configured to strike, with shoulder cannons.',
         },
-        defaultForm: 'offensive-mode',
+        defaultForm: 'cobalt-armor',
     }),
     C({
         slug: 'george-hammond', name: 'Dr. George Hammond', alias: 'The Anchor', group: 'main', faction: 'encore', color: '#4fb7ff',

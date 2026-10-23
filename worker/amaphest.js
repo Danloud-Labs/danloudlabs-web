@@ -35,6 +35,7 @@ function artFor(c, manifest) {
         forms = [{ slug: 'default', name: '', profile: url(a.profile), wallpaper: url(a.wallpaper), turnaround: url(a.turnaround), note: '' }];
     }
     const def = forms.find((f) => f.slug === c.defaultForm) || forms[0] || null;
+    if (def) forms = [def, ...forms.filter((f) => f !== def)];   // the main form leads the switcher
     return { forms, def };
 }
 
