@@ -163,7 +163,7 @@ export const AMA_CHARACTERS = [
         facts: [['Specialization', 'Neuro-link technology'], ['Works with', 'Dr. Stuart McTrevor']],
     }),
     C({
-        slug: 'selene-aerkwright', name: 'Dr. Selene Aerkwright', alias: 'The Prism', group: 'faction', faction: 'encore', color: '#7f8cff',
+        slug: 'selene-arkwright', name: 'Dr. Selene Arkwright', alias: 'The Prism', group: 'faction', faction: 'encore', color: '#7f8cff',
         role: 'Neural Systems Analyst',
         bio: ['Assistant to Dr. Vance, Selene maps the brainwave responses between pilots and AMA-ESS systems, often catching irregularities before they escalate. Calm, meticulous and less hesitant than her mentor, she refracts complex data into hidden truths, which earned her the name The Prism.'],
         facts: [['Specialization', 'Neurological data analysis'], ['Mentor', 'Dr. Liora Vance']],
@@ -180,7 +180,7 @@ export const AMA_CHARACTERS = [
         facts: [['Brother', 'Ryan Cole'], ['Answers to', 'Vice President Glenn Monroe']],
     }),
     C({
-        slug: 'ayuki-tanaka', name: 'Dr. Ayuki Tanaka', group: 'faction', faction: 'urso', color: '#ff7ab6',
+        slug: 'ayumi-tanaka', name: 'Dr. Ayumi Tanaka', group: 'faction', faction: 'urso', color: '#ff7ab6',
         role: 'Lead Scientist',
         bio: ['The intellectual heart of Project U.R.S.O. A brilliant Japanese scientist renowned for her work in anomalous energy and biotechnology, she was recruited to pioneer the research behind the super-soldiers. Ambitious and elegant, she is loyal to science more than to politics, and her true allegiance remains a mystery.'],
         facts: [['Specialization', 'Anomalous energy, biotechnology']],
@@ -198,7 +198,7 @@ export const AMA_CHARACTERS = [
         facts: [['Rank', 'General'], ['Command', 'Deployments and field testing']],
     }),
     C({
-        slug: 'helena-ward', name: 'Commander Helena Ward', group: 'faction', faction: 'urso', color: '#c07a5a',
+        slug: 'helena-ward', name: 'Captain Helena Ward', group: 'faction', faction: 'urso', color: '#c07a5a',
         role: 'Commander of Training and Evaluation',
         bio: ['Appointed to shape the subjects of Project U.R.S.O. into effective weapons, she conditioned and tested both Dynamo and Michelle. To her they were soldiers first and people second. She considers Michelle her most difficult trainee, and both resents and respects her resilience.'],
         facts: [['Responsible for', 'Conditioning and testing of U.R.S.O. subjects']],
@@ -263,7 +263,7 @@ export const AMA_CHARACTERS = [
         facts: [['Specialty', 'Reconnaissance, overwatch']],
     }),
     C({
-        slug: 'ghost', name: 'Lil Mendoza', alias: 'Ghost', group: 'faction', faction: 'guerrillas', color: '#9aa3b2',
+        slug: 'ghost', name: 'Lila Mendoza', alias: 'Ghost', group: 'faction', faction: 'guerrillas', color: '#9aa3b2',
         role: 'Infiltrator & saboteur',
         bio: ['The infiltrator and saboteur. Ghost moves in silence and slips through enemy lines undetected. Pragmatic and efficient, she brings stealth and precision to balance the brute force of Bulldog and Torch.'],
         facts: [['Specialty', 'Stealth, sabotage']],
@@ -289,7 +289,7 @@ export const AMA_CHARACTERS = [
         facts: [['Specialty', 'Geopolitical strategy, crisis analysis']],
     }),
     C({
-        slug: 'isabela-torres', name: 'S.A. Isabela Torres', group: 'faction', faction: 'cia', color: '#4fc3ff',
+        slug: 'isabella-torres', name: 'S.A. Isabella Torres', group: 'faction', faction: 'cia', color: '#4fc3ff',
         role: 'Cyber Operations Specialist',
         bio: ['A brilliant young agent in cyber operations and counterintelligence, sharp and relentless in the digital field. She erased every record of Michelle’s existence, and she monitors Encore and U.R.S.O., intercepting and decoding their communications.'],
         facts: [['Specialty', 'Cyber operations, counterintelligence']],

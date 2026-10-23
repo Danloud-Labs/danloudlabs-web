@@ -32,6 +32,7 @@ OUT = ROOT / 'assets/projects/amaphest'
 
 # Folder name in iCloud (the part before " – " / " - " when present) -> slug used by the site.
 # Folders not listed here get an automatic slug: titles dropped, "Name-Alias" -> name.
+# The site shows the names from the story documents; folder spellings that differ are mapped here.
 FOLDER_SLUGS = {
     # main
     'Amaphest': 'michelle-brown', 'Michelle Brown': 'michelle-brown',
@@ -44,9 +45,10 @@ FOLDER_SLUGS = {
     'Randy Williams': 'shock', 'Markus Krüger': 'ion', 'Kenji Takahiro': 'blade', 'Dmitri Volkov': 'coords',
     # Encore Enterprises
     'AMA_VX': 'ama-vx', 'AMA-VX': 'ama-vx', 'Dr. Ellias Korrin': 'elias-korrin', 'Dr. Elias Korrin': 'elias-korrin',
-    'Dr. Selene Aerkwright': 'selene-aerkwright', 'Dr. Selene Arkwright': 'selene-aerkwright',
+    'Dr. Selene Aerkwright': 'selene-arkwright', 'Dr. Selene Arkwright': 'selene-arkwright',
     # Project URSO
-    'Jason Reed': 'dynamo', 'Dr. Ayuki Tanaka': 'ayuki-tanaka', 'Dr. Ayumi Tanaka': 'ayuki-tanaka',
+    'Jason Reed': 'dynamo', 'Dr. Ayuki Tanaka': 'ayumi-tanaka', 'Dr. Ayumi Tanaka': 'ayumi-tanaka',
+    'S.A. Isabela Torres': 'isabella-torres', 'S.A. Isabella Torres': 'isabella-torres',
     # The Guerrillas ("Name-Alias")
     'Alex Vega-Circuit': 'circuit', 'Diego Ramirez-Torch': 'torch', 'Elena Markov-Doc': 'doc',
     'Javier Ortega-Fixer': 'fixer', 'Lil Mendoza-Ghost': 'ghost', 'Lila Mendoza-Ghost': 'ghost',
