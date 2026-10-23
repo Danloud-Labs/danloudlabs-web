@@ -49,7 +49,7 @@ const ROLES = [
 ];
 
 const FACTIONS = [['red', 'Red', '#e5484d'], ['blue', 'Blue', '#3f8cff'], ['yellow', 'Yellow', '#f5c542'], ['green', 'Green', '#4ade80'], ['orange', 'Orange', '#ff8a3d'], ['black', 'Black', '#a49cae']];
-const HEROES = [['ignis', 'Ignis', 'Red'], ['gideon', 'Gideon', 'Blue'], ['lyra', 'Lyra', 'Green'], ['elara', 'Elara', 'Yellow'], ['theodric', 'Theodric', 'Orange'], ['seraphina', 'Seraphina', 'Black']];
+const HEROES = [['ignis', 'Ignis', 'Red', '#e5484d'], ['gideon', 'Gideon', 'Blue', '#3f8cff'], ['lyra', 'Lyra', 'Green', '#4ade80'], ['elara', 'Elara', 'Yellow', '#f5c542'], ['theodric', 'Theodric', 'Orange', '#ff8a3d'], ['seraphina', 'Seraphina', 'Black', '#8b7fa8']];
 const FIELDS = [['autumnforest', 'Autumn Forest'], ['beach', 'Beach'], ['castle', 'Castle'], ['cristalcave', 'Crystal Cave'], ['dessert', 'Desert'], ['field', 'Field'], ['swamp', 'Swamp'], ['throneroom', 'Throne Room'], ['thundermountain', 'Thunder Mountain'], ['volcanic', 'Volcanic'], ['winter', 'Winter'], ['woods', 'Woods']];
 const RANKS = ['Beginner', 'Apprentice', 'Soldier', 'Vanguard', 'Scout', 'Veteran', 'Knight', 'Lieutenant', 'Captain', 'Commander', 'General', 'Warlord', 'Champion', 'Legend', 'Mythic'];
 const GALLERY = [
@@ -128,7 +128,7 @@ const body = `
     <div class="wrap">
         <div class="section-head reveal"><div><span class="eyebrow">Campaign</span><h2>Choose your hero.</h2>
         <p class="lead">Six heroes, one from each faction, lead the single-player campaign, with animated scenes and their own voices.</p></div></div>
-        <div class="heroes">${HEROES.map(([k, n, f]) => `<div class="hero-card reveal"><img src="${img(`heroes/${k}`)}" alt="${esc(n)}" loading="lazy"><b>${esc(n)}</b><small>${esc(f)} Faction</small></div>`).join('')}</div>
+        <div class="heroes">${HEROES.map(([k, n, f, c]) => `<div class="hero-card reveal" style="--fc:${c}"><div class="art"><img src="${img(`heroes/${k}`)}" alt="${esc(n)}" loading="lazy"></div><b>${esc(n)}</b><small>${esc(f)} Faction</small></div>`).join('')}</div>
     </div>
 </section>
 

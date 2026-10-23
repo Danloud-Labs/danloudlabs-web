@@ -516,7 +516,9 @@ footer a:hover { color: var(--fg); }
 .faction span::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--fc); box-shadow: 0 0 10px var(--fc); }
 .heroes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
 .hero-card { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card); text-align: center; }
-.hero-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transform: scale(1.12); transform-origin: 50% 35%; }
+.hero-card .art { aspect-ratio: 3 / 4; display: flex; align-items: flex-end; justify-content: center; padding: 14px 8px 0; background: radial-gradient(120% 80% at 50% 30%, color-mix(in srgb, var(--fc) 38%, transparent), transparent 70%), linear-gradient(180deg, #17131d, #0b0910); }
+.hero-card .art img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.6)); transition: transform .4s; }
+.hero-card:hover .art img { transform: translateY(-4px) scale(1.03); }
 .hero-card { position: relative; } .hero-card b { position: relative; background: var(--card); }
 .hero-card b { display: block; padding: 10px 6px 2px; letter-spacing: 1px; text-transform: uppercase; font-size: 14px; }
 .hero-card small { display: block; padding-bottom: 12px; color: var(--muted); font-size: 12px; }
