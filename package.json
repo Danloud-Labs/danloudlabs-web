@@ -1,0 +1,1 @@
+{"type":"module","private":true,"name":"danloudlabs-web","scripts":{"preview":"node tools/preview.mjs","check":"for f in worker/*.js tools/*.mjs; do node --check $f || exit 1; done && echo All JS OK"}}
