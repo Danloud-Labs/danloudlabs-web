@@ -67,8 +67,8 @@ const body = `
             <p class="note">Free download. The ERG Guides are free forever; unlock every tool with a 15-day free trial or a one-time Lifetime purchase.</p>
         </div>
         <div class="devices" aria-hidden="true">
-            <img class="tab" src="${shot('ipad', 3)}" alt="">
-            <img class="ph" src="${shot('iphone', 2)}" alt="">
+            <img class="tab" src="${asset('apps/hazmat/hero-ipad.webp')}" alt="">
+            <img class="ph" src="${asset('apps/hazmat/hero-iphone.webp')}" alt="">
         </div>
     </div>
     <div class="wrap" style="display:block">

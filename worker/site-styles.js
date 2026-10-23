@@ -371,9 +371,9 @@ footer a:hover { color: var(--fg); }
 .btn-store .two { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
 .btn-store small { font-size: 10.5px; font-weight: 500; opacity: .7; }
 .devices { position: relative; height: 560px; }
-.devices img { position: absolute; border-radius: 22px; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.85); }
-.devices .tab { right: 0; top: 10px; height: 470px; transform: rotate(3deg); opacity: .9; }
-.devices .ph { left: 8%; top: 50px; height: 500px; transform: rotate(-4deg); border-radius: 30px; }
+.devices img { position: absolute; max-width: none; filter: drop-shadow(0 34px 50px rgba(0, 0, 0, 0.75)); }
+.devices .tab { right: 0; top: 0; height: 500px; }
+.devices .ph { left: 4%; top: 70px; height: 490px; filter: drop-shadow(0 34px 50px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 40px color-mix(in srgb, var(--c) 25%, transparent)); }
 .p-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 30px; }
 .p-stats div { background: var(--win); padding: 18px 12px; text-align: center; }
 .p-stats b { display: block; font-family: var(--round); font-size: clamp(22px, 3vw, 32px); line-height: 1.1; color: var(--c); }
@@ -422,17 +422,17 @@ footer a:hover { color: var(--fg); }
 
 @media (max-width: 980px) {
     .p-hero .wrap { grid-template-columns: 1fr; }
-    .devices { height: 440px; }
-    .devices .tab { height: 380px; right: 4%; }
-    .devices .ph { height: 410px; left: 6%; }
+    .devices { height: 440px; width: 100%; max-width: 560px; margin: 0 auto; }
+    .devices .tab { height: 410px; right: 6%; }
+    .devices .ph { height: 400px; left: 8%; top: 40px; }
     .p-features, .hotlines { grid-template-columns: repeat(2, 1fr); }
     .pricing { grid-template-columns: 1fr; }
-    .p-stats { grid-template-columns: repeat(3, 1fr); }
+
 }
 @media (max-width: 640px) {
     .devices { height: 360px; }
-    .devices .tab { height: 300px; right: 0; }
-    .devices .ph { height: 330px; left: 2%; }
+    .devices .tab { height: 320px; right: 0; }
+    .devices .ph { height: 330px; left: 0; top: 30px; }
     .p-features, .hotlines { grid-template-columns: 1fr; }
     .p-stats { grid-template-columns: repeat(2, 1fr); }
     .p-stats div:last-child { grid-column: 1 / -1; }
