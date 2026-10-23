@@ -1,0 +1,60 @@
+{
+  "characters": {
+    "coords": {
+      "profile": "characters/coords/profile.webp",
+      "wallpaper": "characters/coords/wallpaper.webp"
+    },
+    "blade": {
+      "profile": "characters/blade/profile.webp",
+      "wallpaper": "characters/blade/wallpaper.webp"
+    },
+    "ion": {
+      "profile": "characters/ion/profile.webp",
+      "wallpaper": "characters/ion/wallpaper.webp"
+    },
+    "shock": {
+      "profile": "characters/shock/profile.webp"
+    },
+    "dash": {
+      "wallpaper": "characters/dash/wallpaper.webp",
+      "profile": "characters/dash/profile.webp",
+      "turnaround": "characters/dash/turnaround.webp"
+    },
+    "michelle-brown": {
+      "forms": [
+        {
+          "name": "AMA-ESS Jacket",
+          "slug": "ama-ess-jacket",
+          "profile": "characters/michelle-brown/ama-ess-jacket/profile.webp",
+          "turnaround": "characters/michelle-brown/ama-ess-jacket/turnaround.webp",
+          "wallpaper": "characters/michelle-brown/ama-ess-jacket/wallpaper.webp"
+        },
+        {
+          "name": "Cobalt Armor",
+          "slug": "cobalt-armor",
+          "turnaround": "characters/michelle-brown/cobalt-armor/turnaround.webp",
+          "profile": "characters/michelle-brown/cobalt-armor/profile.webp",
+          "wallpaper": "characters/michelle-brown/cobalt-armor/wallpaper.webp"
+        },
+        {
+          "name": "Defensive Mode",
+          "slug": "defensive-mode",
+          "turnaround": "characters/michelle-brown/defensive-mode/turnaround.webp",
+          "wallpaper": "characters/michelle-brown/defensive-mode/wallpaper.webp",
+          "profile": "characters/michelle-brown/defensive-mode/profile.webp"
+        },
+        {
+          "name": "Offensive Mode",
+          "slug": "offensive-mode",
+          "wallpaper": "characters/michelle-brown/offensive-mode/wallpaper.webp",
+          "turnaround": "characters/michelle-brown/offensive-mode/turnaround.webp",
+          "profile": "characters/michelle-brown/offensive-mode/profile.webp"
+        }
+      ]
+    }
+  },
+  "brand": {
+    "logo": "brand/logo.webp",
+    "banner": "brand/banner.webp"
+  }
+}

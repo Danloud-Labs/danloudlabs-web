@@ -22,3 +22,24 @@ for (const [file, html] of Object.entries(pages)) {
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }
+
+// Amaphest pages are built per request and read the art manifest live: serve it from disk.
+import { readFile } from 'node:fs/promises';
+import { handleAmaphest } from '../worker/amaphest.js';
+const realFetch = globalThis.fetch;
+globalThis.fetch = async (u, o) => (String(u).endsWith('/projects/amaphest/manifest.json')
+    ? new Response(await readFile(join(out, '..', 'assets/projects/amaphest/manifest.json')))
+    : realFetch(u, o));
+const amaPages = { 'amaphest.html': '', 'amaphest-characters.html': '/characters', 'amaphest-gallery.html': '/gallery',
+    'amaphest-michelle.html': '/characters/michelle-brown', 'amaphest-shock.html': '/characters/shock', 'amaphest-hammond.html': '/characters/george-hammond' };
+for (const [file, route] of Object.entries(amaPages)) {
+    const res = await handleAmaphest(new Request(`https://danloudlabs.com/amaphest-amalion-progenitor${route}`));
+    let h = (await res.text()).split(SITE_ASSETS).join('../assets');
+    h = h.replace(/href="\/amaphest-amalion-progenitor\/characters\/michelle-brown"/g, 'href="amaphest-michelle.html"')
+        .replace(/href="\/amaphest-amalion-progenitor\/characters\/shock"/g, 'href="amaphest-shock.html"')
+        .replace(/href="\/amaphest-amalion-progenitor\/characters"/g, 'href="amaphest-characters.html"')
+        .replace(/href="\/amaphest-amalion-progenitor\/gallery"/g, 'href="amaphest-gallery.html"')
+        .replace(/href="\/amaphest-amalion-progenitor"/g, 'href="amaphest.html"');
+    await writeFile(join(out, file), h);
+    console.log(file, `${Math.round(h.length / 1024)} KB`);
+}

@@ -13,6 +13,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | Support Center | `/support` | `worker/support.js` | New design |
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
 | FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
+| Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters first) |
 | WarDecks: Leagues | `/ios/wardecks`, `/wardecks` | `worker/wardecks.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
@@ -34,7 +35,10 @@ danloudlabs-web/
 │   ├── support.js      Support Center, exports htmlSupport (FAQ, search, email assistant)
 │   ├── hazmat.js       HazMat Scanner page, exports htmlHazMat
 │   ├── fedlog.js       FedLog page, exports htmlFedLog
-│   └── wardecks.js     WarDecks: Leagues page, exports htmlWarDecks
+│   ├── wardecks.js     WarDecks: Leagues page, exports htmlWarDecks
+│   ├── amaphest.js     Amaphest pages + handleAmaphest(request) router
+│   ├── amaphest-data.js     Amaphest texts: universe, characters, factions, gallery list
+│   └── amaphest-styles.js   Amaphest-only CSS
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
@@ -61,3 +65,20 @@ cd ~/Developer/danloudlabs-web
 npm run check      # syntax of every module, must end in "All JS OK"
 npm run preview    # writes preview/*.html; open preview/index.html
 ```
+
+## Amaphest art
+
+Character art lives in iCloud (`Danloud Labs/Cloudflare/Banners/Amaphest/Characters/...`).
+The pages read `assets/projects/amaphest/manifest.json` live, so new art needs no Cloudflare paste:
+
+```
+cd ~/Developer/danloudlabs-web
+python3 tools/amaphest_assets.py     # converts the art and rewrites the manifest
+git add -A && git commit -m "Amaphest art" && git push
+```
+
+In each character folder (or in each outfit subfolder, like Michelle's): a landscape image or
+a name with "wallpaper" becomes the 16:9 dynamic wallpaper, "F&B" / "turnaround" / "CGI" the
+front & back sheet, and any other portrait the profile picture (newest wins). Rename a file to
+`profile.png`, `wallpaper.jpg` or `turnaround.jpg` to force it. A new character folder needs
+its name added to `FOLDER_SLUGS` in the script and an entry in `worker/amaphest-data.js`.

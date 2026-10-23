@@ -27,3 +27,14 @@ The old `styles.js` (`cssSubPaginas`) stays: the pages not redesigned yet still 
 - Text or content: paste `site-data.js` (or the page file) and Deploy.
 - Design: paste `site-styles.js` and Deploy; every redesigned page changes together.
 - Images: push; GitHub raw can take up to 5 minutes to serve a replaced image.
+
+## Amaphest (one-time)
+
+1. Create `amaphest-data.js` and `amaphest-styles.js`; paste the new `amaphest.js` over the old one.
+2. In `index.js`, add `import { handleAmaphest } from './amaphest.js';` and, at the start of
+   `fetch`, next to the AURA Calendar handler:
+   ```js
+   const ama = await handleAmaphest(request);
+   if (ama) return ama;
+   ```
+   Then delete the old `/amaphest-amalion-progenitor` route line (the `htmlAmaphest` import can stay).
