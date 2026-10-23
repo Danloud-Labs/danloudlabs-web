@@ -13,7 +13,8 @@
       "wallpaper": "characters/ion/wallpaper.webp"
     },
     "shock": {
-      "profile": "characters/shock/profile.webp"
+      "profile": "characters/shock/profile.webp",
+      "wallpaper": "characters/shock/wallpaper.webp"
     },
     "dash": {
       "wallpaper": "characters/dash/wallpaper.webp",
@@ -51,6 +52,36 @@
           "profile": "characters/michelle-brown/offensive-mode/profile.webp"
         }
       ]
+    },
+    "george-hammond": {
+      "profile": "characters/george-hammond/profile.webp",
+      "wallpaper": "characters/george-hammond/wallpaper.webp",
+      "turnaround": "characters/george-hammond/turnaround.webp"
+    },
+    "glenn-monroe": {
+      "profile": "characters/glenn-monroe/profile.webp",
+      "wallpaper": "characters/glenn-monroe/wallpaper.webp",
+      "turnaround": "characters/glenn-monroe/turnaround.webp"
+    }
+  },
+  "factions": {
+    "pilots": {
+      "banner": "factions/pilots/banner.webp"
+    },
+    "brown": {
+      "banner": "factions/brown/banner.webp"
+    },
+    "encore": {
+      "banner": "factions/encore/banner.webp"
+    },
+    "urso": {
+      "banner": "factions/urso/banner.webp"
+    },
+    "guerrillas": {
+      "banner": "factions/guerrillas/banner.webp"
+    },
+    "cia": {
+      "banner": "factions/cia/banner.webp"
     }
   },
   "brand": {

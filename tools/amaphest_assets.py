@@ -31,23 +31,34 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'assets/projects/amaphest'
 
 # Folder name in iCloud (the part before " – " / " - " when present) -> slug used by the site.
+# Folders not listed here get an automatic slug: titles dropped, "Name-Alias" -> name.
 FOLDER_SLUGS = {
-    'Amaphest': 'michelle-brown',
-    'AMA-PR4': 'dash',
-    'George Hammond': 'george-hammond',
-    'Glenn Monroe': 'glenn-monroe',
-    'Alexander Bourne': 'alexander-bourne',
-    'Charles Hurley': 'charles-hurley',
-    'Dr. Teodore Peterson': 'theodore-peterson',
-    'Dr. Theodore Peterson': 'theodore-peterson',
-    'Ethan Cross': 'ethan-cross',
-    'Nick Sanders': 'nick-sanders',
-    'Okune': 'okune',
-    'Randy Williams': 'shock',
-    'Markus Krüger': 'ion',
-    'Kenji Takahiro': 'blade',
-    'Dmitri Volkov': 'coords',
+    # main
+    'Amaphest': 'michelle-brown', 'Michelle Brown': 'michelle-brown',
+    'AMA-PR4': 'dash', 'George Hammond': 'george-hammond', 'Glenn Monroe': 'glenn-monroe',
+    # secondary
+    'Alexander Bourne': 'alexander-bourne', 'Charles Hurley': 'charles-hurley',
+    'Dr. Teodore Peterson': 'theodore-peterson', 'Dr. Theodore Peterson': 'theodore-peterson',
+    'Ethan Cross': 'ethan-cross', 'Nick Sanders': 'nick-sanders', 'Okune': 'okune',
+    # AMA-ESS pilots
+    'Randy Williams': 'shock', 'Markus Krüger': 'ion', 'Kenji Takahiro': 'blade', 'Dmitri Volkov': 'coords',
+    # Encore Enterprises
+    'AMA_VX': 'ama-vx', 'AMA-VX': 'ama-vx', 'Dr. Ellias Korrin': 'elias-korrin', 'Dr. Elias Korrin': 'elias-korrin',
+    'Dr. Selene Aerkwright': 'selene-aerkwright', 'Dr. Selene Arkwright': 'selene-aerkwright',
+    # Project URSO
+    'Jason Reed': 'dynamo', 'Dr. Ayuki Tanaka': 'ayuki-tanaka', 'Dr. Ayumi Tanaka': 'ayuki-tanaka',
+    # The Guerrillas ("Name-Alias")
+    'Alex Vega-Circuit': 'circuit', 'Diego Ramirez-Torch': 'torch', 'Elena Markov-Doc': 'doc',
+    'Javier Ortega-Fixer': 'fixer', 'Lil Mendoza-Ghost': 'ghost', 'Lila Mendoza-Ghost': 'ghost',
+    'Marcus Hale-Bulldog': 'bulldog', 'Ryan Cole-Chief': 'ryan-cole', 'Zara Malik-Eagle': 'eagle',
 }
+# Faction folder (inside Characters/Factions) -> faction key in amaphest-characters.js.
+# The image at the root of each faction folder becomes that faction's button art.
+FACTION_KEYS = {
+    'AMA-ESS Pilots': 'pilots', "Brown's Family": 'brown', 'Encore Enterprises': 'encore',
+    'Project URSO': 'urso', 'The Guerrillas': 'guerrillas', 'US CIA': 'cia', 'Hemosapients': 'hemos',
+}
+TITLES = r'^(Dr\.|Director|Colonel|Commander|Captain|General|S\.A\.)\s+'
 IMAGE_EXT = {'.jpg', '.jpeg', '.png', '.webp', '.heic'}
 
 
@@ -57,7 +68,11 @@ _SLUGS = {unicodedata.normalize('NFC', k): v for k, v in FOLDER_SLUGS.items()}
 def slug_for(folder: str):
     folder = unicodedata.normalize('NFC', folder)   # macOS stores "ü" decomposed
     key = re.split(r'\s[–-]\s', folder, maxsplit=1)[0].strip()
-    return _SLUGS.get(key) or _SLUGS.get(folder.strip())
+    found = _SLUGS.get(key) or _SLUGS.get(folder.strip())
+    if found:
+        return found
+    name = re.sub(TITLES, '', key).split('-')[0]
+    return form_slug(name) or None
 
 
 def form_slug(name: str):
@@ -109,6 +124,10 @@ def save(src: Path, dst: Path, role: str):
             im = im.convert('RGBA') if im.mode in ('RGBA', 'LA', 'P') else im.convert('RGB')
             im.thumbnail((1400, 1400), Image.LANCZOS)
             im.save(dst, 'WEBP', quality=82, method=6)
+        elif role == 'faction':
+            im = im.convert('RGB')
+            im.thumbnail((1200, 1200), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=80, method=6)
         elif role == 'logo':
             # Logo on black: use brightness as transparency so it sits on any dark page.
             rgb = im.convert('RGB')
@@ -137,7 +156,7 @@ def main():
     if not chars_dir.is_dir():
         sys.exit(f'Not found: {chars_dir}')
 
-    manifest = {'characters': {}, 'brand': {}}
+    manifest = {'characters': {}, 'factions': {}, 'brand': {}}
 
     # Brand art at the top of the folder.
     for f in src.iterdir():
@@ -151,20 +170,38 @@ def main():
             manifest['brand']['logo'] = rel(save(f, OUT / 'brand/logo.webp', 'logo'))
             print('brand logo   <-', f.name)
 
-    for folder in sorted(p for p in chars_dir.rglob('*') if p.is_dir()):
+    def images(d: Path):
+        return [f for f in d.iterdir() if f.is_file() and f.suffix.lower() in IMAGE_EXT]
+
+    def dirs(d: Path):
+        return sorted((x for x in d.iterdir() if x.is_dir()), key=lambda p: p.name)
+
+    # Characters/<Main|Secondary Characters>/<character>  and  Characters/Factions/<faction>/<character>
+    char_dirs = []
+    for group in dirs(chars_dir):
+        if unicodedata.normalize('NFC', group.name) == 'Factions':
+            for fac in dirs(group):
+                key = FACTION_KEYS.get(unicodedata.normalize('NFC', fac.name)) or form_slug(fac.name)
+                root = sorted(images(fac), key=lambda p: p.stat().st_mtime)
+                if root:
+                    manifest['factions'][key] = {'banner': rel(save(root[-1], OUT / f'factions/{key}/banner.webp', 'faction'))}
+                    print(f'faction {key:12} banner <- {root[-1].name}')
+                char_dirs += dirs(fac)
+        else:
+            char_dirs += dirs(group)
+
+    for folder in char_dirs:
         slug = slug_for(folder.name)
         if not slug:
             continue
         entry = manifest['characters'].setdefault(slug, {'forms': []})
-        files = [f for f in folder.iterdir() if f.is_file() and f.suffix.lower() in IMAGE_EXT]
-        subdirs = [d for d in folder.iterdir() if d.is_dir()]
+        files = images(folder)
         if files:
-            roles = pick(files)
-            for role, f in roles.items():
+            for role, f in pick(files).items():
                 entry[role] = rel(save(f, OUT / f'characters/{slug}/{role}.webp', role))
                 print(f'{slug:18} {role:10} <- {f.name}')
-        for d in sorted(subdirs, key=lambda p: p.name):
-            ffiles = [f for f in d.iterdir() if f.is_file() and f.suffix.lower() in IMAGE_EXT]
+        for d in dirs(folder):
+            ffiles = images(d)
             if not ffiles:
                 continue
             fs = form_slug(d.name)
@@ -180,7 +217,7 @@ def main():
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-    print(f"\nmanifest.json: {len(manifest['characters'])} characters with art")
+    print(f"\nmanifest.json: {len(manifest['characters'])} characters and {len(manifest['factions'])} factions with art")
 
 
 if __name__ == '__main__':

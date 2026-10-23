@@ -8,11 +8,13 @@
 // The Worker's fetch() calls handleAmaphest(request) first; it returns null for other paths.
 // =====================================================================================
 
-import { AMA, AMA_BASE, AMA_CHARACTERS, AMA_FACTIONS, AMA_GALLERY, AMA_GROUPS, AMA_MANIFEST, AMA_SECTIONS, AMA_UNIVERSE, amaAsset, findCharacter, findFaction } from './amaphest-data.js';
+import { AMA, AMA_BASE, AMA_CHARACTERS, AMA_FACTIONS, AMA_GALLERY, AMA_GROUPS, AMA_MANIFEST, AMA_SECTIONS, AMA_UNIVERSE, amaAsset, factionMembers, findCharacter, findFaction } from './amaphest-data.js';
 import { AMA_CSS } from './amaphest-styles.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
+// Codename when it is one word (Shock, Dynamo), otherwise the name.
+const shortName = (c) => (c.alias && !/\s/.test(c.alias) ? c.alias : c.name);
 const charHref = (c) => `${AMA_BASE}/characters/${c.slug}`;
 
 // Art manifest written by tools/amaphest_assets.py, read live (edge cache 5 min).
@@ -21,7 +23,7 @@ async function loadArt() {
         const res = await fetch(AMA_MANIFEST, { cf: { cacheTtl: 300, cacheEverything: true } });
         if (res.ok) return await res.json();
     } catch (_) { /* pages still render with placeholders */ }
-    return { characters: {}, brand: {} };
+    return { characters: {}, factions: {}, brand: {} };
 }
 
 // Resolves a character's art: its forms (with images) and the default form.
@@ -36,13 +38,17 @@ function artFor(c, manifest) {
     return { forms, def };
 }
 
-const initials = (name) => name.replace(/^(Dr\.|General)\s+/, '').split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
+// Placeholder letters when a character has no art yet: "Ryan Cole" -> RC, "AMA-VX" -> VX, "Kratos" -> K.
+const initials = (name) => {
+    const words = name.replace(/^(Dr\.|Director|Colonel|Commander|Captain|General|S\.A\.)\s+/, '').replace(/^AMA[-_]/, '').split(/\s+/);
+    return words.length > 1 ? words.map((w) => w[0]).slice(0, 2).join('') : (words[0].length <= 3 ? words[0] : words[0][0]);
+};
 
 function charCard(c, manifest) {
     const { def } = artFor(c, manifest);
     const pic = def && def.profile
         ? `<img src="${def.profile}" alt="${esc(c.alias || c.name)}" loading="lazy">`
-        : `<span class="soon">Art coming soon</span><span class="mono">${esc(c.alias ? c.alias.replace(/^AMA-/, '').slice(0, 4) : initials(c.name))}</span>`;
+        : `<span class="soon">Art coming soon</span><span class="mono">${esc(initials(c.name))}</span>`;
     return `
     <a class="char reveal" href="${charHref(c)}" style="--cc:${c.color}">
         <div class="pic">${pic}</div>
@@ -84,7 +90,7 @@ function page({ title, description, path, active, manifest, ogImage, body }) {
 function mainPage(manifest) {
     const banner = manifest.brand && manifest.brand.banner ? amaAsset(manifest.brand.banner) : '';
     const logo = manifest.brand && manifest.brand.logo ? amaAsset(manifest.brand.logo) : '';
-    const featured = AMA_CHARACTERS.filter((c) => c.group === 'main' || c.group === 'pilots');
+    const featured = [...AMA_CHARACTERS.filter((c) => c.group === 'main'), ...factionMembers('pilots').filter((c) => c.group !== 'main')];
     const body = `
 <section class="cine" style="padding:0">
     <div class="bg" style="background-image:url('${banner}')"></div>
@@ -129,19 +135,53 @@ function mainPage(manifest) {
 }
 
 // ---------------------------------------------------------------- characters
+// 12-column grid, 4 per row; the last row stretches so it never leaves a hole.
+const spanFor = (i, n) => { const rest = n % 4; return rest && i >= n - rest ? 12 / rest : 3; };
+
+function factionButton(f, manifest, on, span) {
+    const art = ((manifest.factions || {})[f.key] || {}).banner;
+    const n = factionMembers(f.key).length;
+    return `<button type="button" class="fac reveal${on ? ' on' : ''}" data-fac="${f.key}" aria-controls="fac-${f.key}" aria-pressed="${on}" style="--fc:${f.color};--span:${span}">${art ? `<span class="bg" style="background-image:url('${amaAsset(art)}')"></span>` : '<span class="bg noart"></span>'}<b>${esc(f.name)}</b><small>${n} ${n === 1 ? 'member' : 'members'}</small></button>`;
+}
+
 function charactersPage(manifest) {
-    const groups = AMA_GROUPS.map((g) => {
-        const list = AMA_CHARACTERS.filter((c) => c.group === g.key);
-        return `<div class="ama-group"><h3>${esc(g.name)}</h3>${g.sub ? `<p>${esc(g.sub)}</p>` : '<p></p>'}<div class="chars${g.key === 'secondary' ? ' sm' : ''}">${list.map((c) => charCard(c, manifest)).join('')}</div></div>`;
-    }).join('');
+    const main = AMA_CHARACTERS.filter((c) => c.group === 'main');
+    const secondary = AMA_CHARACTERS.filter((c) => c.group === 'secondary');
+    const factions = AMA_FACTIONS.filter((f) => factionMembers(f.key).length);
+    const [gMain, gFac, gSec] = ['main', 'faction', 'secondary'].map((k) => AMA_GROUPS.find((g) => g.key === k));
     const body = `
 <section class="page-head"><div class="wrap"><span class="eyebrow">Characters</span><h1>The cast of <span class="grad-ab">Amaphest</span></h1>
-<p class="lead">Heroes, pilots, scientists and soldiers caught in the war for the Amalion.</p></div></section>
-<section style="padding-top:28px"><div class="wrap">${groups}
-    <div class="ama-group"><h3>Factions</h3><p>The powers behind every side.</p>
-    <div class="facs">${AMA_FACTIONS.map((f) => `<div class="fac reveal" style="--fc:${f.color}"><b>${esc(f.name)}</b><p>${esc(f.text)}</p></div>`).join('')}</div></div>
-</div></section>`;
-    return page({ title: `Characters · ${AMA.title}`, description: `Meet the characters of ${AMA.title}: ${AMA.subtitle}.`, path: `${AMA_BASE}/characters`, active: 'characters', manifest, body });
+<p class="lead">Heroes, pilots, scientists, soldiers and rebels caught in the war for the Amalion.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">
+    <div class="ama-group"><h3>${esc(gMain.name)}</h3><p></p><div class="chars">${main.map((c) => charCard(c, manifest)).join('')}</div></div>
+
+    <div class="ama-group" id="factions"><h3>${esc(gFac.name)}</h3><p>${esc(gFac.sub)}</p>
+        <div class="facs" id="facs">${factions.map((f, i) => factionButton(f, manifest, i === 0, spanFor(i, factions.length))).join('')}</div>
+        ${factions.map((f, i) => `
+        <div class="fac-panel" id="fac-${f.key}" style="--fc:${f.color}"${i === 0 ? '' : ' hidden'}>
+            <h3>${esc(f.name)}</h3><p>${esc(f.text)}</p>
+            <div class="chars">${factionMembers(f.key).map((c) => charCard(c, manifest)).join('')}</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="ama-group"><h3>${esc(gSec.name)}</h3><p></p><div class="chars sm">${secondary.map((c) => charCard(c, manifest)).join('')}</div></div>
+</div></section>
+<script>
+(() => {
+    const bar = document.getElementById('facs'); if (!bar) return;
+    const show = (key, scroll) => {
+        const btn = bar.querySelector('[data-fac="' + key + '"]'); if (!btn) return;
+        bar.querySelectorAll('.fac').forEach((b) => { const on = b === btn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+        document.querySelectorAll('.fac-panel').forEach((p) => { p.hidden = p.id !== 'fac-' + key; });
+        const panel = document.getElementById('fac-' + key);
+        panel.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+        if (scroll) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-fac]'); if (!b) return; show(b.dataset.fac, true); history.replaceState(null, '', '#' + b.dataset.fac); });
+    const h = location.hash.slice(1); if (h) { show(h, false); const p = document.getElementById('factions'); p && p.scrollIntoView(); }
+})();
+</script>`;
+    return page({ title: `Characters · ${AMA.title}`, description: `Meet the characters and factions of ${AMA.title}: ${AMA.subtitle}.`, path: `${AMA_BASE}/characters`, active: 'characters', manifest, body });
 }
 
 function characterPage(c, manifest) {
@@ -152,7 +192,8 @@ function characterPage(c, manifest) {
     const faction = findFaction(c.faction);
     const f0 = def || {};
     const formButtons = forms.length > 1 ? `<div class="forms" id="forms">${forms.map((f) => `<button type="button" data-form='${esc(JSON.stringify({ p: f.profile, w: f.wallpaper, t: f.turnaround, n: f.note }))}'${f === def ? ' class="on"' : ''}>${f.profile ? `<img src="${f.profile}" alt="">` : ''}${esc(f.name)}</button>`).join('')}</div>` : '';
-    const facts = [...(c.alias ? [['Alias', c.alias]] : []), ...(c.facts || []), ...(faction ? [['Faction', faction.name]] : [])];
+    const facLink = faction && factionMembers(faction.key).length ? `<a href="${AMA_BASE}/characters#${faction.key}">${esc(faction.name)}</a>` : faction ? esc(faction.name) : '';
+    const facts = [...(c.alias ? [['Alias', c.alias]] : []), ...(c.facts || [])].map(([k, v]) => [k, esc(v)]).concat(facLink ? [['Faction', facLink]] : []);
     const body = `
 <section class="ch-hero" style="--cc:${c.color};padding:0">
     <div class="stage${f0.wallpaper ? '' : ' empty'}" id="stage">${f0.wallpaper ? `<img class="wp" id="wp" src="${f0.wallpaper}" alt="">` : ''}</div>
@@ -173,15 +214,15 @@ function characterPage(c, manifest) {
                 ${c.bio.map((p) => `<p>${esc(p)}</p>`).join('')}
                 <p class="form-note" id="note">${esc(f0.note || '')}</p>
             </div>
-            <div class="card"><table class="facts">${facts.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table></div>
+            <div class="card"><table class="facts">${facts.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</table></div>
         </div>
         <div id="turnwrap" style="margin-top:34px${f0.turnaround ? '' : ';display:none'}">
             <div class="section-head" style="margin-bottom:16px"><div><span class="eyebrow">Character sheet</span><h2 style="font-size:26px">Front &amp; back</h2></div></div>
             <div class="turn" id="turn" data-zoom="${f0.turnaround || ''}"><img id="turnimg" src="${f0.turnaround || ''}" alt="${esc(c.name)} front and back" loading="lazy"></div>
         </div>
         <div class="pn" style="margin-top:44px">
-            <a href="${charHref(prev)}"><span>&larr;</span><span><small>Previous</small><b>${esc(prev.alias || prev.name)}</b></span></a>
-            <a class="next" href="${charHref(next)}"><span><small>Next</small><b>${esc(next.alias || next.name)}</b></span><span>&rarr;</span></a>
+            <a href="${charHref(prev)}"><span>&larr;</span><span><small>Previous</small><b>${esc(shortName(prev))}</b></span></a>
+            <a class="next" href="${charHref(next)}"><span><small>Next</small><b>${esc(shortName(next))}</b></span><span>&rarr;</span></a>
         </div>
         <p style="margin-top:22px"><a class="btn btn-ghost btn-sm" href="${AMA_BASE}/characters">&larr; All characters</a></p>
     </div>

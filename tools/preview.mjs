@@ -31,7 +31,7 @@ globalThis.fetch = async (u, o) => (String(u).endsWith('/projects/amaphest/manif
     ? new Response(await readFile(join(out, '..', 'assets/projects/amaphest/manifest.json')))
     : realFetch(u, o));
 const amaPages = { 'amaphest.html': '', 'amaphest-characters.html': '/characters', 'amaphest-gallery.html': '/gallery',
-    'amaphest-michelle.html': '/characters/michelle-brown', 'amaphest-shock.html': '/characters/shock', 'amaphest-hammond.html': '/characters/george-hammond' };
+    'amaphest-michelle.html': '/characters/michelle-brown', 'amaphest-shock.html': '/characters/shock', 'amaphest-hammond.html': '/characters/george-hammond', 'amaphest-ryan.html': '/characters/ryan-cole', 'amaphest-kratos.html': '/characters/kratos' };
 for (const [file, route] of Object.entries(amaPages)) {
     const res = await handleAmaphest(new Request(`https://danloudlabs.com/amaphest-amalion-progenitor${route}`));
     let h = (await res.text()).split(SITE_ASSETS).join('../assets');
