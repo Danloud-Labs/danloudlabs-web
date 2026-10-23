@@ -35,6 +35,14 @@ export const ICONS = {
     wrench: stroke('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.4 1.4 0 0 0 2 2l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-.5-.5-2.1z"/>'),
     flask: stroke('<path d="M9.5 3h5M10 3v6l-5.2 9a1.6 1.6 0 0 0 1.4 2.4h11.6a1.6 1.6 0 0 0 1.4-2.4L14 9V3"/><path d="M7.4 15h9.2"/>'),
     copy: stroke('<rect x="8.5" y="8.5" width="11" height="11" rx="2.2"/><path d="M15.5 8.5V6.2a1.7 1.7 0 0 0-1.7-1.7H6.2a1.7 1.7 0 0 0-1.7 1.7v7.6a1.7 1.7 0 0 0 1.7 1.7h2.3"/>'),
+    scan: stroke('<path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/>'),
+    diamond: stroke('<path d="M12 2.5 21.5 12 12 21.5 2.5 12z"/><path d="M12 8v5M12 16h0"/>'),
+    truck: stroke('<path d="M2.5 7h11v9h-11zM13.5 10h4l3 3v3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>'),
+    book: stroke('<path d="M4 5.5A2 2 0 0 1 6 3.5h5v16H6a2 2 0 0 0-2 2zM20 5.5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2z"/>'),
+    call: stroke('<path d="M5 3.5h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.6 6.6l1.4-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/>'),
+    offline: stroke('<path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M9 16a4.5 4.5 0 0 1 6 0"/><circle cx="12" cy="19.2" r=".9" fill="currentColor"/><path d="M3 3l18 18"/>'),
+    flask2: stroke('<path d="M9.5 3h5M10 3v6l-5.2 9a1.6 1.6 0 0 0 1.4 2.4h11.6a1.6 1.6 0 0 0 1.4-2.4L14 9V3"/><path d="M7.4 15h9.2"/>'),
+    apple: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.63c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.54 2.66-.39 6.59 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.5zM14.2 6.17c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"/></svg>',
     shield: stroke('<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3z"/><path d="m8.8 12 2.2 2.2 4.4-4.4"/>'),
 };
 
@@ -45,7 +53,7 @@ const NAV = [
     ['Privacy', '/privacy', 'privacy'],
 ];
 
-export function sitePage({ title, description, path = '/', ogImage, active = '', back, head = '', body }) {
+export function sitePage({ title, description, path = '/', ogImage, icon, active = '', back, head = '', body }) {
     const url = `https://danloudlabs.com${path}`;
     const nav = NAV.map(([label, href, key]) => `<a href="${href}"${key === active ? ' class="on"' : ''}>${label}</a>`).join('');
     const backBtn = back ? `<a href="${back.href}" class="back-btn">&larr; ${esc(back.label)}</a>` : '';
@@ -57,7 +65,7 @@ export function sitePage({ title, description, path = '/', ogImage, active = '',
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${url}">
-<link rel="icon" type="image/webp" href="${asset('brand/logo-mark.webp')}">
+<link rel="icon" type="image/webp" href="${icon || asset('brand/logo-mark.webp')}">
 <meta name="theme-color" content="#06050a">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Danloud Labs">
