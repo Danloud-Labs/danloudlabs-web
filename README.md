@@ -9,7 +9,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 |---|---|---|---|
 | Main page | `/` | `worker/home.js` | New design |
 | iOS Apps | `/ios-apps`, `/ios` | `worker/ios.js` | New design |
-| Privacy Policy | `/privacy` | `privacy.js` (Worker) | Next |
+| Privacy Policy | `/privacy`, `/privacy-policy`, `/privacy/hazmat` | `worker/privacy.js` | New design |
 | Support Center | `/support` | `support.js` (Worker) | Next |
 | HazMat Scanner | `/ios/hazmat-scanner` | `hazmat.js` (Worker) | Next |
 | Everything else | | | Old design, unchanged |
@@ -27,7 +27,8 @@ danloudlabs-web/
 │   ├── site-styles.js  shared CSS (Theme Studio palette) for every redesigned page
 │   ├── site-layout.js  shared page shell: top bar, footer, app cards, icons
 │   ├── home.js         main page, exports htmlPrincipal
-│   └── ios.js          iOS Apps page, exports htmlIOS
+│   ├── ios.js          iOS Apps page, exports htmlIOS
+│   └── privacy.js      Privacy Policy, exports htmlPrivacy (legal text: change on purpose)
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```

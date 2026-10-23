@@ -6,11 +6,12 @@ import { fileURLToPath } from 'node:url';
 import { SITE_ASSETS } from '../worker/site-data.js';
 import { htmlPrincipal } from '../worker/home.js';
 import { htmlIOS } from '../worker/ios.js';
+import { htmlPrivacy } from '../worker/privacy.js';
 
 const out = join(dirname(fileURLToPath(import.meta.url)), '..', 'preview');
 await mkdir(out, { recursive: true });
-const pages = { 'index.html': htmlPrincipal, 'ios-apps.html': htmlIOS };
-const links = [['href="/ios-apps"', 'href="ios-apps.html"'], ['href="/#', 'href="index.html#'], ['href="/"', 'href="index.html"']];
+const pages = { 'index.html': htmlPrincipal, 'ios-apps.html': htmlIOS, 'privacy.html': htmlPrivacy };
+const links = [['href="/privacy"', 'href="privacy.html"'], ['href="/ios-apps"', 'href="ios-apps.html"'], ['href="/#', 'href="index.html#'], ['href="/"', 'href="index.html"']];
 for (const [file, html] of Object.entries(pages)) {
     let h = html.split(SITE_ASSETS).join('../assets');
     for (const [a, b] of links) h = h.split(a).join(b);
