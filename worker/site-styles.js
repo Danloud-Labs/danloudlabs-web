@@ -439,4 +439,49 @@ footer a:hover { color: var(--fg); }
     .shots img { height: 420px; }
     .plan { padding: 22px; }
 }
+
+/* ---------- Phone frame for plain screenshots ---------- */
+.phone { display: block; padding: 9px; border-radius: 46px; background: linear-gradient(160deg, #2b2f3a, #0d0f14 45%, #1c1f27); border: 1px solid rgba(255, 255, 255, 0.10); box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.6); }
+.phone img { display: block; width: 100%; height: auto; border-radius: 37px; }
+.devices .phone { position: absolute; }
+.devices .phone.back { right: 2%; top: 0; width: 250px; transform: rotate(4deg); opacity: .92; }
+.devices .phone.front { left: 8%; top: 46px; width: 262px; transform: rotate(-3deg); box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.85), 0 0 60px -12px color-mix(in srgb, var(--c) 40%, transparent); }
+.shots .phone { flex: none; width: 250px; scroll-snap-align: start; cursor: zoom-in; padding: 7px; border-radius: 38px; }
+.shots .phone img { border-radius: 31px; height: auto; width: 100%; max-width: 100%; border: 0; }
+.devices .phone img { position: static; filter: none; max-width: 100%; }
+.shots.phones { display: flex; }
+.cap { text-align: center; color: var(--muted); font-size: 13px; margin-top: 10px; }
+.tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.tool { display: flex; gap: 14px; padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); }
+.tool .ic { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center; color: var(--tc, var(--c)); background: color-mix(in srgb, var(--tc, var(--c)) 14%, transparent); border: 1px solid color-mix(in srgb, var(--tc, var(--c)) 32%, transparent); }
+.tool .ic svg { width: 21px; height: 21px; }
+.tool b { display: block; font-size: 15.5px; margin-bottom: 4px; }
+.tool p { margin: 0; color: var(--muted); font-size: 13.8px; line-height: 1.5; }
+.tool .lock { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #fbbf24; }
+.split-feature { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: center; padding: 34px; border-radius: 28px; border: 1px solid var(--line); background: radial-gradient(500px 300px at 100% 50%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), var(--win); margin-bottom: 16px; }
+.split-feature.flip { grid-template-columns: 300px 1fr; background: radial-gradient(500px 300px at 0% 50%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 70%), var(--win); }
+.split-feature.flip .phone { order: -1; }
+.split-feature h3 { font-size: clamp(24px, 3vw, 32px); margin: 8px 0 10px; }
+.split-feature p.lead { font-size: 16px; }
+.split-feature .phone { width: 100%; max-width: 280px; margin: 0 auto; }
+@media (max-width: 980px) {
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .devices .phone.back { width: 210px; right: 8%; }
+    .devices .phone.front { width: 222px; left: 12%; top: 34px; }
+    .split-feature, .split-feature.flip { grid-template-columns: 1fr; }
+    .split-feature.flip .phone { order: 0; }
+}
+@media (max-width: 640px) {
+    .tools-grid { grid-template-columns: 1fr; }
+    .devices .phone.back { width: 165px; right: 2%; }
+    .devices .phone.front { width: 175px; left: 4%; top: 26px; }
+    .split-feature { padding: 22px; }
+    .shots .phone { width: 210px; }
+}
+
+.checks { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+.checks li { display: flex; gap: 10px; align-items: flex-start; color: var(--fg); font-size: 15px; }
+.checks li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 6px; background: var(--c, var(--a2));
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / 14px no-repeat, linear-gradient(#000, #000);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
 `;

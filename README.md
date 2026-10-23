@@ -12,6 +12,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | Privacy Policy | `/privacy`, `/privacy-policy`, `/privacy/hazmat` | `worker/privacy.js` | New design |
 | Support Center | `/support` | `worker/support.js` | New design |
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
+| FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
 ## Structure
@@ -20,7 +21,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 danloudlabs-web/
 ├── assets/
 │   ├── brand/      logo-mark.webp (transparent), hero-characters.webp, logo-card.webp
-│   ├── apps/       <app>-icon.webp (256 px), <app>-banner.webp (16:9), hazmat/ screenshots
+│   ├── apps/       <app>-icon.webp (256 px), <app>-banner.webp (16:9), hazmat/ and fedlog/ screenshots
 │   └── projects/   <project>-logo.webp (transparent logos of the creative projects)
 ├── worker/         the files that go in the Cloudflare Worker
 │   ├── site-data.js    apps, projects, platforms, contact: edit this one for content
@@ -30,7 +31,8 @@ danloudlabs-web/
 │   ├── ios.js          iOS Apps page, exports htmlIOS
 │   ├── privacy.js      Privacy Policy, exports htmlPrivacy (legal text: change on purpose)
 │   ├── support.js      Support Center, exports htmlSupport (FAQ, search, email assistant)
-│   └── hazmat.js       HazMat Scanner page, exports htmlHazMat
+│   ├── hazmat.js       HazMat Scanner page, exports htmlHazMat
+│   └── fedlog.js       FedLog page, exports htmlFedLog
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
