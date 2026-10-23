@@ -10,7 +10,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | Main page | `/` | `worker/home.js` | New design |
 | iOS Apps | `/ios-apps`, `/ios` | `worker/ios.js` | New design |
 | Privacy Policy | `/privacy`, `/privacy-policy`, `/privacy/hazmat` | `worker/privacy.js` | New design |
-| Support Center | `/support` | `support.js` (Worker) | Next |
+| Support Center | `/support` | `worker/support.js` | New design |
 | HazMat Scanner | `/ios/hazmat-scanner` | `hazmat.js` (Worker) | Next |
 | Everything else | | | Old design, unchanged |
 
@@ -28,7 +28,8 @@ danloudlabs-web/
 │   ├── site-layout.js  shared page shell: top bar, footer, app cards, icons
 │   ├── home.js         main page, exports htmlPrincipal
 │   ├── ios.js          iOS Apps page, exports htmlIOS
-│   └── privacy.js      Privacy Policy, exports htmlPrivacy (legal text: change on purpose)
+│   ├── privacy.js      Privacy Policy, exports htmlPrivacy (legal text: change on purpose)
+│   └── support.js      Support Center, exports htmlSupport (FAQ, search, email assistant)
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
@@ -37,6 +38,11 @@ Each page keeps the same export name the Worker's `index.js` already imports, so
 page only needs its file pasted over the old one.
 
 ## Common changes
+
+- **Support Center FAQ:** each answer is one entry in `FAQ` (`worker/support.js`) with its app,
+  topic, question and answer. When an app ships (FedLog, WarDecks), change its status in
+  `SUPPORT_APPS` and add its questions. Deep links: `/support#aura`, `/support#hazmat`,
+  `/support#aura-restore` (opens that answer), `/support?q=refund` (searches).
 
 - **New app:** add its icon and 16:9 banner to `assets/apps/`, then an entry in `SITE_APPS`
   (`worker/site-data.js`). It shows on the main page and on /ios-apps.

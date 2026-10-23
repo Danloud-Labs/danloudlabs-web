@@ -14,6 +14,7 @@
    - `home.js`
    - `ios.js`
    - `privacy.js`
+   - `support.js`
 5. **Deploy**, then open https://danloudlabs.com and https://danloudlabs.com/ios-apps
 
 The old `styles.js` (`cssSubPaginas`) stays: the pages not redesigned yet still use it.
