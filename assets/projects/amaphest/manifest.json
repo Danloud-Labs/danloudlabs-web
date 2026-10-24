@@ -86,6 +86,9 @@
     "encore": {
       "banner": "factions/encore/banner.webp"
     },
+    "hemos": {
+      "banner": "factions/hemos/banner.webp"
+    },
     "urso": {
       "banner": "factions/urso/banner.webp"
     },
