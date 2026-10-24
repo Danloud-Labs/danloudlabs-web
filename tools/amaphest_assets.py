@@ -39,7 +39,9 @@ OUT = ROOT / 'assets/projects/amaphest'
 # The site shows the names from the story documents; folder spellings that differ are mapped here.
 FOLDER_SLUGS = {
     # main
-    'Amaphest': 'michelle-brown', 'Michelle Brown': 'michelle-brown',
+    'Amaphest': 'michelle-brown',
+    # Brown's Family/Michelle Brown is her mother (Artwork folder: "Mrs Michelle Brown").
+    'Michelle Brown': 'mrs-michelle-brown', 'Mrs Michelle Brown': 'mrs-michelle-brown', 'Mrs. Michelle Brown': 'mrs-michelle-brown',
     'AMA-PR4': 'dash', 'George Hammond': 'george-hammond', 'Glenn Monroe': 'glenn-monroe',
     # secondary
     'Alexander Bourne': 'alexander-bourne', 'Charles Hurley': 'charles-hurley',

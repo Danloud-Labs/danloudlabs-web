@@ -16,6 +16,26 @@
       "profile": "characters/shock/profile.webp",
       "wallpaper": "characters/shock/wallpaper.webp"
     },
+    "ambar-brown": {
+      "profile": "characters/ambar-brown/profile.webp",
+      "wallpaper": "characters/ambar-brown/wallpaper.webp"
+    },
+    "mia-brown": {
+      "profile": "characters/mia-brown/profile.webp",
+      "wallpaper": "characters/mia-brown/wallpaper.webp"
+    },
+    "mrs-michelle-brown": {
+      "profile": "characters/mrs-michelle-brown/profile.webp",
+      "wallpaper": "characters/mrs-michelle-brown/wallpaper.webp"
+    },
+    "miura-brown": {
+      "profile": "characters/miura-brown/profile.webp",
+      "wallpaper": "characters/miura-brown/wallpaper.webp"
+    },
+    "steve-brown": {
+      "profile": "characters/steve-brown/profile.webp",
+      "wallpaper": "characters/steve-brown/wallpaper.webp"
+    },
     "ama-vx": {
       "profile": "characters/ama-vx/profile.webp",
       "wallpaper": "characters/ama-vx/wallpaper.webp"
@@ -51,6 +71,10 @@
     "william-bourne": {
       "wallpaper": "characters/william-bourne/wallpaper.webp",
       "profile": "characters/william-bourne/profile.webp"
+    },
+    "james-harker": {
+      "profile": "characters/james-harker/profile.webp",
+      "wallpaper": "characters/james-harker/wallpaper.webp"
     },
     "circuit": {
       "profile": "characters/circuit/profile.webp",

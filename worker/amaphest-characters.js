@@ -303,6 +303,12 @@ export const AMA_CHARACTERS = [
         facts: [['Daughter', 'Michelle Brown']],
     }),
     C({
+        slug: 'mrs-michelle-brown', name: 'Mrs. Michelle Brown', group: 'faction', faction: 'brown', color: '#ff8a5c',
+        role: 'Michelle’s mother',
+        bio: ['Steve Brown’s first wife, a warm and gentle woman from Southern California who was expecting their first child. She did not survive giving birth to her daughter, who carries her name. Michelle never knew her, but her mother was the first thing the impossible heart took from her.'],
+        facts: [['Husband', 'Steve Brown'], ['Daughter', 'Michelle Brown']],
+    }),
+    C({
         slug: 'mia-brown', name: 'Mia Brown', group: 'faction', faction: 'brown', color: '#f0b7a0',
         role: 'Steve Brown’s wife',
         bio: ['Born Mia Espinoza, she became Steve Brown’s second wife and brought stability back into his life. Together they raised two daughters, building the family life Steve had lost. Far from the war, she stands for normalcy and love.'],
