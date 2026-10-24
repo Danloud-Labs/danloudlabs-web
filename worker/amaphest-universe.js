@@ -53,12 +53,12 @@ function charChips(slugs, manifest, amaAsset, base) {
     }).join('')}</div>`;
 }
 
-function card(it, sec, art, ctx, wide) {
+function card(it, sec, art, ctx, wide, placeholder) {
     const img = art.cards[`${sec.id}/${it.id || slug(it.name)}`];
     const facts = (it.facts || []).length ? `<table class="u-facts">${it.facts.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>` : '';
     return `
-        <article class="u-card${wide ? ' wide' : ''}${img ? ' has-img' : ''} reveal" style="--ic:${it.color || 'var(--uc)'}">
-            ${img ? `<div class="u-img" data-zoom="${img}"><img src="${img}" alt="${esc(it.name)}" loading="lazy"></div>` : ''}
+        <article class="u-card${wide ? ' wide' : ''}${img || placeholder ? ' has-img' : ''} reveal" style="--ic:${it.color || 'var(--uc)'}">
+            ${img ? `<div class="u-img" data-zoom="${img}"><img src="${img}" alt="${esc(it.name)}" loading="lazy"></div>` : placeholder ? '<div class="u-img ph" aria-hidden="true"></div>' : ''}
             <div class="u-txt">
                 ${it.kicker ? `<small>${esc(it.kicker)}</small>` : ''}
                 <h3>${esc(it.name)}</h3>
@@ -80,10 +80,12 @@ function sectionBody(sec, art, ctx) {
     if (sec.layout === 'timeline') {
         return `<ol class="u-timeline">${items.map((it) => `<li class="reveal"><b>${esc(it.name)}</b><p>${esc(it.text)}</p>${charChips(it.chars, ctx.manifest, ctx.amaAsset, ctx.base)}</li>`).join('')}</ol>`;
     }
+    // In a grid where some cards have art, the others get a matching placeholder so rows line up.
+    const withArt = items.some((it) => art.cards[`${sec.id}/${it.id || slug(it.name)}`]);
     // Columns that never leave a lonely card: 3 → 3, 6 → 3, 8 → 4; wide cards go 2 or 3 across.
     const n = sec.layout === 'wide' ? items.filter((it) => !art.cards[`${sec.id}/${it.id || slug(it.name)}`]).length : items.length;
     const cols = sec.layout === 'wide' ? (n % 2 === 0 ? 2 : 3) : (n <= 4 ? n : n % 4 === 0 ? 4 : 3);
-    return `<div class="u-grid${sec.layout === 'wide' ? ' wide' : ''}" style="--cols:${cols}">${items.map((it) => card(it, sec, art, ctx, sec.layout === 'wide')).join('')}</div>`;
+    return `<div class="u-grid${sec.layout === 'wide' ? ' wide' : ''}" style="--cols:${cols}">${items.map((it) => card(it, sec, art, ctx, sec.layout === 'wide', sec.layout !== 'wide' && withArt)).join('')}</div>`;
 }
 
 function tabPanel(tab, manifest, ctx, first) {
@@ -198,8 +200,10 @@ export const AMA_UNIVERSE_CSS = `
 .u-grid.wide .u-card.has-img .u-img { aspect-ratio: auto; min-height: 100%; }
 .u-grid.wide .u-card.has-img .u-txt { padding: 26px 28px; align-self: center; }
 .u-img { aspect-ratio: 16 / 9; overflow: hidden; cursor: zoom-in; background: #000; }
+.u-img.ph { cursor: default; background: radial-gradient(60% 90% at 30% 110%, color-mix(in srgb, var(--ic) 45%, transparent), transparent 70%), radial-gradient(50% 80% at 85% -10%, color-mix(in srgb, var(--uc2) 35%, transparent), transparent 70%), repeating-linear-gradient(120deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 22px), #0d0a12; }
 .u-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
-.u-card:hover .u-img img { transform: scale(1.04); }
+.u-card:hover .u-img.ph { cursor: default; background: radial-gradient(60% 90% at 30% 110%, color-mix(in srgb, var(--ic) 45%, transparent), transparent 70%), radial-gradient(50% 80% at 85% -10%, color-mix(in srgb, var(--uc2) 35%, transparent), transparent 70%), repeating-linear-gradient(120deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 22px), #0d0a12; }
+.u-img img { transform: scale(1.04); }
 .u-txt { padding: 18px 20px 20px; }
 .u-txt small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: color-mix(in srgb, var(--ic) 75%, white); margin-bottom: 4px; }
 .u-txt h3 { font-size: 19px; margin-bottom: 6px; }
