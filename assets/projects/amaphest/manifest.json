@@ -84,6 +84,28 @@
       "banner": "factions/cia/banner.webp"
     }
   },
+  "universe": {
+    "earth": {
+      "images": {
+        "generate-in-8k-hyper-realistic-2k-20261024033342": "universe/earth/generate-in-8k-hyper-realistic-2k-20261024033342.webp",
+        "generate-in-8k-more-realistic-2k-20261024032854": "universe/earth/generate-in-8k-more-realistic-2k-20261024032854.webp",
+        "generate-in-8k-more-realistic-2k-20261024033021": "universe/earth/generate-in-8k-more-realistic-2k-20261024033021.webp",
+        "generate-in-8k-more-realistic-2k-20261024033059": "universe/earth/generate-in-8k-more-realistic-2k-20261024033059.webp",
+        "generate-in-8k-more-realistic-2k-20261024033152": "universe/earth/generate-in-8k-more-realistic-2k-20261024033152.webp",
+        "generate-in-8k-more-realistic-2k-20261024033327": "universe/earth/generate-in-8k-more-realistic-2k-20261024033327.webp",
+        "generate-in-8k-ultra-realistic-2k-20261024033240": "universe/earth/generate-in-8k-ultra-realistic-2k-20261024033240.webp"
+      },
+      "order": [
+        "generate-in-8k-hyper-realistic-2k-20261024033342",
+        "generate-in-8k-more-realistic-2k-20261024032854",
+        "generate-in-8k-more-realistic-2k-20261024033021",
+        "generate-in-8k-more-realistic-2k-20261024033059",
+        "generate-in-8k-more-realistic-2k-20261024033152",
+        "generate-in-8k-more-realistic-2k-20261024033327",
+        "generate-in-8k-ultra-realistic-2k-20261024033240"
+      ]
+    }
+  },
   "brand": {
     "logo": "brand/logo.webp",
     "banner": "brand/banner.webp"

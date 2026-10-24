@@ -3,6 +3,7 @@
 //   /amaphest-amalion-progenitor                       main page
 //   /amaphest-amalion-progenitor/characters            all characters
 //   /amaphest-amalion-progenitor/characters/<slug>     one character
+//   /amaphest-amalion-progenitor/universe              the universe (Hemos, Earth tabs)
 //   /amaphest-amalion-progenitor/gallery               gallery
 //   /amaphest                                          -> main page
 // The Worker's fetch() calls handleAmaphest(request) first; it returns null for other paths.
@@ -10,6 +11,7 @@
 
 import { AMA, AMA_BASE, AMA_CHARACTERS, AMA_FACTIONS, AMA_GALLERY, AMA_GROUPS, AMA_MANIFEST, AMA_SECTIONS, AMA_UNIVERSE, amaAsset, factionMembers, findCharacter, findFaction } from './amaphest-data.js';
 import { AMA_CSS } from './amaphest-styles.js';
+import { AMA_UNIVERSE_CSS, universeBody } from './amaphest-universe.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
@@ -59,7 +61,7 @@ function charCard(c, manifest) {
 
 function amaNav(active, manifest) {
     const logo = manifest.brand && manifest.brand.logo ? `<a href="${AMA_BASE}" style="padding:0;border:0;background:none"><img src="${amaAsset(manifest.brand.logo)}" alt="Amaphest"></a>` : '';
-    const links = [['', 'Home'], ...AMA_SECTIONS.map((s) => [s.key, s.name, s.status])];
+    const links = [['', 'Home'], ...AMA_SECTIONS.map((s) => [s.key, s.nav || s.name, s.status])];
     return `<div class="ama-nav"><div class="wrap">${logo}${links.map(([k, n, st]) => (st === 'soon' && k !== 'gallery'
         ? `<span>${esc(n)}<small>Soon</small></span>`
         : `<a href="${AMA_BASE}${k ? `/${k}` : ''}"${active === k ? ' class="on"' : ''}>${esc(n)}</a>`)).join('')}</div></div>`;
@@ -76,13 +78,13 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const lb = document.getElementById('lb'); lb && lb.classList.remove('open'); } });
 </script>`;
 
-function page({ title, description, path, active, manifest, ogImage, body }) {
+function page({ title, description, path, active, manifest, ogImage, body, css = '' }) {
     return sitePage({
         title, description, path, ogImage,
         icon: manifest.brand && manifest.brand.logo ? amaAsset(manifest.brand.logo) : undefined,
         active: 'projects',
         back: { href: '/#projects', label: 'Projects' },
-        head: `<style>${AMA_CSS}</style>`,
+        head: `<style>${AMA_CSS}${css}</style>`,
         body: `<div class="ama">${amaNav(active, manifest)}${body}</div>${lightbox}`,
     });
 }
@@ -101,7 +103,7 @@ function mainPage(manifest) {
         <p class="lead" style="font-size:clamp(17px,2vw,21px)"><b style="color:#fff">${esc(AMA.tagline)}</b> ${esc(AMA.logline)}</p>
         <div class="cta-row" style="justify-content:flex-start">
             <a class="btn btn-primary" href="${AMA_BASE}/characters">Meet the characters</a>
-            <a class="btn btn-ghost" href="#universe">The universe</a>
+            <a class="btn btn-ghost" href="${AMA_BASE}/universe">The Universe</a>
         </div>
         <p class="credit">An original story by ${esc(AMA.creator)} · Danloud Labs</p>
     </div>
@@ -109,7 +111,7 @@ function mainPage(manifest) {
 
 <section id="universe">
     <div class="wrap">
-        <div class="section-head reveal"><div><span class="eyebrow">The universe</span><h2>Two energies. <span class="grad-ab">One heart.</span></h2></div></div>
+        <div class="section-head reveal"><div><span class="eyebrow">The Universe</span><h2>Two energies. <span class="grad-ab">One heart.</span></h2></div><a class="btn btn-ghost btn-sm" href="${AMA_BASE}/universe">Explore the Universe ${small(ICONS.arrow)}</a></div>
         <div class="trio">${AMA_UNIVERSE.map((u) => `<div class="card reveal" style="--tc:${u.c}"><h3>${esc(u.k)}</h3><p>${esc(u.t)}</p></div>`).join('')}</div>
     </div>
 </section>
@@ -264,6 +266,18 @@ ${items.length ? `<div class="ama-gallery">${items.map((g) => `<figure data-zoom
     return page({ title: `Gallery · ${AMA.title}`, description: `Art from ${AMA.title}: ${AMA.subtitle}.`, path: `${AMA_BASE}/gallery`, active: 'gallery', manifest, body });
 }
 
+// ---------------------------------------------------------------- universe
+function universePage(manifest) {
+    const u = (manifest.universe || {}).hemos || {};
+    const og = u.images && (u.images.hero || Object.values(u.images)[0]);
+    return page({
+        title: `The Universe · ${AMA.title}`,
+        description: `Hemos, the Hemosapiens and their civil war, and the corporations, governments and resistance of present-day Earth in ${AMA.title}: ${AMA.subtitle}.`,
+        path: `${AMA_BASE}/universe`, active: 'universe', manifest, ogImage: og ? amaAsset(og) : undefined,
+        css: AMA_UNIVERSE_CSS, body: universeBody({ manifest, amaAsset, base: AMA_BASE }),
+    });
+}
+
 // ---------------------------------------------------------------- routes
 const html = (body) => new Response(body, { headers: { 'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=300' } });
 
@@ -277,6 +291,7 @@ export async function handleAmaphest(request) {
     if (rest === '') return html(mainPage(manifest));
     if (rest === '/characters') return html(charactersPage(manifest));
     if (rest === '/gallery') return html(galleryPage(manifest));
+    if (rest === '/universe') return html(universePage(manifest));
     const m = rest.match(/^\/characters\/([a-z0-9-]+)$/);
     if (m && findCharacter(m[1])) return html(characterPage(findCharacter(m[1]), manifest));
     return Response.redirect(`${url.origin}${AMA_BASE}`, 302);

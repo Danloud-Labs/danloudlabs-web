@@ -12,6 +12,9 @@ for characters with several outfits such as Michelle's AMA-ESS Jacket or Offensi
   - name contains "wallpaper", or the image is landscape  -> 16:9 dynamic wallpaper
   - name contains "F&B", "turnaround" or "CGI"            -> front & back turnaround
   - any other portrait image (Face, Upscale, Collection_Cover, profile) -> profile picture
+Universe/<Hemos|Earth>/: art for the Universe page. Name an image like a card ("Encore.jpg",
+"Resonant Plains.png") to put it on that card, "Hero" for the tab's top background; any other
+image becomes a section background.
 When several files match the same role, the newest one wins. Renaming a file to
 profile.png / wallpaper.jpg / turnaround.jpg always forces its role.
 """
@@ -78,6 +81,7 @@ def slug_for(folder: str):
 
 
 def form_slug(name: str):
+    name = ''.join(ch for ch in unicodedata.normalize('NFKD', name) if not unicodedata.combining(ch))
     return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
 
 
@@ -126,6 +130,10 @@ def save(src: Path, dst: Path, role: str):
             im = im.convert('RGBA') if im.mode in ('RGBA', 'LA', 'P') else im.convert('RGB')
             im.thumbnail((1400, 1400), Image.LANCZOS)
             im.save(dst, 'WEBP', quality=82, method=6)
+        elif role == 'universe':
+            im = im.convert('RGB')
+            im.thumbnail((2048, 2048), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=82, method=6)
         elif role == 'faction':
             im = im.convert('RGB')
             im.thumbnail((1200, 1200), Image.LANCZOS)
@@ -158,7 +166,7 @@ def main():
     if not chars_dir.is_dir():
         sys.exit(f'Not found: {chars_dir}')
 
-    manifest = {'characters': {}, 'factions': {}, 'brand': {}}
+    manifest = {'characters': {}, 'factions': {}, 'universe': {}, 'brand': {}}
 
     # Brand art at the top of the folder.
     for f in src.iterdir():
@@ -217,9 +225,24 @@ def main():
         if not entry:
             manifest['characters'].pop(slug)
 
+    # Universe/<Tab>/<image>: art for the Universe page (see worker/amaphest-universe-data.js).
+    uni_dir = src / 'Universe'
+    if uni_dir.is_dir():
+        for tab in dirs(uni_dir):
+            key = form_slug(unicodedata.normalize('NFC', tab.name))
+            imgs = {}
+            for f in sorted(images(tab), key=lambda p: p.name.lower()):
+                name = form_slug(unicodedata.normalize('NFC', f.stem))
+                if not name:
+                    continue
+                imgs[name] = rel(save(f, OUT / f'universe/{key}/{name}.webp', 'universe'))
+                print(f'universe {key:8} {name:28} <- {f.name}')
+            if imgs:
+                manifest['universe'][key] = {'images': imgs, 'order': list(imgs)}
+
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-    print(f"\nmanifest.json: {len(manifest['characters'])} characters and {len(manifest['factions'])} factions with art")
+    print(f"\nmanifest.json: {len(manifest['characters'])} characters, {len(manifest['factions'])} factions and {len(manifest['universe'])} universe tabs with art")
 
 
 if __name__ == '__main__':

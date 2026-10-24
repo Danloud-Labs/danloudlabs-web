@@ -51,6 +51,7 @@ export const AMA_GROUPS = [
 
 // Sections of the universe (main page). Status 'live' links to the page; 'soon' shows a teaser.
 export const AMA_SECTIONS = [
+    { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'Hemos, its people and its civil war, and the corporations and governments of present-day Earth.' },
     { key: 'characters', name: 'Characters', status: 'live', text: 'The heroes, pilots and powers of the story.' },
     { key: 'technology', name: 'Technology', status: 'soon', text: 'The AMA-ESS suits, the stabilizer, Amalion and the war machines of Encore.' },
     { key: 'locations', name: 'Locations', status: 'soon', text: 'From the moon forts of Hemos to the ruins of Los Angeles.' },
