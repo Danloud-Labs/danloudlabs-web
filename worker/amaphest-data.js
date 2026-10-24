@@ -18,6 +18,8 @@ export const AMA = {
     subtitle: 'The Amalion Progenitor',
     creator: 'David Gomez Valerio',
     tagline: 'Born with two worlds in her heart.',
+    // Where the face is in the main banner (x y). The hero crops and zooms around this point.
+    bannerFocus: '46% 12%',
     logline: 'A girl born carrying the two sacred energies of a distant planet becomes the most coveted weapon on Earth, and the only one who can decide what she will be.',
 };
 

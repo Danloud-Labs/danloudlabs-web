@@ -94,7 +94,7 @@ function mainPage(manifest) {
     const featured = [...AMA_CHARACTERS.filter((c) => c.group === 'main'), ...factionMembers('pilots').filter((c) => c.group !== 'main')];
     const body = `
 <section class="cine" style="padding:0">
-    <div class="bg" style="background-image:url('${banner}')"></div>
+    <div class="bg" style="background-image:url('${banner}');--focus:${AMA.bannerFocus || '50% 25%'}"></div>
     <div class="sparks"></div>
     <div class="wrap">
         ${logo ? `<img class="logo" src="${logo}" alt="${esc(AMA.title)}: ${esc(AMA.subtitle)}">` : `<h1>${esc(AMA.title)}</h1>`}

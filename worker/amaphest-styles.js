@@ -21,7 +21,7 @@ export const AMA_CSS = `
 
 /* Cinematic hero with slow "dynamic wallpaper" motion */
 .cine { position: relative; overflow: hidden; min-height: min(78vh, 760px); display: flex; align-items: flex-end; background: #000; }
-.cine > .bg { position: absolute; inset: -4%; background-size: cover; background-position: center; animation: ama-drift 28s ease-in-out infinite alternate; }
+.cine > .bg { --focus: 50% 25%; position: absolute; inset: -4%; background-size: cover; background-position: var(--focus); transform-origin: var(--focus); animation: ama-drift 28s ease-in-out infinite alternate; }
 .cine::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, var(--bg) 0%, rgba(6, 5, 10, 0.55) 38%, rgba(6, 5, 10, 0.05) 70%), linear-gradient(90deg, rgba(6, 5, 10, 0.75), transparent 60%); }
 .cine .wrap { position: relative; z-index: 2; padding-bottom: 48px; }
 .cine .logo { width: min(620px, 92%); height: auto; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.8)); }
@@ -31,7 +31,8 @@ export const AMA_CSS = `
     radial-gradient(2px 2px at 20% 30%, rgba(255, 46, 77, .9), transparent), radial-gradient(2px 2px at 70% 60%, rgba(47, 139, 255, .9), transparent),
     radial-gradient(1.5px 1.5px at 40% 80%, rgba(214, 60, 255, .9), transparent), radial-gradient(1.5px 1.5px at 85% 25%, rgba(255, 46, 77, .8), transparent),
     radial-gradient(2px 2px at 55% 15%, rgba(47, 139, 255, .8), transparent); background-size: 100% 100%; animation: ama-sparks 9s linear infinite; opacity: .7; }
-@keyframes ama-drift { from { transform: scale(1.04) translate3d(-1%, 0, 0); } to { transform: scale(1.12) translate3d(1.5%, -1.5%, 0); } }
+/* Zooms toward the focus point (the face) and never drifts upward, so the face stays in frame. */
+@keyframes ama-drift { from { transform: scale(1.02) translate3d(-0.8%, 0, 0); } to { transform: scale(1.09) translate3d(0.8%, 0.6%, 0); } }
 @keyframes ama-sparks { from { transform: translateY(0); opacity: .8; } to { transform: translateY(-60px); opacity: .2; } }
 @media (prefers-reduced-motion: reduce) { .cine > .bg, .cine .sparks { animation: none; } }
 
@@ -95,7 +96,7 @@ a.ama-section:hover { border-color: var(--amalion); transform: translateY(-3px);
 /* Character page */
 .ch-hero { position: relative; overflow: hidden; background: #000; }
 .ch-hero .stage { position: relative; aspect-ratio: 16 / 9; max-height: 82vh; width: 100%; overflow: hidden; }
-.ch-hero .stage img.wp { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: ama-drift 26s ease-in-out infinite alternate; transition: opacity .5s; }
+.ch-hero .stage img.wp { --focus: 50% 28%; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--focus); transform-origin: var(--focus); animation: ama-drift 26s ease-in-out infinite alternate; transition: opacity .5s; }
 .ch-hero .stage.empty { aspect-ratio: auto !important; height: 360px; max-height: none; background: radial-gradient(60% 70% at 70% 40%, color-mix(in srgb, var(--cc) 40%, transparent), transparent 70%), linear-gradient(160deg, #15111c, #050407); }
 .ch-hero .stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg) 0%, rgba(6, 5, 10, 0.4) 30%, transparent 60%), linear-gradient(90deg, rgba(6, 5, 10, 0.85) 0%, rgba(6, 5, 10, 0.2) 45%, transparent 70%); }
 .ch-hero .over { position: absolute; inset: auto 0 0; z-index: 2; }
