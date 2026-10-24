@@ -52,6 +52,42 @@
       "wallpaper": "characters/william-bourne/wallpaper.webp",
       "profile": "characters/william-bourne/profile.webp"
     },
+    "circuit": {
+      "profile": "characters/circuit/profile.webp",
+      "wallpaper": "characters/circuit/wallpaper.webp"
+    },
+    "torch": {
+      "profile": "characters/torch/profile.webp",
+      "wallpaper": "characters/torch/wallpaper.webp"
+    },
+    "doc": {
+      "profile": "characters/doc/profile.webp",
+      "wallpaper": "characters/doc/wallpaper.webp"
+    },
+    "fixer": {
+      "profile": "characters/fixer/profile.webp",
+      "wallpaper": "characters/fixer/wallpaper.webp"
+    },
+    "ghost": {
+      "profile": "characters/ghost/profile.webp",
+      "wallpaper": "characters/ghost/wallpaper.webp"
+    },
+    "bulldog": {
+      "profile": "characters/bulldog/profile.webp",
+      "wallpaper": "characters/bulldog/wallpaper.webp"
+    },
+    "ryan-cole": {
+      "profile": "characters/ryan-cole/profile.webp",
+      "wallpaper": "characters/ryan-cole/wallpaper.webp"
+    },
+    "sophia-cole": {
+      "profile": "characters/sophia-cole/profile.webp",
+      "wallpaper": "characters/sophia-cole/wallpaper.webp"
+    },
+    "eagle": {
+      "profile": "characters/eagle/profile.webp",
+      "wallpaper": "characters/eagle/wallpaper.webp"
+    },
     "elizabeth-kane": {
       "profile": "characters/elizabeth-kane/profile.webp",
       "wallpaper": "characters/elizabeth-kane/wallpaper.webp"
