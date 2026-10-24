@@ -25,7 +25,7 @@ const C = (o) => o;
 export const AMA_CHARACTERS = [
     // ------------------------------------------------------------------ main
     C({
-        slug: 'michelle-brown', name: 'Michelle Brown', alias: 'Amaphest', group: 'main', faction: 'brown', alsoIn: ['pilots'], color: '#d63cff',
+        slug: 'michelle-brown', name: 'Michelle Brown', alias: 'Amaphest', group: 'main', faction: 'pilots', color: '#d63cff',
         role: 'The Amalion Progenitor',
         bio: [
             'Michelle Brown was born carrying both the Red and the Blue energies of Hemos, Alpha and Betha, fused into her heart before she ever drew a breath. Her mother did not survive her birth, and Michelle grew up as a scientific anomaly, feared and coveted by the most powerful institutions on Earth.',
@@ -303,9 +303,9 @@ export const AMA_CHARACTERS = [
         facts: [['Daughter', 'Michelle Brown']],
     }),
     C({
-        slug: 'mrs-michelle-brown', name: 'Mrs. Michelle Brown', group: 'faction', faction: 'brown', color: '#ff8a5c',
+        slug: 'mrs-michelle-brown', name: 'Michelle Brown', group: 'faction', faction: 'brown', color: '#ff8a5c',
         role: 'Michelle’s mother',
-        bio: ['Steve Brown’s first wife, a warm and gentle woman from Southern California who was expecting their first child. She did not survive giving birth to her daughter, who carries her name. Michelle never knew her, but her mother was the first thing the impossible heart took from her.'],
+        bio: ['Steve Brown’s first wife, a warm and gentle woman from Southern California who was expecting their first child. She did not survive giving birth to her daughter, who carries her same name, Michelle Brown. Michelle never knew her, but her mother was the first thing the impossible heart took from her.'],
         facts: [['Husband', 'Steve Brown'], ['Daughter', 'Michelle Brown']],
     }),
     C({
