@@ -19,10 +19,12 @@ const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
 const shortName = (c) => (c.alias && !/\s/.test(c.alias) ? c.alias : c.name);
 const charHref = (c) => `${AMA_BASE}/characters/${c.slug}`;
 
-// Art manifest written by tools/amaphest_assets.py, read live (edge cache 5 min).
+// Art manifest written by tools/amaphest_assets.py, read live (edge cache 1 min).
 async function loadArt() {
     try {
-        const res = await fetch(AMA_MANIFEST, { cf: { cacheTtl: 300, cacheEverything: true } });
+        // The minute stamp makes GitHub's CDN and Cloudflare's edge serve a fresh manifest at most
+        // a minute after a push, instead of up to ten.
+        const res = await fetch(`${AMA_MANIFEST}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
         if (res.ok) return await res.json();
     } catch (_) { /* pages still render with placeholders */ }
     return { characters: {}, factions: {}, brand: {} };
@@ -279,7 +281,7 @@ function universePage(manifest) {
 }
 
 // ---------------------------------------------------------------- routes
-const html = (body) => new Response(body, { headers: { 'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=300' } });
+const html = (body) => new Response(body, { headers: { 'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=60' } });
 
 export async function handleAmaphest(request) {
     const url = new URL(request.url);

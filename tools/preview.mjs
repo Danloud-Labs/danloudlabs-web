@@ -27,7 +27,7 @@ for (const [file, html] of Object.entries(pages)) {
 import { readFile } from 'node:fs/promises';
 import { handleAmaphest } from '../worker/amaphest.js';
 const realFetch = globalThis.fetch;
-globalThis.fetch = async (u, o) => (String(u).endsWith('/projects/amaphest/manifest.json')
+globalThis.fetch = async (u, o) => (String(u).includes('/projects/amaphest/manifest.json')
     ? new Response(await readFile(join(out, '..', 'assets/projects/amaphest/manifest.json')))
     : realFetch(u, o));
 const amaPages = { 'amaphest.html': '', 'amaphest-characters.html': '/characters', 'amaphest-gallery.html': '/gallery', 'amaphest-universe.html': '/universe',
