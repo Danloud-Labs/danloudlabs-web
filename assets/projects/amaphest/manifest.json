@@ -52,6 +52,18 @@
       "wallpaper": "characters/william-bourne/wallpaper.webp",
       "profile": "characters/william-bourne/profile.webp"
     },
+    "elizabeth-kane": {
+      "profile": "characters/elizabeth-kane/profile.webp",
+      "wallpaper": "characters/elizabeth-kane/wallpaper.webp"
+    },
+    "isabella-torres": {
+      "profile": "characters/isabella-torres/profile.webp",
+      "wallpaper": "characters/isabella-torres/wallpaper.webp"
+    },
+    "thomas-caldwell": {
+      "profile": "characters/thomas-caldwell/profile.webp",
+      "wallpaper": "characters/thomas-caldwell/wallpaper.webp"
+    },
     "dash": {
       "wallpaper": "characters/dash/wallpaper.webp",
       "profile": "characters/dash/profile.webp",
