@@ -16,6 +16,14 @@
       "profile": "characters/shock/profile.webp",
       "wallpaper": "characters/shock/wallpaper.webp"
     },
+    "ama-vx": {
+      "profile": "characters/ama-vx/profile.webp",
+      "wallpaper": "characters/ama-vx/wallpaper.webp"
+    },
+    "william-bourne": {
+      "wallpaper": "characters/william-bourne/wallpaper.webp",
+      "profile": "characters/william-bourne/profile.webp"
+    },
     "dash": {
       "wallpaper": "characters/dash/wallpaper.webp",
       "profile": "characters/dash/profile.webp",
@@ -118,6 +126,7 @@
         "abyssal-leviathans": "universe/hemos/abyssal-leviathans.webp",
         "alpha": "universe/hemos/alpha.webp",
         "betha": "universe/hemos/betha.webp",
+        "cavern-cities": "universe/hemos/cavern-cities.webp",
         "companion-beasts": "universe/hemos/companion-beasts.webp",
         "crystal-bloom-trees": "universe/hemos/crystal-bloom-trees.webp",
         "crystalline-forests": "universe/hemos/crystalline-forests.webp",
@@ -129,7 +138,9 @@
         "landscapes": "universe/hemos/landscapes.webp",
         "living-houses": "universe/hemos/living-houses.webp",
         "moon-fortresses": "universe/hemos/moon-fortresses.webp",
+        "new-regimen": "universe/hemos/new-regimen.webp",
         "resonant-plains": "universe/hemos/resonant-plains.webp",
+        "resonant-plazas": "universe/hemos/resonant-plazas.webp",
         "resonite-caverns": "universe/hemos/resonite-caverns.webp",
         "resonite": "universe/hemos/resonite.webp",
         "sanctuary-towers": "universe/hemos/sanctuary-towers.webp",
@@ -140,6 +151,7 @@
         "abyssal-leviathans",
         "alpha",
         "betha",
+        "cavern-cities",
         "companion-beasts",
         "crystal-bloom-trees",
         "crystalline-forests",
@@ -151,7 +163,9 @@
         "landscapes",
         "living-houses",
         "moon-fortresses",
+        "new-regimen",
         "resonant-plains",
+        "resonant-plazas",
         "resonite-caverns",
         "resonite",
         "sanctuary-towers",
