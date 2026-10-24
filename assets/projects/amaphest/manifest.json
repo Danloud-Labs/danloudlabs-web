@@ -24,6 +24,30 @@
       "wallpaper": "characters/adrian-kael/wallpaper.webp",
       "profile": "characters/adrian-kael/profile.webp"
     },
+    "cassandra-veyra": {
+      "profile": "characters/cassandra-veyra/profile.webp",
+      "wallpaper": "characters/cassandra-veyra/wallpaper.webp"
+    },
+    "elias-korrin": {
+      "profile": "characters/elias-korrin/profile.webp",
+      "wallpaper": "characters/elias-korrin/wallpaper.webp"
+    },
+    "liora-vance": {
+      "profile": "characters/liora-vance/profile.webp",
+      "wallpaper": "characters/liora-vance/wallpaper.webp"
+    },
+    "selene-arkwright": {
+      "profile": "characters/selene-arkwright/profile.webp",
+      "wallpaper": "characters/selene-arkwright/wallpaper.webp"
+    },
+    "stuart-mctrevor": {
+      "profile": "characters/stuart-mctrevor/profile.webp",
+      "wallpaper": "characters/stuart-mctrevor/wallpaper.webp"
+    },
+    "yara-neves": {
+      "profile": "characters/yara-neves/profile.webp",
+      "wallpaper": "characters/yara-neves/wallpaper.webp"
+    },
     "william-bourne": {
       "wallpaper": "characters/william-bourne/wallpaper.webp",
       "profile": "characters/william-bourne/profile.webp"
