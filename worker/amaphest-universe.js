@@ -10,6 +10,8 @@ import { esc } from './site-layout.js';
 
 const slug = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const HERO_NAMES = ['hero', 'background', 'banner', 'wallpaper'];
+// Names an image may use for a card or section: with or without a leading "The" ("the chaos" = "Chaos").
+const variants = (...names) => [...new Set(names.filter(Boolean).flatMap((n) => [n, n.replace(/^the-/, ''), `the-${n}`]))];
 
 // Splits a tab's images into: hero, art per card id, and leftover section backgrounds.
 function tabArt(tab, manifest, amaAsset) {
@@ -21,7 +23,7 @@ function tabArt(tab, manifest, amaAsset) {
     const cards = {};
     for (const sec of tab.sections) {
         for (const it of sec.items || []) {
-            const keys = [it.id, slug(it.name)].filter(Boolean);
+            const keys = variants(it.id, slug(it.name));
             const hit = keys.find((k) => images[k] && !used.has(k));
             if (hit) { cards[`${sec.id}/${it.id || slug(it.name)}`] = url(hit); used.add(hit); }
         }
@@ -29,7 +31,7 @@ function tabArt(tab, manifest, amaAsset) {
     // An image named like a section (its id, eyebrow or title) becomes that section's background.
     const sections = {};
     for (const sec of tab.sections) {
-        const keys = [sec.id, slug(sec.eyebrow), slug(sec.title)].filter(Boolean);
+        const keys = variants(sec.id, slug(sec.eyebrow), slug(sec.title));
         const hit = keys.find((k) => images[k] && !used.has(k));
         if (hit) { sections[sec.id] = url(hit); used.add(hit); }
     }
@@ -122,8 +124,9 @@ function tabPanel(tab, manifest, ctx, first) {
 // Body of the Universe page. ctx: { manifest, amaAsset, base }.
 export function universeBody(ctx) {
     const tabs = AMA_UNIVERSE_TABS;
+    const icon = (t) => { const p = (((ctx.manifest.universe || {})[t.key]) || {}).icon; return p ? ctx.amaAsset(p) : ''; };
     return `
-<div class="u-tabs"><div class="wrap" role="tablist">${tabs.map((t, i) => `<button type="button" role="tab" data-tab="${t.key}" aria-selected="${i === 0}" style="--uc:${t.color};--uc2:${t.color2}"${i === 0 ? ' class="on"' : ''}><span class="dot"></span><b>${esc(t.name)}</b><small>${esc(t.era)}</small></button>`).join('')}</div></div>
+<div class="u-tabs"><div class="wrap" role="tablist">${tabs.map((t, i) => `<button type="button" role="tab" data-tab="${t.key}" aria-selected="${i === 0}" style="--uc:${t.color};--uc2:${t.color2}"${i === 0 ? ' class="on"' : ''}>${icon(t) ? `<img class="planet" src="${icon(t)}" alt="">` : '<span class="dot"></span>'}<b>${esc(t.name)}</b><small>${esc(t.era)}</small></button>`).join('')}</div></div>
 ${tabs.map((t, i) => tabPanel(t, ctx.manifest, ctx, i === 0)).join('')}
 <script>
 (() => {
@@ -148,6 +151,8 @@ export const AMA_UNIVERSE_CSS = `
 .u-tabs .wrap { display: flex; gap: 10px; padding: 10px 20px; }
 .u-tabs button { flex: 1; max-width: 300px; display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center; text-align: left; padding: 10px 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: inherit; cursor: pointer; transition: border-color .2s, box-shadow .2s, background .2s; }
 .u-tabs button .dot { grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff8, transparent 40%), conic-gradient(from 200deg, var(--uc), var(--uc2), var(--uc)); box-shadow: 0 0 18px color-mix(in srgb, var(--uc) 50%, transparent); }
+.u-tabs button .planet { grid-row: span 2; width: 46px; height: 38px; object-fit: contain; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--uc) 55%, transparent)); transition: transform .3s; }
+.u-tabs button.on .planet { transform: scale(1.08) rotate(-6deg); }
 .u-tabs button b { font-family: var(--round); font-size: 16px; line-height: 1.1; }
 .u-tabs button small { color: var(--muted); font-size: 12px; }
 .u-tabs button:hover { border-color: color-mix(in srgb, var(--uc) 50%, var(--line)); }
@@ -199,6 +204,9 @@ export const AMA_UNIVERSE_CSS = `
 .u-grid.wide .u-card.has-img { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
 .u-grid.wide .u-card.has-img .u-img { aspect-ratio: auto; min-height: 100%; }
 .u-grid.wide .u-card.has-img .u-txt { padding: 26px 28px; align-self: center; }
+/* Alternate the image side, like an editorial spread. */
+.u-grid.wide .u-card.has-img:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.u-grid.wide .u-card.has-img:nth-child(even) .u-img { order: 2; }
 .u-img { aspect-ratio: 16 / 9; overflow: hidden; cursor: zoom-in; background: #000; }
 .u-img.ph { cursor: default; background: radial-gradient(60% 90% at 30% 110%, color-mix(in srgb, var(--ic) 45%, transparent), transparent 70%), radial-gradient(50% 80% at 85% -10%, color-mix(in srgb, var(--uc2) 35%, transparent), transparent 70%), repeating-linear-gradient(120deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 22px), #0d0a12; }
 .u-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
@@ -242,7 +250,8 @@ export const AMA_UNIVERSE_CSS = `
     .u-energies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .u-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .u-grid.wide { grid-template-columns: 1fr; }
-    .u-grid.wide .u-card.has-img { grid-template-columns: 1fr; }
+    .u-grid.wide .u-card.has-img, .u-grid.wide .u-card.has-img:nth-child(even) { grid-template-columns: 1fr; }
+    .u-grid.wide .u-card.has-img:nth-child(even) .u-img { order: 0; }
     .u-grid.wide .u-card.has-img .u-img { aspect-ratio: 16 / 9; }
     .u-grid.wide .u-card.has-img .u-txt { padding: 18px 20px 20px; }
 }
@@ -250,6 +259,7 @@ export const AMA_UNIVERSE_CSS = `
     .u-tabs .wrap { padding: 8px 16px; gap: 8px; }
     .u-tabs button { padding: 8px 10px; column-gap: 9px; }
     .u-tabs button .dot { width: 24px; height: 24px; }
+    .u-tabs button .planet { width: 36px; height: 30px; }
     .u-tabs button b { font-size: 15px; }
     .u-hero { min-height: 82vh; }
     .u-hero .wrap { padding-top: 80px; padding-bottom: 30px; }

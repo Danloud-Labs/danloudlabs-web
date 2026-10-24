@@ -14,7 +14,8 @@ for characters with several outfits such as Michelle's AMA-ESS Jacket or Offensi
   - any other portrait image (Face, Upscale, Collection_Cover, profile) -> profile picture
 Universe/<Hemos|Earth>/: art for the Universe page. Name an image like a card ("Encore.jpg",
 "Resonant Plains.png") to put it on that card, "Hero" for the tab's top background; any other
-image becomes a section background.
+image becomes a section background. At the root of Universe/, "Hemos.png" / "Earth.png" (transparent)
+are the planet icons on the tab buttons.
 When several files match the same role, the newest one wins. Renaming a file to
 profile.png / wallpaper.jpg / turnaround.jpg always forces its role.
 """
@@ -134,6 +135,14 @@ def save(src: Path, dst: Path, role: str):
             im = im.convert('RGB')
             im.thumbnail((2048, 2048), Image.LANCZOS)
             im.save(dst, 'WEBP', quality=82, method=6)
+        elif role == 'icon':
+            # Planet icon: keep transparency, crop the empty margin.
+            im = im.convert('RGBA')
+            box = im.getchannel('A').point(lambda v: 255 if v > 12 else 0).getbbox()
+            if box:
+                im = im.crop(box)
+            im.thumbnail((320, 320), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=90, method=6)
         elif role == 'faction':
             im = im.convert('RGB')
             im.thumbnail((1200, 1200), Image.LANCZOS)
@@ -239,6 +248,13 @@ def main():
                 print(f'universe {key:8} {name:28} <- {f.name}')
             if imgs:
                 manifest['universe'][key] = {'images': imgs, 'order': list(imgs)}
+        # Images at the root of Universe/ named like a tab ("Hemos.png", "earth.png") are its planet icon.
+        tabs = {form_slug(unicodedata.normalize('NFC', t.name)) for t in dirs(uni_dir)}
+        for f in images(uni_dir):
+            key = form_slug(unicodedata.normalize('NFC', f.stem))
+            if key in tabs:
+                manifest['universe'].setdefault(key, {'images': {}, 'order': []})['icon'] = rel(save(f, OUT / f'universe/{key}/icon.webp', 'icon'))
+                print(f'universe {key:8} icon <- {f.name}')
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
