@@ -194,6 +194,30 @@
       "profile": "characters/glenn-monroe/profile.webp",
       "wallpaper": "characters/glenn-monroe/wallpaper.webp",
       "turnaround": "characters/glenn-monroe/turnaround.webp"
+    },
+    "alexander-bourne": {
+      "profile": "characters/alexander-bourne/profile.webp",
+      "wallpaper": "characters/alexander-bourne/wallpaper.webp"
+    },
+    "charles-hurley": {
+      "profile": "characters/charles-hurley/profile.webp",
+      "wallpaper": "characters/charles-hurley/wallpaper.webp"
+    },
+    "theodore-peterson": {
+      "profile": "characters/theodore-peterson/profile.webp",
+      "wallpaper": "characters/theodore-peterson/wallpaper.webp"
+    },
+    "ethan-cross": {
+      "profile": "characters/ethan-cross/profile.webp",
+      "wallpaper": "characters/ethan-cross/wallpaper.webp"
+    },
+    "nick-sanders": {
+      "profile": "characters/nick-sanders/profile.webp",
+      "wallpaper": "characters/nick-sanders/wallpaper.webp"
+    },
+    "okune": {
+      "profile": "characters/okune/profile.webp",
+      "wallpaper": "characters/okune/wallpaper.webp"
     }
   },
   "factions": {
