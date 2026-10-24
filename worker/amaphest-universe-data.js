@@ -6,7 +6,8 @@
 // Art: tools/amaphest_assets.py reads iCloud Banners/Amaphest/Universe/<Tab>/ and lists every
 // image in manifest.json under universe.<tab>. An image named like a card id or card name
 // (encore.jpg, "Resonant Plains.png") decorates that card; "hero" / "background" / "banner"
-// is the tab's top background; any other image becomes a section background, in name order.
+// is the tab's top background; an image named like a section (Corporations, "The resistance") is
+// that section's background; any other image becomes a section background, in name order.
 //
 // Shape: tab { key, name, era, color, hero { title, lead, stats[] }, sections[] }
 //        section { id, eyebrow, title, text, layout: 'cards' | 'wide' | 'timeline' | 'energies', items[] }

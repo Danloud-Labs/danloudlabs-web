@@ -26,12 +26,19 @@ function tabArt(tab, manifest, amaAsset) {
             if (hit) { cards[`${sec.id}/${it.id || slug(it.name)}`] = url(hit); used.add(hit); }
         }
     }
+    // An image named like a section (its id, eyebrow or title) becomes that section's background.
+    const sections = {};
+    for (const sec of tab.sections) {
+        const keys = [sec.id, slug(sec.eyebrow), slug(sec.title)].filter(Boolean);
+        const hit = keys.find((k) => images[k] && !used.has(k));
+        if (hit) { sections[sec.id] = url(hit); used.add(hit); }
+    }
     let hero = '';
     const heroKey = HERO_NAMES.find((k) => images[k]);
     if (heroKey) { hero = url(heroKey); used.add(heroKey); }
     const rest = order.filter((k) => images[k] && !used.has(k));
     if (!hero && rest.length) hero = url(rest.shift());
-    return { hero, cards, bands: rest.map(url), focus: u.focus || '50% 35%' };
+    return { hero, cards, sections, bands: rest.map(url), focus: u.focus || '50% 35%' };
 }
 
 function charChips(slugs, manifest, amaAsset, base) {
@@ -74,7 +81,7 @@ function sectionBody(sec, art, ctx) {
         return `<ol class="u-timeline">${items.map((it) => `<li class="reveal"><b>${esc(it.name)}</b><p>${esc(it.text)}</p>${charChips(it.chars, ctx.manifest, ctx.amaAsset, ctx.base)}</li>`).join('')}</ol>`;
     }
     // Columns that never leave a lonely card: 3 → 3, 6 → 3, 8 → 4; wide cards go 2 or 3 across.
-    const n = items.length;
+    const n = sec.layout === 'wide' ? items.filter((it) => !art.cards[`${sec.id}/${it.id || slug(it.name)}`]).length : items.length;
     const cols = sec.layout === 'wide' ? (n % 2 === 0 ? 2 : 3) : (n <= 4 ? n : n % 4 === 0 ? 4 : 3);
     return `<div class="u-grid${sec.layout === 'wide' ? ' wide' : ''}" style="--cols:${cols}">${items.map((it) => card(it, sec, art, ctx, sec.layout === 'wide')).join('')}</div>`;
 }
@@ -83,9 +90,9 @@ function tabPanel(tab, manifest, ctx, first) {
     const art = tabArt(tab, manifest, ctx.amaAsset);
     let band = 0;
     const sections = tab.sections.map((sec) => {
-        const bg = sec.band && art.bands[band] ? art.bands[band++] : '';
+        const bg = art.sections[sec.id] || (sec.band && art.bands[band] ? art.bands[band++] : '');
         return `
-    <section class="u-sec${sec.band ? ' band' : ''}" id="${tab.key}-${sec.id}">
+    <section class="u-sec${sec.band || bg ? ' band' : ''}" id="${tab.key}-${sec.id}">
         ${bg ? `<div class="u-band-bg" style="background-image:url('${bg}')"></div>` : ''}
         <div class="wrap">
             <div class="u-head reveal"><span class="eyebrow">${esc(sec.eyebrow || '')}</span><h2>${esc(sec.title)}</h2>${sec.text ? `<p class="lead">${esc(sec.text)}</p>` : ''}</div>
@@ -182,10 +189,14 @@ export const AMA_UNIVERSE_CSS = `
 .u-head .lead { margin: 0; }
 
 .u-grid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 14px; }
+.u-grid.wide { grid-auto-flow: dense; align-items: start; }
 .u-card { --ic: var(--uc); position: relative; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(120% 60% at 0% 0%, color-mix(in srgb, var(--ic) 14%, transparent), transparent 60%), var(--card); transition: transform .25s, border-color .25s; }
 .u-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--ic) 45%, var(--line)); }
 .u-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ic); opacity: .8; }
 .u-card.has-img::before { display: none; }
+.u-grid.wide .u-card.has-img { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.u-grid.wide .u-card.has-img .u-img { aspect-ratio: auto; min-height: 100%; }
+.u-grid.wide .u-card.has-img .u-txt { padding: 26px 28px; align-self: center; }
 .u-img { aspect-ratio: 16 / 9; overflow: hidden; cursor: zoom-in; background: #000; }
 .u-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
 .u-card:hover .u-img img { transform: scale(1.04); }
@@ -227,6 +238,9 @@ export const AMA_UNIVERSE_CSS = `
     .u-energies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .u-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .u-grid.wide { grid-template-columns: 1fr; }
+    .u-grid.wide .u-card.has-img { grid-template-columns: 1fr; }
+    .u-grid.wide .u-card.has-img .u-img { aspect-ratio: 16 / 9; }
+    .u-grid.wide .u-card.has-img .u-txt { padding: 18px 20px 20px; }
 }
 @media (max-width: 640px) {
     .u-tabs .wrap { padding: 8px 16px; gap: 8px; }

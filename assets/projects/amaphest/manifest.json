@@ -87,22 +87,28 @@
   "universe": {
     "earth": {
       "images": {
-        "generate-in-8k-hyper-realistic-2k-20261024033342": "universe/earth/generate-in-8k-hyper-realistic-2k-20261024033342.webp",
-        "generate-in-8k-more-realistic-2k-20261024032854": "universe/earth/generate-in-8k-more-realistic-2k-20261024032854.webp",
-        "generate-in-8k-more-realistic-2k-20261024033021": "universe/earth/generate-in-8k-more-realistic-2k-20261024033021.webp",
-        "generate-in-8k-more-realistic-2k-20261024033059": "universe/earth/generate-in-8k-more-realistic-2k-20261024033059.webp",
-        "generate-in-8k-more-realistic-2k-20261024033152": "universe/earth/generate-in-8k-more-realistic-2k-20261024033152.webp",
-        "generate-in-8k-more-realistic-2k-20261024033327": "universe/earth/generate-in-8k-more-realistic-2k-20261024033327.webp",
-        "generate-in-8k-ultra-realistic-2k-20261024033240": "universe/earth/generate-in-8k-ultra-realistic-2k-20261024033240.webp"
+        "corporations": "universe/earth/corporations.webp",
+        "encore": "universe/earth/encore.webp",
+        "guerrillas-base": "universe/earth/guerrillas-base.webp",
+        "guerrillas": "universe/earth/guerrillas.webp",
+        "hero": "universe/earth/hero.webp",
+        "japan": "universe/earth/japan.webp",
+        "los-angeles": "universe/earth/los-angeles.webp",
+        "resistance": "universe/earth/resistance.webp",
+        "silicon-valley": "universe/earth/silicon-valley.webp",
+        "yoshimura": "universe/earth/yoshimura.webp"
       },
       "order": [
-        "generate-in-8k-hyper-realistic-2k-20261024033342",
-        "generate-in-8k-more-realistic-2k-20261024032854",
-        "generate-in-8k-more-realistic-2k-20261024033021",
-        "generate-in-8k-more-realistic-2k-20261024033059",
-        "generate-in-8k-more-realistic-2k-20261024033152",
-        "generate-in-8k-more-realistic-2k-20261024033327",
-        "generate-in-8k-ultra-realistic-2k-20261024033240"
+        "corporations",
+        "encore",
+        "guerrillas-base",
+        "guerrillas",
+        "hero",
+        "japan",
+        "los-angeles",
+        "resistance",
+        "silicon-valley",
+        "yoshimura"
       ]
     }
   },
