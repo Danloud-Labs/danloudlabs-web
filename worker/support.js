@@ -68,6 +68,30 @@ const FAQ = [
         <p>Touch and hold an empty spot on your Home Screen, tap <b>Edit → Add Widget</b>, search for <b>Aura Calendar</b> and pick a size. Lock Screen widgets are added from the Lock Screen's <b>Customize</b> screen. Widgets use your active theme and the local weather.</p>` },
     { app: 'aura', id: 'aura-siri', topic: 'setup', q: 'What can I ask Siri?', a: `
         <p>Try “Add a task to Aura Calendar”, “Add an event to Aura Calendar”, “Mark a task done in Aura Calendar”, “What's due today in Aura Calendar” or “What's on my Aura Calendar today”. They also appear in the Shortcuts app.</p>` },
+    // AURA Calendar: Aura Cycle and Aura Sleep (1.1)
+    { app: 'aura', id: 'aura-health-on', topic: 'setup', q: 'How do I turn on Aura Cycle and Aura Sleep?', a: `
+        <p>Aura Cycle (period and cycle tracking) and Aura Sleep (your sleep on the calendar) are free and come with AURA Calendar 1.1 and later. Both are off until you turn them on.</p>
+        <ol>
+            <li>Open AURA Calendar's Settings and turn on <b>Aura Cycle</b> or <b>Aura Sleep</b>.</li>
+            <li>When iOS asks, allow AURA Calendar to read and write the Apple Health categories it lists. Each one is asked for separately.</li>
+            <li>In the Planner, the heart (Aura Cycle) and the moon (Aura Sleep) next to the Smart Lists button now open the log for the selected day.</li>
+        </ol>
+        <p>Not sure yet? Tap the heart or the moon while they are off, or open <b>Aura Cycle Guide</b> or <b>Aura Sleep Guide</b> in Settings, for a short tour.</p>` },
+    { app: 'aura', id: 'aura-cycle-log', topic: 'setup', q: 'How do I log my period, symptoms or mood?', a: `
+        <p>Tap the heart in the Planner, or press and hold a day in the month. The log has tabs for <b>Period</b> (flow and color), <b>Symptoms</b>, <b>Mood</b>, <b>Intimacy</b> and <b>Notes</b>. Tap <b>Save</b> to save it to Apple Health, or <b>Clear day</b> to remove what you logged that day.</p>
+        <p>On the month, a solid ring marks a logged period, a dashed ring an estimated next period, and a turquoise tint the estimated fertile window. Estimates come only from your own history: they are not birth control, and Aura Cycle is not a medical device.</p>` },
+    { app: 'aura', id: 'aura-sleep-log', topic: 'setup', q: 'Where does Aura Sleep get my sleep?', a: `
+        <p>From Apple Health. With an Apple Watch that tracks sleep, the hours, bedtime, wake-up and stages (Deep, Core, REM, Awake) appear on their own each morning. Sleep from your iPhone's Sleep schedule or another sleep app works too.</p>
+        <p>No watch? Tap the moon in the Planner, turn on <b>Enter hours by hand</b> and set your bedtime and wake-up; they are saved to Apple Health as sleep. You can also note how you woke up and what happened last night.</p>
+        <p>Set your sleep goal in ${path('Settings → Aura Sleep → Sleep goal')}. The month then shows a thin bar on each day with how close you got. <b>Morning check-in</b> sends a gentle reminder at 9 AM.</p>` },
+    { app: 'aura', id: 'aura-health-access', topic: 'troubleshooting', q: 'Aura Cycle or Aura Sleep could not save, or shows no data', a: `
+        <p>AURA Calendar needs access to Apple Health. Open the <b>Health</b> app, tap your picture, then ${path('Apps → Aura Calendar')} and turn on the categories (or <b>Turn On All</b>). Then try again.</p>
+        <p>If Aura Sleep shows nothing for a night, check that the Health app has sleep for that night: Apple Watch sleep tracking needs the watch worn in bed with a Sleep schedule or Sleep Focus on. A night belongs to the day you wake up.</p>` },
+    { app: 'aura', id: 'aura-discreet', topic: 'privacy', q: 'Can I keep Aura Cycle private from people who see my screen?', a: `
+        <p>Yes. In ${path('Settings → Aura Cycle')}, <b>Discreet mode</b> shows neutral dots and the word "Personal" instead of drops and hearts, and <b>Lock with Face ID</b> asks for Face ID before the log opens. Intimacy is never shown on widgets or the lock screen.</p>` },
+    { app: 'aura', id: 'aura-health-data', topic: 'privacy', q: 'Where is my cycle and sleep data stored? Can you see it?', a: `
+        <p>No, we never see it. What you log is saved in Apple Health on your device. The few details Health has no place for (like period color, notes and how you woke up) stay only on that iPhone, encrypted, and are not synced to iCloud or included in backups. Nothing is sent to us, used for ads or shared. Details are in our <a href="/privacy#aura-health">Privacy Policy</a>.</p>
+        <p>Turning Aura Cycle or Aura Sleep off does not delete anything. To delete, use <b>Clear day</b> or <b>Clear</b> in the log, or delete the data in the Health app.</p>` },
 
     // HazMat Scanner
     { app: 'hazmat', id: 'hazmat-free', topic: 'purchases', q: 'What is free in HazMat Scanner?', a: `
