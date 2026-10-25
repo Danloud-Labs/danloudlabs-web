@@ -7,7 +7,7 @@ import { SITE, SITE_APPS } from './site-data.js';
 import { ICONS, sitePage } from './site-layout.js';
 
 const EFFECTIVE = 'August 24, 2026';
-const LAST_UPDATED = 'October 23, 2026';
+const LAST_UPDATED = 'October 25, 2026';
 
 const app = (slug) => SITE_APPS.find((a) => a.slug === slug);
 
@@ -20,21 +20,23 @@ const COVERED = [
 ];
 
 const PERMISSIONS = [
-    ['camera', 'Camera:', "Used for on-device scanning features (e.g., placard recognition). Images are processed locally using Apple's Vision framework and are never uploaded, stored, or shared. In FedLog, the camera can also take a profile photo; that photo leaves your device only if you add it to your FedLog community profile (see section 3)."],
-    ['photo', 'Photo Library:', 'Used to scan from saved images, or to add photos to your own notes and journal entries. Selected images stay on your device. In FedLog, you can pick a profile photo, which leaves your device only if you add it to your FedLog community profile (see section 3).'],
+    ['camera', 'Camera:', "Used for on-device scanning features (e.g., placard recognition). Images are processed locally using Apple's Vision framework and are never uploaded, stored, or shared. In FedLog, the camera can also take a profile photo; that photo leaves your device only if you add it to your FedLog community profile (see section 4)."],
+    ['photo', 'Photo Library:', 'Used to scan from saved images, or to add photos to your own notes and journal entries. Selected images stay on your device. In FedLog, you can pick a profile photo, which leaves your device only if you add it to your FedLog community profile (see section 4).'],
     ['calendar', 'Calendars:', 'Used to show the events from the calendars you choose. In AURA Calendar you can also create and edit events in a calendar you pick. Your events stay in your calendars and are never sent to us.'],
     ['check', 'Reminders:', 'In AURA Calendar, used to keep your tasks in step with the Reminders lists you choose.'],
     ['pin', 'Location:', 'In AURA Calendar, used to show the local weather for weather themes and widgets, and for location-based reminders that alert you when you arrive at or leave a place. "Always" access is only needed so a location reminder can alert you while the app is closed. Your location is never sent to us.'],
     ['mic', 'Microphone:', 'In AURA Calendar, used only to record the voice memos you add to your journal entries. Recordings stay on your device and in your own iCloud.'],
     ['bell', 'Notifications and Alarms:', 'Used to alert you about your events and tasks, and in AURA Calendar to sound alarms for tasks you mark as urgent.'],
     ['wave', 'Siri and Shortcuts:', "In AURA Calendar, lets you add events and tasks or ask for today's agenda by voice. Requests are handled by Apple under Apple's privacy policy."],
+    ['heart', 'Apple Health:', 'In AURA Calendar, used only by the optional Aura Cycle and Aura Sleep features, and only after you turn them on. Health data is read from and saved to Apple Health on your device and is never sent to us. See <a href="#aura-health">section 3</a>.'],
+    ['lock', 'Face ID:', 'In AURA Calendar, used only if you turn on "Lock with Face ID" for Aura Cycle. Face ID is handled entirely by iOS; the app only learns whether you were recognized.'],
 ];
 
 const SECTIONS = [
     ['data-collection', 'Data Collection', `
         <p>Our applications are designed with a privacy-first approach. We do not sell your personal data, we do not use it for advertising, and we do not track you across apps or websites.</p>
         <p>HazMat Scanner, AURA Calendar and WarDecks: Leagues do not collect any personal data, and we do not receive any information about you or how you use them. There are no accounts to create in these apps.</p>
-        <p>FedLog works the same way unless you choose to use its optional community features (the Swap Center and Teammates). Those features require a FedLog account, and the information you provide for them is described in <a href="#fedlog">section 3</a>.</p>
+        <p>FedLog works the same way unless you choose to use its optional community features (the Swap Center and Teammates). Those features require a FedLog account, and the information you provide for them is described in <a href="#fedlog">section 4</a>.</p>
         <h3>Information We Do NOT Collect</h3>
         <ul>
             <li>Names, email addresses, or contact information (unless you choose to write to us for support, or create a FedLog account)</li>
@@ -43,7 +45,7 @@ const SECTIONS = [
             <li>Browsing or search history</li>
             <li>Device identifiers for tracking purposes</li>
             <li>Photos, videos, or camera data beyond on-device processing (except a FedLog profile photo you choose to add to your community profile)</li>
-            <li>Health, financial, or biometric data</li>
+            <li>Health, financial, or biometric data (AURA Calendar's optional Aura Cycle and Aura Sleep features keep what you log in Apple Health and on your device; see <a href="#aura-health">section 3</a>)</li>
             <li>Usage analytics or crash reports</li>
         </ul>`],
     ['permissions', 'Device Permissions', `
@@ -51,6 +53,27 @@ const SECTIONS = [
         <ul class="perms">
             ${PERMISSIONS.map(([icon, name, text]) => `<li><span class="ic">${ICONS[icon]}</span><span><strong>${name}</strong> ${text}</span></li>`).join('\n            ')}
         </ul>`],
+    ['aura-health', 'AURA Calendar: Aura Cycle and Aura Sleep', `
+        <p>Aura Cycle (period and cycle tracking) and Aura Sleep (sleep on your calendar) are optional, free features of AURA Calendar. They are <strong>off</strong> until you turn them on in AURA Calendar's Settings, and Apple Health permission is asked separately for each one when you do. You can turn them off at any time.</p>
+        <h3>What is read from and saved to Apple Health</h3>
+        <ul>
+            <li><strong>Aura Cycle:</strong> menstrual flow, spotting, symptoms (such as cramps, headache, bloating, fatigue or hot flashes), sexual activity and whether protection was used, and your daily mood (State of Mind).</li>
+            <li><strong>Aura Sleep:</strong> sleep analysis (hours asleep, bedtime, wake-up and sleep stages) recorded by your Apple Watch, iPhone or other apps, and the sleep hours you enter by hand.</li>
+        </ul>
+        <p>This data stays in Apple Health on your device, under Apple's protections. AURA Calendar only changes what it wrote itself; data from other apps is read, never edited or deleted. If you turned on Health in iCloud in iOS, Apple keeps Health in sync across your devices under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</p>
+        <h3>What stays only on your iPhone</h3>
+        <p>A few details have no place in Apple Health: period color, "any bleeding", consistent partner, observations, notes, how you woke up and last night's tags. AURA Calendar keeps them only on that iPhone, encrypted with a key stored in the device's Keychain. They are not synced to iCloud, not included in device backups, and not available to the widget.</p>
+        <h3>What we never do</h3>
+        <ul>
+            <li>Health data is never sent to Danloud Labs or to any server, and we cannot see it.</li>
+            <li>It is never used for advertising, marketing or data mining, and never shared with or sold to third parties.</li>
+            <li>It is never stored in iCloud by AURA Calendar.</li>
+            <li>Intimacy is never shown on widgets or the lock screen. The optional morning reminder never mentions your health.</li>
+        </ul>
+        <h3>Estimates, not medical advice</h3>
+        <p>Predicted periods and fertile windows are estimates based only on your own history. They are not a method of birth control, and Aura Cycle and Aura Sleep are not medical devices. For medical questions, talk to a doctor.</p>
+        <h3>Deleting it</h3>
+        <p>Use <strong>Clear day</strong> (Aura Cycle) or <strong>Clear</strong> (Aura Sleep) in the log to remove what you logged that day. Everything AURA Calendar saved in Apple Health can also be deleted in the Health app. Deleting AURA Calendar deletes the details kept only on your iPhone; what is in Apple Health stays there until you delete it in Health.</p>`],
     ['fedlog', 'FedLog Account and Community Features', `
         <p>Most of FedLog works on your iPhone without an account: your schedule, rotations, pay, premium pay cap, leave balances and requests are stored only on your device. The Swap Center and Teammates are optional community features for federal officers. If you choose to use them, you create a FedLog account and the information below is stored on our behalf by Google Firebase (Firebase Authentication and Cloud Firestore).</p>
         <h3>Your account and verification</h3>
@@ -72,7 +95,7 @@ const SECTIONS = [
         <p>FedLog is an independent app by Danloud Labs LLC and is not affiliated with or endorsed by U.S. Customs and Border Protection, the Department of Homeland Security or any government agency. Using a government email address only verifies that you are an officer; we do not share your information with any agency.</p>`],
     ['third-parties', 'Apple Services and Third Parties', `
         <p>Our apps do not include any third-party analytics SDKs, advertising frameworks, crash reporting tools, or tracking technologies. We do not sell or share your data with third parties for advertising or any other purpose of their own.</p>
-        <p>FedLog's optional community features use two service providers that process data only on our behalf: <strong>Google Firebase</strong> (account sign-in and the community database) and <strong>Twilio SendGrid</strong> (sending the verification code to your government email address). See <a href="#fedlog">section 3</a>.</p>
+        <p>FedLog's optional community features use two service providers that process data only on our behalf: <strong>Google Firebase</strong> (account sign-in and the community database) and <strong>Twilio SendGrid</strong> (sending the verification code to your government email address). See <a href="#fedlog">section 4</a>.</p>
         <p>Some features use services provided by Apple, which handles that information under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>:</p>
         <ul>
             <li><strong>Weather (Apple WeatherKit):</strong> to show the weather, AURA Calendar sends your approximate location to Apple's weather service. Danloud Labs does not receive it.</li>
@@ -80,15 +103,15 @@ const SECTIONS = [
             <li><strong>In-App Purchases:</strong> purchases are processed by Apple through the App Store. We never see your payment details, name, or Apple Account.</li>
         </ul>`],
     ['data-storage', 'Data Storage', `
-        <p>Any data you create in our apps (such as events, tasks, notes, journal entries, schedules, preferences, or settings) is stored locally on your device. Apart from FedLog's optional community features, which use Google Firebase as described in <a href="#fedlog">section 3</a>, we do not operate servers that receive or store user data.</p>
-        <p>Where cloud-based features exist (such as iCloud sync in AURA Calendar), data is transmitted directly between your devices and your own iCloud account, under Apple's own privacy policy. Danloud Labs LLC does not have access to this data.</p>
+        <p>Any data you create in our apps (such as events, tasks, notes, journal entries, schedules, preferences, or settings) is stored locally on your device. Apart from FedLog's optional community features, which use Google Firebase as described in <a href="#fedlog">section 4</a>, we do not operate servers that receive or store user data.</p>
+        <p>Where cloud-based features exist (such as iCloud sync in AURA Calendar), data is transmitted directly between your devices and your own iCloud account, under Apple's own privacy policy. Danloud Labs LLC does not have access to this data. Aura Cycle and Aura Sleep are the exception: AURA Calendar never puts them in iCloud (see <a href="#aura-health">section 3</a>).</p>
         <p>AURA Calendar downloads themes (artwork and music) from our content server. These downloads only request the theme files and do not include any personal information.</p>`],
     ['children', "Children's Privacy", `
         <p>Our apps do not knowingly collect personal information from children under the age of 13, and they do not contain ads. FedLog's community features are intended only for adult federal employees with an official government email address; our other apps have no social features or any mechanism to collect personal data from any user.</p>`],
     ['security', 'Security', `
-        <p>Data on your device benefits from the security protections built into iOS, iPadOS and tvOS, including device encryption and app sandboxing, and data in iCloud is protected by Apple. FedLog community data is encrypted in transit and at rest by Google Firebase and protected by access rules that allow only signed-in FedLog users to read it and only you to change your own profile and Teammates entry. Apart from that optional data, our apps do not transmit personal data to us, so there is nothing else on our side that could be exposed.</p>`],
+        <p>Data on your device benefits from the security protections built into iOS, iPadOS and tvOS, including device encryption and app sandboxing, and data in iCloud is protected by Apple. The Aura Cycle and Aura Sleep details that Apple Health has no place for are also encrypted by AURA Calendar itself, with a key kept in this device's Keychain. FedLog community data is encrypted in transit and at rest by Google Firebase and protected by access rules that allow only signed-in FedLog users to read it and only you to change your own profile and Teammates entry. Apart from that optional data, our apps do not transmit personal data to us, so there is nothing else on our side that could be exposed.</p>`],
     ['your-rights', 'Your Rights', `
-        <p>For HazMat Scanner, AURA Calendar and WarDecks: Leagues, we hold no personal data about you to access, correct, or delete. You can delete your own data at any time by deleting it in the app, deleting the app, or removing the app's data from your iCloud settings.</p>
+        <p>For HazMat Scanner, AURA Calendar and WarDecks: Leagues, we hold no personal data about you to access, correct, or delete. You can delete your own data at any time by deleting it in the app, deleting the app, or removing the app's data from your iCloud settings. What Aura Cycle and Aura Sleep saved in Apple Health can be reviewed and deleted in the Health app at any time.</p>
         <p>If you have a FedLog account, you can see and correct your community information in the app, stop sharing it at any time, and permanently delete your account and its data with <strong>Delete Account</strong> in FedLog's settings. You can also write to us to request a copy of your FedLog data or its deletion, and we will respond within 30 days. If you have any concerns, you may contact us at any time.</p>`],
     ['changes', 'Changes to This Policy', `
         <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of our apps after changes constitutes acceptance of the updated policy.</p>`],
@@ -162,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export const htmlPrivacy = sitePage({
     title: 'Privacy Policy · Danloud Labs LLC',
-    description: 'Privacy Policy for the apps published by Danloud Labs LLC: HazMat Scanner, FedLog, AURA Calendar and WarDecks: Leagues. No tracking, no ads, no data sold; FedLog community features explained.',
+    description: 'Privacy Policy for the apps published by Danloud Labs LLC: HazMat Scanner, FedLog, AURA Calendar and WarDecks: Leagues. No tracking, no ads, no data sold; AURA Calendar Health features and FedLog community features explained.',
     path: '/privacy',
     active: 'privacy',
     back: { href: '/', label: 'Home' },
