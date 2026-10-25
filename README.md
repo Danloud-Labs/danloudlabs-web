@@ -13,7 +13,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | Support Center | `/support` | `worker/support.js` | New design |
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
 | FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
-| Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters first) |
+| Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/universe`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters, factions, universe) |
 | WarDecks: Leagues | `/ios/wardecks`, `/wardecks` | `worker/wardecks.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
@@ -37,13 +37,16 @@ danloudlabs-web/
 │   ├── fedlog.js       FedLog page, exports htmlFedLog
 │   ├── wardecks.js     WarDecks: Leagues page, exports htmlWarDecks
 │   ├── amaphest.js     Amaphest pages + handleAmaphest(request) router
-│   ├── amaphest-data.js     Amaphest texts: universe, characters, factions, gallery list
+│   ├── amaphest-data.js        Amaphest texts: main page, sections, gallery list
+│   ├── amaphest-characters.js  every character and faction (bios, roles, facts)
+│   ├── amaphest-universe.js    the Universe page (Hemos / Earth tabs) and its CSS
+│   ├── amaphest-universe-data.js  the Universe texts
 │   └── amaphest-styles.js   Amaphest-only CSS
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
 
-Each page keeps the same export name the Worker's `index.js` already imports, so a redesigned
+Each page keeps the same export name the Worker's entry file (`worker.js` in the dashboard) already imports, so a redesigned
 page only needs its file pasted over the old one.
 
 ## Common changes
@@ -80,5 +83,11 @@ git add -A && git commit -m "Amaphest art" && git push
 In each character folder (or in each outfit subfolder, like Michelle's): a landscape image or
 a name with "wallpaper" becomes the 16:9 dynamic wallpaper, "F&B" / "turnaround" / "CGI" the
 front & back sheet, and any other portrait the profile picture (newest wins). Rename a file to
-`profile.png`, `wallpaper.jpg` or `turnaround.jpg` to force it. A new character folder needs
-its name added to `FOLDER_SLUGS` in the script and an entry in `worker/amaphest-data.js`.
+`profile.png`, `wallpaper.jpg` or `turnaround.jpg` to force it. A new character needs an entry in
+`worker/amaphest-characters.js`; its folder name maps to the slug automatically (titles dropped,
+"Name-Alias" -> name) unless `FOLDER_SLUGS` in the script says otherwise.
+
+- The root image of each faction folder (`Characters/Factions/<Faction>/`) is that faction's button art.
+- `Universe/<Hemos|Earth>/`: an image named like a card or section of the Universe page goes there,
+  `Hero` is the tab's top background; `Universe/hemos.png` and `earth.png` are the tab planet icons.
+- The Worker re-reads the manifest every minute, so art shows up about a minute after the push.
