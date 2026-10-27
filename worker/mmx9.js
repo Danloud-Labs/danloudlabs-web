@@ -4,7 +4,7 @@
 //   /mmx9-beastwars-fm/story                 the fifteen chapters
 //   /mmx9-beastwars-fm/characters            Maverick Hunters + factions
 //   /mmx9-beastwars-fm/characters/<slug>     one character (bosses show their stats)
-//   /mmx9-beastwars-fm/bosses                the eight Mavericks
+//   /mmx9-beastwars-fm/mavericks             the eight Mavericks (boss compendium; /bosses redirects here)
 //   /mmx9-beastwars-fm/weapons               special weapons, one tab per character (#x, #zero…)
 //   /mmx9-beastwars-fm/universe              the Apex Virus, CFE, Beastroids, Sigma Chip…
 //   /mmx9, /megaman-x9                       -> main page
@@ -65,7 +65,7 @@ const picOrMono = (c, art, cls = '') => (art.profile
 
 function charCard(c, m) {
     const art = artFor(c, m);
-    const top = c.alias || (findFaction(c.faction) || {}).name || 'Maverick Hunters';
+    const top = c.alias || (findFaction(c.faction) || {}).name || (c.boss ? 'Maverick' : 'Maverick Hunters');
     return `
     <a class="char reveal" href="${charHref(c)}" style="--cc:${c.color}">
         <div class="pic">${picOrMono(c, art, 'soon')}</div>
@@ -165,7 +165,7 @@ function mainPage(m) {
 
 <section style="padding-top:10px">
     <div class="wrap">
-        ${head('The Mavericks', 'Eight stations. Eight Apex mutations.', [`${MMX_BASE}/bosses`, 'Boss compendium'])}
+        ${head('The Mavericks', 'Eight stations. Eight Apex mutations.', [`${MMX_BASE}/mavericks`, 'All Mavericks'])}
         <div class="strip">${MMX_BOSSES.map((c) => { const art = artFor(c, m); return `<a class="reveal" href="${charHref(c)}" style="--cc:${c.color}"><div class="pic">${picOrMono(c, art)}</div><span>${esc(c.name)}</span></a>`; }).join('')}</div>
     </div>
 </section>
@@ -258,7 +258,7 @@ function charactersPage(m) {
     const h = location.hash.slice(1); if (h) { show(h, false); const p = document.getElementById('factions'); p && p.scrollIntoView(); }
 })();
 </script>`;
-    return page({ title: `Characters · ${MMX.title}: ${MMX.subtitle}`, description: `Meet the characters of ${MMX.title}: ${MMX.subtitle}: the Maverick Hunters, Dr. Clark’s Beastroids, Dynamo, Sigma and the eight Mavericks.`, path: `${MMX_BASE}/characters`, active: 'characters', m, body });
+    return page({ title: `Characters · ${MMX.title}: ${MMX.subtitle}`, description: `Meet the characters of ${MMX.title}: ${MMX.subtitle}: the Maverick Hunters, Dr. Clark’s Beastroids, Dynamo and Sigma.`, path: `${MMX_BASE}/characters`, active: 'characters', m, body });
 }
 
 function characterPage(c, m) {
@@ -268,7 +268,7 @@ function characterPage(c, m) {
     const next = MMX_CHARACTERS[(i + 1) % MMX_CHARACTERS.length];
     const faction = findFaction(c.faction);
     const b = c.boss;
-    const facLink = faction ? `<a href="${MMX_BASE}/characters#${faction.key}">${esc(faction.name)}</a>` : `<a href="${MMX_BASE}/characters">Maverick Hunters</a>`;
+    const facLink = faction ? `<a href="${MMX_BASE}/characters#${faction.key}">${esc(faction.name)}</a>` : b ? `<a href="${MMX_BASE}/mavericks">The Mavericks</a>` : `<a href="${MMX_BASE}/characters">Maverick Hunters</a>`;
     const facts = [
         ...(c.alias ? [['Alias', esc(c.alias)]] : []),
         ...(b ? [['Stage', esc(b.stage)], ['Element', esc(b.element)], ['Apex form', esc(b.mutation)], ['Weakness', `<span class="chip weak">${esc(b.weakness)}</span>`]] : []),
@@ -307,7 +307,7 @@ function characterPage(c, m) {
             <a href="${charHref(prev)}"><span>&larr;</span><span><small>Previous</small><b>${esc(prev.name)}</b></span></a>
             <a class="next" href="${charHref(next)}"><span><small>Next</small><b>${esc(next.name)}</b></span><span>&rarr;</span></a>
         </div>
-        <p style="margin-top:22px"><a class="btn btn-ghost btn-sm" href="${MMX_BASE}/characters">&larr; All characters</a>${b ? ` <a class="btn btn-ghost btn-sm" href="${MMX_BASE}/bosses">Boss compendium</a>` : ''}</p>
+        <p style="margin-top:22px"><a class="btn btn-ghost btn-sm" href="${MMX_BASE}/characters">&larr; All characters</a>${b ? ` <a class="btn btn-ghost btn-sm" href="${MMX_BASE}/mavericks">All Mavericks</a>` : ''}</p>
     </div>
 </section>
 <script>
@@ -333,19 +333,19 @@ function characterPage(c, m) {
     return page({
         title: `${c.name} · ${MMX.title}: ${MMX.subtitle}`,
         description: `${c.name}, ${c.role} in ${MMX.title}: ${MMX.subtitle}. ${c.bio[0]}`.slice(0, 300),
-        path: charHref(c), active: b ? 'bosses' : 'characters', m, ogImage: art.wallpaper || art.profile, body,
+        path: charHref(c), active: b ? 'mavericks' : 'characters', m, ogImage: art.wallpaper || art.profile, body,
     });
 }
 
 // ---------------------------------------------------------------- bosses
 function bossesPage(m) {
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">Boss Compendium</span><h1>The eight <span class="grad-bv">Mavericks</span></h1>
+<section class="page-head"><div class="wrap"><span class="eyebrow">The Mavericks</span><h1>The eight <span class="grad-bv">Mavericks</span></h1>
 <p class="lead">Each one infected by the Apex Virus and mutated according to its animal body. Defeat them to take their weapons, and use each weakness against the next.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="bosses">${MMX_BOSSES.map((c) => bossCard(c, m)).join('')}</div>
 </div></section>`;
-    return page({ title: `The Mavericks · ${MMX.title}: ${MMX.subtitle}`, description: `The eight bosses of ${MMX.title}: ${MMX.subtitle}: stages, Apex mutations, weaknesses and weapons.`, path: `${MMX_BASE}/bosses`, active: 'bosses', m, body });
+    return page({ title: `The Mavericks · ${MMX.title}: ${MMX.subtitle}`, description: `The eight bosses of ${MMX.title}: ${MMX.subtitle}: stages, Apex mutations, weaknesses and weapons.`, path: `${MMX_BASE}/mavericks`, active: 'mavericks', m, body });
 }
 
 // ---------------------------------------------------------------- weapons
@@ -429,7 +429,8 @@ export async function handleMMX9(request) {
     if (rest === '') return html(mainPage(m));
     if (rest === '/story') return html(storyPage(m));
     if (rest === '/characters') return html(charactersPage(m));
-    if (rest === '/bosses') return html(bossesPage(m));
+    if (rest === '/mavericks') return html(bossesPage(m));
+    if (rest === '/bosses') return Response.redirect(`${url.origin}${MMX_BASE}/mavericks`, 301);
     if (rest === '/weapons') return html(weaponsPage(m));
     if (rest === '/universe') return html(universePage(m));
     const hit = rest.match(/^\/characters\/([a-z0-9-]+)$/);

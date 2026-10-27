@@ -95,14 +95,14 @@ export const MMX_LORE = [
 // Characters page groups.
 export const MMX_GROUPS = [
     { key: 'main', name: 'Maverick Hunters', sub: 'The heroes and the navigators who guide them.' },
-    { key: 'faction', name: 'Factions', sub: 'The creator, her Beastroids, the villains and the eight Mavericks. Choose a faction to meet its members.' },
+    { key: 'faction', name: 'Factions', sub: 'The creator and her Beastroids, and the villains behind the virus. Choose a faction to meet its members.' },
 ];
 
 // Sections (main page and sub-navigation). Status 'live' links to the page.
 export const MMX_SECTIONS = [
     { key: 'story', name: 'The Story', nav: 'Story', status: 'live', text: 'All fifteen chapters, from the courtroom of Dr. Light to the birth of Apex Sigma.' },
     { key: 'characters', name: 'Characters', status: 'live', text: 'The Maverick Hunters, Dr. Clark’s Beastroids and the villains behind the virus.' },
-    { key: 'bosses', name: 'The Mavericks', nav: 'Bosses', status: 'live', text: 'Eight infected Reploids, their stages, Apex mutations, weaknesses and weapons.' },
+    { key: 'mavericks', name: 'The Mavericks', nav: 'Mavericks', status: 'live', text: 'Eight infected Reploids, their stages, Apex mutations, weaknesses and weapons.' },
     { key: 'weapons', name: 'Weapons', status: 'live', text: 'The special weapons X, Zero, Axl and Gamma take from each Maverick.' },
     { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'The Apex Virus, the CFE Project, Beastroids, Berserker Mode and the Sigma Chip.' },
 ];

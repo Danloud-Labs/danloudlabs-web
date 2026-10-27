@@ -43,7 +43,7 @@ const ama = await handleAmaphest(request);
 if (ama) return ama;
 
 // ==========================================
-// MEGA MAN X9 (/mmx9-beastwars-fm, /story, /characters, /characters/<personaje>, /bosses, /universe, /mmx9)
+// MEGA MAN X9 (/mmx9-beastwars-fm, /story, /characters, /characters/<personaje>, /mavericks, /weapons, /universe, /mmx9)
 // ==========================================
 const mmx = await handleMMX9(request);
 if (mmx) return mmx;

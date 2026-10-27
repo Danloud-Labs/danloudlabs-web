@@ -87,7 +87,7 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .chars.six .char .mono { font-size: 44px; }
 
 /* Faction buttons */
-.facs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.facs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .fac { --fc: var(--blue); position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 150px; padding: 16px 18px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--fc) 38%, transparent), transparent 70%), linear-gradient(160deg, #15152a, #08080e); color: var(--fg); font: inherit; text-align: left; cursor: pointer; transition: transform .25s, border-color .25s, box-shadow .25s; }
 .fac .bg { position: absolute; inset: 0; background-size: cover; background-position: center 30%; transition: transform .6s, filter .3s; filter: saturate(.85) brightness(.75); }
 .fac::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6, 5, 10, .95) 8%, rgba(6, 5, 10, .35) 60%, rgba(6, 5, 10, .1)); }

@@ -6,14 +6,13 @@
 // To add a character: add an entry here and (for its art) a folder in iCloud whose name
 // matches its name. tools/mmx9_assets.py turns the folder name into the same slug
 // ("Dr. Clark" -> elaine-clark is mapped there). `group`: 'main' or 'faction'.
-// Mavericks also carry `boss`: stage, element, Apex mutation and weakness (weapons: mmx9-weapons.js).
+// The eight Mavericks have their own page (/mavericks), not a faction tab; they carry `boss`: stage, element, Apex mutation and weakness (weapons: mmx9-weapons.js).
 // `forms`: notes per form slug (iCloud subfolder, e.g. X/Emerald Armor -> emerald-armor); `defaultForm` leads.
 // =====================================================================================
 
 export const MMX_FACTIONS = [
     { key: 'cfe', name: 'CFE Project', folder: 'CFE', color: '#e0b25c', text: 'Dr. Elaine Clark and the two Beastroids she built in secret, sealed away for centuries in hidden capsules beneath the ruins of her laboratory.' },
     { key: 'antagonists', name: 'Antagonists', folder: 'Antagonist', color: '#8b5cf6', text: 'The mind behind the Apex Virus, and the emperor he is trying to bring back.' },
-    { key: 'mavericks', name: 'The Mavericks', folder: 'Mavericks', color: '#3f8cff', text: 'Eight animal-form Reploids infected by the Apex Virus, each mutated in its own way and completely out of control.' },
 ];
 
 const C = (o) => o;

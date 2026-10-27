@@ -14,7 +14,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
 | FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
 | Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/universe`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters, factions, universe) |
-| Mega Man X9: Apex-Primal | `/mmx9-beastwars-fm` (+ `/story`, `/characters`, `/characters/<slug>`, `/bosses`, `/weapons`, `/universe`), `/mmx9` | `worker/mmx9*.js` | New design (fan project; blue and dark violet palette) |
+| Mega Man X9: Apex-Primal | `/mmx9-beastwars-fm` (+ `/story`, `/characters`, `/characters/<slug>`, `/mavericks`, `/weapons`, `/universe`), `/mmx9` | `worker/mmx9*.js` | New design (fan project; blue and dark violet palette) |
 | WarDecks: Leagues | `/ios/wardecks`, `/wardecks` | `worker/wardecks.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
