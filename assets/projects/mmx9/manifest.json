@@ -48,7 +48,8 @@
     },
     "alia": {
       "wallpaper": "characters/alia/wallpaper.webp",
-      "turnaround": "characters/alia/turnaround.webp"
+      "turnaround": "characters/alia/turnaround.webp",
+      "profile": "characters/alia/profile.webp"
     },
     "axl": {
       "turnaround": "characters/axl/turnaround.webp",
