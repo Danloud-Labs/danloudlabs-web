@@ -18,8 +18,9 @@
         {
           "name": "Base Mode",
           "slug": "base-mode",
-          "profile": "characters/gamma/base-mode/profile.webp",
-          "wallpaper": "characters/gamma/base-mode/wallpaper.webp"
+          "turnaround": "characters/gamma/base-mode/turnaround.webp",
+          "wallpaper": "characters/gamma/base-mode/wallpaper.webp",
+          "profile": "characters/gamma/base-mode/profile.webp"
         },
         {
           "name": "Berserker Mode",
@@ -45,9 +46,24 @@
         }
       ]
     },
+    "alia": {
+      "wallpaper": "characters/alia/wallpaper.webp",
+      "turnaround": "characters/alia/turnaround.webp"
+    },
     "axl": {
+      "turnaround": "characters/axl/turnaround.webp",
       "profile": "characters/axl/profile.webp",
       "wallpaper": "characters/axl/wallpaper.webp"
+    },
+    "layer": {
+      "profile": "characters/layer/profile.webp",
+      "turnaround": "characters/layer/turnaround.webp",
+      "wallpaper": "characters/layer/wallpaper.webp"
+    },
+    "palette": {
+      "turnaround": "characters/palette/turnaround.webp",
+      "wallpaper": "characters/palette/wallpaper.webp",
+      "profile": "characters/palette/profile.webp"
     },
     "x": {
       "forms": [
@@ -55,25 +71,29 @@
           "name": "Base Armor",
           "slug": "base-armor",
           "profile": "characters/x/base-armor/profile.webp",
-          "wallpaper": "characters/x/base-armor/wallpaper.webp"
+          "wallpaper": "characters/x/base-armor/wallpaper.webp",
+          "turnaround": "characters/x/base-armor/turnaround.webp"
         },
         {
           "name": "Emerald Armor",
           "slug": "emerald-armor",
           "profile": "characters/x/emerald-armor/profile.webp",
-          "wallpaper": "characters/x/emerald-armor/wallpaper.webp"
+          "wallpaper": "characters/x/emerald-armor/wallpaper.webp",
+          "turnaround": "characters/x/emerald-armor/turnaround.webp"
         },
         {
           "name": "Ruby Armor",
           "slug": "ruby-armor",
+          "wallpaper": "characters/x/ruby-armor/wallpaper.webp",
           "profile": "characters/x/ruby-armor/profile.webp",
-          "wallpaper": "characters/x/ruby-armor/wallpaper.webp"
+          "turnaround": "characters/x/ruby-armor/turnaround.webp"
         },
         {
           "name": "Ultimate Armor",
           "slug": "ultimate-armor",
           "profile": "characters/x/ultimate-armor/profile.webp",
-          "wallpaper": "characters/x/ultimate-armor/wallpaper.webp"
+          "wallpaper": "characters/x/ultimate-armor/wallpaper.webp",
+          "turnaround": "characters/x/ultimate-armor/turnaround.webp"
         }
       ]
     },

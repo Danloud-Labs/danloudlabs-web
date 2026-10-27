@@ -21,9 +21,10 @@ Folder layout (Danloud Labs/Cloudflare/Banners/MMX9):
 Inside a character folder, the role of each image is decided like on the Amaphest pages:
   name contains "F&B", "FB", "turnaround" or "CGI"      -> front & back sheet
   name contains "wallpaper"                             -> 16:9 wallpaper (hero of its page)
-  landscape close to 4:3                                -> front & back sheet
+  square or landscape close to 4:3                      -> front & back sheet
   landscape close to 16:9                               -> 16:9 wallpaper
-  any other portrait image                              -> profile picture (cards)
+  any other portrait image                              -> profile picture (cards), cropped to 3:4
+A square portrait (face) must be named profile… to be used as the profile picture.
 When several files match the same role, the newest one wins. Renaming a file to
 profile / wallpaper / turnaround always forces its role.
 """
@@ -64,9 +65,29 @@ def role_of(path: Path, size):
     if 'wallpaper' in n:
         return 'wallpaper'
     w, h = size
-    if w > h * 1.2:
-        return 'wallpaper' if w / h >= 1.55 else 'turnaround'
+    if w / h >= 1.55:
+        return 'wallpaper'
+    if w / h >= 0.9:
+        return 'turnaround'   # square or 4:3 front & back sheets
     return 'profile'
+
+
+def save_art(src: Path, dst: Path, role: str):
+    """Like save(), but every profile picture comes out exactly 720x960 (3:4, centered crop,
+    a little above center to keep the face), so all the cards match."""
+    if role != 'profile':
+        return save(src, dst, role)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(src) as im:
+        im = im.convert('RGB')
+        w, h = im.size
+        if w / h > 0.75:
+            nw = round(h * 0.75); x = (w - nw) // 2; im = im.crop((x, 0, x + nw, h))
+        else:
+            nh = round(w / 0.75); y = (h - nh) // 3; im = im.crop((0, y, w, y + nh))
+        im = im.resize((720, 960), Image.LANCZOS)
+        im.save(dst, 'WEBP', quality=84, method=6)
+    return dst
 
 
 def pick(files):
@@ -131,7 +152,7 @@ def main():
             continue
         entry = {}
         for role, f in pick(images(folder)).items():
-            entry[role] = rel(save(f, OUT / f'characters/{slug}/{role}.webp', role))
+            entry[role] = rel(save_art(f, OUT / f'characters/{slug}/{role}.webp', role))
             print(f'{slug:24} {role:10} <- {f.name}')
         forms = []
         for d in dirs(folder):
@@ -141,7 +162,7 @@ def main():
             fs = form_slug(nfc(d.name))
             form = {'name': nfc(d.name), 'slug': fs}
             for role, f in pick(files).items():
-                form[role] = rel(save(f, OUT / f'characters/{slug}/{fs}/{role}.webp', role))
+                form[role] = rel(save_art(f, OUT / f'characters/{slug}/{fs}/{role}.webp', role))
                 print(f'{slug:24} {fs + "/" + role:28} <- {f.name}')
             forms.append(form)
         if forms:
