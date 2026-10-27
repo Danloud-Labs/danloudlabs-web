@@ -105,7 +105,8 @@
     },
     "zero": {
       "profile": "characters/zero/profile.webp",
-      "wallpaper": "characters/zero/wallpaper.webp"
+      "wallpaper": "characters/zero/wallpaper.webp",
+      "turnaround": "characters/zero/turnaround.webp"
     }
   },
   "factions": {},
