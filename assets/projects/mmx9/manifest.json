@@ -1,17 +1,92 @@
 {
   "characters": {
+    "dynamo": {
+      "profile": "characters/dynamo/profile.webp",
+      "wallpaper": "characters/dynamo/wallpaper.webp"
+    },
     "sigma": {
+      "turnaround": "characters/sigma/turnaround.webp",
       "profile": "characters/sigma/profile.webp",
-      "turnaround": "characters/sigma/turnaround.webp"
+      "wallpaper": "characters/sigma/wallpaper.webp"
+    },
+    "elaine-clark": {
+      "profile": "characters/elaine-clark/profile.webp",
+      "wallpaper": "characters/elaine-clark/wallpaper.webp"
+    },
+    "gamma": {
+      "forms": [
+        {
+          "name": "Base Mode",
+          "slug": "base-mode",
+          "profile": "characters/gamma/base-mode/profile.webp",
+          "wallpaper": "characters/gamma/base-mode/wallpaper.webp"
+        },
+        {
+          "name": "Berserker Mode",
+          "slug": "berserker-mode",
+          "wallpaper": "characters/gamma/berserker-mode/wallpaper.webp",
+          "profile": "characters/gamma/berserker-mode/profile.webp"
+        }
+      ]
+    },
+    "hemma": {
+      "forms": [
+        {
+          "name": "Base Mode",
+          "slug": "base-mode",
+          "profile": "characters/hemma/base-mode/profile.webp",
+          "wallpaper": "characters/hemma/base-mode/wallpaper.webp"
+        },
+        {
+          "name": "Berserker Mode",
+          "slug": "berserker-mode",
+          "wallpaper": "characters/hemma/berserker-mode/wallpaper.webp",
+          "profile": "characters/hemma/berserker-mode/profile.webp"
+        }
+      ]
     },
     "axl": {
-      "profile": "characters/axl/profile.webp"
+      "profile": "characters/axl/profile.webp",
+      "wallpaper": "characters/axl/wallpaper.webp"
+    },
+    "x": {
+      "forms": [
+        {
+          "name": "Base Armor",
+          "slug": "base-armor",
+          "profile": "characters/x/base-armor/profile.webp",
+          "wallpaper": "characters/x/base-armor/wallpaper.webp"
+        },
+        {
+          "name": "Emerald Armor",
+          "slug": "emerald-armor",
+          "profile": "characters/x/emerald-armor/profile.webp",
+          "wallpaper": "characters/x/emerald-armor/wallpaper.webp"
+        },
+        {
+          "name": "Ruby Armor",
+          "slug": "ruby-armor",
+          "profile": "characters/x/ruby-armor/profile.webp",
+          "wallpaper": "characters/x/ruby-armor/wallpaper.webp"
+        },
+        {
+          "name": "Ultimate Armor",
+          "slug": "ultimate-armor",
+          "profile": "characters/x/ultimate-armor/profile.webp",
+          "wallpaper": "characters/x/ultimate-armor/wallpaper.webp"
+        }
+      ]
+    },
+    "zero": {
+      "profile": "characters/zero/profile.webp",
+      "wallpaper": "characters/zero/wallpaper.webp"
     }
   },
   "factions": {},
   "universe": {
     "images": {}
   },
+  "weapons": {},
   "brand": {
     "banner": "brand/banner.webp"
   }
