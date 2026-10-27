@@ -79,7 +79,9 @@ def save_art(src: Path, dst: Path, role: str):
         return save(src, dst, role)
     dst.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(src) as im:
-        im = im.convert('RGB')
+        im = im.convert('RGBA')
+        bg = Image.new('RGBA', im.size, (0, 0, 0, 255))   # transparent portraits sit on black, like the rest
+        im = Image.alpha_composite(bg, im).convert('RGB')
         w, h = im.size
         if w / h > 0.75:
             nw = round(h * 0.75); x = (w - nw) // 2; im = im.crop((x, 0, x + nw, h))
