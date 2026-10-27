@@ -162,6 +162,8 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .forms button { font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(255, 255, 255, 0.04); transition: .2s; }
 .forms button img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
 .forms button.on { color: #fff; border-color: var(--cc); background: color-mix(in srgb, var(--cc) 18%, transparent); }
+.forms button .dot { width: 30px; height: 30px; border-radius: 50%; flex: none; background: radial-gradient(circle, color-mix(in srgb, var(--cc) 55%, transparent), #0b0a12 75%); }
+.forms { margin-top: 18px; }
 .form-note { color: var(--muted); font-style: italic; font-size: 15px; }
 .form-note:empty { display: none; }
 

@@ -45,7 +45,11 @@ function artFor(c, m) {
     const a = (m.characters || {})[c.slug] || {};
     const url = (p) => (p ? mmxAsset(p) : '');
     const pack = (f) => ({ profile: url(f.profile), wallpaper: url(f.wallpaper), turnaround: url(f.turnaround) });
-    let forms = (a.forms || []).map((f) => ({ slug: f.slug, name: f.name, note: (c.forms || {})[f.slug] || '', ...pack(f) }));
+    // Tabs come from the character data (shown even without art); art-only forms are appended.
+    const artForms = a.forms || [];
+    const listed = (c.forms || []).map((f) => ({ slug: f.slug, name: f.name, note: f.note || '', ...pack(artForms.find((x) => x.slug === f.slug) || {}) }));
+    const extra = artForms.filter((x) => !listed.some((f) => f.slug === x.slug)).map((f) => ({ slug: f.slug, name: f.name, note: '', ...pack(f) }));
+    let forms = [...listed, ...extra];
     const def = forms.find((f) => f.slug === c.defaultForm) || forms[0];
     if (def) forms = [def, ...forms.filter((f) => f !== def)];
     const own = pack(a);
@@ -279,12 +283,12 @@ function characterPage(c, m) {
     // No wallpaper yet: the profile picture, blurred, fills the stage.
     const stageImg = art.wallpaper || art.profile;
     const stageCls = art.wallpaper ? '' : art.profile ? ' blur' : ' empty';
-    const formButtons = art.forms.length > 1 ? `<div class="forms" id="forms">${art.forms.map((f) => `<button type="button" data-form='${esc(JSON.stringify({ p: f.profile, w: f.wallpaper, t: f.turnaround, n: f.note }))}'${f === art.def ? ' class="on"' : ''}>${f.profile ? `<img src="${f.profile}" alt="">` : ''}${esc(f.name)}</button>`).join('')}</div>` : '';
+    const formButtons = art.forms.length > 1 ? `<div class="forms" id="forms">${art.forms.map((f) => `<button type="button" data-form='${esc(JSON.stringify({ p: f.profile, w: f.wallpaper, t: f.turnaround, n: f.note }))}'${f === art.def ? ' class="on"' : ''}>${f.profile ? `<img src="${f.profile}" alt="">` : '<span class="dot"></span>'}${esc(f.name)}</button>`).join('')}</div>` : '';
     const body = `
 <section class="ch-hero" style="--cc:${c.color};padding:0">
     <div class="stage${stageCls}" id="stage">${stageImg ? `<img class="wp" id="wp" src="${stageImg}" alt="">` : ''}</div>
     <div class="over"><div class="wrap">
-        <div class="avatar" id="avatar"${art.profile ? ` data-zoom="${art.profile}" style="cursor:zoom-in"` : ''}>${art.profile ? `<img src="${art.profile}" alt="${esc(c.name)}">` : `<span class="mono">${esc(initials(c.name))}</span>`}</div>
+        <div class="avatar" id="avatar" data-mono="${esc(initials(c.name))}"${art.profile ? ` data-zoom="${art.profile}" style="cursor:zoom-in"` : ''}>${art.profile ? `<img src="${art.profile}" alt="${esc(c.name)}">` : `<span class="mono">${esc(initials(c.name))}</span>`}</div>
         <div>
             ${c.alias ? `<div class="alias">${esc(c.alias)}</div>` : ''}
             <h1>${esc(c.name)}</h1>
@@ -323,7 +327,8 @@ function characterPage(c, m) {
         let wp = document.getElementById('wp');
         if (src) { if (!wp) { wp = document.createElement('img'); wp.id = 'wp'; wp.className = 'wp'; wp.alt = ''; stage.appendChild(wp); } wp.src = src; } else if (wp) { wp.remove(); }
         const av = document.getElementById('avatar');
-        if (d.p) { av.innerHTML = '<img src="' + d.p + '" alt="">'; av.dataset.zoom = d.p; }
+        if (d.p) { av.innerHTML = '<img src="' + d.p + '" alt="">'; av.dataset.zoom = d.p; av.style.cursor = 'zoom-in'; }
+        else { av.innerHTML = '<span class="mono">' + av.dataset.mono + '</span>'; delete av.dataset.zoom; av.style.cursor = ''; }
         document.getElementById('note').textContent = d.n || '';
         const tw = document.getElementById('turnwrap');
         if (d.t) { tw.style.display = ''; document.getElementById('turnimg').src = d.t; document.getElementById('turn').dataset.zoom = d.t; } else { tw.style.display = 'none'; }

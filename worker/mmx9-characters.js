@@ -7,7 +7,8 @@
 // matches its name. tools/mmx9_assets.py turns the folder name into the same slug
 // ("Dr. Clark" -> elaine-clark is mapped there). `group`: 'main' or 'faction'.
 // The eight Mavericks have their own page (/mavericks), not a faction tab; they carry `boss`: stage, element, Apex mutation and weakness (weapons: mmx9-weapons.js).
-// `forms`: notes per form slug (iCloud subfolder, e.g. X/Emerald Armor -> emerald-armor); `defaultForm` leads.
+// `forms`: the tabs on the character's page, in order ({ slug, name, note }). Each slug matches an iCloud
+// subfolder (X/Emerald Armor -> emerald-armor); tabs show even before their art exists. `defaultForm` leads.
 // =====================================================================================
 
 export const MMX_FACTIONS = [
@@ -28,6 +29,12 @@ export const MMX_CHARACTERS = [
             'When the Apex Virus spread across the world, X showed a resistance unlike any other Reploid. His cells became the key to the only antidote.',
         ],
         facts: [['Creator', 'Dr. Light'], ['Status', 'Immune to the Apex Virus']],
+        forms: [
+            { slug: 'base-armor', name: 'Base Armor' },
+            { slug: 'emerald-armor', name: 'Emerald Armor' },
+            { slug: 'ruby-armor', name: 'Ruby Armor' },
+            { slug: 'ultimate-armor', name: 'Ultimate Armor' },
+        ],
         defaultForm: 'base-armor',
     }),
     C({
