@@ -197,6 +197,8 @@ def main():
     ldir = src / 'Locations'
     if ldir.is_dir():
         for f in sorted(images(ldir), key=lambda p: p.stat().st_mtime):
+            if f.name.startswith('_'):   # "_old …": kept in the folder, not published
+                continue
             k = form_slug(nfc(f.stem).replace('’', '').replace("'", ''))
             manifest['locations'][k] = rel(save(f, OUT / f'locations/{k}.webp', 'wallpaper'))
             print(f'location {k:34} <- {f.name}')

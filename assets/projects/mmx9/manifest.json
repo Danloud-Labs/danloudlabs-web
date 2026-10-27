@@ -217,6 +217,20 @@
     "weapons": "sections/weapons.webp",
     "universe": "sections/universe.webp"
   },
+  "locations": {
+    "toxic-overgrown-greenhouse": "locations/toxic-overgrown-greenhouse.webp",
+    "polar-excavation-base": "locations/polar-excavation-base.webp",
+    "opening-stage": "locations/opening-stage.webp",
+    "industrial-logging-site": "locations/industrial-logging-site.webp",
+    "hemma-intermission": "locations/hemma-intermission.webp",
+    "high-altitude-wind-farms": "locations/high-altitude-wind-farms.webp",
+    "gamma-intermission": "locations/gamma-intermission.webp",
+    "dynamo-intermission": "locations/dynamo-intermission.webp",
+    "destroyed-desalinization-facility": "locations/destroyed-desalinization-facility.webp",
+    "deep-sea-research-lab": "locations/deep-sea-research-lab.webp",
+    "sky-citadel": "locations/sky-citadel.webp",
+    "collapsed-volcano-mining-facility": "locations/collapsed-volcano-mining-facility.webp"
+  },
   "brand": {
     "banner": "brand/banner.webp"
   }

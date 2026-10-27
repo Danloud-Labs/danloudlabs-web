@@ -3,12 +3,12 @@
 // Art: Locations/<Location name>.<ext> in the iCloud MMX9 folder ("Sky Citadel.jpg"); the
 // asset script compresses it to 16:9 and the page reads it from the manifest.
 // `boss`: the character fought there (slug in mmx9-characters.js). Art file names: the location name, or
-// for the special stages "Opening Stage", "Gamma Intermission", "Hemma Intermission".
+// for the special stages "Opening Stage", "Gamma Intermission", "Hemma Intermission", "Dynamo Intermission".
 // =====================================================================================
 
 export const MMX_LOCATION_GROUPS = [
     { key: 'stations', name: 'The Eight Stations', sub: 'The facilities attacked by infected Mavericks, as Palette mapped them in the mission briefing.' },
-    { key: 'special', name: 'Special Stages', sub: 'The opening stage and the two intermissions that break the hunt for the Mavericks.' },
+    { key: 'special', name: 'Special Stages', sub: 'The opening stage and the intermissions that break the hunt for the Mavericks.' },
     { key: 'story', name: 'Story Locations', sub: 'Where the Hunters plan, where the Beastroids were born, and where it all ends.' },
 ];
 
@@ -32,6 +32,10 @@ export const MMX_LOCATIONS = [
     {
         key: 'hemma-intermission', name: 'Intermission: Sister Against Sister', group: 'special', boss: 'hemma',
         text: 'As the last stations fall, a signal identical to Gamma’s, yet wildly unstable, appears on Layer’s screen. Hemma has been found.',
+    },
+    {
+        key: 'dynamo-intermission', name: 'Intermission: Hunter and Prey', group: 'special', boss: 'dynamo',
+        text: 'Her Berserker still wild but no longer blind, Hemma follows the scent of the virus to its source and finds the one who did this to her.',
     },
     {
         key: 'maverick-hunter-base', name: 'Maverick Hunter Base', group: 'story',
