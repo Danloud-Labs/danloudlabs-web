@@ -202,7 +202,9 @@
   "sections": {
     "story": "sections/story.webp",
     "characters": "sections/characters.webp",
-    "mavericks": "sections/mavericks.webp"
+    "mavericks": "sections/mavericks.webp",
+    "weapons": "sections/weapons.webp",
+    "universe": "sections/universe.webp"
   },
   "brand": {
     "banner": "brand/banner.webp"
