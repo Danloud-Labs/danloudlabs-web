@@ -1,0 +1,16 @@
+{
+  "characters": {
+    "sigma": {
+      "profile": "characters/sigma/profile.webp",
+      "turnaround": "characters/sigma/turnaround.webp"
+    },
+    "axl": {
+      "profile": "characters/axl/profile.webp"
+    }
+  },
+  "factions": {},
+  "universe": {
+    "images": {}
+  },
+  "brand": {}
+}

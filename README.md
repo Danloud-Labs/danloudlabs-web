@@ -14,6 +14,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
 | FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
 | Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/universe`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters, factions, universe) |
+| Mega Man X9: Apex-Primal | `/mmx9-beastwars-fm` (+ `/story`, `/characters`, `/characters/<slug>`, `/bosses`, `/universe`), `/mmx9` | `worker/mmx9*.js` | New design (fan project; blue and dark violet palette) |
 | WarDecks: Leagues | `/ios/wardecks`, `/wardecks` | `worker/wardecks.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
@@ -41,7 +42,13 @@ danloudlabs-web/
 │   ├── amaphest-characters.js  every character and faction (bios, roles, facts)
 │   ├── amaphest-universe.js    the Universe page (Hemos / Earth tabs) and its CSS
 │   ├── amaphest-universe-data.js  the Universe texts
-│   └── amaphest-styles.js   Amaphest-only CSS
+│   ├── amaphest-styles.js   Amaphest-only CSS
+│   ├── mmx9.js              Mega Man X9 pages + handleMMX9(request) router
+│   ├── mmx9-data.js         MMX9 texts: title, premise, Universe cards, sections
+│   ├── mmx9-characters.js   MMX9 characters, factions and the eight bosses' stats
+│   ├── mmx9-story.js        MMX9 chapters (Story page)
+│   └── mmx9-styles.js       MMX9-only CSS (blue / dark violet)
+├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
@@ -91,3 +98,18 @@ front & back sheet, and any other portrait the profile picture (newest wins). Re
 - `Universe/<Hemos|Earth>/`: an image named like a card or section of the Universe page goes there,
   `Hero` is the tab's top background; `Universe/hemos.png` and `earth.png` are the tab planet icons.
 - The Worker re-reads the manifest every minute, so art shows up about a minute after the push.
+
+## Mega Man X9 art
+
+Art lives in iCloud (`Danloud Labs/Cloudflare/Banners/MMX9`): `Characters/Main Characters/<Name>`,
+`Characters/Factions/<CFE|Antagonist|Mavericks>/<Name>`, `Universe/<Card name>.<ext>`, and
+`banner.*` / `logo.*` at the top for the main page. The pages read
+`assets/projects/mmx9/manifest.json` live, so new art needs no Cloudflare paste:
+
+```
+cd ~/Developer/danloudlabs-web
+python3 tools/mmx9_assets.py     # converts the art and rewrites the manifest
+git add -A && git commit -m "MMX9 art" && git push
+```
+
+Until there is a `banner.*`, the hero uses the old MMX9 wallpaper from `danloudlabs-assets`.

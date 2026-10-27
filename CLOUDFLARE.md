@@ -38,3 +38,16 @@ The old `styles.js` (`cssSubPaginas`) stays: the pages not redesigned yet still 
    if (ama) return ama;
    ```
    Then delete the old `/amaphest-amalion-progenitor` route line (the `htmlAmaphest` import can stay).
+
+## Mega Man X9 (one-time)
+
+1. Create `mmx9-data.js`, `mmx9-characters.js`, `mmx9-story.js` and `mmx9-styles.js`; paste the new
+   `mmx9.js` over the old one.
+2. In `worker.js`, change `import { htmlMegaman } from './mmx9.js';` to
+   `import { handleMMX9 } from './mmx9.js';` and, right after the Amaphest handler:
+   ```js
+   const mmx = await handleMMX9(request);
+   if (mmx) return mmx;
+   ```
+   Then delete the old `/mmx9-beastwars-fm` route line.
+3. **Deploy**, then open https://danloudlabs.com/mmx9-beastwars-fm
