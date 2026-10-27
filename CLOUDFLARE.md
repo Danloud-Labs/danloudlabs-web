@@ -50,3 +50,7 @@ The old `styles.js` (`cssSubPaginas`) stays: the pages not redesigned yet still 
 ### Mega Man X9: Locations (one-time)
 
 Create `mmx9-locations.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-styles.js` over the old ones and Deploy.
+
+### Mega Man X9: Soundtrack (one-time)
+
+Create `mmx9-soundtrack.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-styles.js` over the old ones and Deploy.

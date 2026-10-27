@@ -48,13 +48,13 @@ for (const [file, route] of Object.entries(amaPages)) {
 // Mega Man X9 pages: same idea, manifest read from disk.
 import { handleMMX9 } from '../worker/mmx9.js';
 const fetchAma = globalThis.fetch;
-globalThis.fetch = async (u, o) => (String(u).includes('/projects/mmx9/manifest.json')
-    ? new Response(await readFile(join(out, '..', 'assets/projects/mmx9/manifest.json')))
+globalThis.fetch = async (u, o) => (String(u).includes('/projects/mmx9/manifest.json') || String(u).includes('/projects/mmx9/soundtrack.json')
+    ? new Response(await readFile(join(out, '..', 'assets/projects/mmx9/', String(u).includes('soundtrack') ? 'soundtrack.json' : 'manifest.json')).catch(() => '{}'))
     : fetchAma(u, o));
-const mmxPages = { 'mmx9.html': '', 'mmx9-story.html': '/story', 'mmx9-characters.html': '/characters', 'mmx9-mavericks.html': '/mavericks', 'mmx9-weapons.html': '/weapons', 'mmx9-locations.html': '/locations', 'mmx9-x.html': '/characters/x', 'mmx9-universe.html': '/universe',
+const mmxPages = { 'mmx9.html': '', 'mmx9-story.html': '/story', 'mmx9-characters.html': '/characters', 'mmx9-mavericks.html': '/mavericks', 'mmx9-weapons.html': '/weapons', 'mmx9-locations.html': '/locations', 'mmx9-soundtrack.html': '/soundtrack', 'mmx9-x.html': '/characters/x', 'mmx9-universe.html': '/universe',
     'mmx9-sigma.html': '/characters/sigma', 'mmx9-gamma.html': '/characters/gamma', 'mmx9-mammoth.html': '/characters/arctic-woolly-mammoth' };
 const mmxLinks = [['/story', 'mmx9-story.html'], ['/characters/sigma', 'mmx9-sigma.html'], ['/characters/gamma', 'mmx9-gamma.html'], ['/characters/arctic-woolly-mammoth', 'mmx9-mammoth.html'],
-    ['/characters', 'mmx9-characters.html'], ['/mavericks', 'mmx9-mavericks.html'], ['/weapons', 'mmx9-weapons.html'], ['/locations', 'mmx9-locations.html'], ['/characters/x', 'mmx9-x.html'], ['/universe', 'mmx9-universe.html'], ['', 'mmx9.html']];
+    ['/characters', 'mmx9-characters.html'], ['/mavericks', 'mmx9-mavericks.html'], ['/weapons', 'mmx9-weapons.html'], ['/locations', 'mmx9-locations.html'], ['/soundtrack', 'mmx9-soundtrack.html'], ['/characters/x', 'mmx9-x.html'], ['/universe', 'mmx9-universe.html'], ['', 'mmx9.html']];
 for (const [file, route] of Object.entries(mmxPages)) {
     const res = await handleMMX9(new Request(`https://danloudlabs.com/mmx9-beastwars-fm${route}`));
     let h = (await res.text()).split(SITE_ASSETS).join('../assets');

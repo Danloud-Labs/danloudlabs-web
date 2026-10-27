@@ -7,17 +7,19 @@
 //   /mmx9-beastwars-fm/mavericks             the eight Mavericks (boss compendium; /bosses redirects here)
 //   /mmx9-beastwars-fm/weapons               special weapons, one tab per character (#x, #zero…)
 //   /mmx9-beastwars-fm/locations             the eight stations and the story's places
+//   /mmx9-beastwars-fm/soundtrack            the soundtrack player (tracks in assets/projects/mmx9/soundtrack.json)
 //   /mmx9-beastwars-fm/universe              the Apex Virus, CFE, Beastroids, Sigma Chip…
 //   /mmx9, /megaman-x9                       -> main page
 // The Worker's fetch() calls handleMMX9(request) first; it returns null for other paths.
 // =====================================================================================
 
-import { MMX, MMX_BASE, MMX_FALLBACK, MMX_GROUPS, MMX_LORE, MMX_MANIFEST, MMX_PREMISE, MMX_SECTIONS, mmxAsset } from './mmx9-data.js';
+import { MMX, MMX_ASSETS, MMX_BASE, MMX_FALLBACK, MMX_GROUPS, MMX_LORE, MMX_MANIFEST, MMX_PREMISE, MMX_SECTIONS, mmxAsset } from './mmx9-data.js';
 import { MMX_BOSSES, MMX_CHARACTERS, MMX_FACTIONS, factionMembers, findCharacter, findFaction } from './mmx9-characters.js';
 import { MMX_ACTS, MMX_CHAPTERS } from './mmx9-story.js';
 import { MMX_CSS } from './mmx9-styles.js';
 import { MMX_WEAPON_USERS, weaponOf } from './mmx9-weapons.js';
 import { MMX_LOCATIONS, MMX_LOCATION_GROUPS } from './mmx9-locations.js';
+import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
@@ -115,13 +117,13 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const lb
 
 const fanNote = `<section style="padding-top:0"><div class="wrap"><p class="fan-note">${esc(MMX.disclaimer)}</p></div></section>`;
 
-function page({ title, description, path, active, m, ogImage, body }) {
+function page({ title, description, path, active, m, ogImage, body, css = '' }) {
     return sitePage({
         title, description, path, ogImage: ogImage || brandArt(m).banner,
         icon: MMX_FALLBACK.icon,
         active: 'projects',
         back: { href: '/#projects', label: 'Projects' },
-        head: `<style>${MMX_CSS}</style>`,
+        head: `<style>${MMX_CSS}${css}</style>`,
         body: `<div class="mmx">${mmxNav(active, m)}${body}${fanNote}</div>${lightbox}`,
     });
 }
@@ -179,7 +181,7 @@ function mainPage(m) {
 <section style="padding-top:10px">
     <div class="wrap">
         ${head('Explore', 'The world of Apex-Primal')}
-        <div class="mmx-sections">${MMX_SECTIONS.map((s) => { const img = (m.sections || {})[s.key]; return `<a class="mmx-section reveal" href="${MMX_BASE}/${s.key}"><div class="art${img ? '' : ' none'}"${img ? ` style="background-image:url('${mmxAsset(img)}')"` : ''}></div><div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></div></a>`; }).join('')}</div>
+        <div class="mmx-sections">${MMX_SECTIONS.map((s) => { const img = (m.sections || {})[s.key]; return `<a class="mmx-section reveal${s.wide ? ' wide' : ''}" href="${MMX_BASE}/${s.key}"><div class="art${img ? '' : ' none'}"${img ? ` style="background-image:url('${mmxAsset(img)}')"` : ''}></div><div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></div></a>`; }).join('')}</div>
     </div>
 </section>`;
     return page({ title: `${MMX.title}: ${MMX.subtitle} (fan-made) · Danloud Labs`, description: `${MMX.tagline} ${MMX.logline}`, path: MMX_BASE, active: '', m, body });
@@ -454,6 +456,52 @@ ${MMX_LOCATION_GROUPS.map((g) => `
     return page({ title: `Locations · ${MMX.title}: ${MMX.subtitle}`, description: `The eight stations and the story locations of ${MMX.title}: ${MMX.subtitle}.`, path: `${MMX_BASE}/locations`, active: 'locations', m, body });
 }
 
+// ---------------------------------------------------------------- soundtrack
+async function loadTracks() {
+    try {
+        const res = await fetch(`${MMX_ASSETS}/soundtrack.json?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+        if (res.ok) return (await res.json()).tracks || [];
+    } catch (_) { /* page shows "on its way" */ }
+    return [];
+}
+
+// Each track's cover: its stage, its character or a story image, by words in the title.
+function trackCover(t, m) {
+    const title = t.title.toLowerCase().replace(/’/g, "'");
+    const loc = (k) => (m.locations || {})[k] && mmxAsset(m.locations[k]);
+    const wp = (slug, form) => { const c = findCharacter(slug); if (!c) return ''; const a = artFor(c, m); const f = form && a.forms.find((x) => x.slug === form); return (f && (f.wallpaper || f.profile)) || a.wallpaper || a.profile; };
+    const uni = (k) => ((m.universe || {}).images || {})[k] && mmxAsset(m.universe.images[k]);
+    const sec = (k) => (m.sections || {})[k] && mmxAsset(m.sections[k]);
+    const story = (n) => mmxAsset(`story/chapter-${String(n).padStart(2, '0')}.jpg`);
+    for (const b of MMX_BOSSES) if (title.includes(b.name.toLowerCase())) { const l = stageOf(b); return (l && loc(l.key)) || wp(b.slug); }
+    const rules = [
+        [/dynamo captures/, () => loc('dynamo-intermission')],
+        [/hemma's fate/, () => story(14)],
+        [/vs\. gamma/, () => loc('gamma-intermission') || wp('gamma', 'berserker-mode')],
+        [/vs\. hemma/, () => loc('hemma-intermission') || wp('hemma', 'berserker-mode')],
+        [/vs\. dynamo|dynamo's lair/, () => wp('dynamo')],
+        [/sigma/, () => wp('sigma')],
+        [/opening stage/, () => loc('opening-stage')],
+        [/apex virus/, () => uni('apex-virus')],
+        [/prelude/, () => story(1)],
+        [/briefing/, () => story(5)],
+        [/stage select|vs\. boss/, () => sec('mavericks')],
+        [/mission report|stage clear|stage start/, () => sec('characters')],
+        [/heroes destiny|staff roll/, () => story(15)],
+    ];
+    for (const [re, f] of rules) if (re.test(title)) { const u = f(); if (u) return u; }
+    return brandArt(m).banner;
+}
+
+async function soundtrackPage(m) {
+    const tracks = await loadTracks();
+    const body = `
+${pageHead(m, 'soundtrack')}<span class="eyebrow">Soundtrack</span><h1>The sound of <span class="grad-bv">Apex-Primal</span></h1>
+<p class="lead">The original fan-made soundtrack: stage themes, boss battles and the story, from the opening to the staff roll.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">${soundtrackBody({ tracks, cover: (t) => trackCover(t, m) })}</div></section>`;
+    return page({ title: `Soundtrack · ${MMX.title}: ${MMX.subtitle}`, description: `Listen to the fan-made soundtrack of ${MMX.title}: ${MMX.subtitle}.`, path: `${MMX_BASE}/soundtrack`, active: 'soundtrack', m, body, css: MMX_SOUNDTRACK_CSS });
+}
+
 // ---------------------------------------------------------------- universe
 function universePage(m) {
     const imgs = (m.universe || {}).images || {};
@@ -488,6 +536,7 @@ export async function handleMMX9(request) {
     if (rest === '/bosses') return Response.redirect(`${url.origin}${MMX_BASE}/mavericks`, 301);
     if (rest === '/weapons') return html(weaponsPage(m));
     if (rest === '/locations') return html(locationsPage(m));
+    if (rest === '/soundtrack') return html(await soundtrackPage(m));
     if (rest === '/universe') return html(universePage(m));
     const hit = rest.match(/^\/characters\/([a-z0-9-]+)$/);
     if (hit && findCharacter(hit[1])) return html(characterPage(findCharacter(hit[1]), m));

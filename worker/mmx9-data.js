@@ -106,4 +106,5 @@ export const MMX_SECTIONS = [
     { key: 'weapons', name: 'Weapons', status: 'live', text: 'The special weapons X, Zero, Axl and Gamma take from each Maverick.' },
     { key: 'locations', name: 'Locations', status: 'live', text: 'The eight stations, the opening stage, the two intermissions and the places of the story.' },
     { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'The Apex Virus, the CFE Project, Beastroids, Berserker Mode and the Sigma Chip.' },
+    { key: 'soundtrack', name: 'Soundtrack', status: 'live', wide: true, text: 'The original fan-made soundtrack: stage themes, boss battles and the story, from the opening to the staff roll.' },
 ];

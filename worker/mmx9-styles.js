@@ -76,6 +76,9 @@ body::before {
 .mmx-section .art { aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 1px solid var(--line); transition: transform .6s; }
 .mmx-section .art.none { background: radial-gradient(70% 90% at 20% 100%, rgba(63, 140, 255, .45), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(124, 77, 255, .5), transparent 70%), #0b0a14; }
 .mmx-section .txt { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.mmx-section.wide { grid-column: 1 / -1; flex-direction: row; }
+.mmx-section.wide .art { width: calc((100% - 24px) / 3); flex: none; border-bottom: 0; border-right: 1px solid var(--line); }
+.mmx-section.wide .txt { justify-content: center; padding: 22px 26px; }
 a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 18px 50px -24px var(--blue); }
 .mmx-section h3 { font-size: 20px; }
 .mmx-section p { margin: 0; color: var(--muted); font-size: 14px; }
@@ -258,6 +261,8 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
     .ch-hero .stage { aspect-ratio: 4 / 3; }
     .bosses { grid-template-columns: 1fr; }
     .locs { grid-template-columns: 1fr; }
+    .mmx-section.wide { flex-direction: column; }
+    .mmx-section.wide .art { width: 100%; border-right: 0; border-bottom: 1px solid var(--line); }
     .strip { grid-template-columns: repeat(4, 1fr); }
     .story { grid-template-columns: 1fr; }
     .weapons { grid-template-columns: repeat(2, 1fr); }
