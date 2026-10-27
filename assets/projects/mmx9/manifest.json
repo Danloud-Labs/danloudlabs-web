@@ -51,6 +51,46 @@
         }
       ]
     },
+    "arctic-woolly-mammoth": {
+      "turnaround": "characters/arctic-woolly-mammoth/turnaround.webp",
+      "wallpaper": "characters/arctic-woolly-mammoth/wallpaper.webp",
+      "profile": "characters/arctic-woolly-mammoth/profile.webp"
+    },
+    "electro-unicorn": {
+      "turnaround": "characters/electro-unicorn/turnaround.webp",
+      "profile": "characters/electro-unicorn/profile.webp",
+      "wallpaper": "characters/electro-unicorn/wallpaper.webp"
+    },
+    "plasma-axolotl": {
+      "wallpaper": "characters/plasma-axolotl/wallpaper.webp",
+      "turnaround": "characters/plasma-axolotl/turnaround.webp",
+      "profile": "characters/plasma-axolotl/profile.webp"
+    },
+    "slicer-beaver": {
+      "wallpaper": "characters/slicer-beaver/wallpaper.webp",
+      "profile": "characters/slicer-beaver/profile.webp",
+      "turnaround": "characters/slicer-beaver/turnaround.webp"
+    },
+    "splash-dolphin": {
+      "turnaround": "characters/splash-dolphin/turnaround.webp",
+      "wallpaper": "characters/splash-dolphin/wallpaper.webp",
+      "profile": "characters/splash-dolphin/profile.webp"
+    },
+    "supersonic-woodpecker": {
+      "wallpaper": "characters/supersonic-woodpecker/wallpaper.webp",
+      "turnaround": "characters/supersonic-woodpecker/turnaround.webp",
+      "profile": "characters/supersonic-woodpecker/profile.webp"
+    },
+    "toxin-ladybug": {
+      "wallpaper": "characters/toxin-ladybug/wallpaper.webp",
+      "turnaround": "characters/toxin-ladybug/turnaround.webp",
+      "profile": "characters/toxin-ladybug/profile.webp"
+    },
+    "volcanic-great-ape": {
+      "wallpaper": "characters/volcanic-great-ape/wallpaper.webp",
+      "turnaround": "characters/volcanic-great-ape/turnaround.webp",
+      "profile": "characters/volcanic-great-ape/profile.webp"
+    },
     "alia": {
       "wallpaper": "characters/alia/wallpaper.webp",
       "turnaround": "characters/alia/turnaround.webp",
