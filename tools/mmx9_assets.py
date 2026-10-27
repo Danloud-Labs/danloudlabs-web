@@ -14,7 +14,7 @@ Folder layout (Danloud Labs/Cloudflare/Banners/MMX9):
   Characters/Factions/<Faction>/<image>         that faction's button art
   Characters/.../<Name>/<Form>/                 one form per subfolder (X: Base Armor, Emerald
                                                 Armor, Ruby Armor), same roles as below
-  Weapons/<X|Zero|Axl|Gamma>/<Weapon name>.<ext> art for that weapon on the Weapons page
+  Weapons/<X|Zero|Axl|Gamma>/<Boss name>.<ext>   that character's weapon from that boss (Weapons page)
   Universe/<Card name>.<ext>                    art for a Universe card ("Apex Virus.png",
                                                 "Beastroids.jpg", "Sigma Chip.webp"…)
 
@@ -187,7 +187,7 @@ def main():
             u = form_slug(nfc(user.name))
             for f in sorted(images(user), key=lambda p: p.stat().st_mtime):
                 w = form_slug(nfc(f.stem))
-                manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'faction'))
+                manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'universe'))
                 print(f'weapon {u:6} {w:20} <- {f.name}')
 
     OUT.mkdir(parents=True, exist_ok=True)

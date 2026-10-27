@@ -364,17 +364,18 @@ function weaponsPage(m) {
     const panels = MMX_WEAPON_USERS.map((u, i) => {
         const known = MMX_BOSSES.filter((b) => weaponOf(u.key, b.slug)).length;
         return `
-        <div class="wpanel" id="w-${u.key}" style="--cc:${u.color}"${i === 0 ? '' : ' hidden'}>
+        <div class="wpanel${u.art === 'wide' ? ' wide' : ''}" id="w-${u.key}" style="--cc:${u.color}"${i === 0 ? '' : ' hidden'}>
             <div class="wpanel-head"><h3>${esc(u.name)}’s weapons</h3><span>${known} of ${MMX_BOSSES.length} revealed</span></div>
             <div class="weapons">${MMX_BOSSES.map((b) => {
                 const name = weaponOf(u.key, b.slug);
-                const img = name && (art[u.key] || {})[slugify(name)];
+                const mine = art[u.key] || {};
+                const img = mine[b.slug] || (name && mine[slugify(name)]);
                 const bossArt = artFor(b, m).profile;
                 return `
-                <div class="weapon${name ? '' : ' hidden-w'}" style="--wc:${b.color}">
+                <div class="weapon${name || img ? '' : ' hidden-w'}${name ? '' : ' noname'}" style="--wc:${b.color}">
                     <div class="w-art"${img ? ` data-zoom="${mmxAsset(img)}"` : ''}>${img ? `<img src="${mmxAsset(img)}" alt="${esc(name)}" loading="lazy">` : `<span class="w-glyph">${name ? esc(name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2)) : '?'}</span>`}</div>
                     <div class="w-info">
-                        <b>${name ? esc(name) : 'To be revealed'}</b>
+                        <b>${name ? esc(name) : 'Name to be revealed'}</b>
                         <a class="w-from" href="${charHref(b)}">${bossArt ? `<img src="${bossArt}" alt="">` : ''}<span>From ${esc(b.name)}</span></a>
                         <span class="chip" style="--cc:${b.color}">${esc(b.boss.element)}</span>
                     </div>

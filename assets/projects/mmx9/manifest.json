@@ -153,7 +153,48 @@
   "universe": {
     "images": {}
   },
-  "weapons": {},
+  "weapons": {
+    "axl": {
+      "volcanic-great-ape": "weapons/axl/volcanic-great-ape.webp",
+      "toxin-ladybug": "weapons/axl/toxin-ladybug.webp",
+      "arctic-woolly-mammoth": "weapons/axl/arctic-woolly-mammoth.webp",
+      "splash-dolphin": "weapons/axl/splash-dolphin.webp",
+      "supersonic-woodpecker": "weapons/axl/supersonic-woodpecker.webp",
+      "electro-unicorn": "weapons/axl/electro-unicorn.webp",
+      "plasma-axolotl": "weapons/axl/plasma-axolotl.webp",
+      "slicer-beaver": "weapons/axl/slicer-beaver.webp"
+    },
+    "gamma": {
+      "volcanic-great-ape": "weapons/gamma/volcanic-great-ape.webp",
+      "supersonic-woodpecker": "weapons/gamma/supersonic-woodpecker.webp",
+      "electro-unicorn": "weapons/gamma/electro-unicorn.webp",
+      "arctic-woolly-mammoth": "weapons/gamma/arctic-woolly-mammoth.webp",
+      "toxin-ladybug": "weapons/gamma/toxin-ladybug.webp",
+      "splash-dolphin": "weapons/gamma/splash-dolphin.webp",
+      "plasma-axolotl": "weapons/gamma/plasma-axolotl.webp",
+      "slicer-beaver": "weapons/gamma/slicer-beaver.webp"
+    },
+    "x": {
+      "arctic-woolly-mammoth": "weapons/x/arctic-woolly-mammoth.webp",
+      "plasma-axolotl": "weapons/x/plasma-axolotl.webp",
+      "splash-dolphin": "weapons/x/splash-dolphin.webp",
+      "supersonic-woodpecker": "weapons/x/supersonic-woodpecker.webp",
+      "toxin-ladybug": "weapons/x/toxin-ladybug.webp",
+      "volcanic-great-ape": "weapons/x/volcanic-great-ape.webp",
+      "electro-unicorn": "weapons/x/electro-unicorn.webp",
+      "slicer-beaver": "weapons/x/slicer-beaver.webp"
+    },
+    "zero": {
+      "arctic-woolly-mammoth": "weapons/zero/arctic-woolly-mammoth.webp",
+      "electro-unicorn": "weapons/zero/electro-unicorn.webp",
+      "volcanic-great-ape": "weapons/zero/volcanic-great-ape.webp",
+      "slicer-beaver": "weapons/zero/slicer-beaver.webp",
+      "plasma-axolotl": "weapons/zero/plasma-axolotl.webp",
+      "splash-dolphin": "weapons/zero/splash-dolphin.webp",
+      "supersonic-woodpecker": "weapons/zero/supersonic-woodpecker.webp",
+      "toxin-ladybug": "weapons/zero/toxin-ladybug.webp"
+    }
+  },
   "brand": {
     "banner": "brand/banner.webp"
   }

@@ -181,7 +181,7 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .wpanel-head span { color: var(--dim); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .weapons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .weapon { --wc: var(--blue); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; }
-.weapon .w-art { position: relative; aspect-ratio: 4 / 3; background: radial-gradient(70% 70% at 50% 45%, color-mix(in srgb, var(--wc) 38%, transparent), transparent 75%), #0a0a12; display: grid; place-items: center; }
+.weapon .w-art { position: relative; aspect-ratio: 1 / 1; background: radial-gradient(70% 70% at 50% 45%, color-mix(in srgb, var(--wc) 38%, transparent), transparent 75%), #0a0a12; display: grid; place-items: center; }
 .weapon .w-art[data-zoom] { cursor: zoom-in; }
 .weapon .w-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .weapon .w-glyph { font-family: var(--round); font-size: 40px; font-weight: 800; color: color-mix(in srgb, var(--wc) 75%, white); text-shadow: 0 0 30px var(--wc); }
@@ -190,7 +190,9 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .weapon .w-from { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; text-decoration: none; }
 .weapon .w-from:hover { color: var(--fg); }
 .weapon .w-from img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
-.weapon.hidden-w b { color: var(--dim); }
+.weapon.hidden-w b, .weapon.noname b { color: var(--dim); }
+.wpanel.wide .weapons { grid-template-columns: repeat(2, 1fr); }
+.wpanel.wide .w-art { aspect-ratio: 16 / 9; }
 .weapon.hidden-w .w-glyph { opacity: .45; }
 
 /* Story */
@@ -226,6 +228,7 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
     .strip { grid-template-columns: repeat(4, 1fr); }
     .story { grid-template-columns: 1fr; }
     .weapons { grid-template-columns: repeat(2, 1fr); }
+    .wpanel.wide .weapons { grid-template-columns: 1fr; }
     .wtabs { grid-template-columns: repeat(2, 1fr); }
     .mmx-sections { grid-template-columns: repeat(2, 1fr); }
     .toc { display: none; }

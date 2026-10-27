@@ -2,14 +2,15 @@
 // Mega Man X9: Apex-Primal — special weapons (Weapons page).
 // Each playable character earns one weapon per Maverick. Weapons are listed by boss slug
 // (worker/mmx9-characters.js); a missing name shows as "To be revealed".
-// Art: Weapons/<X|Zero|Axl|Gamma>/<Weapon name>.<ext> in the iCloud MMX9 folder.
+// Art: Weapons/<X|Zero|Axl|Gamma>/<Boss name>.<ext> in the iCloud MMX9 folder ("Splash Dolphin.jpg").
+// `art`: the shape of that character's weapon images; 16:9 ones get wider cards, two per row.
 // =====================================================================================
 
 export const MMX_WEAPON_USERS = [
     { key: 'x', name: 'X', character: 'x', color: '#3f8cff' },
     { key: 'zero', name: 'Zero', character: 'zero', color: '#e8394a' },
     { key: 'axl', name: 'Axl', character: 'axl', color: '#ff7a2f' },
-    { key: 'gamma', name: 'Gamma', character: 'gamma', color: '#cfe3ff' },
+    { key: 'gamma', name: 'Gamma', character: 'gamma', color: '#cfe3ff', art: 'wide' },
 ];
 
 // weapons[user][boss slug] = weapon name. X's names come from the General Notes.
