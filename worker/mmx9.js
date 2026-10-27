@@ -193,6 +193,10 @@ const pageHead = (m, key) => {
 };
 
 // ---------------------------------------------------------------- story
+// One 16:9 image per chapter, straight from the repo: assets/projects/mmx9/story/chapter-00.jpg (the
+// introduction) … chapter-15.jpg. They start black; replace a file with the same name and push.
+const chapterArt = (c) => mmxAsset(`story/chapter-${String(c.n).padStart(2, '0')}.jpg`);
+
 function storyPage(m) {
     const label = (c) => (c.n === 0 ? 'Introduction' : `Chapter ${c.n}`);
     const toc = MMX_ACTS.map((a) => `<h4>${esc(a.name)}</h4>${MMX_CHAPTERS.filter((c) => c.n >= a.from && c.n <= a.to).map((c) => `<a href="#chapter-${c.n}" data-ch="${c.n}"><span>${c.n || '·'}</span>${esc(c.title)}</a>`).join('')}`).join('');
@@ -206,6 +210,7 @@ ${pageHead(m, 'story')}<span class="eyebrow">The Story</span><h1>The chapters of
         <nav class="toc" id="toc" aria-label="Chapters">${toc}</nav>
         <div class="chapters">${MMX_CHAPTERS.map((c) => `
             <article class="chapter" id="chapter-${c.n}">
+                <figure class="ch-art" data-zoom="${chapterArt(c)}"><img src="${chapterArt(c)}" alt="${esc(label(c))}: ${esc(c.title)}" loading="lazy"></figure>
                 <div class="num">${esc(label(c))}</div>
                 <h2>${esc(c.title)}</h2>
                 ${c.p.map((p) => `<p>${esc(p)}</p>`).join('')}

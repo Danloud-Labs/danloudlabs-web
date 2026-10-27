@@ -149,12 +149,23 @@
       "turnaround": "characters/zero/turnaround.webp"
     }
   },
-  "factions": {},
+  "factions": {
+    "antagonists": {
+      "banner": "factions/antagonists/banner.webp"
+    },
+    "cfe": {
+      "banner": "factions/cfe/banner.webp"
+    }
+  },
   "universe": {
     "images": {
       "apex-virus": "universe/apex-virus.webp",
       "beastroids": "universe/beastroids.webp",
-      "sigma-chip": "universe/sigma-chip.webp"
+      "sigma-chip": "universe/sigma-chip.webp",
+      "cfe-project": "universe/cfe-project.webp",
+      "primal-state": "universe/primal-state.webp",
+      "berserker-mode": "universe/berserker-mode.webp",
+      "antidote": "universe/antidote.webp"
     }
   },
   "weapons": {

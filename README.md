@@ -118,3 +118,9 @@ git add -A && git commit -m "MMX9 art" && git push
 ```
 
 Until there is a `banner.*`, the hero uses the old MMX9 wallpaper from `danloudlabs-assets`.
+
+### Story chapter images
+
+One 16:9 image per chapter lives directly in the repo: `assets/projects/mmx9/story/chapter-00.jpg`
+(introduction) to `chapter-15.jpg`. They start black. Replace a file keeping its name (JPG, 16:9,
+about 2048 px wide) and push; no script and no Cloudflare paste needed.
