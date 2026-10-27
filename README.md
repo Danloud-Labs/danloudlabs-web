@@ -27,6 +27,9 @@ danloudlabs-web/
 │   ├── apps/       <app>-icon.webp (256 px), <app>-banner.webp (16:9), hazmat/, fedlog/ and wardecks/ art
 │   └── projects/   <project>-logo.webp (transparent logos of the creative projects)
 ├── worker/         the files that go in the Cloudflare Worker
+│   ├── worker.js       the Worker's entry file (same name in the dashboard): imports and routes.
+│   │                   It also imports old-design pages that only live in the dashboard
+│   │                   (myncha, darkwithinme, android, software, fftii, leave-tracker, aura-routes).
 │   ├── site-data.js    apps, projects, platforms, contact: edit this one for content
 │   ├── site-styles.js  shared CSS (Theme Studio palette) for every redesigned page
 │   ├── site-layout.js  shared page shell: top bar, footer, app cards, icons
