@@ -58,7 +58,7 @@ body::before {
 .lore p:last-child { margin-bottom: 0; }
 
 /* Section tiles */
-.mmx-sections { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.mmx-sections { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .mmx-section { position: relative; padding: 22px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); text-decoration: none; display: flex; flex-direction: column; gap: 8px; min-height: 160px; transition: .2s; }
 a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 18px 50px -24px var(--blue); }
 .mmx-section h3 { font-size: 20px; }
@@ -157,6 +157,40 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .strip .pic .mono { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--round); font-size: 28px; font-weight: 800; color: color-mix(in srgb, var(--cc) 75%, white); text-shadow: 0 0 24px var(--cc); }
 .strip span { display: block; padding: 8px 10px 10px; font-size: 12.5px; font-weight: 600; line-height: 1.25; }
 
+/* Forms (X's armors) */
+.forms { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 6px; }
+.forms button { font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(255, 255, 255, 0.04); transition: .2s; }
+.forms button img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
+.forms button.on { color: #fff; border-color: var(--cc); background: color-mix(in srgb, var(--cc) 18%, transparent); }
+.form-note { color: var(--muted); font-style: italic; font-size: 15px; }
+.form-note:empty { display: none; }
+
+/* Weapons */
+.wtabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.wtab { --cc: var(--blue); display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--muted); font: inherit; font-family: var(--round); font-size: 18px; font-weight: 700; cursor: pointer; transition: .2s; text-align: left; }
+.wtab img, .wtab .mono { width: 46px; height: 46px; border-radius: 12px; object-fit: cover; object-position: 50% 15%; flex: none; }
+.wtab .mono { display: grid; place-items: center; background: radial-gradient(circle, color-mix(in srgb, var(--cc) 45%, transparent), #0b0a12 80%); color: color-mix(in srgb, var(--cc) 75%, white); }
+.wtab:hover { color: var(--fg); border-color: color-mix(in srgb, var(--cc) 50%, transparent); }
+.wtab.on { color: #fff; border-color: var(--cc); background: color-mix(in srgb, var(--cc) 14%, var(--card)); box-shadow: 0 12px 40px -18px var(--cc); }
+.wpanel { --cc: var(--blue); padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--cc) 30%, var(--line)); background: linear-gradient(180deg, color-mix(in srgb, var(--cc) 8%, var(--win)), var(--win) 220px); }
+.wpanel[hidden] { display: none; }
+.wpanel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.wpanel-head h3 { font-size: 24px; }
+.wpanel-head span { color: var(--dim); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.weapons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.weapon { --wc: var(--blue); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; }
+.weapon .w-art { position: relative; aspect-ratio: 4 / 3; background: radial-gradient(70% 70% at 50% 45%, color-mix(in srgb, var(--wc) 38%, transparent), transparent 75%), #0a0a12; display: grid; place-items: center; }
+.weapon .w-art[data-zoom] { cursor: zoom-in; }
+.weapon .w-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.weapon .w-glyph { font-family: var(--round); font-size: 40px; font-weight: 800; color: color-mix(in srgb, var(--wc) 75%, white); text-shadow: 0 0 30px var(--wc); }
+.weapon .w-info { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.weapon .w-info b { font-family: var(--round); font-size: 18px; line-height: 1.2; }
+.weapon .w-from { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; text-decoration: none; }
+.weapon .w-from:hover { color: var(--fg); }
+.weapon .w-from img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
+.weapon.hidden-w b { color: var(--dim); }
+.weapon.hidden-w .w-glyph { opacity: .45; }
+
 /* Story */
 .spoiler { display: flex; gap: 12px; align-items: center; padding: 14px 18px; border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3); background: rgba(251, 191, 36, 0.06); color: #f5deb0; font-size: 14.5px; margin-bottom: 28px; }
 .story { display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: start; }
@@ -189,6 +223,9 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
     .bosses { grid-template-columns: 1fr; }
     .strip { grid-template-columns: repeat(4, 1fr); }
     .story { grid-template-columns: 1fr; }
+    .weapons { grid-template-columns: repeat(2, 1fr); }
+    .wtabs { grid-template-columns: repeat(2, 1fr); }
+    .mmx-sections { grid-template-columns: repeat(2, 1fr); }
     .toc { display: none; }
     .toc-mobile { display: block; margin-bottom: 26px; }
     .toc-mobile select { width: 100%; font: inherit; font-size: 15px; color: var(--fg); background: var(--card); border: 1px solid var(--line2); border-radius: 12px; padding: 11px 12px; }

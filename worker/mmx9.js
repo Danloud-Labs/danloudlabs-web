@@ -5,6 +5,7 @@
 //   /mmx9-beastwars-fm/characters            Maverick Hunters + factions
 //   /mmx9-beastwars-fm/characters/<slug>     one character (bosses show their stats)
 //   /mmx9-beastwars-fm/bosses                the eight Mavericks
+//   /mmx9-beastwars-fm/weapons               special weapons, one tab per character (#x, #zero…)
 //   /mmx9-beastwars-fm/universe              the Apex Virus, CFE, Beastroids, Sigma Chip…
 //   /mmx9, /megaman-x9                       -> main page
 // The Worker's fetch() calls handleMMX9(request) first; it returns null for other paths.
@@ -14,6 +15,7 @@ import { MMX, MMX_BASE, MMX_FALLBACK, MMX_GROUPS, MMX_LORE, MMX_MANIFEST, MMX_PR
 import { MMX_BOSSES, MMX_CHARACTERS, MMX_FACTIONS, factionMembers, findCharacter, findFaction } from './mmx9-characters.js';
 import { MMX_ACTS, MMX_CHAPTERS } from './mmx9-story.js';
 import { MMX_CSS } from './mmx9-styles.js';
+import { MMX_WEAPON_USERS, weaponOf } from './mmx9-weapons.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
@@ -33,11 +35,22 @@ const brandArt = (m) => ({
     banner: m.brand && m.brand.banner ? mmxAsset(m.brand.banner) : MMX_FALLBACK.banner,
 });
 
-// A character's art: profile, wallpaper, turnaround (each may be missing).
+// Same slug as tools/mmx9_assets.py: "Cryo Stampede" -> cryo-stampede.
+const slugify = (s) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// A character's art: profile, wallpaper, turnaround (each may be missing), plus its forms
+// (iCloud subfolders such as X's armors). The default form leads; cards use the character's
+// own art and fall back to the default form's.
 function artFor(c, m) {
     const a = (m.characters || {})[c.slug] || {};
     const url = (p) => (p ? mmxAsset(p) : '');
-    return { profile: url(a.profile), wallpaper: url(a.wallpaper), turnaround: url(a.turnaround) };
+    const pack = (f) => ({ profile: url(f.profile), wallpaper: url(f.wallpaper), turnaround: url(f.turnaround) });
+    let forms = (a.forms || []).map((f) => ({ slug: f.slug, name: f.name, note: (c.forms || {})[f.slug] || '', ...pack(f) }));
+    const def = forms.find((f) => f.slug === c.defaultForm) || forms[0];
+    if (def) forms = [def, ...forms.filter((f) => f !== def)];
+    const own = pack(a);
+    const art = def ? { profile: own.profile || def.profile, wallpaper: own.wallpaper || def.wallpaper, turnaround: own.turnaround || def.turnaround } : own;
+    return { ...art, forms, def };
 }
 
 // Placeholder letters: "Dr. Elaine Clark" -> EC, "Arctic Woolly Mammoth" -> AW, "X" -> X.
@@ -72,7 +85,7 @@ function bossCard(c, m) {
                 <dt>Stage</dt><dd>${esc(b.stage)}</dd>
                 <dt>Apex form</dt><dd>${esc(b.mutation)}</dd>
                 <dt>Weakness</dt><dd><span class="chip weak">${esc(b.weakness)}</span></dd>
-                <dt>Weapon</dt><dd><span class="chip">${esc(b.weapon)}</span></dd>
+                <dt>X weapon</dt><dd><span class="chip">${esc(weaponOf('x', c.slug) || 'To be revealed')}</span></dd>
             </dl>
         </div>
     </a>`;
@@ -258,18 +271,20 @@ function characterPage(c, m) {
     const facLink = faction ? `<a href="${MMX_BASE}/characters#${faction.key}">${esc(faction.name)}</a>` : `<a href="${MMX_BASE}/characters">Maverick Hunters</a>`;
     const facts = [
         ...(c.alias ? [['Alias', esc(c.alias)]] : []),
-        ...(b ? [['Stage', esc(b.stage)], ['Element', esc(b.element)], ['Apex form', esc(b.mutation)], ['Weakness', `<span class="chip weak">${esc(b.weakness)}</span>`], ['Weapon', `<span class="chip">${esc(b.weapon)}</span>`]] : []),
+        ...(b ? [['Stage', esc(b.stage)], ['Element', esc(b.element)], ['Apex form', esc(b.mutation)], ['Weakness', `<span class="chip weak">${esc(b.weakness)}</span>`]] : []),
+        ...(b ? MMX_WEAPON_USERS.filter((u) => weaponOf(u.key, c.slug)).map((u) => [`${u.name} weapon`, `<a href="${MMX_BASE}/weapons#${u.key}">${esc(weaponOf(u.key, c.slug))}</a>`]) : []),
         ...(c.facts || []).map(([k, v]) => [k, esc(v)]),
         ['Faction', facLink],
     ];
     // No wallpaper yet: the profile picture, blurred, fills the stage.
     const stageImg = art.wallpaper || art.profile;
     const stageCls = art.wallpaper ? '' : art.profile ? ' blur' : ' empty';
+    const formButtons = art.forms.length > 1 ? `<div class="forms" id="forms">${art.forms.map((f) => `<button type="button" data-form='${esc(JSON.stringify({ p: f.profile, w: f.wallpaper, t: f.turnaround, n: f.note }))}'${f === art.def ? ' class="on"' : ''}>${f.profile ? `<img src="${f.profile}" alt="">` : ''}${esc(f.name)}</button>`).join('')}</div>` : '';
     const body = `
 <section class="ch-hero" style="--cc:${c.color};padding:0">
-    <div class="stage${stageCls}">${stageImg ? `<img class="wp" src="${stageImg}" alt="">` : ''}</div>
+    <div class="stage${stageCls}" id="stage">${stageImg ? `<img class="wp" id="wp" src="${stageImg}" alt="">` : ''}</div>
     <div class="over"><div class="wrap">
-        <div class="avatar"${art.profile ? ` data-zoom="${art.profile}" style="cursor:zoom-in"` : ''}>${art.profile ? `<img src="${art.profile}" alt="${esc(c.name)}">` : `<span class="mono">${esc(initials(c.name))}</span>`}</div>
+        <div class="avatar" id="avatar"${art.profile ? ` data-zoom="${art.profile}" style="cursor:zoom-in"` : ''}>${art.profile ? `<img src="${art.profile}" alt="${esc(c.name)}">` : `<span class="mono">${esc(initials(c.name))}</span>`}</div>
         <div>
             ${c.alias ? `<div class="alias">${esc(c.alias)}</div>` : ''}
             <h1>${esc(c.name)}</h1>
@@ -279,22 +294,42 @@ function characterPage(c, m) {
 </section>
 <section style="--cc:${c.color};padding-top:30px">
     <div class="wrap">
+        ${formButtons}
         <div class="ch-body" style="margin-top:18px">
-            <div class="bio">${c.bio.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+            <div class="bio">${c.bio.map((p) => `<p>${esc(p)}</p>`).join('')}<p class="form-note" id="note">${esc((art.def || {}).note || '')}</p></div>
             <div class="card"><table class="facts">${facts.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</table></div>
         </div>
-        ${art.turnaround ? `
-        <div style="margin-top:34px">
+        <div id="turnwrap" style="margin-top:34px${art.turnaround ? '' : ';display:none'}">
             <div class="section-head" style="margin-bottom:16px"><div><span class="eyebrow">Character sheet</span><h2 style="font-size:26px">Front &amp; back</h2></div></div>
-            <div class="turn" data-zoom="${art.turnaround}"><img src="${art.turnaround}" alt="${esc(c.name)} front and back" loading="lazy"></div>
-        </div>` : ''}
+            <div class="turn" id="turn" data-zoom="${art.turnaround}"><img id="turnimg" src="${art.turnaround}" alt="${esc(c.name)} front and back" loading="lazy"></div>
+        </div>
         <div class="pn" style="margin-top:44px">
             <a href="${charHref(prev)}"><span>&larr;</span><span><small>Previous</small><b>${esc(prev.name)}</b></span></a>
             <a class="next" href="${charHref(next)}"><span><small>Next</small><b>${esc(next.name)}</b></span><span>&rarr;</span></a>
         </div>
         <p style="margin-top:22px"><a class="btn btn-ghost btn-sm" href="${MMX_BASE}/characters">&larr; All characters</a>${b ? ` <a class="btn btn-ghost btn-sm" href="${MMX_BASE}/bosses">Boss compendium</a>` : ''}</p>
     </div>
-</section>`;
+</section>
+<script>
+(() => {
+    const bar = document.getElementById('forms'); if (!bar) return;
+    bar.addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        bar.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
+        const d = JSON.parse(b.dataset.form);
+        const stage = document.getElementById('stage');
+        const src = d.w || d.p;
+        stage.className = 'stage' + (d.w ? '' : d.p ? ' blur' : ' empty');
+        let wp = document.getElementById('wp');
+        if (src) { if (!wp) { wp = document.createElement('img'); wp.id = 'wp'; wp.className = 'wp'; wp.alt = ''; stage.appendChild(wp); } wp.src = src; } else if (wp) { wp.remove(); }
+        const av = document.getElementById('avatar');
+        if (d.p) { av.innerHTML = '<img src="' + d.p + '" alt="">'; av.dataset.zoom = d.p; }
+        document.getElementById('note').textContent = d.n || '';
+        const tw = document.getElementById('turnwrap');
+        if (d.t) { tw.style.display = ''; document.getElementById('turnimg').src = d.t; document.getElementById('turn').dataset.zoom = d.t; } else { tw.style.display = 'none'; }
+    });
+})();
+</script>`;
     return page({
         title: `${c.name} · ${MMX.title}: ${MMX.subtitle}`,
         description: `${c.name}, ${c.role} in ${MMX.title}: ${MMX.subtitle}. ${c.bio[0]}`.slice(0, 300),
@@ -311,6 +346,57 @@ function bossesPage(m) {
     <div class="bosses">${MMX_BOSSES.map((c) => bossCard(c, m)).join('')}</div>
 </div></section>`;
     return page({ title: `The Mavericks · ${MMX.title}: ${MMX.subtitle}`, description: `The eight bosses of ${MMX.title}: ${MMX.subtitle}: stages, Apex mutations, weaknesses and weapons.`, path: `${MMX_BASE}/bosses`, active: 'bosses', m, body });
+}
+
+// ---------------------------------------------------------------- weapons
+function weaponsPage(m) {
+    const art = m.weapons || {};
+    const tabs = MMX_WEAPON_USERS.map((u, i) => {
+        const c = findCharacter(u.character);
+        const pic = c ? artFor(c, m).profile : '';
+        return `<button type="button" class="wtab${i === 0 ? ' on' : ''}" data-user="${u.key}" aria-controls="w-${u.key}" aria-pressed="${i === 0}" style="--cc:${u.color}">${pic ? `<img src="${pic}" alt="">` : `<span class="mono">${esc(u.name[0])}</span>`}${esc(u.name)}</button>`;
+    }).join('');
+    const panels = MMX_WEAPON_USERS.map((u, i) => {
+        const known = MMX_BOSSES.filter((b) => weaponOf(u.key, b.slug)).length;
+        return `
+        <div class="wpanel" id="w-${u.key}" style="--cc:${u.color}"${i === 0 ? '' : ' hidden'}>
+            <div class="wpanel-head"><h3>${esc(u.name)}’s weapons</h3><span>${known} of ${MMX_BOSSES.length} revealed</span></div>
+            <div class="weapons">${MMX_BOSSES.map((b) => {
+                const name = weaponOf(u.key, b.slug);
+                const img = name && (art[u.key] || {})[slugify(name)];
+                const bossArt = artFor(b, m).profile;
+                return `
+                <div class="weapon${name ? '' : ' hidden-w'}" style="--wc:${b.color}">
+                    <div class="w-art"${img ? ` data-zoom="${mmxAsset(img)}"` : ''}>${img ? `<img src="${mmxAsset(img)}" alt="${esc(name)}" loading="lazy">` : `<span class="w-glyph">${name ? esc(name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2)) : '?'}</span>`}</div>
+                    <div class="w-info">
+                        <b>${name ? esc(name) : 'To be revealed'}</b>
+                        <a class="w-from" href="${charHref(b)}">${bossArt ? `<img src="${bossArt}" alt="">` : ''}<span>From ${esc(b.name)}</span></a>
+                        <span class="chip" style="--cc:${b.color}">${esc(b.boss.element)}</span>
+                    </div>
+                </div>`;
+            }).join('')}</div>
+        </div>`;
+    }).join('');
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">Weapons</span><h1>The arsenal of <span class="grad-bv">Apex-Primal</span></h1>
+<p class="lead">Every Maverick defeated leaves a power behind. X, Zero, Axl and Gamma each take their own weapon from it.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">
+    <div class="wtabs" id="wtabs">${tabs}</div>
+    ${panels}
+</div></section>
+<script>
+(() => {
+    const bar = document.getElementById('wtabs'); if (!bar) return;
+    const show = (key) => {
+        const btn = bar.querySelector('[data-user="' + key + '"]'); if (!btn) return;
+        bar.querySelectorAll('.wtab').forEach((b) => { const on = b === btn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+        document.querySelectorAll('.wpanel').forEach((p) => { p.hidden = p.id !== 'w-' + key; });
+    };
+    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-user]'); if (!b) return; show(b.dataset.user); history.replaceState(null, '', '#' + b.dataset.user); });
+    const h = location.hash.slice(1); if (h) show(h);
+})();
+</script>`;
+    return page({ title: `Weapons · ${MMX.title}: ${MMX.subtitle}`, description: `The special weapons of X, Zero, Axl and Gamma in ${MMX.title}: ${MMX.subtitle}, one from each Maverick.`, path: `${MMX_BASE}/weapons`, active: 'weapons', m, body });
 }
 
 // ---------------------------------------------------------------- universe
@@ -344,6 +430,7 @@ export async function handleMMX9(request) {
     if (rest === '/story') return html(storyPage(m));
     if (rest === '/characters') return html(charactersPage(m));
     if (rest === '/bosses') return html(bossesPage(m));
+    if (rest === '/weapons') return html(weaponsPage(m));
     if (rest === '/universe') return html(universePage(m));
     const hit = rest.match(/^\/characters\/([a-z0-9-]+)$/);
     if (hit && findCharacter(hit[1])) return html(characterPage(findCharacter(hit[1]), m));

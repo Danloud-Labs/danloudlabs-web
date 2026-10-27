@@ -14,7 +14,7 @@ AURA Calendar's own pages live in their own repo: `Danloud-Labs/aura-calendar-we
 | HazMat Scanner | `/ios/hazmat-scanner`, `/hazmat`, `/hazmat-scanner` | `worker/hazmat.js` | New design |
 | FedLog | `/ios/fedlog`, `/fedlog` | `worker/fedlog.js` | New design (beta; set `APP_STORE` when live) |
 | Amaphest | `/amaphest-amalion-progenitor` (+ `/characters`, `/characters/<slug>`, `/universe`, `/gallery`), `/amaphest` | `worker/amaphest*.js` | New design (characters, factions, universe) |
-| Mega Man X9: Apex-Primal | `/mmx9-beastwars-fm` (+ `/story`, `/characters`, `/characters/<slug>`, `/bosses`, `/universe`), `/mmx9` | `worker/mmx9*.js` | New design (fan project; blue and dark violet palette) |
+| Mega Man X9: Apex-Primal | `/mmx9-beastwars-fm` (+ `/story`, `/characters`, `/characters/<slug>`, `/bosses`, `/weapons`, `/universe`), `/mmx9` | `worker/mmx9*.js` | New design (fan project; blue and dark violet palette) |
 | WarDecks: Leagues | `/ios/wardecks`, `/wardecks` | `worker/wardecks.js` | New design (beta; set `APP_STORE` when live) |
 | Everything else | | | Old design, unchanged |
 
@@ -50,6 +50,7 @@ danloudlabs-web/
 │   ├── mmx9-data.js         MMX9 texts: title, premise, Universe cards, sections
 │   ├── mmx9-characters.js   MMX9 characters, factions and the eight bosses' stats
 │   ├── mmx9-story.js        MMX9 chapters (Story page)
+│   ├── mmx9-weapons.js      MMX9 special weapons of X, Zero, Axl and Gamma, by boss
 │   └── mmx9-styles.js       MMX9-only CSS (blue / dark violet)
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
@@ -105,7 +106,8 @@ front & back sheet, and any other portrait the profile picture (newest wins). Re
 ## Mega Man X9 art
 
 Art lives in iCloud (`Danloud Labs/Cloudflare/Banners/MMX9`): `Characters/Main Characters/<Name>`,
-`Characters/Factions/<CFE|Antagonist|Mavericks>/<Name>`, `Universe/<Card name>.<ext>`, and
+`Characters/Factions/<CFE|Antagonist|Mavericks>/<Name>` (a subfolder per form, like X's armors),
+`Weapons/<X|Zero|Axl|Gamma>/<Weapon name>.<ext>`, `Universe/<Card name>.<ext>`, and
 `banner.*` / `logo.*` at the top for the main page. The pages read
 `assets/projects/mmx9/manifest.json` live, so new art needs no Cloudflare paste:
 

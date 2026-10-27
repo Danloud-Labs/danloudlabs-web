@@ -12,12 +12,17 @@ Folder layout (Danloud Labs/Cloudflare/Banners/MMX9):
   Characters/Main Characters/<Name>/            Maverick Hunters
   Characters/Factions/<Faction>/<Name>/         CFE, Antagonist, Mavericks
   Characters/Factions/<Faction>/<image>         that faction's button art
+  Characters/.../<Name>/<Form>/                 one form per subfolder (X: Base Armor, Emerald
+                                                Armor, Ruby Armor), same roles as below
+  Weapons/<X|Zero|Axl|Gamma>/<Weapon name>.<ext> art for that weapon on the Weapons page
   Universe/<Card name>.<ext>                    art for a Universe card ("Apex Virus.png",
                                                 "Beastroids.jpg", "Sigma Chip.webp"…)
 
 Inside a character folder, the role of each image is decided like on the Amaphest pages:
-  name contains "wallpaper", or the image is landscape  -> 16:9 wallpaper (hero of its page)
-  name contains "F&B", "turnaround" or "CGI"            -> front & back sheet
+  name contains "F&B", "FB", "turnaround" or "CGI"      -> front & back sheet
+  name contains "wallpaper"                             -> 16:9 wallpaper (hero of its page)
+  landscape close to 4:3                                -> front & back sheet
+  landscape close to 16:9                               -> 16:9 wallpaper
   any other portrait image                              -> profile picture (cards)
 When several files match the same role, the newest one wins. Renaming a file to
 profile / wallpaper / turnaround always forces its role.
@@ -29,7 +34,9 @@ import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from amaphest_assets import IMAGE_EXT, form_slug, pick, save  # noqa: E402  (shared converters)
+import re  # noqa: E402
+from PIL import Image  # noqa: E402
+from amaphest_assets import IMAGE_EXT, form_slug, save  # noqa: E402  (shared converters)
 
 HOME = Path.home()
 DEFAULT_SRC = HOME / 'Library/Mobile Documents/com~apple~CloudDocs/Danloud Labs/Cloudflare/Banners/MMX9'
@@ -46,6 +53,32 @@ LORE_KEYS = {'virus': 'apex-virus', 'apex-virus': 'apex-virus', 'the-apex-virus'
              'sigma-chip': 'sigma-chip', 'the-sigma-chip': 'sigma-chip', 'the-antidote': 'antidote'}
 
 nfc = lambda s: unicodedata.normalize('NFC', s)  # noqa: E731  (macOS stores accents decomposed)
+
+
+def role_of(path: Path, size):
+    n = path.stem.lower()
+    if n.startswith('profile'):
+        return 'profile'
+    if n.startswith('turnaround') or 'f&b' in n or 'cgi' in n or re.search(r'(^|[^a-z])fb([^a-z]|$)', n):
+        return 'turnaround'
+    if 'wallpaper' in n:
+        return 'wallpaper'
+    w, h = size
+    if w > h * 1.2:
+        return 'wallpaper' if w / h >= 1.55 else 'turnaround'
+    return 'profile'
+
+
+def pick(files):
+    """files -> {role: Path}, newest file per role."""
+    roles = {}
+    for f in sorted(files, key=lambda p: p.stat().st_mtime):
+        try:
+            with Image.open(f) as im:
+                roles[role_of(f, im.size)] = f
+        except Exception as e:  # noqa: BLE001
+            print(f'  skip {f.name}: {e}')
+    return roles
 
 
 def rel(p: Path):
@@ -68,7 +101,7 @@ def main():
     if not chars_dir.is_dir():
         sys.exit(f'Not found: {chars_dir}')
 
-    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'brand': {}}
+    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'weapons': {}, 'brand': {}}
 
     for f in images(src):
         n = f.name.lower()
@@ -94,13 +127,27 @@ def main():
 
     for folder in char_dirs:
         slug = FOLDER_SLUGS.get(nfc(folder.name).strip()) or form_slug(nfc(folder.name))
-        files = images(folder)
-        if not slug or not files:
+        if not slug:
             continue
-        entry = manifest['characters'].setdefault(slug, {})
-        for role, f in pick(files).items():
+        entry = {}
+        for role, f in pick(images(folder)).items():
             entry[role] = rel(save(f, OUT / f'characters/{slug}/{role}.webp', role))
             print(f'{slug:24} {role:10} <- {f.name}')
+        forms = []
+        for d in dirs(folder):
+            files = images(d)
+            if not files:
+                continue
+            fs = form_slug(nfc(d.name))
+            form = {'name': nfc(d.name), 'slug': fs}
+            for role, f in pick(files).items():
+                form[role] = rel(save(f, OUT / f'characters/{slug}/{fs}/{role}.webp', role))
+                print(f'{slug:24} {fs + "/" + role:28} <- {f.name}')
+            forms.append(form)
+        if forms:
+            entry['forms'] = forms
+        if entry:
+            manifest['characters'][slug] = entry
 
     uni = src / 'Universe'
     if uni.is_dir():
@@ -109,6 +156,16 @@ def main():
             key = LORE_KEYS.get(name, name)
             manifest['universe']['images'][key] = rel(save(f, OUT / f'universe/{key}.webp', 'universe'))
             print(f'universe {key:16} <- {f.name}')
+
+    # Weapons/<User>/<Weapon name>.<ext>: weapon art (worker/mmx9-weapons.js).
+    wdir = src / 'Weapons'
+    if wdir.is_dir():
+        for user in dirs(wdir):
+            u = form_slug(nfc(user.name))
+            for f in sorted(images(user), key=lambda p: p.stat().st_mtime):
+                w = form_slug(nfc(f.stem))
+                manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'faction'))
+                print(f'weapon {u:6} {w:20} <- {f.name}')
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')

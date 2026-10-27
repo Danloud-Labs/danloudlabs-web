@@ -6,7 +6,8 @@
 // To add a character: add an entry here and (for its art) a folder in iCloud whose name
 // matches its name. tools/mmx9_assets.py turns the folder name into the same slug
 // ("Dr. Clark" -> elaine-clark is mapped there). `group`: 'main' or 'faction'.
-// Mavericks also carry `boss`: stage, element, Apex mutation, weakness and X's weapon.
+// Mavericks also carry `boss`: stage, element, Apex mutation and weakness (weapons: mmx9-weapons.js).
+// `forms`: notes per form slug (iCloud subfolder, e.g. X/Emerald Armor -> emerald-armor); `defaultForm` leads.
 // =====================================================================================
 
 export const MMX_FACTIONS = [
@@ -28,6 +29,7 @@ export const MMX_CHARACTERS = [
             'When the Apex Virus spread across the world, X showed a resistance unlike any other Reploid. His cells became the key to the only antidote.',
         ],
         facts: [['Creator', 'Dr. Light'], ['Status', 'Immune to the Apex Virus']],
+        defaultForm: 'base-armor',
     }),
     C({
         slug: 'zero', name: 'Zero', group: 'main', color: '#e8394a',
@@ -130,49 +132,49 @@ export const MMX_CHARACTERS = [
         slug: 'arctic-woolly-mammoth', name: 'Arctic Woolly Mammoth', faction: 'mavericks', group: 'faction', color: '#7fd6ff',
         role: 'Maverick · Ice',
         bio: [`Guardian of the Polar Excavation Base. ${infected}`],
-        boss: { stage: 'Polar Excavation Base', element: 'Ice / Cryo', mutation: 'Ice Shatter Form', weakness: 'Fire', weapon: 'Cryo Stampede' },
+        boss: { stage: 'Polar Excavation Base', element: 'Ice / Cryo', mutation: 'Ice Shatter Form', weakness: 'Fire' },
     }),
     C({
         slug: 'plasma-axolotl', name: 'Plasma Axolotl', faction: 'mavericks', group: 'faction', color: '#ff7ac8',
         role: 'Maverick · Bio-Electric',
         bio: [`Found in the Deep Sea Research Lab. ${infected}`],
-        boss: { stage: 'Deep Sea Research Lab', element: 'Bio-Electric / Water', mutation: 'Plasma Surge Form', weakness: 'Electric', weapon: 'Cell Repeater' },
+        boss: { stage: 'Deep Sea Research Lab', element: 'Bio-Electric / Water', mutation: 'Plasma Surge Form', weakness: 'Electric' },
     }),
     C({
         slug: 'electro-unicorn', name: 'Electro Unicorn', faction: 'mavericks', group: 'faction', color: '#ffd84d',
         role: 'Maverick · Electric',
         bio: [`Rules the storms above the Sky Citadel. ${infected}`],
-        boss: { stage: 'Sky Citadel', element: 'Electric / Storm', mutation: 'Thunder Overload Form', weakness: 'Ground', weapon: 'Thunder Lancer' },
+        boss: { stage: 'Sky Citadel', element: 'Electric / Storm', mutation: 'Thunder Overload Form', weakness: 'Ground' },
     }),
     C({
         slug: 'volcanic-great-ape', name: 'Volcanic Great Ape', faction: 'mavericks', group: 'faction', color: '#ff5a2b',
         role: 'Maverick · Fire',
         bio: [`Rampages through the Collapsed Volcano Mining Facility. ${infected}`],
-        boss: { stage: 'Collapsed Volcano Mining Facility', element: 'Fire / Lava', mutation: 'Magma Rage Form', weakness: 'Water', weapon: 'Inferno Knuckle' },
+        boss: { stage: 'Collapsed Volcano Mining Facility', element: 'Fire / Lava', mutation: 'Magma Rage Form', weakness: 'Water' },
     }),
     C({
         slug: 'supersonic-woodpecker', name: 'Supersonic Woodpecker', faction: 'mavericks', group: 'faction', color: '#8fe3c8',
         role: 'Maverick · Wind',
         bio: [`Strikes from the High Altitude Wind Farms. ${infected}`],
-        boss: { stage: 'High Altitude Wind Farms', element: 'Wind / Sonic', mutation: 'Hurricane Node Form', weakness: 'Electric', weapon: 'Echo Pulse' },
+        boss: { stage: 'High Altitude Wind Farms', element: 'Wind / Sonic', mutation: 'Hurricane Node Form', weakness: 'Electric' },
     }),
     C({
         slug: 'toxin-ladybug', name: 'Toxin Ladybug', faction: 'mavericks', group: 'faction', color: '#a6e23c',
         role: 'Maverick · Poison',
         bio: [`Spreads its spores through the Toxic Overgrown Greenhouse. ${infected}`],
-        boss: { stage: 'Toxic Overgrown Greenhouse', element: 'Poison / Biohazard', mutation: 'Contamination Spore Form', weakness: 'Ice', weapon: 'Acid Bloom' },
+        boss: { stage: 'Toxic Overgrown Greenhouse', element: 'Poison / Biohazard', mutation: 'Contamination Spore Form', weakness: 'Ice' },
     }),
     C({
         slug: 'splash-dolphin', name: 'Splash Dolphin', faction: 'mavericks', group: 'faction', color: '#2fa8ff',
         role: 'Maverick · Water',
         bio: [`Haunts the Destroyed Desalinization Facility. ${infected}`],
-        boss: { stage: 'Destroyed Desalinization Facility', element: 'Water / Pressure', mutation: 'Abyss Pressure Form', weakness: 'Electric', weapon: 'Hydro Crash' },
+        boss: { stage: 'Destroyed Desalinization Facility', element: 'Water / Pressure', mutation: 'Abyss Pressure Form', weakness: 'Electric' },
     }),
     C({
         slug: 'slicer-beaver', name: 'Slicer Beaver', faction: 'mavericks', group: 'faction', color: '#c0c7d4',
         role: 'Maverick · Blade',
         bio: [`Tears through the Industrial Logging Site. ${infected}`],
-        boss: { stage: 'Industrial Logging Site', element: 'Blade / Steel', mutation: 'Shredding Maul Form', weakness: 'Fire', weapon: 'Twin Slicer' },
+        boss: { stage: 'Industrial Logging Site', element: 'Blade / Steel', mutation: 'Shredding Maul Form', weakness: 'Fire' },
     }),
 ];
 
