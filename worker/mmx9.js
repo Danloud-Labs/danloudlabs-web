@@ -156,7 +156,7 @@ function mainPage(m) {
 <section style="padding-top:10px">
     <div class="wrap">
         ${head('The Premise', 'A virus that <span class="grad-bv">sets the beast free.</span>', [`${MMX_BASE}/universe`, 'Explore the Universe'])}
-        <div class="trio">${MMX_PREMISE.map((u) => `<div class="card reveal" style="--tc:${u.c}"><h3>${esc(u.k)}</h3><p>${esc(u.t)}</p></div>`).join('')}</div>
+        <div class="trio">${MMX_PREMISE.map((u) => { const img = ((m.universe || {}).images || {})[u.key]; return `<a class="card reveal${img ? ' has-art' : ''}" href="${MMX_BASE}/universe#${u.key}" style="--tc:${u.c}">${img ? `<div class="art" style="background-image:url('${mmxAsset(img)}')"></div>` : ''}<div class="txt"><h3>${esc(u.k)}</h3><p>${esc(u.t)}</p></div></a>`; }).join('')}</div>
     </div>
 </section>
 
@@ -177,7 +177,7 @@ function mainPage(m) {
 <section style="padding-top:10px">
     <div class="wrap">
         ${head('Explore', 'The world of Apex-Primal')}
-        <div class="mmx-sections">${MMX_SECTIONS.map((s) => `<a class="mmx-section reveal" href="${MMX_BASE}/${s.key}"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></a>`).join('')}</div>
+        <div class="mmx-sections">${MMX_SECTIONS.map((s) => { const img = (m.sections || {})[s.key]; return `<a class="mmx-section reveal" href="${MMX_BASE}/${s.key}"><div class="art${img ? '' : ' none'}"${img ? ` style="background-image:url('${mmxAsset(img)}')"` : ''}></div><div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></div></a>`; }).join('')}</div>
     </div>
 </section>`;
     return page({ title: `${MMX.title}: ${MMX.subtitle} (fan-made) · Danloud Labs`, description: `${MMX.tagline} ${MMX.logline}`, path: MMX_BASE, active: '', m, body });

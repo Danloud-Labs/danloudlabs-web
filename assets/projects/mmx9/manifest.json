@@ -151,7 +151,11 @@
   },
   "factions": {},
   "universe": {
-    "images": {}
+    "images": {
+      "apex-virus": "universe/apex-virus.webp",
+      "beastroids": "universe/beastroids.webp",
+      "sigma-chip": "universe/sigma-chip.webp"
+    }
   },
   "weapons": {
     "axl": {
@@ -194,6 +198,11 @@
       "supersonic-woodpecker": "weapons/zero/supersonic-woodpecker.webp",
       "toxin-ladybug": "weapons/zero/toxin-ladybug.webp"
     }
+  },
+  "sections": {
+    "story": "sections/story.webp",
+    "characters": "sections/characters.webp",
+    "mavericks": "sections/mavericks.webp"
   },
   "brand": {
     "banner": "brand/banner.webp"

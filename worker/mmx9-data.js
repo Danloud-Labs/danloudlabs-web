@@ -32,11 +32,11 @@ export const MMX = {
     disclaimer: 'Mega Man X is a trademark of Capcom. Apex-Primal is an unofficial, non-commercial fan project and is not affiliated with or endorsed by Capcom.',
 };
 
-// The three ideas the story stands on (main page).
+// The three ideas the story stands on (main page). Art: the Universe card image with the same key.
 export const MMX_PREMISE = [
-    { k: 'The Apex Virus', c: '#7dff4f', t: 'Released by Dynamo from a satellite tower, it travels on sound and reaches Reploids through their auditory sensors. Humanoids degenerate; animal-form Reploids mutate into a Primal state, ruled by instinct alone.' },
-    { k: 'The Beastroids', c: '#ff9a3c', t: 'Built in secret by Dr. Elaine Clark, they carry living human and animal cortex inside a robotic body. The virus cannot overwrite them. It unleashes them.' },
-    { k: 'The Sigma Chip', c: '#8b5cf6', t: 'Sigma is dead. Only his chip remains, holding his complete consciousness. It needs a body strong enough to hold it without collapsing, and someone is building one.' },
+    { key: 'apex-virus', k: 'The Apex Virus', c: '#7dff4f', t: 'Released by Dynamo from a satellite tower, it travels on sound and reaches Reploids through their auditory sensors. Humanoids degenerate; animal-form Reploids mutate into a Primal state, ruled by instinct alone.' },
+    { key: 'beastroids', k: 'The Beastroids', c: '#ff9a3c', t: 'Built in secret by Dr. Elaine Clark, they carry living human and animal cortex inside a robotic body. The virus cannot overwrite them. It unleashes them.' },
+    { key: 'sigma-chip', k: 'The Sigma Chip', c: '#8b5cf6', t: 'Sigma is dead. Only his chip remains, holding his complete consciousness. It needs a body strong enough to hold it without collapsing, and someone is building one.' },
 ];
 
 // The Universe page: one card per idea. Art: Universe/<Card name>.<ext> in iCloud.

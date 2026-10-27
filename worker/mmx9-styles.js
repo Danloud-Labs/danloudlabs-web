@@ -49,6 +49,11 @@ body::before {
 .trio .card, .lore .card { border-top: 2px solid var(--tc); background: radial-gradient(360px 180px at 0% 0%, color-mix(in srgb, var(--tc) 14%, transparent), transparent 70%), var(--card); }
 .trio h3 { color: var(--tc); font-size: 20px; margin-bottom: 8px; }
 .trio p { margin: 0; color: #d3cfdf; font-size: 15px; }
+.trio .card { display: block; text-decoration: none; color: inherit; transition: transform .25s, box-shadow .25s; }
+.trio .card:hover { transform: translateY(-3px); box-shadow: 0 20px 50px -28px var(--tc); }
+.trio .card.has-art { padding: 0; overflow: hidden; }
+.trio .card .art { aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 1px solid var(--line); }
+.trio .card.has-art .txt { padding: 18px 20px 20px; }
 .lore { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .lore .card { padding: 0; overflow: hidden; scroll-margin-top: 130px; }
 .lore .card .art { aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 1px solid var(--line); }
@@ -59,7 +64,10 @@ body::before {
 
 /* Section tiles */
 .mmx-sections { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-.mmx-section { position: relative; padding: 22px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); text-decoration: none; display: flex; flex-direction: column; gap: 8px; min-height: 160px; transition: .2s; }
+.mmx-section { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--card); text-decoration: none; display: flex; flex-direction: column; transition: .2s; }
+.mmx-section .art { aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 1px solid var(--line); transition: transform .6s; }
+.mmx-section .art.none { background: radial-gradient(70% 90% at 20% 100%, rgba(63, 140, 255, .45), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(124, 77, 255, .5), transparent 70%), #0b0a14; }
+.mmx-section .txt { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 18px 50px -24px var(--blue); }
 .mmx-section h3 { font-size: 20px; }
 .mmx-section p { margin: 0; color: var(--muted); font-size: 14px; }

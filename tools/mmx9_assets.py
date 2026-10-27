@@ -15,6 +15,8 @@ Folder layout (Danloud Labs/Cloudflare/Banners/MMX9):
   Characters/.../<Name>/<Form>/                 one form per subfolder (X: Base Armor, Emerald
                                                 Armor, Ruby Armor), same roles as below
   Weapons/<X|Zero|Axl|Gamma>/<Boss name>.<ext>   that character's weapon from that boss (Weapons page)
+  Sections/<Story|Characters|Mavericks|Weapons|Universe>.<ext>  art on the main page's Explore tiles
+  (Universe/<Card name> art also shows on the main page's Premise cards: Apex Virus, Beastroids, Sigma Chip)
   Universe/<Card name>.<ext>                    art for a Universe card ("Apex Virus.png",
                                                 "Beastroids.jpg", "Sigma Chip.webp"…)
 
@@ -124,7 +126,7 @@ def main():
     if not chars_dir.is_dir():
         sys.exit(f'Not found: {chars_dir}')
 
-    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'weapons': {}, 'brand': {}}
+    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'weapons': {}, 'sections': {}, 'brand': {}}
 
     for f in images(src):
         n = f.name.lower()
@@ -189,6 +191,14 @@ def main():
                 w = form_slug(nfc(f.stem))
                 manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'universe'))
                 print(f'weapon {u:6} {w:20} <- {f.name}')
+
+    # Sections/<Section>.<ext>: Explore tiles on the main page (keys of MMX_SECTIONS).
+    sdir = src / 'Sections'
+    if sdir.is_dir():
+        for f in sorted(images(sdir), key=lambda p: p.stat().st_mtime):
+            k = form_slug(nfc(f.stem))
+            manifest['sections'][k] = rel(save(f, OUT / f'sections/{k}.webp', 'universe'))
+            print(f'section {k:16} <- {f.name}')
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
