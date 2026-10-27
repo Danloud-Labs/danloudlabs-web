@@ -2,7 +2,8 @@
   "characters": {
     "dynamo": {
       "profile": "characters/dynamo/profile.webp",
-      "wallpaper": "characters/dynamo/wallpaper.webp"
+      "wallpaper": "characters/dynamo/wallpaper.webp",
+      "turnaround": "characters/dynamo/turnaround.webp"
     },
     "sigma": {
       "turnaround": "characters/sigma/turnaround.webp",
@@ -11,7 +12,8 @@
     },
     "elaine-clark": {
       "profile": "characters/elaine-clark/profile.webp",
-      "wallpaper": "characters/elaine-clark/wallpaper.webp"
+      "wallpaper": "characters/elaine-clark/wallpaper.webp",
+      "turnaround": "characters/elaine-clark/turnaround.webp"
     },
     "gamma": {
       "forms": [
@@ -26,7 +28,8 @@
           "name": "Berserker Mode",
           "slug": "berserker-mode",
           "wallpaper": "characters/gamma/berserker-mode/wallpaper.webp",
-          "profile": "characters/gamma/berserker-mode/profile.webp"
+          "profile": "characters/gamma/berserker-mode/profile.webp",
+          "turnaround": "characters/gamma/berserker-mode/turnaround.webp"
         }
       ]
     },
@@ -36,13 +39,15 @@
           "name": "Base Mode",
           "slug": "base-mode",
           "profile": "characters/hemma/base-mode/profile.webp",
-          "wallpaper": "characters/hemma/base-mode/wallpaper.webp"
+          "wallpaper": "characters/hemma/base-mode/wallpaper.webp",
+          "turnaround": "characters/hemma/base-mode/turnaround.webp"
         },
         {
           "name": "Berserker Mode",
           "slug": "berserker-mode",
           "wallpaper": "characters/hemma/berserker-mode/wallpaper.webp",
-          "profile": "characters/hemma/berserker-mode/profile.webp"
+          "profile": "characters/hemma/berserker-mode/profile.webp",
+          "turnaround": "characters/hemma/berserker-mode/turnaround.webp"
         }
       ]
     },
