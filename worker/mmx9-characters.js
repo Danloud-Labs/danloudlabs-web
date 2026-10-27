@@ -102,6 +102,11 @@ export const MMX_CHARACTERS = [
             'Gamma is tactical aggression: calculated and controlled even in Berserker Mode. Once her mind is her own again, she has a reason to fight. Her sister is still out there.',
         ],
         facts: [['Animal', 'White tiger'], ['Creator', 'Dr. Elaine Clark'], ['Berserker', 'Controlled, with difficulty']],
+        forms: [
+            { slug: 'base-mode', name: 'Base Mode' },
+            { slug: 'berserker-mode', name: 'Berserker Mode' },
+        ],
+        defaultForm: 'base-mode',
     }),
     C({
         slug: 'hemma', name: 'Hemma', alias: 'Brown Tiger', faction: 'cfe', group: 'faction', color: '#ff8a1f',
@@ -111,6 +116,11 @@ export const MMX_CHARACTERS = [
             'With no antidote to reach her, the virus keeps its grip on her mind. Sister against sister was always going to be the cruelest fight of all.',
         ],
         facts: [['Animal', 'Brown tiger'], ['Creator', 'Dr. Elaine Clark'], ['Berserker', 'Unstable']],
+        forms: [
+            { slug: 'base-mode', name: 'Base Mode' },
+            { slug: 'berserker-mode', name: 'Berserker Mode' },
+        ],
+        defaultForm: 'base-mode',
     }),
 
     // ------------------------------------------------------------------ Antagonists
