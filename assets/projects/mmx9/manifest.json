@@ -12,5 +12,7 @@
   "universe": {
     "images": {}
   },
-  "brand": {}
+  "brand": {
+    "banner": "brand/banner.webp"
+  }
 }
