@@ -71,7 +71,7 @@ body::before {
 .lore p:last-child { margin-bottom: 0; }
 
 /* Section tiles */
-.mmx-sections { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.mmx-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .mmx-section { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--card); text-decoration: none; display: flex; flex-direction: column; transition: .2s; }
 .mmx-section .art { aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 1px solid var(--line); transition: transform .6s; }
 .mmx-section .art.none { background: radial-gradient(70% 90% at 20% 100%, rgba(63, 140, 255, .45), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(124, 77, 255, .5), transparent 70%), #0b0a14; }
@@ -211,6 +211,20 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 .wpanel.wide .w-art { aspect-ratio: 16 / 9; }
 .weapon.hidden-w .w-glyph { opacity: .45; }
 
+/* Locations */
+.locs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.loc { --lc: var(--blue); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(420px 200px at 100% 100%, color-mix(in srgb, var(--lc) 10%, transparent), transparent 70%), var(--card); scroll-margin-top: 130px; display: flex; flex-direction: column; }
+.loc .l-art { aspect-ratio: 16 / 9; background: #000; border-bottom: 1px solid var(--line); cursor: zoom-in; overflow: hidden; }
+.loc .l-art.none { cursor: default; background: radial-gradient(70% 90% at 20% 100%, color-mix(in srgb, var(--lc) 40%, transparent), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(74, 34, 176, .45), transparent 70%), #0b0a14; }
+.loc .l-art img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.loc:hover .l-art img { transform: scale(1.03); }
+.loc .l-info { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; flex: 1; }
+.loc h3 { font-size: 21px; }
+.loc p { margin: 0; color: #d3cfdf; font-size: 15px; }
+.loc .w-from { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13.5px; text-decoration: none; margin-top: auto; padding-top: 4px; }
+.loc .w-from:hover { color: var(--fg); }
+.loc .w-from img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
+
 /* Story */
 .spoiler { display: flex; gap: 12px; align-items: center; padding: 14px 18px; border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3); background: rgba(251, 191, 36, 0.06); color: #f5deb0; font-size: 14.5px; margin-bottom: 28px; }
 .story { display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: start; }
@@ -243,6 +257,7 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
     .ch-body { grid-template-columns: 1fr; }
     .ch-hero .stage { aspect-ratio: 4 / 3; }
     .bosses { grid-template-columns: 1fr; }
+    .locs { grid-template-columns: 1fr; }
     .strip { grid-template-columns: repeat(4, 1fr); }
     .story { grid-template-columns: 1fr; }
     .weapons { grid-template-columns: repeat(2, 1fr); }

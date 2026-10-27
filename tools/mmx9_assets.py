@@ -15,7 +15,8 @@ Folder layout (Danloud Labs/Cloudflare/Banners/MMX9):
   Characters/.../<Name>/<Form>/                 one form per subfolder (X: Base Armor, Emerald
                                                 Armor, Ruby Armor), same roles as below
   Weapons/<X|Zero|Axl|Gamma>/<Boss name>.<ext>   that character's weapon from that boss (Weapons page)
-  Sections/<Story|Characters|Mavericks|Weapons|Universe>.<ext>  art on the main page's Explore tiles
+  Sections/<Story|Characters|Mavericks|Weapons|Locations|Universe>.<ext>  art on the main page's Explore tiles
+  Locations/<Location name>.<ext>               a card on the Locations page (worker/mmx9-locations.js)
   (Universe/<Card name> art also shows on the main page's Premise cards: Apex Virus, Beastroids, Sigma Chip)
   Universe/<Card name>.<ext>                    art for a Universe card ("Apex Virus.png",
                                                 "Beastroids.jpg", "Sigma Chip.webp"…)
@@ -126,7 +127,7 @@ def main():
     if not chars_dir.is_dir():
         sys.exit(f'Not found: {chars_dir}')
 
-    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'weapons': {}, 'sections': {}, 'brand': {}}
+    manifest = {'characters': {}, 'factions': {}, 'universe': {'images': {}}, 'weapons': {}, 'sections': {}, 'locations': {}, 'brand': {}}
 
     for f in images(src):
         n = f.name.lower()
@@ -191,6 +192,14 @@ def main():
                 w = form_slug(nfc(f.stem))
                 manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'universe'))
                 print(f'weapon {u:6} {w:20} <- {f.name}')
+
+    # Locations/<Location name>.<ext>: Locations page.
+    ldir = src / 'Locations'
+    if ldir.is_dir():
+        for f in sorted(images(ldir), key=lambda p: p.stat().st_mtime):
+            k = form_slug(nfc(f.stem).replace('’', '').replace("'", ''))
+            manifest['locations'][k] = rel(save(f, OUT / f'locations/{k}.webp', 'wallpaper'))
+            print(f'location {k:34} <- {f.name}')
 
     # Sections/<Section>.<ext>: Explore tiles on the main page (keys of MMX_SECTIONS).
     sdir = src / 'Sections'

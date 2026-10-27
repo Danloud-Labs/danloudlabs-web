@@ -6,6 +6,7 @@
 //   /mmx9-beastwars-fm/characters/<slug>     one character (bosses show their stats)
 //   /mmx9-beastwars-fm/mavericks             the eight Mavericks (boss compendium; /bosses redirects here)
 //   /mmx9-beastwars-fm/weapons               special weapons, one tab per character (#x, #zero…)
+//   /mmx9-beastwars-fm/locations             the eight stations and the story's places
 //   /mmx9-beastwars-fm/universe              the Apex Virus, CFE, Beastroids, Sigma Chip…
 //   /mmx9, /megaman-x9                       -> main page
 // The Worker's fetch() calls handleMMX9(request) first; it returns null for other paths.
@@ -16,6 +17,7 @@ import { MMX_BOSSES, MMX_CHARACTERS, MMX_FACTIONS, factionMembers, findCharacter
 import { MMX_ACTS, MMX_CHAPTERS } from './mmx9-story.js';
 import { MMX_CSS } from './mmx9-styles.js';
 import { MMX_WEAPON_USERS, weaponOf } from './mmx9-weapons.js';
+import { MMX_LOCATIONS, MMX_LOCATION_GROUPS } from './mmx9-locations.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
@@ -289,7 +291,7 @@ function characterPage(c, m) {
     const facLink = faction ? `<a href="${MMX_BASE}/characters#${faction.key}">${esc(faction.name)}</a>` : b ? `<a href="${MMX_BASE}/mavericks">The Mavericks</a>` : `<a href="${MMX_BASE}/characters">Maverick Hunters</a>`;
     const facts = [
         ...(c.alias ? [['Alias', esc(c.alias)]] : []),
-        ...(b ? [['Stage', esc(b.stage)], ['Element', esc(b.element)], ['Apex form', esc(b.mutation)], ['Weakness', `<span class="chip weak">${esc(b.weakness)}</span>`]] : []),
+        ...(b ? [['Stage', stageLink(c)], ['Element', esc(b.element)], ['Apex form', esc(b.mutation)], ['Weakness', `<span class="chip weak">${esc(b.weakness)}</span>`]] : []),
         ...(b ? MMX_WEAPON_USERS.filter((u) => weaponOf(u.key, c.slug)).map((u) => [`${u.name} weapon`, `<a href="${MMX_BASE}/weapons#${u.key}">${esc(weaponOf(u.key, c.slug))}</a>`]) : []),
         ...(c.facts || []).map(([k, v]) => [k, esc(v)]),
         ['Faction', facLink],
@@ -419,6 +421,39 @@ ${pageHead(m, 'weapons')}<span class="eyebrow">Weapons</span><h1>The arsenal of 
     return page({ title: `Weapons · ${MMX.title}: ${MMX.subtitle}`, description: `The special weapons of X, Zero, Axl and Gamma in ${MMX.title}: ${MMX.subtitle}, one from each Maverick.`, path: `${MMX_BASE}/weapons`, active: 'weapons', m, body });
 }
 
+// ---------------------------------------------------------------- locations
+const stageOf = (boss) => MMX_LOCATIONS.find((l) => l.boss === boss.slug);
+const stageLink = (boss) => { const l = stageOf(boss); return l ? `<a href="${MMX_BASE}/locations#${l.key}">${esc(boss.boss.stage)}</a>` : esc(boss.boss.stage); };
+
+function locationsPage(m) {
+    const art = m.locations || {};
+    const card = (l) => {
+        const b = l.boss ? findCharacter(l.boss) : null;
+        const img = art[l.key];
+        const pic = b ? artFor(b, m).profile : '';
+        const text = l.text || (b ? `The station held by ${b.name}, infected by the Apex Virus and mutated into its ${b.boss.mutation}. Element: ${b.boss.element}.` : '');
+        return `
+        <article class="loc reveal" id="${l.key}" style="--lc:${b ? b.color : 'var(--violet)'}">
+            <div class="l-art${img ? '' : ' none'}"${img ? ` data-zoom="${mmxAsset(img)}"><img src="${mmxAsset(img)}" alt="${esc(l.name)}" loading="lazy">` : '>'}</div>
+            <div class="l-info">
+                <h3>${esc(l.name)}</h3>
+                <p>${esc(text)}</p>
+                ${b ? `<a class="w-from" href="${charHref(b)}">${pic ? `<img src="${pic}" alt="">` : ''}<span>${esc(b.name)}</span></a>` : ''}
+            </div>
+        </article>`;
+    };
+    const body = `
+${pageHead(m, 'locations')}<span class="eyebrow">Locations</span><h1>The world of <span class="grad-bv">Apex-Primal</span></h1>
+<p class="lead">Eight stations overrun by infected Mavericks, and the places where the story begins and ends.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">
+${MMX_LOCATION_GROUPS.map((g) => `
+    <div class="mmx-group"><h3>${esc(g.name)}</h3><p>${esc(g.sub)}</p>
+        <div class="locs">${MMX_LOCATIONS.filter((l) => l.group === g.key).map(card).join('')}</div>
+    </div>`).join('')}
+</div></section>`;
+    return page({ title: `Locations · ${MMX.title}: ${MMX.subtitle}`, description: `The eight stations and the story locations of ${MMX.title}: ${MMX.subtitle}.`, path: `${MMX_BASE}/locations`, active: 'locations', m, body });
+}
+
 // ---------------------------------------------------------------- universe
 function universePage(m) {
     const imgs = (m.universe || {}).images || {};
@@ -452,6 +487,7 @@ export async function handleMMX9(request) {
     if (rest === '/mavericks') return html(bossesPage(m));
     if (rest === '/bosses') return Response.redirect(`${url.origin}${MMX_BASE}/mavericks`, 301);
     if (rest === '/weapons') return html(weaponsPage(m));
+    if (rest === '/locations') return html(locationsPage(m));
     if (rest === '/universe') return html(universePage(m));
     const hit = rest.match(/^\/characters\/([a-z0-9-]+)$/);
     if (hit && findCharacter(hit[1])) return html(characterPage(findCharacter(hit[1]), m));

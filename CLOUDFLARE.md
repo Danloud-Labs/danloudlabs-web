@@ -46,3 +46,7 @@ The old `styles.js` (`cssSubPaginas`) stays: the pages not redesigned yet still 
 2. Paste `worker/worker.js` over the dashboard's `worker.js` (it already imports `handleMMX9`,
    calls it right after Amaphest and drops the old `/mmx9-beastwars-fm` route line).
 3. **Deploy**, then open https://danloudlabs.com/mmx9-beastwars-fm
+
+### Mega Man X9: Locations (one-time)
+
+Create `mmx9-locations.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-styles.js` over the old ones and Deploy.
