@@ -183,12 +183,21 @@ function mainPage(m) {
     return page({ title: `${MMX.title}: ${MMX.subtitle} (fan-made) · Danloud Labs`, description: `${MMX.tagline} ${MMX.logline}`, path: MMX_BASE, active: '', m, body });
 }
 
+// Top of a section page: the plain heading, or a big banner when iCloud Sections/<Key>.jpg exists
+// (the same art as that section's tile on the main page). Closed by the page's own </div></section>.
+const pageHead = (m, key) => {
+    const img = (m.sections || {})[key];
+    return img
+        ? `<section class="page-head page-hero"><div class="bg" style="background-image:url('${mmxAsset(img)}')"></div><div class="wrap">`
+        : '<section class="page-head"><div class="wrap">';
+};
+
 // ---------------------------------------------------------------- story
 function storyPage(m) {
     const label = (c) => (c.n === 0 ? 'Introduction' : `Chapter ${c.n}`);
     const toc = MMX_ACTS.map((a) => `<h4>${esc(a.name)}</h4>${MMX_CHAPTERS.filter((c) => c.n >= a.from && c.n <= a.to).map((c) => `<a href="#chapter-${c.n}" data-ch="${c.n}"><span>${c.n || '·'}</span>${esc(c.title)}</a>`).join('')}`).join('');
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">The Story</span><h1>The chapters of <span class="grad-bv">Apex-Primal</span></h1>
+${pageHead(m, 'story')}<span class="eyebrow">The Story</span><h1>The chapters of <span class="grad-bv">Apex-Primal</span></h1>
 <p class="lead">From a courtroom in the age of Dr. Light to the birth of Apex Sigma: the full story, in fifteen chapters.</p></div></section>
 <section style="padding-top:24px"><div class="wrap">
     <div class="spoiler">${small(ICONS.eye)}<span>This page tells the whole story, ending included. Read the Characters and Universe pages first if you want to avoid spoilers.</span></div>
@@ -234,7 +243,7 @@ function charactersPage(m) {
     const hunters = MMX_CHARACTERS.filter((c) => c.group === 'main');
     const [gMain, gFac] = MMX_GROUPS;
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">Characters</span><h1>The cast of <span class="grad-bv">Apex-Primal</span></h1>
+${pageHead(m, 'characters')}<span class="eyebrow">Characters</span><h1>The cast of <span class="grad-bv">Apex-Primal</span></h1>
 <p class="lead">Maverick Hunters, a forgotten scientist and her Beastroids, and the villains behind the Apex Virus.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="mmx-group"><h3>${esc(gMain.name)}</h3><p>${esc(gMain.sub)}</p><div class="chars six">${hunters.map((c) => charCard(c, m)).join('')}</div></div>
@@ -345,7 +354,7 @@ function characterPage(c, m) {
 // ---------------------------------------------------------------- bosses
 function bossesPage(m) {
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">The Mavericks</span><h1>The eight <span class="grad-bv">Mavericks</span></h1>
+${pageHead(m, 'mavericks')}<span class="eyebrow">The Mavericks</span><h1>The eight <span class="grad-bv">Mavericks</span></h1>
 <p class="lead">Each one infected by the Apex Virus and mutated according to its animal body. Defeat them to take their weapons, and use each weakness against the next.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="bosses">${MMX_BOSSES.map((c) => bossCard(c, m)).join('')}</div>
@@ -384,7 +393,7 @@ function weaponsPage(m) {
         </div>`;
     }).join('');
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">Weapons</span><h1>The arsenal of <span class="grad-bv">Apex-Primal</span></h1>
+${pageHead(m, 'weapons')}<span class="eyebrow">Weapons</span><h1>The arsenal of <span class="grad-bv">Apex-Primal</span></h1>
 <p class="lead">Every Maverick defeated leaves a power behind. X, Zero, Axl and Gamma each take their own weapon from it.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="wtabs" id="wtabs">${tabs}</div>
@@ -409,7 +418,7 @@ function weaponsPage(m) {
 function universePage(m) {
     const imgs = (m.universe || {}).images || {};
     const body = `
-<section class="page-head"><div class="wrap"><span class="eyebrow">The Universe</span><h1>The science of <span class="grad-bv">Apex-Primal</span></h1>
+${pageHead(m, 'universe')}<span class="eyebrow">The Universe</span><h1>The science of <span class="grad-bv">Apex-Primal</span></h1>
 <p class="lead">How the Apex Virus works, what Dr. Clark created, and why a dead emperor needs a new body.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="lore">${MMX_LORE.map((l) => `

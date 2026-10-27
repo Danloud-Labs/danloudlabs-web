@@ -40,6 +40,14 @@ body::before {
 @keyframes mmx-drift { from { transform: scale(1.02) translate3d(-0.8%, 0, 0); } to { transform: scale(1.09) translate3d(0.8%, 0.6%, 0); } }
 @media (prefers-reduced-motion: reduce) { .cine > .bg, .ch-hero .stage img.wp { animation: none; } }
 
+/* Section pages: big banner behind the heading */
+.page-hero { position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: min(58vh, 540px); padding: 0 !important; background: #000; }
+.page-hero > .bg { position: absolute; inset: -4%; background-size: cover; background-position: center 35%; animation: mmx-drift 28s ease-in-out infinite alternate; }
+.page-hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, var(--bg) 0%, rgba(6, 5, 10, 0.6) 40%, rgba(6, 5, 10, 0.1) 75%), linear-gradient(90deg, rgba(6, 5, 10, 0.75), transparent 65%); }
+.page-hero .wrap { position: relative; z-index: 2; padding-bottom: 40px; }
+.page-hero .lead { color: #e4e6f2; }
+@media (prefers-reduced-motion: reduce) { .page-hero > .bg { animation: none; } }
+
 /* Trailer */
 .trailer { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--blue) 35%, var(--line)); box-shadow: 0 30px 80px -40px var(--blue); background: #000; }
 .trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -245,6 +253,7 @@ a.mmx-section:hover { border-color: var(--blue); transform: translateY(-3px); bo
 }
 @media (max-width: 640px) {
     .cine { min-height: 76vh; }
+    .page-hero { min-height: 48vh; }
     .chars, .chars.six { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .mmx-sections { grid-template-columns: 1fr; }
     .facs { grid-template-columns: 1fr; gap: 10px; }
