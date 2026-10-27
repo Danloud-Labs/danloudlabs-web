@@ -2,12 +2,14 @@
 // Mega Man X9: Apex-Primal — locations (Locations page).
 // Art: Locations/<Location name>.<ext> in the iCloud MMX9 folder ("Sky Citadel.jpg"); the
 // asset script compresses it to 16:9 and the page reads it from the manifest.
-// `boss`: the Maverick that holds that station (slug in mmx9-characters.js).
+// `boss`: the character fought there (slug in mmx9-characters.js). Art file names: the location name, or
+// for the special stages "Opening Stage", "Gamma Intermission", "Hemma Intermission".
 // =====================================================================================
 
 export const MMX_LOCATION_GROUPS = [
     { key: 'stations', name: 'The Eight Stations', sub: 'The facilities attacked by infected Mavericks, as Palette mapped them in the mission briefing.' },
-    { key: 'story', name: 'Story Locations', sub: 'Where the crisis began, where the Hunters fight back, and where it ends.' },
+    { key: 'special', name: 'Special Stages', sub: 'The opening stage and the two intermissions that break the hunt for the Mavericks.' },
+    { key: 'story', name: 'Story Locations', sub: 'Where the Hunters plan, where the Beastroids were born, and where it all ends.' },
 ];
 
 export const MMX_LOCATIONS = [
@@ -20,8 +22,16 @@ export const MMX_LOCATIONS = [
     { key: 'destroyed-desalinization-facility', name: 'Destroyed Desalinization Facility', group: 'stations', boss: 'splash-dolphin' },
     { key: 'industrial-logging-site', name: 'Industrial Logging Site', group: 'stations', boss: 'slicer-beaver' },
     {
-        key: 'reploidforce-satellite-tower', name: 'Reploidforce Satellite Tower', group: 'story',
-        text: 'One of the most important data hubs in the world, linking Reploids and machines through millions of transmissions. From its central command room, Dynamo released the sonic wave of the Apex Virus.',
+        key: 'opening-stage', name: 'Opening Stage: Reploidforce Satellite Tower', group: 'special',
+        text: 'One of the most important data hubs in the world. X, Zero and Axl climb it floor by floor through wind and thunder to reach the central command room, where Dynamo releases the sonic wave of the Apex Virus.',
+    },
+    {
+        key: 'gamma-intermission', name: 'Intermission: The White Tiger', group: 'special', boss: 'gamma',
+        text: 'After the fourth station falls, something tears through a district on the outskirts of the city. The readings match no Maverick on record.',
+    },
+    {
+        key: 'hemma-intermission', name: 'Intermission: Sister Against Sister', group: 'special', boss: 'hemma',
+        text: 'As the last stations fall, a signal identical to Gamma’s, yet wildly unstable, appears on Layer’s screen. Hemma has been found.',
     },
     {
         key: 'maverick-hunter-base', name: 'Maverick Hunter Base', group: 'story',
