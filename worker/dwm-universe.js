@@ -26,7 +26,7 @@ export const DWM_LORE = [
     {
         key: 'demons', name: 'Demons', c: '#8b1d2c',
         text: [
-            'Demons are black gods: gods whose power comes from darkness. After the War between Light and Darkness they lost their Prisms and their human form, and were forced to carry their names backwards as a mark of shame. Reficul became Lucifer. Their animal essence slowly turned into something darker and less than a beast.',
+            'Demons are black gods: gods whose power comes from darkness. After the War between Light and Darkness they lost their Prisms and their human form, and were forced to carry their names backwards as a mark of shame. Their animal essence slowly turned into something darker and less than a beast.',
             'A demon cannot touch the world of men directly, only what surrounds it: a train’s rails, a fire, a fever. But a person killed by a demon’s doing is condemned, and their soul belongs to the darkness instead of Heaven. That is why a demon who wants a man’s soul must make him a deal.',
         ],
     },
@@ -69,7 +69,7 @@ export const DWM_DEMON_RANKS = [
     { key: 'gambler', name: 'Gambler', n: 'Count 40–70 · 5 dark arts', t: 'Their bodies turn into almost indestructible metal. Slow but crushingly strong, they shield every Royal Legion.' },
     { key: 'battalion', name: 'Battalion', n: 'Count 85–125 · 8 dark arts', t: 'The demons’ Generals. To rise, each sacrifices part of its body and takes the same part from its first kill. The most feared in direct battle.' },
     { key: 'impure-king', name: 'Impure King', n: 'Count 250–400 · 14 dark arts', t: 'Leaders of the fifteen Royal Legions, together the Supreme Legion. Some are fallen gods who know arts of light as well.' },
-    { key: 'dark-lord', name: 'Dark Lord', n: 'Count 1,200–4,000 · 30 dark arts', t: 'The ruler of darkness. First Éres, then his son Lucifer, defeated in the war. The rank has been empty ever since.' },
+    { key: 'dark-lord', name: 'Dark Lord', n: 'Count 1,200–4,000 · 30 dark arts', t: 'The ruler of darkness. First Éres, then Lucifer, defeated in the war. The rank has been empty ever since.' },
 ];
 
 export const DWM_COUNT = 'A demon’s rank is not given: it changes on its own as the demon grows stronger and learns more dark arts. Its Count is the number of gods and angels it has defeated, a mark of respect and loyalty among demons.';
