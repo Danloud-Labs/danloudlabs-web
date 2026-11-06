@@ -41,7 +41,8 @@ const PREFIX = 'dwm/soundtrack';
 const PUBLIC = 'https://store.danloudlabs.com';
 
 // Album order (the story's order) and clean titles. `cover`: 'hero' for the legends,
-// otherwise the cover of La Sua Origine is used.
+// otherwise the cover of La Sua Origine is used. `slug` (optional): keeps a track's R2 file name
+// when its title changed after it was uploaded (the gods' names moved to English).
 const ORDER = [
     ['MAIN THEME', 'Main Theme', 'hero'],
     ['DARK WITHIN ME', 'Dark Within Me', 'hero'],
@@ -56,7 +57,7 @@ const ORDER = [
     ['JOURNEY TO THE WORLD', 'Journey to the World'],
     ['ELIZABETH_S THEME', 'Elizabeth’s Theme'],
     ['A MOMENT OF LOVE', 'A Moment of Love'],
-    ['DIONISIO_S THEME', 'Dionisio’s Theme'],
+    ['DIONISIO_S THEME', 'Dionysus’s Theme', null, 'dionisios-theme'],
     ['DANGER', 'Danger'],
     ['DARK CONTRACT', 'Dark Contract'],
     ['AZAZEL THEME', 'Azazel’s Theme'],
@@ -67,7 +68,7 @@ const ORDER = [
     ['GOLDEN FORTRESS', 'Golden Fortress'],
     ['ODA NOBUNAGA_S BATTLE THEME', 'Oda Nobunaga’s Battle Theme'],
     ['HUNT', 'Hunt'],
-    ['ARTEMISE THEME', 'Artemisa’s Theme'],
+    ['ARTEMISE THEME', 'Artemis’s Theme', null, 'artemisas-theme'],
     ['NEWFOUNDLAND IN FLAMES', 'Newfoundland in Flames'],
     ['ROBERTO SALAZAR_S THEME', 'Roberto Salazar’s Theme'],
     ['QUEEN ANNE_S REVENGE THEME', 'Queen Anne’s Revenge'],
@@ -84,8 +85,8 @@ const ORDER = [
     ['FAREMUR_S CATHEDRAL', 'Faremur Cathedral'],
     ['VLAD DRACULEA_S BATTLE THEME', 'Vlad Draculea’s Battle Theme'],
     ['NEW FORM', 'New Form'],
-    ['DIONISIO_S BATTLE THEME', 'Dionisio’s Battle Theme'],
-    ['FINAL BATTLE (DIONISIOS_THEME)', 'Final Battle (Dionisio’s Theme)'],
+    ['DIONISIO_S BATTLE THEME', 'Dionysus’s Battle Theme', null, 'dionisios-battle-theme'],
+    ['FINAL BATTLE (DIONISIOS_THEME)', 'Final Battle (Dionysus’s Theme)', null, 'final-battle-dionisios-theme'],
     ['ANGEL WINGS (ELIZABETH DEATH)', 'Angel Wings (Elizabeth’s Death)'],
     ['TILL THE END OF TIME', 'Till the End of Time'],
     ['THE END', 'The End'],
@@ -124,7 +125,7 @@ const files = mp3s(SRC);
 const suno = new Map(mp3s(SUNO).map((f) => [norm(f), f]));
 const byName = new Map(files.map((f) => [norm(f), f]));
 
-const list = ORDER.filter(([name]) => byName.has(name)).map(([name, title, cover]) => ({ name, title, cover }));
+const list = ORDER.filter(([name]) => byName.has(name)).map(([name, title, cover, slug]) => ({ name, title, cover, slug }));
 const listed = new Set(list.map((t) => t.name));
 for (const f of files.sort()) if (!listed.has(norm(f))) list.push({ name: norm(f), title: titleCase(norm(f)) });
 for (const [name] of ORDER) if (!byName.has(name)) console.warn('not found in the folder:', name);
@@ -132,7 +133,7 @@ for (const [name] of ORDER) if (!byName.has(name)) console.warn('not found in th
 const tracks = [];
 for (const [i, t] of list.entries()) {
     const n = i + 1;
-    const base = `${String(n).padStart(2, '0')}-${slug(t.title)}`;
+    const base = `${String(n).padStart(2, '0')}-${t.slug || slug(t.title)}`;
     const path = join(SRC, byName.get(t.name));
     await upload(path, `${PREFIX}/${base}.mp3`);
     const track = { n, title: t.title, url: `${PUBLIC}/${PREFIX}/${base}.mp3`, duration: duration(path) };

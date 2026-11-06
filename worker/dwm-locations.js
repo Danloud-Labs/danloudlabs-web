@@ -13,8 +13,8 @@ export const DWM_REGIONS = [
             { key: 'brasco-residence', name: 'The Brasco Residence', where: 'Tuscany', book: 1, text: 'Henry Brasco’s palace and its training hall, where Cristian learned the sword as a boy and teaches it as a man.' },
             { key: 'florence', name: 'Florence', where: 'Tuscany', book: 1, text: 'Rosellio’s humble workshop on the outskirts, and the academy of the armies where Cristian served for twelve years.' },
             { key: 'siena-castle', name: 'The Royal Castle of Siena', where: 'Siena', book: 1, text: 'Seat of the queens of Siena. In its front garden lie Margaret Dwarson and, one day, her daughter.' },
-            { key: 'the-docks', name: 'The Docks of the Valley', where: 'Tuscany', book: 1, text: 'Where Cristian swore his love under a star, where Dionisio left him to die, and where Azazel first spoke to him.' },
-            { key: 'dionisian-palace', name: 'The Dionisian Palace', where: 'Tuscany', book: 1, text: 'Dionisio’s mansion, where Elizabeth lived as a prisoner and looked at her star every night from the terraces.' },
+            { key: 'the-docks', name: 'The Docks of the Valley', where: 'Tuscany', book: 1, text: 'Where Cristian swore his love under a star, where Dionysus left him to die, and where Azazel first spoke to him.' },
+            { key: 'dionysian-palace', name: 'The Dionysian Palace', where: 'Tuscany', book: 1, text: 'Dionysus’s mansion, where Elizabeth lived as a prisoner and looked at her star every night from the terraces.' },
         ],
     },
     {
@@ -29,7 +29,7 @@ export const DWM_REGIONS = [
         key: 'journey', name: 'The Four Souls', color: '#ff6b6b',
         places: [
             { key: 'owari-fortress', name: 'The Fortress of Owari', where: 'Nagoya, Japan', book: 1, text: 'The armed stronghold of the Oda clan, far enough from Kyoto to escape the endless wars of the central provinces.' },
-            { key: 'ancient-forest', name: 'The Ancient Forest', where: 'Japan', book: 1, text: 'A forest dark with enormous trees, home to the Asura and watched over by Artemisa.' },
+            { key: 'ancient-forest', name: 'The Ancient Forest', where: 'Japan', book: 1, text: 'A forest dark with enormous trees, home to the Asura and watched over by Artemis.' },
             { key: 'newfoundland', name: 'Terrazo and Serrino', where: 'Newfoundland', book: 1, text: 'Quiet provinces of meadows and mangroves, set on fire by the cannons of the Queen Anne’s Revenge.' },
             { key: 'frozen-sea', name: 'The Frozen Sea', where: 'West of Greenland', book: 1, text: 'Where the chase ended, the ice stopped both warships, and Blackbeard fought his last battle.' },
             { key: 'sanabu', name: 'Sanabú', where: 'Egypt', book: 1, text: 'The city of Emperor Kahem, where Cristian was a guest with his face hidden.' },

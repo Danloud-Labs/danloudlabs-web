@@ -31,21 +31,21 @@ Henry sees what the years have not healed. Sitting with Cristian in the old trai
 
 Lost in the streets of Scotland, Cristian literally runs into Elizabeth Gloucester. For the first time since he was a boy he feels something other than grief, and she feels the same. Elizabeth knows the land well, and she takes him to the place where his parents died. To comfort him, she tells him her own story: a mother who died two days after she was born, a crown that passed to her aunt Leonore, and a father who never accepted it.
 
-They promise to meet every Friday in the valleys of Tuscany. Fridays become a first kiss, then a courtship. But Duke Giovanni notices his daughter's mysterious outings, and he throws a feast for the gods of the Celestial Union, hoping one of them will want her. The gods will not mix their blood with mortals. All except one: Dionisio, god of wine and pleasure, who cannot take his eyes off her.
+They promise to meet every Friday in the valleys of Tuscany. Fridays become a first kiss, then a courtship. But Duke Giovanni notices his daughter's mysterious outings, and he throws a feast for the gods of the Celestial Union, hoping one of them will want her. The gods will not mix their blood with mortals. All except one: Dionysus, god of wine and pleasure, who cannot take his eyes off her.
 
-Dionisio follows Elizabeth everywhere, and out of fear she stops going to the valley. At first her cousin Ruth Perrish, heir of Queen Leonore, goes in her place to make excuses. Then not even Ruth can come, and Cristian, heartbroken, stops waiting. When Elizabeth finally confronts Dionisio and returns to the valley, Cristian is gone. She searches for days until she finds him. He will not listen, so she kisses him, takes his hand, and that night she gives herself to him for the first time.
+Dionysus follows Elizabeth everywhere, and out of fear she stops going to the valley. At first her cousin Ruth Perrish, heir of Queen Leonore, goes in her place to make excuses. Then not even Ruth can come, and Cristian, heartbroken, stops waiting. When Elizabeth finally confronts Dionysus and returns to the valley, Cristian is gone. She searches for days until she finds him. He will not listen, so she kisses him, takes his hand, and that night she gives herself to him for the first time.
 
 ## Chapter 5: The Foreign God
 
-Elizabeth has an idea as bold as it is dangerous: Cristian will ask for her hand as a god, a foreign god from a distant province. Her father, overjoyed, agrees to her one condition: no god of the Union may be invited, since the gods do not approve of such unions. The engagement dinner is a triumph, and nobody suspects a thing. Except Dionisio, who hears the rumor and knows that no god but himself would ever marry a mortal.
+Elizabeth has an idea as bold as it is dangerous: Cristian will ask for her hand as a god, a foreign god from a distant province. Her father, overjoyed, agrees to her one condition: no god of the Union may be invited, since the gods do not approve of such unions. The engagement dinner is a triumph, and nobody suspects a thing. Except Dionysus, who hears the rumor and knows that no god but himself would ever marry a mortal.
 
 That night, on the docks near the valley, Cristian chooses the brightest star in the sky and swears that as long as it shines, his love will live. Elizabeth answers that not even death will take her love from him. They seal a promise in blood, and spend a night and a day hidden in an old hut while the rain falls.
 
-On their way back to the Gloucester mansion, Dionisio is waiting in the dark with his human servants. Cristian cuts down every one of them, but no man can stand against a god of the Celestial Union. Dionisio breaks him, leaves him bleeding on the docks and carries Elizabeth back to her father to expose the lie.
+On their way back to the Gloucester mansion, Dionysus is waiting in the dark with his human servants. Cristian cuts down every one of them, but no man can stand against a god of the Celestial Union. Dionysus breaks him, leaves him bleeding on the docks and carries Elizabeth back to her father to expose the lie.
 
 ## Chapter 6: Half a Soul
 
-Dying in the dark, Cristian hears a voice inside his head. It belongs to Azazel, once a god of the dead, stripped of his Prism for betraying the gods and condemned to live as a faceless demon among the shadows. Azazel stops the bleeding and offers a deal: the power to defeat Dionisio and win Elizabeth back, in exchange for half of his soul.
+Dying in the dark, Cristian hears a voice inside his head. It belongs to Azazel, once a god of the dead, stripped of his Prism for betraying the gods and condemned to live as a faceless demon among the shadows. Azazel stops the bleeding and offers a deal: the power to defeat Dionysus and win Elizabeth back, in exchange for half of his soul.
 
 Cristian accepts. His wounds close and the power flows in, but when he sees his reflection in the water he no longer looks human. He refuses to return to Elizabeth as a monster. Azazel explains that a divided soul cannot be joined again, only rebuilt, by absorbing other souls.
 
@@ -63,9 +63,9 @@ Nobunaga falls and begs for mercy, and Cristian drives his blade into his heart.
 
 On his way to a different port, Cristian crosses an ancient forest and is surrounded by a pack of nomad demons, the Asura, led by Ferhenas. They believe he is a demon who escaped the prayer of exile, and they claim his body. Exhausted, he cannot win.
 
-A light falls between them. A woman with flowing red hair, a magic bow on her back and a red sword that sings like birds when it moves, fights at his side until the demons flee. She is Artemisa, daughter of Zeus, goddess of the hunt. She cannot understand what he is: a human, but carrying a dark power that demons can touch directly. Cristian tells her only that a demon tricked him and took his human form. Moved, she promises to help him whatever happens.
+A light falls between them. A woman with flowing red hair, a magic bow on her back and a red sword that sings like birds when it moves, fights at his side until the demons flee. She is Artemis, daughter of Zeus, goddess of the hunt. She cannot understand what he is: a human, but carrying a dark power that demons can touch directly. Cristian tells her only that a demon tricked him and took his human form. Moved, she promises to help him whatever happens.
 
-Meanwhile, Dionisio reveals the truth to Duke Giovanni. Humiliated by his own daughter, Giovanni strikes her so hard that her lips bleed. Elizabeth cries all night in her room, believing Cristian is dead.
+Meanwhile, Dionysus reveals the truth to Duke Giovanni. Humiliated by his own daughter, Giovanni strikes her so hard that her lips bleed. Elizabeth cries all night in her room, believing Cristian is dead.
 
 ## Chapter 9: Queen Anne's Revenge
 
@@ -77,11 +77,11 @@ On the ice, Blackbeard shoots Cristian in the shoulder, then enchants his silver
 
 ## Chapter 10: A Toast in London
 
-At the royal castle of London, with the blessing of King Henry VIII, Duke Giovanni celebrates the engagement of Elizabeth to the god Dionisio. The noble families of Europe and the lawmakers of Siena raise their glasses as Dionisio promises them a new Europe, modern and powerful.
+At the royal castle of London, with the blessing of King Henry VIII, Duke Giovanni celebrates the engagement of Elizabeth to the god Dionysus. The noble families of Europe and the lawmakers of Siena raise their glasses as Dionysus promises them a new Europe, modern and powerful.
 
-During the feast Elizabeth slips away to the garden, where her cousin Ruth finds her tearing petals from a flower and gives her what comfort she can. Later, alone in the corridors, Elizabeth hears voices behind a door: her father and Dionisio, drinking to their success.
+During the feast Elizabeth slips away to the garden, where her cousin Ruth finds her tearing petals from a flower and gives her what comfort she can. Later, alone in the corridors, Elizabeth hears voices behind a door: her father and Dionysus, drinking to their success.
 
-Giovanni's plan is simple. With his daughter married to a god, the people will beg for Elizabeth on the throne. Queen Leonore will die, and Ruth will be declared illegitimate. Dionisio sees the first step toward ruling over men, then over the world. Elizabeth runs and locks herself in her room. From that night on, she knows her aunt's life is in her hands.
+Giovanni's plan is simple. With his daughter married to a god, the people will beg for Elizabeth on the throne. Queen Leonore will die, and Ruth will be declared illegitimate. Dionysus sees the first step toward ruling over men, then over the world. Elizabeth runs and locks herself in her room. From that night on, she knows her aunt's life is in her hands.
 
 ## Chapter 11: The Sands of Siwa
 
@@ -97,15 +97,15 @@ At the tomb, the woman of the shadows returns, and this time Cristian defeats he
 
 The pharaoh's soul rises into a stone statue of himself. When Cristian shatters it, a green mist pours from its stone heart and possesses a statue of Anubis, the god who protected him, master of mirages and the power of the mind. Cristian survives the god's telekinesis, recovers the talisman, overpowers him and pins the pharaoh's soul against his solid gold sarcophagus before taking it.
 
-Thutmose's soul brings him telekinesis: he can move things with his mind and strike from a distance. He gives the pharaoh's golden spear to Ghazi and Azazel's relic to Karima, and at the port he promises her he will come back. Far away, in Dionisio's mansion, Elizabeth goes out every night to look at their star, which shines a little less each time.
+Thutmose's soul brings him telekinesis: he can move things with his mind and strike from a distance. He gives the pharaoh's golden spear to Ghazi and Azazel's relic to Karima, and at the port he promises her he will come back. Far away, in Dionysus's mansion, Elizabeth goes out every night to look at their star, which shines a little less each time.
 
 ## Chapter 13: The Bridge of Brașov
 
 Home in Tuscany, Cristian opens his father's safe, finds the photographs of his parents, and drinks his father's favorite rum until he falls to his knees. Azazel appears from the darkness, pleased. One name remains, and it is the hardest: a king who cheated death while still alive.
 
-Cristian rides a black horse to Romania, to the lost city near Brașov. The only way in is an old wooden bridge over a poisonous swamp full of demons. Someone has been following him: Artemisa, hunting the same nomad legion. She lets him pass in exchange for his help. He runs across the bridge while she covers him from his horse with her bow.
+Cristian rides a black horse to Romania, to the lost city near Brașov. The only way in is an old wooden bridge over a poisonous swamp full of demons. Someone has been following him: Artemis, hunting the same nomad legion. She lets him pass in exchange for his help. He runs across the bridge while she covers him from his horse with her bow.
 
-At the end of the swamp, the shadows open and Astaroth appears, a demon of the Battalion rank, stronger than them both. When they finally bring him down, he rises again with an art of light, Sanitatem, and heals every wound. Artemisa answers with Geminus and splits into two, and together the three blades destroy the Battalion in an explosion of colors like a rainbow. Before they part, Artemisa thanks him, still not knowing what he is.
+At the end of the swamp, the shadows open and Astaroth appears, a demon of the Battalion rank, stronger than them both. When they finally bring him down, he rises again with an art of light, Sanitatem, and heals every wound. Artemis answers with Geminus and splits into two, and together the three blades destroy the Battalion in an explosion of colors like a rainbow. Before they part, Artemis thanks him, still not knowing what he is.
 
 ## Chapter 14: The Cathedral of Faremur
 
@@ -115,11 +115,11 @@ The three climb past black birds with red eyes to the cathedral doors. Inside th
 
 The duel on the cathedral's terrace is the hardest of his life. Vlad's staff becomes a scythe, a storm brings a rain of glass, and only when Cristian raises a barrier of stillness, like the one in the pharaoh's tomb, does the fight become fist against fist. Vlad falls. Taking his soul, Cristian sees the secret of his life: Death in human form once gave Vlad a contract for cheating it, a prayer that lets whoever is dying go back to the moment before. Then wings of white feathers open on Cristian's back, the Wings of Odenea. He breaks into the prison, frees the town and flies out through the roof as the cathedral collapses.
 
-## Chapter 15: The Dionisian Palace
+## Chapter 15: The Dionysian Palace
 
-With four souls taken, Azazel keeps his word. Cristian's soul is rebuilt and his human form returns, though his body will never be quite the same. He rides to the palace of Dionisio to bring Elizabeth home.
+With four souls taken, Azazel keeps his word. Cristian's soul is rebuilt and his human form returns, though his body will never be quite the same. He rides to the palace of Dionysus to bring Elizabeth home.
 
-The battle against the god is fierce, and this time Cristian wins. But Dionisio refuses to let them be together. With the last of his strength he drives his golden sword through Elizabeth's back and into her heart. Cristian's rage finishes what the battle began, and Dionisio's Prism is torn from him.
+The battle against the god is fierce, and this time Cristian wins. But Dionysus refuses to let them be together. With the last of his strength he drives his golden sword through Elizabeth's back and into her heart. Cristian's rage finishes what the battle began, and Dionysus's Prism is torn from him.
 
 Azazel appears before the palace, and Cristian begs him to save her, as he once saved him. Azazel knows that without Elizabeth, Cristian has no reason to live, and he still needs him. But she is already gone. Instead, Azazel holds her soul before it can leave and divides it: one part he gives to Cristian, and one he sends to Heaven. A soul that returns incomplete through an art of light, he explains, rebuilds itself over at least two hundred years and returns to life in another body, as another person, with no memory of who it was. What Azazel does not tell him is that he divided it in three, and kept the last piece for himself.
 
@@ -127,6 +127,6 @@ Azazel appears before the palace, and Cristian begs him to save her, as he once 
 
 Searching the palace for anything of hers, Cristian finds, hidden between the old walls, a letter Elizabeth wrote shortly before she died. He reads it, leaves, and from that day no one knows where he is.
 
-The next morning a guard at the castle of Siena receives an anonymous letter bearing the royal seal. In it, Elizabeth tells Queen Leonore everything: the pact between her father and Dionisio, the plan to murder the queen and dethrone Ruth, and her life as a prisoner in the palace. "It is possible that when Your Majesty reads this letter I will already be dead," she writes. She asks only for justice, and for the good of Siena.
+The next morning a guard at the castle of Siena receives an anonymous letter bearing the royal seal. In it, Elizabeth tells Queen Leonore everything: the pact between her father and Dionysus, the plan to murder the queen and dethrone Ruth, and her life as a prisoner in the palace. "It is possible that when Your Majesty reads this letter I will already be dead," she writes. She asks only for justice, and for the good of Siena.
 
-Duke Giovanni Gloucester is arrested, judged for treason before the high court and the people of Siena, and executed. The queen's soldiers find the palace of Dionisio abandoned, and Elizabeth is buried beside her mother in the garden of the royal castle of Siena, where she rests in peace.
+Duke Giovanni Gloucester is arrested, judged for treason before the high court and the people of Siena, and executed. The queen's soldiers find the palace of Dionysus abandoned, and Elizabeth is buried beside her mother in the garden of the royal castle of Siena, where she rests in peace.

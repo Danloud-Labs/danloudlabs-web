@@ -84,7 +84,7 @@ export const DWM_TIMELINE = [
     { key: 'ricardo-born', y: '892', t: 'Ricardo Monteoro is born.' },
     { key: 'war', y: '1028', t: 'The War between Light and Darkness. The Celestial Union and the Army of Light are founded. The demons are banished.' },
     { key: 'first-humans', y: '1112', t: 'The first humans join the Celestial Union.' },
-    { key: 'dionisio-union', y: '1208', t: 'Dionisio, god of wine and pleasure, joins the Celestial Union.' },
+    { key: 'dionysus-union', y: '1208', t: 'Dionysus, god of wine and pleasure, joins the Celestial Union.' },
     { key: 'cristian-i-born', y: '1460', t: 'Cristian D’ San Fernald I is born in Rome.' },
     { key: 'cristian-born', y: '1492', t: 'Cristian D’ San Fernald II is born in Tuscany.' },
     { key: 'elizabeth-born', y: '1495', t: 'Elizabeth Gloucester is born in London. Her mother Margaret dies the next day.' },

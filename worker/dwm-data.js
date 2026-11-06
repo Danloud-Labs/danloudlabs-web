@@ -27,14 +27,14 @@ export const DWM_BOOKS = [
         key: 'la-sua-origine', n: 1, title: 'La Sua Origine', subtitle: 'The Origin', cover: 'la-sua-origine.webp', file: 'la-sua-origine.md', color: '#e0283f',
         synopsis: [
             'Tuscany, 1492. Cristian D’ San Fernald II is born into a world where gods and demons walk among men in human form, hidden behind noble names and ancient prisms. Orphaned at fourteen when a demon burns his parents alive, he becomes a soldier, then the trusted counsellor of the Brasco family.',
-            'In Scotland he meets Elizabeth Gloucester, heir to the royal blood of Siena, and falls in love. But her father wants her married to a god, and Dionisio, god of wine and pleasure and member of the Celestial Union, wants her for himself. Left for dead by Dionisio, Cristian is offered a pact from the darkness: the power to win her back, for half of his soul.',
+            'In Scotland he meets Elizabeth Gloucester, heir to the royal blood of Siena, and falls in love. But her father wants her married to a god, and Dionysus, god of wine and pleasure and member of the Celestial Union, wants her for himself. Left for dead by Dionysus, Cristian is offered a pact from the darkness: the power to win her back, for half of his soul.',
             'To become human again he must take four souls darkened by sin: a warlord in Japan, a pirate in Newfoundland, a pharaoh who hid from death in Egypt, and a king who cheated death in the lost city of Romania.',
         ],
     },
     {
         key: 'the-army-of-light', n: 2, title: 'The Army of Light', cover: 'the-army-of-light.webp', file: null, color: '#c9ccd6',
         synopsis: [
-            'Centuries later, the seat of Dionisio in the Celestial Union stands empty, and the gods have learned how he died. Judging Cristian a threat to the balance of the three worlds, the Union calls upon its strongest warriors, the Army of Light.',
+            'Centuries later, the seat of Dionysus in the Celestial Union stands empty, and the gods have learned how he died. Judging Cristian a threat to the balance of the three worlds, the Union calls upon its strongest warriors, the Army of Light.',
             'Elizabeth’s soul has returned to the world in a new body and a new life, with no memory of who she was. To reach her, Cristian will search for the four forbidden arts, hidden in places no man was meant to find and guarded by beasts no man was meant to face, while an old friend among the gods must choose between him and her own kind.',
         ],
     },

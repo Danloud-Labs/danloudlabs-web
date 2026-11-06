@@ -26,7 +26,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 - · `story/la-sua-origine/chapter-12.webp` Chapter 12: The Tomb of Thutmose III
 - · `story/la-sua-origine/chapter-13.webp` Chapter 13: The Bridge of Brașov
 - · `story/la-sua-origine/chapter-14.webp` Chapter 14: The Cathedral of Faremur
-- · `story/la-sua-origine/chapter-15.webp` Chapter 15: The Dionisian Palace
+- · `story/la-sua-origine/chapter-15.webp` Chapter 15: The Dionysian Palace
 - · `story/la-sua-origine/chapter-16.webp` Epilogue: Elizabeth's Letter
 
 ## Legends (16:9)
@@ -51,7 +51,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 
 - · `characters/cristian.webp` Cristian D’ San Fernald II
 - · `characters/elizabeth.webp` Elizabeth Gloucester
-- · `characters/dionisio.webp` Dionisio
+- · `characters/dionysus.webp` Dionysus
 - · `characters/azazel.webp` Azazel
 - · `characters/giovanni.webp` Duke Giovanni Gloucester
 - · `characters/expher.webp` Expher
@@ -74,10 +74,10 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 
 ## Characters: The Celestial Union (portraits 3:4)
 
-- · `characters/apolo.webp` Apolo
+- · `characters/apollo.webp` Apollo
 - · `characters/ares.webp` Ares
-- · `characters/afrodita.webp` Afrodita
-- · `characters/hipnos.webp` Hipnos
+- · `characters/aphrodite.webp` Aphrodite
+- · `characters/hypnos.webp` Hypnos
 - · `characters/enrique-glabados.webp` Enrique Glabados
 - · `characters/carolina-fargo.webp` Carolina Fargo
 - · `characters/felipe-hollies.webp` Felipe Hollies
@@ -86,8 +86,8 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 
 - · `characters/zeus.webp` Zeus
 - · `characters/poseidon.webp` Poseidon
-- · `characters/hefesto.webp` Hefesto
-- · `characters/cefiro.webp` Céfiro
+- · `characters/hephaestus.webp` Hephaestus
+- · `characters/zephyrus.webp` Zephyrus
 
 ## Characters: The Demon Union (portraits 3:4)
 
@@ -106,7 +106,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 
 ## Characters: Allies of the Journey (portraits 3:4)
 
-- · `characters/artemisa.webp` Artemisa
+- · `characters/artemis.webp` Artemis
 - · `characters/roberto.webp` Roberto Salazar
 - · `characters/karima.webp` Karima Sunuhe
 - · `characters/kahem.webp` Emperor Kahem Sunuhe
@@ -137,7 +137,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 - · `locations/florence.webp` Florence
 - · `locations/siena-castle.webp` The Royal Castle of Siena
 - · `locations/the-docks.webp` The Docks of the Valley
-- · `locations/dionisian-palace.webp` The Dionisian Palace
+- · `locations/dionysian-palace.webp` The Dionysian Palace
 
 ## Locations: Britain (16:9)
 
@@ -202,7 +202,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 - · `universe/timeline/ricardo-born.webp` 892: Ricardo Monteoro is born.
 - · `universe/timeline/war.webp` 1028: The War between Light and Darkness. The Celestial Union and the Army of Light are founded. The demons are banished.
 - · `universe/timeline/first-humans.webp` 1112: The first humans join the Celestial Union.
-- · `universe/timeline/dionisio-union.webp` 1208: Dionisio, god of wine and pleasure, joins the Celestial Union.
+- · `universe/timeline/dionysus-union.webp` 1208: Dionysus, god of wine and pleasure, joins the Celestial Union.
 - · `universe/timeline/cristian-i-born.webp` 1460: Cristian D’ San Fernald I is born in Rome.
 - · `universe/timeline/cristian-born.webp` 1492: Cristian D’ San Fernald II is born in Tuscany.
 - · `universe/timeline/elizabeth-born.webp` 1495: Elizabeth Gloucester is born in London. Her mother Margaret dies the next day.

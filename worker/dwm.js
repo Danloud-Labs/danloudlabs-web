@@ -305,7 +305,7 @@ function charactersPage() {
     else if (h) setTimeout(() => bar.scrollIntoView(), 60);
 })();
 </script>`;
-    return page({ title: `Characters · ${DWM.title}`, description: `The characters of Dark Within Me: Cristian, Elizabeth, Dionisio, Azazel, the House of Siena, the Celestial Union, the Demon Union and the Assassination List.`, path: `${DWM_BASE}/characters`, active: 'characters', body });
+    return page({ title: `Characters · ${DWM.title}`, description: `The characters of Dark Within Me: Cristian, Elizabeth, Dionysus, Azazel, the House of Siena, the Celestial Union, the Demon Union and the Assassination List.`, path: `${DWM_BASE}/characters`, active: 'characters', body });
 }
 
 // ---------------------------------------------------------------- locations

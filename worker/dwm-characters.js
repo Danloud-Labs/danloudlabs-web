@@ -14,7 +14,7 @@ export const DWM_GROUPS = [
         members: [
             { key: 'cristian', name: 'Cristian D’ San Fernald II', role: 'Soldier, royal counsellor of Tuscany', book: 1, bio: 'Born in Tuscany in 1492, son of a famous writer and the Queen of Soprano. Orphaned at fourteen, he became a master of the sabre and an instructor of crossbow and rapier in the armies of Florence, then counsellor to the Brasco family. Half of his soul now belongs to a demon.' },
             { key: 'elizabeth', name: 'Elizabeth Gloucester', role: 'Princess of the royal blood of Siena', book: 1, bio: 'Born in London in 1495; her mother died two days later. Raised in the royal castle of Siena beside her cousin Ruth, she wants nothing to do with crowns or courts. Gentle, brave and stubborn, she would rather lie to her father than marry a god.' },
-            { key: 'dionisio', name: 'Dionisio', role: 'God of wine and pleasure · Celestial Union', book: 1, bio: 'Son of Zeus and the mortal Semele. A member of the Celestial Union since 1208, he took human form in Venice as a powerful noble and friar. The only god willing to marry a mortal, as long as the mortal is Elizabeth.' },
+            { key: 'dionysus', name: 'Dionysus', role: 'God of wine and pleasure · Celestial Union', book: 1, bio: 'Son of Zeus and the mortal Semele. A member of the Celestial Union since 1208, he took human form in Venice as a powerful noble and friar. The only god willing to marry a mortal, as long as the mortal is Elizabeth.' },
             { key: 'azazel', name: 'Azazel', alias: 'Lezaza, in human form', role: 'Demon · once a god of the dead', book: 1, bio: 'Said to have led two hundred fallen angels. Stripped of his Prism by the Army of Light in 1028, he lives in the shadows of the docks and valleys of Tuscany. Second in power only to Lucifer, he is patient, generous with his gifts, and never says everything.' },
             { key: 'giovanni', name: 'Duke Giovanni Gloucester', role: 'Patriarch of Durham', book: 1, bio: 'Born in Durham in 1459, heir to a fortune in weapons he sold to marry Margaret Dwarson. Her death took the crown of Siena from him, and he has wanted it back ever since, whatever it costs his daughter.' },
             { key: 'expher', name: 'Expher', role: 'Cristian’s animal essence', book: 1, bio: 'The beast that woke inside Cristian in the fortress of Owari: half animal, half shadow. It fights at his side, lends him its tentacles and carries him like a horse when the road is long.' },
@@ -46,10 +46,10 @@ export const DWM_GROUPS = [
         key: 'celestial-union', name: 'The Celestial Union', color: '#f0e9d8',
         text: 'Five gods of the rank of Imperial and three humans, who write the laws of the three worlds.',
         members: [
-            { key: 'apolo', name: 'Apolo', role: 'Leader of the Celestial Union', book: 1, bio: 'Son of Zeus and Leto and twin brother of Artemisa. He presides over the Union.' },
+            { key: 'apollo', name: 'Apollo', role: 'Leader of the Celestial Union', book: 1, bio: 'Son of Zeus and Leto and twin brother of Artemis. He presides over the Union.' },
             { key: 'ares', name: 'Ares', role: 'Member of the Celestial Union', book: 1, bio: 'The god of war, one of the five Imperials.' },
-            { key: 'afrodita', name: 'Afrodita', role: 'Member of the Celestial Union', book: 1, bio: 'The goddess of love and beauty, one of the five Imperials.' },
-            { key: 'hipnos', name: 'Hipnos', role: 'Member of the Celestial Union', book: 1, bio: 'The god of sleep, one of the five Imperials.' },
+            { key: 'aphrodite', name: 'Aphrodite', role: 'Member of the Celestial Union', book: 1, bio: 'The goddess of love and beauty, one of the five Imperials.' },
+            { key: 'hypnos', name: 'Hypnos', role: 'Member of the Celestial Union', book: 1, bio: 'The god of sleep, one of the five Imperials.' },
             { key: 'enrique-glabados', name: 'Enrique Glabados', role: 'Human member', book: 1, bio: 'One of the three humans who sit in the Celestial Union.' },
             { key: 'carolina-fargo', name: 'Carolina Fargo', role: 'Human member', book: 1, bio: 'One of the three humans who sit in the Celestial Union.' },
             { key: 'felipe-hollies', name: 'Felipe Hollies', role: 'Human member', book: 1, bio: 'Born in London in 1490, he inherited his father’s seat at fourteen. Ashamed of how he was conceived, he gave up his father’s name. His mother was a cousin of Duke Giovanni.' },
@@ -59,10 +59,10 @@ export const DWM_GROUPS = [
         key: 'army-of-light', name: 'The Army of Light', color: '#9fc4ff',
         text: 'The Lords: the strongest warriors among the gods, over a thousand years old.',
         members: [
-            { key: 'zeus', name: 'Zeus', role: 'Lord · Army of Light', book: 2, bio: 'Father of Apolo, Artemisa and Dionisio. In 629 he found the greatest treasure in history: the Scroll of Resurrection.' },
+            { key: 'zeus', name: 'Zeus', role: 'Lord · Army of Light', book: 2, bio: 'Father of Apollo, Artemis and Dionysus. In 629 he found the greatest treasure in history: the Scroll of Resurrection.' },
             { key: 'poseidon', name: 'Poseidon', role: 'Lord · Army of Light', book: 2, bio: 'Lord of the seas, one of the four warriors of the Army of Light.' },
-            { key: 'hefesto', name: 'Hefesto', role: 'Lord · Army of Light', book: 2, bio: 'The smith of the gods, one of the four warriors of the Army of Light.' },
-            { key: 'cefiro', name: 'Céfiro', role: 'Lord · Army of Light', book: 2, bio: 'The west wind, one of the four warriors of the Army of Light.' },
+            { key: 'hephaestus', name: 'Hephaestus', role: 'Lord · Army of Light', book: 2, bio: 'The smith of the gods, one of the four warriors of the Army of Light.' },
+            { key: 'zephyrus', name: 'Zephyrus', role: 'Lord · Army of Light', book: 2, bio: 'The west wind, one of the four warriors of the Army of Light.' },
         ],
     },
     {
@@ -90,7 +90,7 @@ export const DWM_GROUPS = [
         key: 'allies', name: 'Allies of the Journey', color: '#7ad1a8',
         text: 'The people who helped a man with a demon’s face.',
         members: [
-            { key: 'artemisa', name: 'Artemisa', role: 'Goddess of the hunt · General', book: 1, bio: 'Daughter of Zeus and Leto, she chose the forests over the cities of men and guards them from darkness. Her red sword sings like birds; her Prism takes the form of a huge white wolf with braided fur. First in line for a seat in the Union.' },
+            { key: 'artemis', name: 'Artemis', role: 'Goddess of the hunt · General', book: 1, bio: 'Daughter of Zeus and Leto, she chose the forests over the cities of men and guards them from darkness. Her red sword sings like birds; her Prism takes the form of a huge white wolf with braided fur. First in line for a seat in the Union.' },
             { key: 'roberto', name: 'Roberto Salazar', role: 'French squire', book: 1, bio: 'He fought beside Cristian when Blackbeard burned Newfoundland, and sailed home in the pirate’s own ship.' },
             { key: 'karima', name: 'Karima Sunuhe', role: 'Daughter of Emperor Kahem', book: 1, bio: 'The first person Cristian told everything to. She guided him across Egypt and was waiting at the port when he left.' },
             { key: 'kahem', name: 'Emperor Kahem Sunuhe', role: 'Ruler of Sanabú', book: 1, bio: 'Karima’s father, who opened his palace to a stranger with a hidden face.' },
