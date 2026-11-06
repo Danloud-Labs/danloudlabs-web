@@ -128,6 +128,7 @@ Every image the pages have a frame for. Drop the file (webp, or send the origina
 - · `characters/vita.webp` Vita
 - · `characters/eres.webp` Éres
 - · `characters/herggott.webp` Herggott
+- · `characters/reficul.webp` Reficul
 
 ## Locations: Italy (16:9)
 

@@ -69,7 +69,7 @@ export const DWM_GROUPS = [
         key: 'demon-union', name: 'The Demon Union', color: '#8b1d2c',
         text: 'The lords of darkness. Every demon carries its old name backwards since the war.',
         members: [
-            { key: 'lucifer', name: 'Lucifer', alias: 'once Reficul', role: 'The last Dark Lord · imprisoned in hell', book: 0, bio: 'Son of Éres, born from the womb of the murdered Vita. He led the demons in the War between Light and Darkness and swore he would escape.' },
+            { key: 'lucifer', name: 'Lucifer', role: 'The last Dark Lord · imprisoned in hell', book: 0, bio: 'The supreme leader of the Royal Legion, locked in the deepest dungeon of hell since the war. The rank of Dark Lord has been empty ever since, and the demons still wait for his return.' },
             { key: 'aamon', name: 'Aamon', alias: 'once Nomaa', role: 'Demon Union', book: 3, bio: 'One of the lords of the Demon Union.' },
             { key: 'abaddon', name: 'Abaddon', alias: 'once Noddaba', role: 'Demon Union', book: 3, bio: 'One of the lords of the Demon Union.' },
             { key: 'agares', name: 'Agares', alias: 'once Seraga', role: 'Demon Union', book: 3, bio: 'One of the lords of the Demon Union.' },
@@ -111,13 +111,14 @@ export const DWM_GROUPS = [
     },
     {
         key: 'legends', name: 'The Legends', color: '#f2f2f7',
-        text: 'The first beings of creation, from the legends told before the books.',
+        text: 'The first beings of creation and the heirs of light and darkness, from the legends told before the books.',
         members: [
             { key: 'gyvenimas', name: 'Gyvenimas', role: 'Ambassador of life and resurrection', book: 0, bio: 'Servant at God’s left hand. She gave God His children, then left Heaven and threw the scroll of life to the earth.' },
             { key: 'mirtis', name: 'Mirtis', role: 'Funeral king of sin and death', book: 0, bio: 'Guardian at God’s right hand. He taught Éres to rule the darkness, and fell to the earth chasing the scroll of life. He has walked among men ever since.' },
             { key: 'vita', name: 'Vita', role: 'Queen of the heavens', book: 0, bio: 'Daughter of God the Father, mother of Herggott. Killed by her brother, whom she never truly fought.' },
             { key: 'eres', name: 'Éres', role: 'Lord of the shadows', book: 0, bio: 'Son of God the Father, father of Reficul. Locked in the deepest dungeon of hell for killing his sister.' },
-            { key: 'herggott', name: 'Herggott', role: 'Heir of the heavens', book: 0, bio: 'Son of Vita. Founder of the Celestial Union and the Army of Light, he defeated his brother Reficul and then disappeared.' },
+            { key: 'herggott', name: 'Herggott', role: 'Heir of the heavens', book: 0, bio: 'Son of Vita, born from a sad sunflower seed. Leader of the legions of light, founder of the Celestial Union and the Army of Light. After the war he disappeared.' },
+            { key: 'reficul', name: 'Reficul', role: 'Heir of the shadows', book: 0, bio: 'Son of Éres, born from the womb of Vita after his father killed her. Raised in the endless dark, he denied he was ever Vita’s son and swore his power came from darkness alone. He gathered the black gods into an army, gave them a new name, demons, and became their leader. In the eleventh century he set out to conquer Europe and to buy his father’s freedom from God the Father with the souls of men, and came face to face with his brother Herggott.' },
         ],
     },
 ];
