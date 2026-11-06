@@ -19,6 +19,7 @@ body::before {
 .mmx.dwm { --blue: #e0283f; --violet: #c9ccd6; --deep: #3a0710; --c: var(--blue); }
 .dwm .grad-bv, .dwm .eyebrow { background: linear-gradient(90deg, #ff4d5e, #e0283f 45%, #c9ccd6); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .dwm .mmx-nav img { height: 34px; }
+.dwm input[type=range]::-webkit-slider-thumb { box-shadow: 0 0 0 3px rgba(224, 40, 63, 0.35); }
 
 /* Hero: the full title art, centered and edge to edge, with drifting embers and the text under it */
 .dwm-hero { position: relative; overflow: hidden; text-align: center; padding: 0 0 46px !important; background: #050304; }

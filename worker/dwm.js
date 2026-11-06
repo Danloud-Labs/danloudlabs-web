@@ -4,6 +4,7 @@
 //   /dark-within-me-la-sua-origine/story      the four books, one tab each (#la-sua-origine …), chapter summaries
 //   /dark-within-me-la-sua-origine/universe   how the world works: Prism, gods, demons, ranks, timeline
 //   /dark-within-me-la-sua-origine/legends    the legends told before the books
+//   /dark-within-me-la-sua-origine/soundtrack the original soundtrack (assets/projects/dwm/soundtrack.json)
 //   /dark-within-me, /dwm                     -> main page
 // The Worker's fetch() calls handleDarkWithinMe(request) first; it returns null for other paths.
 //
@@ -21,6 +22,7 @@ import { DWM, DWM_BASE, DWM_BOOKS, DWM_PREMISE, DWM_SECTIONS, dwmAsset } from '.
 import { DWM_CSS } from './dwm-styles.js';
 import { DWM_COUNT, DWM_DEMON_RANKS, DWM_GOD_RANKS, DWM_LORE, DWM_TIMELINE, DWM_UNIVERSE_ART } from './dwm-universe.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
+import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
 const LOGO = dwmAsset('brand/logo.webp');
@@ -109,13 +111,13 @@ function dwmNav(active) {
 
 const note = `<section style="padding-top:0"><div class="wrap"><p class="fan-note">${esc(DWM.copyright)}</p></div></section>`;
 
-function page({ title, description, path, active, body, ogImage }) {
+function page({ title, description, path, active, body, ogImage, css = '' }) {
     return sitePage({
         title, description, path, ogImage: ogImage || COVER_OG,
         icon: LOGO,
         active: 'projects',
         back: { href: '/#projects', label: 'Projects' },
-        head: `<style>${DWM_CSS}</style>`,
+        head: `<style>${DWM_CSS}${css}</style>`,
         body: `<div class="mmx dwm">${dwmNav(active)}${body}${note}</div>`,
     });
 }
@@ -257,6 +259,22 @@ function universePage() {
     return page({ title: `The Universe · ${DWM.title}`, description: `The world of Dark Within Me: the Prism, gods and demons, the Celestial Union, the Army of Light, the ranks and the timeline.`, path: `${DWM_BASE}/universe`, active: 'universe', body });
 }
 
+// ---------------------------------------------------------------- soundtrack
+// Tracks: assets/projects/dwm/soundtrack.json, written by tools/dwm_soundtrack.mjs (MP3s in R2).
+async function soundtrackPage() {
+    let tracks = [];
+    try {
+        const res = await fetch(`${dwmAsset('soundtrack.json')}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+        if (res.ok) tracks = (await res.json()).tracks || [];
+    } catch (_) { /* the page says the soundtrack is on its way */ }
+    const cover = (t) => (t.cover === 'hero' ? HERO : COVER_OG);
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">Soundtrack</span><h1>The music of <span class="grad-bv">Dark Within Me</span></h1>
+<p class="lead">The original soundtrack, composed by ${esc(DWM.author)} for the saga since ${DWM.since}: the themes of its characters, its cities and its battles, in the order of the story.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">${soundtrackBody({ tracks, cover, artist: DWM.title, album: 'La Sua Origine · Original Soundtrack', note: `Music composed by ${DWM.author}.`, volKey: 'dwm-vol' })}</div></section>`;
+    return page({ title: `Soundtrack · ${DWM.title}`, description: `Listen to the original soundtrack of Dark Within Me, composed by ${DWM.author}.`, path: `${DWM_BASE}/soundtrack`, active: 'soundtrack', body, css: MMX_SOUNDTRACK_CSS });
+}
+
 // ---------------------------------------------------------------- routes
 const html = (body) => new Response(body, { headers: { 'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=60' } });
 
@@ -270,5 +288,6 @@ export async function handleDarkWithinMe(request) {
     if (rest === '/story') return html(await storyPage());
     if (rest === '/universe') return html(universePage());
     if (rest === '/legends') return html(await legendsPage());
+    if (rest === '/soundtrack') return html(await soundtrackPage());
     return Response.redirect(`${url.origin}${DWM_BASE}`, 302);
 }

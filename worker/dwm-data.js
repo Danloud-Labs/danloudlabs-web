@@ -17,7 +17,7 @@ export const DWM = {
     since: 2011,
     tagline: 'Some pacts are signed in blood. This one was signed with half a soul.',
     logline: 'Italy, 1492. In a world where gods and demons live among men wearing human faces, a young soldier loses the woman he loves to a god, and accepts a demon’s offer to take her back.',
-    copyright: 'Dark Within Me, its story, characters and music are original works by David Gomez Valerio. All rights reserved.',
+    copyright: 'Dark Within Me, its story, characters and music are original works by David Gomez Valerio and Danloud Labs LLC. © 2011–2026 Danloud Labs LLC. All rights reserved.',
 };
 
 // The four books, in reading order. `file`: the book's chapter summaries in assets/projects/dwm/story/
@@ -70,5 +70,5 @@ export const DWM_SECTIONS = [
     { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'The Prism, gods and demons, the Celestial Union, the Army of Light, the ranks of both sides and the timeline.' },
     { key: 'legends', name: 'Legends', nav: 'Legends', status: 'live', text: 'Before the first book: the birth of light and darkness, and the war that sent the demons into the shadows.' },
     { key: 'locations', name: 'Locations', status: 'soon', text: 'Siena, Tuscany, Japan, Newfoundland, Egypt, the lost city of Romania, Heaven and the Underworld.' },
-    { key: 'soundtrack', name: 'Soundtrack', status: 'soon', text: 'The original music of Dark Within Me, written by the author since 2011.' },
+    { key: 'soundtrack', name: 'Soundtrack', nav: 'Soundtrack', status: 'live', text: 'The original music of Dark Within Me, composed by the author since 2011.' },
 ];

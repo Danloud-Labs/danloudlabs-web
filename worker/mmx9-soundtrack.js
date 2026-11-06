@@ -55,6 +55,10 @@ export const MMX_SOUNDTRACK_CSS = `
 .st-bar .st-btn { width: 40px; height: 40px; }
 .st-bar .st-btn.big { width: 46px; height: 46px; }
 .st-bar .prog { position: absolute; left: 0; top: -1px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--violet)); width: 0; }
+.st-mode { display: inline-flex; gap: 4px; margin-top: 18px; padding: 4px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); }
+.st-mode button { border: 0; border-radius: 99px; padding: 7px 16px; background: none; color: var(--muted); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; }
+.st-mode button.on { background: linear-gradient(135deg, var(--blue), var(--violet)); color: #fff; }
+.st-row .t .rm { margin-left: 8px; padding: 2px 7px; border-radius: 99px; font-style: normal; font-size: 10.5px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--blue); background: color-mix(in srgb, var(--blue) 14%, transparent); vertical-align: 2px; }
 .st-note { margin-top: 14px; color: var(--dim); font-size: 13px; }
 body:has(.st-bar.show) footer { padding-bottom: 84px; }
 @media (max-width: 860px) {
@@ -66,14 +70,18 @@ body:has(.st-bar.show) footer { padding-bottom: 84px; }
 }
 `;
 
-// tracks: [{ n, title, url, duration }]; cover(track) -> image URL.
-export function soundtrackBody({ tracks, cover }) {
+// tracks: [{ n, title, url, duration, remaster? }]; cover(track) -> image URL.
+// Also used by Dark Within Me: artist/album/note/volKey name the soundtrack; when a track has a
+// `remaster` URL the player shows an Original / Remaster switch.
+export function soundtrackBody({ tracks, cover, artist = 'Mega Man X9: Apex-Primal', album = 'Original Soundtrack (fan-made)', note = 'Music created by David Gomez Valerio with Suno.', volKey = 'mmx9-vol' }) {
     if (!tracks.length) {
         return '<div class="st-empty"><h3 style="font-size:22px;margin-bottom:6px">The soundtrack is on its way.</h3><p style="margin:0">The tracks are being uploaded.</p></div>';
     }
     const list = tracks.map((t) => ({ ...t, cover: cover(t) }));
     const total = list.reduce((a, t) => a + (t.duration || 0), 0);
     const first = list[0];
+    const hasRemaster = list.some((t) => t.remaster);
+    const modes = hasRemaster ? `<div class="st-mode" id="stMode" role="group" aria-label="Version"><button type="button" class="on" data-mode="original" aria-pressed="true">Original</button><button type="button" data-mode="remaster" aria-pressed="false">Remaster</button></div>` : '';
     return `
 <div class="st-now" id="stNow">
     <div class="cover" id="stCover" style="background-image:url('${first.cover}')"></div>
@@ -89,10 +97,11 @@ export function soundtrackBody({ tracks, cover }) {
         <div class="st-vol">${I.vol}<input id="stVol" type="range" min="0" max="100" value="80" aria-label="Volume"></div>
     </div>
 </div>
+${modes}
 <div class="st-list" id="stList">${list.map((t, i) => `
-    <button class="st-row${i === 0 ? ' on' : ''}" type="button" data-i="${i}"><span class="n">${t.n}</span><span class="th" style="background-image:url('${t.cover}')"></span><span class="t">${esc(t.title)}</span><span class="d">${time(t.duration)}</span></button>`).join('')}
+    <button class="st-row${i === 0 ? ' on' : ''}" type="button" data-i="${i}"><span class="n">${t.n}</span><span class="th" style="background-image:url('${t.cover}')"></span><span class="t">${esc(t.title)}${t.remaster ? '<i class="rm">Remaster</i>' : ''}</span><span class="d">${time(t.duration)}</span></button>`).join('')}
 </div>
-<p class="st-note">${list.length} tracks${total ? ` · ${Math.round(total / 60)} min` : ''} · Music created by David Gomez Valerio with Suno.</p>
+<p class="st-note">${list.length} tracks${total ? ` · ${Math.round(total / 60)} min` : ''} · ${esc(note)}</p>
 <div class="st-bar" id="stBar"><div class="prog" id="stProg"></div><div class="wrap">
     <span class="th" id="stBarTh" style="background-image:url('${first.cover}')"></span>
     <span class="t"><small>Now playing</small><span id="stBarTitle">${esc(first.title)}</span></span>
@@ -103,14 +112,15 @@ export function soundtrackBody({ tracks, cover }) {
 <audio id="stAudio" preload="none"></audio>
 <script>
 (() => {
-    const T = ${JSON.stringify(list.map(({ n, title, url, cover: c }) => ({ n, title, url, cover: c }))).replace(/</g, '\\u003c')};
+    const T = ${JSON.stringify(list.map(({ n, title, url, remaster, cover: c }) => ({ n, title, url, remaster, cover: c }))).replace(/</g, '\\u003c')};
     const PLAY = ${JSON.stringify(I.play)}, PAUSE = ${JSON.stringify(I.pause)};
     const $ = (id) => document.getElementById(id);
     const a = $('stAudio'), seek = $('stSeek'), vol = $('stVol');
-    let i = 0, loaded = false, dragging = false;
+    let i = 0, loaded = false, dragging = false, mode = 'original';
+    const src = (t) => (mode === 'remaster' && t.remaster) || t.url;
     const fmt = (s) => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
     const paint = (r) => r.style.setProperty('--p', (r.value / r.max * 100) + '%');
-    try { const v = localStorage.getItem('mmx9-vol'); if (v !== null) vol.value = v; } catch (_) {}
+    try { const v = localStorage.getItem(${JSON.stringify(volKey)}); if (v !== null) vol.value = v; } catch (_) {}
     a.volume = vol.value / 100; paint(vol);
     const show = () => {
         const t = T[i];
@@ -118,14 +128,20 @@ export function soundtrackBody({ tracks, cover }) {
         $('stNum').textContent = 'Track ' + String(t.n).padStart(2, '0');
         $('stCover').style.backgroundImage = $('stBarTh').style.backgroundImage = "url('" + t.cover + "')";
         document.querySelectorAll('.st-row').forEach((r) => r.classList.toggle('on', +r.dataset.i === i));
-        if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: t.title, artist: 'Mega Man X9: Apex-Primal', album: 'Original Soundtrack (fan-made)', artwork: [{ src: t.cover, sizes: '1280x720' }] });
+        if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: t.title, artist: ${JSON.stringify(artist)}, album: ${JSON.stringify(album)}, artwork: [{ src: t.cover, sizes: '1280x720' }] });
     };
-    const load = (k, play) => { i = (k + T.length) % T.length; a.src = T[i].url; loaded = true; show(); if (play) a.play().catch(() => {}); };
+    const load = (k, play) => { i = (k + T.length) % T.length; a.src = src(T[i]); loaded = true; show(); if (play) a.play().catch(() => {}); };
     const toggle = () => { if (!loaded) return load(i, true); a.paused ? a.play().catch(() => {}) : a.pause(); };
     const icons = () => document.querySelectorAll('[data-act=play]').forEach((b) => { b.innerHTML = a.paused ? PLAY : PAUSE; b.setAttribute('aria-label', a.paused ? 'Play' : 'Pause'); });
     document.addEventListener('click', (e) => {
         const b = e.target.closest('[data-act]'); if (b) { const k = b.dataset.act; if (k === 'play') toggle(); else load(i + (k === 'next' ? 1 : -1), true); return; }
-        const r = e.target.closest('.st-row'); if (r) load(+r.dataset.i, true);
+        const r = e.target.closest('.st-row'); if (r) { load(+r.dataset.i, true); return; }
+        const m = e.target.closest('[data-mode]');
+        if (m && m.dataset.mode !== mode) {
+            mode = m.dataset.mode;
+            document.querySelectorAll('[data-mode]').forEach((x) => { const on = x === m; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+            if (loaded) { const t = a.currentTime, playing = !a.paused; a.src = src(T[i]); if (playing) a.play().catch(() => {}); a.addEventListener('loadedmetadata', () => { if (t < a.duration) a.currentTime = t; }, { once: true }); }
+        }
     });
     a.addEventListener('play', () => { icons(); $('stBar').classList.add('show'); });
     a.addEventListener('pause', icons);
@@ -140,7 +156,7 @@ export function soundtrackBody({ tracks, cover }) {
     });
     seek.addEventListener('input', () => { dragging = true; paint(seek); if (a.duration) $('stCur').textContent = fmt(seek.value / 1000 * a.duration); });
     seek.addEventListener('change', () => { dragging = false; if (!loaded) load(i, true); if (a.duration) a.currentTime = seek.value / 1000 * a.duration; });
-    vol.addEventListener('input', () => { a.volume = vol.value / 100; paint(vol); try { localStorage.setItem('mmx9-vol', vol.value); } catch (_) {} });
+    vol.addEventListener('input', () => { a.volume = vol.value / 100; paint(vol); try { localStorage.setItem(${JSON.stringify(volKey)}, vol.value); } catch (_) {} });
     if ('mediaSession' in navigator) {
         navigator.mediaSession.setActionHandler('play', toggle); navigator.mediaSession.setActionHandler('pause', () => a.pause());
         navigator.mediaSession.setActionHandler('previoustrack', () => load(i - 1, true)); navigator.mediaSession.setActionHandler('nexttrack', () => load(i + 1, true));

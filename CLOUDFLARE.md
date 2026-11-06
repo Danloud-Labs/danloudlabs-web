@@ -69,3 +69,8 @@ The chapters live in `assets/projects/dwm/story/<book>.md` and are read live: ne
 Create `dwm-universe.js`, then paste `dwm.js`, `dwm-data.js` and `dwm-styles.js` over the old ones and Deploy.
 Chapter art goes in `assets/projects/dwm/story/<book>/chapter-01.webp`… (legends: `assets/projects/dwm/legends/legend-01.webp`…):
 an empty frame shows until the image is pushed.
+
+### Dark Within Me: Soundtrack (one-time)
+
+Paste `dwm.js`, `dwm-data.js`, `dwm-styles.js` and `mmx9-soundtrack.js` (the player, now shared by both sites) over the old ones and Deploy.
+Upload the music from the Mac with `node tools/dwm_soundtrack.mjs`, then commit and push `assets/projects/dwm/soundtrack.json`.
