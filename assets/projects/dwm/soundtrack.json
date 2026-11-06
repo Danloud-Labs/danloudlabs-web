@@ -1,0 +1,285 @@
+{
+  "updated": "2026-11-06",
+  "tracks": [
+    {
+      "n": 1,
+      "title": "Main Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/01-main-theme.mp3",
+      "duration": 303,
+      "cover": "hero"
+    },
+    {
+      "n": 2,
+      "title": "Dark Within Me",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/02-dark-within-me.mp3",
+      "duration": 262,
+      "cover": "hero"
+    },
+    {
+      "n": 3,
+      "title": "Vita v. Éres",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/03-vita-v-eres.mp3",
+      "duration": 190,
+      "cover": "hero"
+    },
+    {
+      "n": 4,
+      "title": "Battle of the Kings",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/04-battle-of-the-kings.mp3",
+      "duration": 291,
+      "cover": "hero"
+    },
+    {
+      "n": 5,
+      "title": "City of Tuscany",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/05-city-of-tuscany.mp3",
+      "duration": 124
+    },
+    {
+      "n": 6,
+      "title": "City of Siena",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/06-city-of-siena.mp3",
+      "duration": 265
+    },
+    {
+      "n": 7,
+      "title": "Giovanni’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/07-giovannis-theme.mp3",
+      "duration": 111
+    },
+    {
+      "n": 8,
+      "title": "Funeral Garden",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/08-funeral-garden.mp3",
+      "duration": 42
+    },
+    {
+      "n": 9,
+      "title": "Curse",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/09-curse.mp3",
+      "duration": 94
+    },
+    {
+      "n": 10,
+      "title": "Henry Brasco’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/10-henry-brascos-theme.mp3",
+      "duration": 232
+    },
+    {
+      "n": 11,
+      "title": "Journey to the World",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/11-journey-to-the-world.mp3",
+      "duration": 208
+    },
+    {
+      "n": 12,
+      "title": "Elizabeth’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/12-elizabeths-theme.mp3",
+      "duration": 214
+    },
+    {
+      "n": 13,
+      "title": "A Moment of Love",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/13-a-moment-of-love.mp3",
+      "duration": 211
+    },
+    {
+      "n": 14,
+      "title": "Dionisio’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/14-dionisios-theme.mp3",
+      "duration": 126
+    },
+    {
+      "n": 15,
+      "title": "Danger",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/15-danger.mp3",
+      "duration": 63
+    },
+    {
+      "n": 16,
+      "title": "Dark Contract",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/16-dark-contract.mp3",
+      "duration": 307
+    },
+    {
+      "n": 17,
+      "title": "Azazel’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/17-azazels-theme.mp3",
+      "duration": 372
+    },
+    {
+      "n": 18,
+      "title": "Transformation",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/18-transformation.mp3",
+      "duration": 365
+    },
+    {
+      "n": 19,
+      "title": "Fight the Darkness",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/19-fight-the-darkness.mp3",
+      "duration": 281
+    },
+    {
+      "n": 20,
+      "title": "Evil Visions (The Dark Souls)",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/20-evil-visions-the-dark-souls.mp3",
+      "duration": 126
+    },
+    {
+      "n": 21,
+      "title": "Japan",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/21-japan.mp3",
+      "duration": 236
+    },
+    {
+      "n": 22,
+      "title": "Golden Fortress",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/22-golden-fortress.mp3",
+      "duration": 46
+    },
+    {
+      "n": 23,
+      "title": "Oda Nobunaga’s Battle Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/23-oda-nobunagas-battle-theme.mp3",
+      "duration": 191
+    },
+    {
+      "n": 24,
+      "title": "Hunt",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/24-hunt.mp3",
+      "duration": 283
+    },
+    {
+      "n": 25,
+      "title": "Artemisa’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/25-artemisas-theme.mp3",
+      "duration": 407
+    },
+    {
+      "n": 26,
+      "title": "Newfoundland in Flames",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/26-newfoundland-in-flames.mp3",
+      "duration": 182
+    },
+    {
+      "n": 27,
+      "title": "Roberto Salazar’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/27-roberto-salazars-theme.mp3",
+      "duration": 230
+    },
+    {
+      "n": 28,
+      "title": "Queen Anne’s Revenge",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/28-queen-annes-revenge.mp3",
+      "duration": 298
+    },
+    {
+      "n": 29,
+      "title": "Blackbeard’s Battle Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/29-blackbeards-battle-theme.mp3",
+      "duration": 169
+    },
+    {
+      "n": 30,
+      "title": "Heroic Moments",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/30-heroic-moments.mp3",
+      "duration": 232
+    },
+    {
+      "n": 31,
+      "title": "Sinuhe Kingdom",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/31-sinuhe-kingdom.mp3",
+      "duration": 162
+    },
+    {
+      "n": 32,
+      "title": "Hacmoni Ghazi’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/32-hacmoni-ghazis-theme.mp3",
+      "duration": 116
+    },
+    {
+      "n": 33,
+      "title": "Venona Battle (Thutmose’s Servant)",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/33-venona-battle-thutmoses-servant.mp3",
+      "duration": 210
+    },
+    {
+      "n": 34,
+      "title": "Thutmose III’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/34-thutmose-iiis-theme.mp3",
+      "duration": 229
+    },
+    {
+      "n": 35,
+      "title": "Anubis’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/35-anubiss-theme.mp3",
+      "duration": 174
+    },
+    {
+      "n": 36,
+      "title": "Dead Swamp",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/36-dead-swamp.mp3",
+      "duration": 182
+    },
+    {
+      "n": 37,
+      "title": "Astaroth’s Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/37-astaroths-theme.mp3",
+      "duration": 225
+    },
+    {
+      "n": 38,
+      "title": "The Lost City of Brașov",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/38-the-lost-city-of-brasov.mp3",
+      "duration": 192
+    },
+    {
+      "n": 39,
+      "title": "Faremur Cathedral",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/39-faremur-cathedral.mp3",
+      "duration": 253
+    },
+    {
+      "n": 40,
+      "title": "Vlad Draculea’s Battle Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/40-vlad-draculeas-battle-theme.mp3",
+      "duration": 284
+    },
+    {
+      "n": 41,
+      "title": "New Form",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/41-new-form.mp3",
+      "duration": 255
+    },
+    {
+      "n": 42,
+      "title": "Dionisio’s Battle Theme",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/42-dionisios-battle-theme.mp3",
+      "duration": 205
+    },
+    {
+      "n": 43,
+      "title": "Final Battle (Dionisio’s Theme)",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/43-final-battle-dionisios-theme.mp3",
+      "duration": 298
+    },
+    {
+      "n": 44,
+      "title": "Angel Wings (Elizabeth’s Death)",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/44-angel-wings-elizabeths-death.mp3",
+      "duration": 229
+    },
+    {
+      "n": 45,
+      "title": "Till the End of Time",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/45-till-the-end-of-time.mp3",
+      "duration": 337
+    },
+    {
+      "n": 46,
+      "title": "The End",
+      "url": "https://store.danloudlabs.com/dwm/soundtrack/46-the-end.mp3",
+      "duration": 251
+    }
+  ]
+}
