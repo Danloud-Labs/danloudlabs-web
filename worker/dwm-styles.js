@@ -75,6 +75,13 @@ body::before {
 .dwm .chapter .ch-art.empty { display: grid; place-items: center; background: radial-gradient(60% 80% at 50% 50%, color-mix(in srgb, var(--bc, #e0283f) 18%, transparent), #070405 75%); border-style: dashed; }
 .dwm .chapter .ch-art.empty figcaption { display: block; font-family: var(--round); font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--bc, #e0283f) 55%, #888); }
 
+/* Universe: an art frame above each card, empty until its image exists */
+.lore .card .u-art { margin: 0; aspect-ratio: 16 / 9; border-bottom: 1px solid var(--line); background: #000; overflow: hidden; }
+.lore .card .u-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lore .card .u-art figcaption { display: none; }
+.lore .card .u-art.empty { display: grid; place-items: center; background: radial-gradient(60% 80% at 50% 50%, color-mix(in srgb, var(--tc) 16%, transparent), #070405 75%); }
+.lore .card .u-art.empty figcaption { display: block; font-family: var(--round); font-size: 12.5px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--tc) 60%, #888); }
+
 /* Universe: ranks and timeline */
 .rank-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .rank-h { font-size: 20px; margin: 0 0 12px; }

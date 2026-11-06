@@ -20,7 +20,7 @@
 
 import { DWM, DWM_BASE, DWM_BOOKS, DWM_PREMISE, DWM_SECTIONS, dwmAsset } from './dwm-data.js';
 import { DWM_CSS } from './dwm-styles.js';
-import { DWM_COUNT, DWM_DEMON_RANKS, DWM_GOD_RANKS, DWM_LORE, DWM_TIMELINE, DWM_UNIVERSE_ART } from './dwm-universe.js';
+import { DWM_COUNT, DWM_DEMON_RANKS, DWM_GOD_RANKS, DWM_LORE, DWM_TIMELINE } from './dwm-universe.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 
@@ -240,7 +240,7 @@ function universePage() {
 <section style="padding-top:28px"><div class="wrap">
     <div class="lore">${DWM_LORE.map((l) => `
         <div class="card reveal" id="${l.key}" style="--tc:${l.c}">
-            ${DWM_UNIVERSE_ART.includes(l.key) ? `<div class="art" style="background-image:url('${dwmAsset(`universe/${l.key}.webp`)}')"></div>` : ''}
+            <figure class="u-art"><img src="${dwmAsset(`universe/${l.key}.webp`)}" alt="${esc(l.name)}" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()"><figcaption>${esc(l.name)}</figcaption></figure>
             <div class="txt"><h3>${esc(l.name)}</h3>${l.text.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
         </div>`).join('')}
     </div>

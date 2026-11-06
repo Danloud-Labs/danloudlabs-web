@@ -2,12 +2,9 @@
 // Dark Within Me — the Universe page: how the world works (Prism, gods, demons, the Union,
 // the ranks, the arts) and the timeline. Source: David's "God's & Devil's Ranks",
 // "Cronología de Eventos", the Librerías definitions and La Sua Origine.
-// Art (optional): assets/projects/dwm/universe/<key>.webp, shown above its card when present
-// in DWM_UNIVERSE_ART below.
+// Art: assets/projects/dwm/universe/<key>.webp above each card (16:9), e.g. universe/prism.webp.
+// Until the image is pushed the card shows an empty frame.
 // =====================================================================================
-
-// Keys of the cards that already have art in assets/projects/dwm/universe/.
-export const DWM_UNIVERSE_ART = [];
 
 export const DWM_LORE = [
     {
