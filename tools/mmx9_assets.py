@@ -189,6 +189,8 @@ def main():
         for user in dirs(wdir):
             u = form_slug(nfc(user.name))
             for f in sorted(images(user), key=lambda p: p.stat().st_mtime):
+                if f.name.startswith('_'):   # "_old …": kept in the folder, not published
+                    continue
                 w = form_slug(nfc(f.stem))
                 manifest['weapons'].setdefault(u, {})[w] = rel(save(f, OUT / f'weapons/{u}/{w}.webp', 'universe'))
                 print(f'weapon {u:6} {w:20} <- {f.name}')
