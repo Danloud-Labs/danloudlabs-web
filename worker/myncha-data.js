@@ -7,6 +7,7 @@
 //   characters/<key>.webp (3:4) and characters/<key>-beast.webp for werewolf transformations,
 //   locations/<key>.webp, bestiary/<key>.webp, curse/<key>.webp, exius/<key>.webp (16:9),
 //   story/act-01.webp… (16:9). A missing image shows an empty labeled frame.
+// Gallery: any image in gallery/, listed in gallery.json by tools/myncha_gallery.mjs (read live).
 // =====================================================================================
 
 import { asset } from './site-data.js';
@@ -31,6 +32,7 @@ export const MY_SECTIONS = [
     { key: 'exius', name: 'Exius', nav: 'Exius', text: 'The world on the other side of the mirror: our Earth, rolled back into a magical past.' },
     { key: 'bestiary', name: 'Bestiary', nav: 'Bestiary', text: 'The creatures that hunt the woods of Exius, and the ones waiting at the end of the road.' },
     { key: 'locations', name: 'Locations', nav: 'Locations', text: 'From The Basement and the university to the lake cathedral and the primeval forest.' },
+    { key: 'gallery', name: 'Gallery', nav: 'Gallery', text: 'Concept art, key art and wallpapers of Myncha and Exius.' },
     { key: 'soundtrack', name: 'Soundtrack', nav: 'Soundtrack', text: 'The music of Myncha: Vampires of Exius.' },
 ];
 

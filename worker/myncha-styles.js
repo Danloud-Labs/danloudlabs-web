@@ -93,6 +93,14 @@ body::before {
 .region-h { font-size: clamp(24px, 3vw, 32px); color: var(--rc); margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; }
 .region-h small { font-size: 13px; color: var(--dim); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .places { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+/* Gallery */
+.my-gallery { columns: 3 280px; column-gap: 12px; }
+.my-gallery figure { break-inside: avoid; margin: 0 0 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--card); cursor: zoom-in; }
+.my-gallery img { width: 100%; display: block; }
+.my-gallery figcaption { padding: 10px 14px; font-size: 13.5px; color: var(--muted); }
+.gallery-empty { text-align: center; padding: 60px 20px; border-radius: 24px; border: 1px dashed rgba(180, 140, 255, 0.4); background: rgba(180, 140, 255, 0.05); color: var(--muted); }
+.gallery-empty h3 { font-size: 22px; margin: 0 0 6px; color: var(--fg); }
+.gallery-empty p { margin: 0; }
 .mmx-section .sec-art { border-bottom: 1px solid var(--line); }
 .my .fan-note { line-height: 1.6; }
 .my input[type=range]::-webkit-slider-thumb { box-shadow: 0 0 0 3px rgba(180, 140, 255, 0.35); }
