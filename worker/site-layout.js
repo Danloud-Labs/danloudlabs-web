@@ -63,7 +63,12 @@ const NAV = [
     ['Privacy', '/privacy', 'privacy'],
 ];
 
-export function sitePage({ title, description, path = '/', ogImage, icon, active = '', back, head = '', body }) {
+// Copyright year. Pages built when the Worker loads run before any request, where Cloudflare's
+// clock still reads 1970, so the year never goes below the site's current year.
+const YEAR = () => Math.max(2026, new Date().getUTCFullYear());
+
+// `since`: first year of a project's copyright (e.g. 2011 -> "© 2011–2026").
+export function sitePage({ title, description, path = '/', ogImage, icon, active = '', back, head = '', body, since }) {
     const url = `https://danloudlabs.com${path}`;
     const nav = NAV.map(([label, href, key]) => `<a href="${href}"${key === active ? ' class="on"' : ''}>${label}</a>`).join('');
     const backBtn = back ? `<a href="${back.href}" class="back-btn">&larr; ${esc(back.label)}</a>` : '';
@@ -99,7 +104,7 @@ ${head}
 ${body}
 <footer>
     <div class="wrap">
-        <span>&copy; ${new Date().getFullYear()} ${esc(SITE.name)} &nbsp;|&nbsp; ${esc(SITE.location)}</span>
+        <span>&copy; ${since ? `${since}–` : ''}${YEAR()} ${esc(SITE.name)} &nbsp;|&nbsp; ${esc(SITE.location)}</span>
         <nav>
             <a href="/ios-apps">iOS</a>
             <a href="/android-apps">Android</a>

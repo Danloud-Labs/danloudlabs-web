@@ -124,6 +124,7 @@ function page({ title, description, path, active, body, ogImage, css = '' }) {
     return sitePage({
         title, description, path, ogImage: ogImage || COVER_OG,
         icon: LOGO,
+        since: DWM.since,
         active: 'projects',
         back: { href: '/#projects', label: 'Projects' },
         head: `<style>${DWM_CSS}${css}</style>`,
