@@ -3,7 +3,7 @@
 // Entry file of the Cloudflare Worker (named worker.js in the dashboard).
 // ==========================================
 import { htmlPrincipal } from './home.js';
-import { htmlMyncha } from './myncha.js';
+import { handleMyncha } from './myncha.js';           // Myncha: Vampires of Exius (story, characters, curse, Exius, bestiary…)
 import { handleAmaphest } from './amaphest.js';          // Amaphest: principal, personajes y galería
 import { handleMMX9 } from './mmx9.js';                  // Mega Man X9: principal, story, personajes, bosses, universe
 import { handleDarkWithinMe } from './dwm.js';           // Dark Within Me: principal y story (4 libros)
@@ -61,10 +61,15 @@ const fft = await handleFFT2(request);
 if (fft) return fft;
 
 // ==========================================
+// MYNCHA: VAMPIRES OF EXIUS (/myncha-vampires-of-exius, /story, /characters, /curse, /exius, /bestiary, /locations, /soundtrack)
+// ==========================================
+const myncha = await handleMyncha(request);
+if (myncha) return myncha;
+
+// ==========================================
 // ENRUTADORES
 // ==========================================
 // Proyectos Creativos, Videojuegos y Trailers
-if (path === '/myncha-vampires-of-exius') return new Response(htmlMyncha, { headers });
 // Categorías Principales
 if (path === '/ios-apps' || path === '/ios') return new Response(htmlIOS, { headers });
 if (path === '/android-apps' || path === '/android') return new Response(htmlAndroid, { headers });

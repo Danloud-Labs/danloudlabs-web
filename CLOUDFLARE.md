@@ -88,3 +88,14 @@ The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `n
 3. **Deploy**, then open https://danloudlabs.com/fftii
 4. Upload the trailer and the music from the Mac: `node tools/fft2_media.mjs`, then commit and push
    `assets/projects/fft2/soundtrack.json`.
+
+## Myncha: Vampires of Exius (one-time)
+
+1. Create `myncha-data.js` and `myncha-styles.js`, and paste `worker/myncha.js` over the old dashboard `myncha.js`.
+2. Paste `worker/worker.js` over the dashboard's `worker.js` (it imports `handleMyncha`, calls it right after FFT2
+   and drops the old `/myncha-vampires-of-exius` route line).
+3. **Deploy**, then open https://danloudlabs.com/myncha-vampires-of-exius
+4. Upload the music from the Mac: `node tools/myncha_media.mjs`, then commit and push
+   `assets/projects/myncha/soundtrack.json`.
+5. Art (CGI) goes in `assets/projects/myncha/`: `characters/<key>.webp` (3:4, werewolves also `<key>-beast.webp`),
+   `story/act-01.webp`…, `curse/`, `exius/`, `bestiary/`, `locations/`, `sections/` (16:9). Keys are in `worker/myncha-data.js`.

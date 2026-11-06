@@ -29,7 +29,7 @@ danloudlabs-web/
 ├── worker/         the files that go in the Cloudflare Worker
 │   ├── worker.js       the Worker's entry file (same name in the dashboard): imports and routes.
 │   │                   It also imports old-design pages that only live in the dashboard
-│   │                   (myncha, darkwithinme, android, software, fftii, leave-tracker, aura-routes).
+│   │                   (darkwithinme, android, software, fftii, leave-tracker, aura-routes).
 │   ├── site-data.js    apps, projects, platforms, contact: edit this one for content
 │   ├── site-styles.js  shared CSS (Theme Studio palette) for every redesigned page
 │   ├── site-layout.js  shared page shell: top bar, footer, app cards, icons
@@ -63,8 +63,12 @@ danloudlabs-web/
 │   ├── fft2-data.js         FFT2 texts: characters, houses, games, relics, jobs, locations
 │   ├── fft2-styles.js       FFT2 CSS (night blue and parchment, moon silver and solar gold)
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
+│   ├── myncha.js            Myncha: Vampires of Exius pages + handleMyncha(request) router (/myncha-vampires-of-exius)
+│   ├── myncha-data.js       Myncha texts: characters, the curse, Exius, bestiary, locations
+│   ├── myncha-styles.js     Myncha CSS (gothic night: amethyst, diamond cyan, blood crimson)
 ├── tools/fft2_assets.py    converts the FFT2 art (~/Downloads/FFT2 and the iCloud project) into assets/projects/fft2
 ├── tools/fft2_media.mjs    uploads the FFT2 trailer and music to R2 and writes assets/projects/fft2/soundtrack.json
+├── tools/myncha_media.mjs  uploads the Myncha music (iCloud project, MP3 folder) to R2 and writes assets/projects/myncha/soundtrack.json
 ├── tools/dwm_art_list.mjs   writes assets/projects/dwm/ART.md: every image the DWM pages have a frame for
 ├── tools/dwm_soundtrack.mjs  uploads the Dark Within Me soundtrack to R2 and writes assets/projects/dwm/soundtrack.json
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest

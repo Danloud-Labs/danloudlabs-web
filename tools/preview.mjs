@@ -96,3 +96,21 @@ for (const [file, route] of Object.entries(fftPages)) {
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }
+
+// Myncha pages: story and soundtrack read from disk.
+import { handleMyncha } from '../worker/myncha.js';
+const fetchFft = globalThis.fetch;
+globalThis.fetch = async (u, o) => {
+    const m = String(u).match(/\/projects\/myncha\/([^?]+\.(md|json))/);
+    return m ? new Response(await readFile(join(out, '..', 'assets/projects/myncha/', m[1])).catch(() => '{}')) : fetchFft(u, o);
+};
+const myRoutes = ['story', 'characters', 'curse', 'exius', 'bestiary', 'locations', 'soundtrack'];
+for (const route of ['', ...myRoutes]) {
+    const file = route ? `myncha-${route}.html` : 'myncha.html';
+    const res = await handleMyncha(new Request(`https://danloudlabs.com/myncha-vampires-of-exius${route ? `/${route}` : ''}`));
+    let h = (await res.text()).split(SITE_ASSETS).join('../assets');
+    for (const r of myRoutes) h = h.split(`href="/myncha-vampires-of-exius/${r}`).join(`href="myncha-${r}.html`);
+    h = h.split('href="/myncha-vampires-of-exius"').join('href="myncha.html"');
+    await writeFile(join(out, file), h);
+    console.log(file, `${Math.round(h.length / 1024)} KB`);
+}
