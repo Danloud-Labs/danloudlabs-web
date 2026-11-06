@@ -79,3 +79,12 @@ Upload the music from the Mac with `node tools/dwm_soundtrack.mjs`, then commit 
 
 Create `dwm-characters.js` and `dwm-locations.js`, then paste `dwm.js`, `dwm-data.js`, `dwm-styles.js` and `dwm-universe.js` over the old ones and Deploy.
 The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `node tools/dwm_art_list.mjs`).
+
+## Final Fantasy Tactics II (one-time)
+
+1. Create `fft2.js`, `fft2-data.js` and `fft2-styles.js`.
+2. Paste `worker/worker.js` over the dashboard's `worker.js` (it imports `handleFFT2`, calls it right after Dark Within Me
+   and drops the old `/fftii` route line). `fftii.js` is no longer used.
+3. **Deploy**, then open https://danloudlabs.com/fftii
+4. Upload the trailer and the music from the Mac: `node tools/fft2_media.mjs`, then commit and push
+   `assets/projects/fft2/soundtrack.json`.

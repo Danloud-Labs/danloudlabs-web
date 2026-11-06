@@ -20,7 +20,7 @@ import { htmlHazMat } from './hazmat.js';
 // Soporte, Privacidad y Herramientas Pro
 import { htmlSupport } from './support.js';
 import { htmlPrivacy } from './privacy.js';       // <-- REQUERIDO
-import { htmlFFTII } from './fftii.js';
+import { handleFFT2 } from './fft2.js';                  // Final Fantasy Tactics II (fan-made)
 import { htmlLeaveTracker } from './leave-tracker.js';
 
 export default {
@@ -55,11 +55,16 @@ const dwm = await handleDarkWithinMe(request);
 if (dwm) return dwm;
 
 // ==========================================
+// FINAL FANTASY TACTICS II (/fftii, /story, /characters, /world, /relics, /jobs, /locations, /soundtrack, /fft2)
+// ==========================================
+const fft = await handleFFT2(request);
+if (fft) return fft;
+
+// ==========================================
 // ENRUTADORES
 // ==========================================
 // Proyectos Creativos, Videojuegos y Trailers
 if (path === '/myncha-vampires-of-exius') return new Response(htmlMyncha, { headers });
-if (path === '/fftii') return new Response(htmlFFTII, { headers }); 
 // Categorías Principales
 if (path === '/ios-apps' || path === '/ios') return new Response(htmlIOS, { headers });
 if (path === '/android-apps' || path === '/android') return new Response(htmlAndroid, { headers });

@@ -59,7 +59,12 @@ danloudlabs-web/
 │   ├── dwm-universe.js      Dark Within Me Universe page: Prism, gods, demons, ranks, timeline
 │   ├── dwm-characters.js    Dark Within Me characters, in groups
 │   ├── dwm-locations.js     Dark Within Me locations, by region
+│   ├── fft2.js              Final Fantasy Tactics II pages + handleFFT2(request) router (/fftii)
+│   ├── fft2-data.js         FFT2 texts: characters, houses, games, relics, jobs, locations
+│   ├── fft2-styles.js       FFT2 CSS (night blue and parchment, moon silver and solar gold)
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
+├── tools/fft2_assets.py    converts the FFT2 art (~/Downloads/FFT2 and the iCloud project) into assets/projects/fft2
+├── tools/fft2_media.mjs    uploads the FFT2 trailer and music to R2 and writes assets/projects/fft2/soundtrack.json
 ├── tools/dwm_art_list.mjs   writes assets/projects/dwm/ART.md: every image the DWM pages have a frame for
 ├── tools/dwm_soundtrack.mjs  uploads the Dark Within Me soundtrack to R2 and writes assets/projects/dwm/soundtrack.json
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest

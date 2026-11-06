@@ -79,3 +79,20 @@ for (const [file, route] of Object.entries(dwmPages)) {
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }
+
+// Final Fantasy Tactics II pages: story and soundtrack read from disk.
+import { handleFFT2 } from '../worker/fft2.js';
+const fetchDwm = globalThis.fetch;
+globalThis.fetch = async (u, o) => {
+    const m = String(u).match(/\/projects\/fft2\/([^?]+\.(md|json))/);
+    return m ? new Response(await readFile(join(out, '..', 'assets/projects/fft2/', m[1])).catch(() => '{}')) : fetchDwm(u, o);
+};
+const fftPages = { 'fft2.html': '', 'fft2-story.html': '/story', 'fft2-characters.html': '/characters', 'fft2-world.html': '/world', 'fft2-relics.html': '/relics', 'fft2-jobs.html': '/jobs', 'fft2-locations.html': '/locations', 'fft2-soundtrack.html': '/soundtrack' };
+for (const [file, route] of Object.entries(fftPages)) {
+    const res = await handleFFT2(new Request(`https://danloudlabs.com/fftii${route}`));
+    let h = (await res.text()).split(SITE_ASSETS).join('../assets');
+    for (const r of ['story', 'characters', 'world', 'relics', 'jobs', 'locations', 'soundtrack']) h = h.split(`href="/fftii/${r}`).join(`href="fft2-${r}.html`);
+    h = h.split('href="/fftii"').join('href="fft2.html"');
+    await writeFile(join(out, file), h);
+    console.log(file, `${Math.round(h.length / 1024)} KB`);
+}
