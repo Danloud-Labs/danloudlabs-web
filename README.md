@@ -68,6 +68,7 @@ danloudlabs-web/
 │   ├── myncha-styles.js     Myncha CSS (gothic night: amethyst, diamond cyan, blood crimson)
 ├── tools/fft2_assets.py    converts the FFT2 art (~/Downloads/FFT2 and the iCloud project) into assets/projects/fft2
 ├── tools/fft2_media.mjs    uploads the FFT2 trailer and music to R2 and writes assets/projects/fft2/soundtrack.json
+├── tools/myncha_gallery.mjs lists assets/projects/myncha/gallery/ into gallery.json (the Gallery page reads it live)
 ├── tools/myncha_media.mjs  uploads the Myncha music (iCloud project, MP3 folder) to R2 and writes assets/projects/myncha/soundtrack.json
 ├── tools/dwm_art_list.mjs   writes assets/projects/dwm/ART.md: every image the DWM pages have a frame for
 ├── tools/dwm_soundtrack.mjs  uploads the Dark Within Me soundtrack to R2 and writes assets/projects/dwm/soundtrack.json

@@ -99,3 +99,5 @@ The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `n
    `assets/projects/myncha/soundtrack.json`.
 5. Art (CGI) goes in `assets/projects/myncha/`: `characters/<key>.webp` (3:4, werewolves also `<key>-beast.webp`),
    `story/act-01.webp`…, `curse/`, `exius/`, `bestiary/`, `locations/`, `sections/` (16:9). Keys are in `worker/myncha-data.js`.
+6. Gallery: put images in `assets/projects/myncha/gallery/` ("01 Title.webp"), run `node tools/myncha_gallery.mjs`,
+   then commit and push. No Cloudflare paste needed.

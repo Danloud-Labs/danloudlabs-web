@@ -104,7 +104,7 @@ globalThis.fetch = async (u, o) => {
     const m = String(u).match(/\/projects\/myncha\/([^?]+\.(md|json))/);
     return m ? new Response(await readFile(join(out, '..', 'assets/projects/myncha/', m[1])).catch(() => '{}')) : fetchFft(u, o);
 };
-const myRoutes = ['story', 'characters', 'curse', 'exius', 'bestiary', 'locations', 'soundtrack'];
+const myRoutes = ['story', 'characters', 'curse', 'exius', 'bestiary', 'locations', 'gallery', 'soundtrack'];
 for (const route of ['', ...myRoutes]) {
     const file = route ? `myncha-${route}.html` : 'myncha.html';
     const res = await handleMyncha(new Request(`https://danloudlabs.com/myncha-vampires-of-exius${route ? `/${route}` : ''}`));
