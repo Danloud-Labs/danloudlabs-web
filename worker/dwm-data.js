@@ -1,8 +1,8 @@
 // =====================================================================================
 // Dark Within Me — website content: title, books, sections.
 // An original saga by David Gomez Valerio (begun in 2011): story, characters and music are his.
-// Book text is NOT here: each book lives in assets/projects/dwm/story/<book>.md and the Story
-// page reads it live, so editing a chapter only needs a git push.
+// Chapter text is NOT here: each book's chapter summaries live in assets/projects/dwm/story/<book>.md
+// (and the legends in assets/projects/dwm/legends.md), read live: editing them only needs a git push.
 // =====================================================================================
 
 import { asset } from './site-data.js';
@@ -20,7 +20,7 @@ export const DWM = {
     copyright: 'Dark Within Me, its story, characters and music are original works by David Gomez Valerio. All rights reserved.',
 };
 
-// The four books, in reading order. `file`: the book's text in assets/projects/dwm/story/
+// The four books, in reading order. `file`: the book's chapter summaries in assets/projects/dwm/story/
 // (null until it is published). `cover`: assets/projects/dwm/books/<cover>.
 export const DWM_BOOKS = [
     {
@@ -67,7 +67,8 @@ export const DWM_PREMISE = [
 export const DWM_SECTIONS = [
     { key: 'story', name: 'The Story', nav: 'Story', status: 'live', text: 'Four books, from the Tuscany of 1492 to a war between the three worlds.' },
     { key: 'characters', name: 'Characters', status: 'soon', text: 'Cristian, Elizabeth, the Celestial Union, the Demon Union and the four souls of the Assassination List.' },
-    { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'soon', text: 'The legends of creation, the Prism, the ranks of gods and demons, the forbidden arts and the timeline.' },
+    { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'The Prism, gods and demons, the Celestial Union, the Army of Light, the ranks of both sides and the timeline.' },
+    { key: 'legends', name: 'Legends', nav: 'Legends', status: 'live', text: 'Before the first book: the birth of light and darkness, and the war that sent the demons into the shadows.' },
     { key: 'locations', name: 'Locations', status: 'soon', text: 'Siena, Tuscany, Japan, Newfoundland, Egypt, the lost city of Romania, Heaven and the Underworld.' },
     { key: 'soundtrack', name: 'Soundtrack', status: 'soon', text: 'The original music of Dark Within Me, written by the author since 2011.' },
 ];

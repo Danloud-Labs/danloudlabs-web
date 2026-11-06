@@ -1,29 +1,35 @@
 // =====================================================================================
 // Dark Within Me — pages and routes.
 //   /dark-within-me-la-sua-origine            main page (logo hero, books, premise, sections)
-//   /dark-within-me-la-sua-origine/story      the four books, one tab each (#la-sua-origine …)
+//   /dark-within-me-la-sua-origine/story      the four books, one tab each (#la-sua-origine …), chapter summaries
+//   /dark-within-me-la-sua-origine/universe   how the world works: Prism, gods, demons, ranks, timeline
+//   /dark-within-me-la-sua-origine/legends    the legends told before the books
 //   /dark-within-me, /dwm                     -> main page
 // The Worker's fetch() calls handleDarkWithinMe(request) first; it returns null for other paths.
 //
-// Book text: assets/projects/dwm/story/<book>.md, read live (edge cache 1 min). Format:
-//   ## Prologue                          a chapter (the heading is its title)
-//   ## Chapter 1: Triangle of Misfortune "Label: Title"
+// Texts read live (edge cache 1 min): assets/projects/dwm/story/<book>.md (chapter summaries)
+// and assets/projects/dwm/legends.md. Format:
+//   ## Chapter 1: Triangle of Misfortune "Label: Title" starts a chapter
 //   ***                                  a scene break
 //   *text*                               italics
-// Paragraphs are separated by a blank line.
+// Paragraphs are separated by a blank line. Text before the first ## is a note and is not shown.
+// Chapter art, by position (01, 02…): story/<book>/chapter-01.webp, legends/legend-01.webp.
+// A missing image shows an empty frame, so art can be added later with a git push.
 // =====================================================================================
 
 import { DWM, DWM_BASE, DWM_BOOKS, DWM_PREMISE, DWM_SECTIONS, dwmAsset } from './dwm-data.js';
 import { DWM_CSS } from './dwm-styles.js';
+import { DWM_COUNT, DWM_DEMON_RANKS, DWM_GOD_RANKS, DWM_LORE, DWM_TIMELINE, DWM_UNIVERSE_ART } from './dwm-universe.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
 const LOGO = dwmAsset('brand/logo.webp');
 const COVER_OG = dwmAsset('books/la-sua-origine.webp');
+const HERO = dwmAsset('brand/hero.webp');
 
 async function loadText(file) {
     try {
-        const res = await fetch(`${dwmAsset(`story/${file}`)}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+        const res = await fetch(`${dwmAsset(file)}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
         if (res.ok) return await res.text();
     } catch (_) { /* the book shows its synopsis only */ }
     return '';
@@ -62,6 +68,40 @@ function parseBook(md) {
     return chapters;
 }
 
+// Chapters with an art frame each, a sticky table of contents and a mobile jump menu.
+// `prefix`: anchor prefix; `art(k)`: image URL of chapter k (0-based).
+function reader(prefix, chapters, art) {
+    const id = (k) => `${prefix}-${k + 1}`;
+    const num = (c) => { const w = c.label.split(' ').pop(); return /^(\d+|[IVX]+)$/.test(w) ? w : '·'; };
+    const toc = chapters.map((c, k) => `<a href="#${id(k)}" data-ch="${id(k)}"><span>${esc(num(c))}</span>${esc(c.title)}</a>`).join('');
+    return `
+        <div class="toc-mobile"><select class="tocsel" aria-label="Jump to chapter">${chapters.map((c, k) => `<option value="${id(k)}">${esc(c.label ? `${c.label}: ${c.title}` : c.title)}</option>`).join('')}</select></div>
+        <div class="story">
+            <nav class="toc" aria-label="Chapters"><h4>Chapters</h4>${toc}</nav>
+            <div class="chapters">${chapters.map((c, k) => `
+                <article class="chapter" id="${id(k)}">
+                    <figure class="ch-art"><img src="${art(k)}" alt="${esc(c.title)}" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()"><figcaption>${esc(c.label || c.title)}</figcaption></figure>
+                    ${c.label ? `<div class="num">${esc(c.label)}</div>` : ''}
+                    <h2>${esc(c.title)}</h2>
+                    ${c.html.join('\n')}
+                </article>`).join('')}
+            </div>
+        </div>`;
+}
+
+// Keeps the table of contents and the mobile menu in step with the chapter being read.
+const READER_JS = `
+    document.querySelectorAll('.tocsel').forEach((sel) => sel.addEventListener('change', () => { const t = document.getElementById(sel.value); t && t.scrollIntoView({ behavior: 'smooth' }); }));
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((es) => es.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const box = e.target.closest('.story').parentNode; const id = e.target.id;
+            box.querySelectorAll('.toc a').forEach((a) => a.classList.toggle('on', a.dataset.ch === id));
+            const sel = box.querySelector('.tocsel'); if (sel) sel.value = id;
+        }), { rootMargin: '-30% 0px -60% 0px' });
+        document.querySelectorAll('.chapter').forEach((c) => io.observe(c));
+    }`;
+
 function dwmNav(active) {
     const links = [['', 'Home'], ...DWM_SECTIONS.filter((s) => s.status === 'live').map((s) => [s.key, s.nav || s.name])];
     return `<div class="mmx-nav"><div class="wrap"><a href="${DWM_BASE}" style="padding:0;border:0;background:none"><img src="${LOGO}" alt="Dark Within Me"></a>${links.map(([k, n]) => `<a href="${DWM_BASE}${k ? `/${k}` : ''}"${active === k ? ' class="on"' : ''}>${esc(n)}</a>`).join('')}</div></div>`;
@@ -90,9 +130,9 @@ function mainPage() {
     const embers = Array.from({ length: 26 }, (_, i) => `<i style="left:${(i * 37) % 100}%;animation-delay:${((i * 1.7) % 9).toFixed(1)}s;animation-duration:${7 + (i % 5)}s;--dx:${((i % 7) - 3) * 18}px"></i>`).join('');
     const body = `
 <section class="dwm-hero">
+    <div class="hero-art"><img src="${HERO}" alt="Dark Within Me, by ${esc(DWM.author)}"></div>
     <div class="embers">${embers}</div>
     <div class="wrap">
-        <img class="logo" src="${LOGO}" alt="Dark Within Me: La Sua Origine">
         <p class="lead">${esc(DWM.logline)}</p>
         <p class="tag">${esc(DWM.tagline)}</p>
         <div class="cta-row"><a class="btn btn-primary" href="${DWM_BASE}/story">Read the story</a></div>
@@ -130,34 +170,23 @@ function mainPage() {
 
 // ---------------------------------------------------------------- story
 async function storyPage() {
-    const texts = await Promise.all(DWM_BOOKS.map((b) => (b.file ? loadText(b.file) : '')));
+    const texts = await Promise.all(DWM_BOOKS.map((b) => (b.file ? loadText(`story/${b.file}`) : '')));
     const tabs = DWM_BOOKS.map((b, i) => `<button type="button" class="btab${i === 0 ? ' on' : ''}" data-book="${b.key}" aria-pressed="${i === 0}" style="--bc:${b.color}"><small>Book ${b.n}</small><b>${esc(b.title)}</b></button>`).join('');
     const panels = DWM_BOOKS.map((b, i) => {
         const chapters = parseBook(texts[i] || '');
-        const id = (k) => `${b.key}-${k}`;
-        const toc = chapters.map((c, k) => `<a href="#${id(k)}" data-ch="${id(k)}"><span>${k}</span>${esc(c.title)}</a>`).join('');
-        const reader = chapters.length ? `
-        <div class="toc-mobile"><select class="tocsel" aria-label="Jump to chapter">${chapters.map((c, k) => `<option value="${id(k)}">${esc(c.label ? `${c.label}: ${c.title}` : c.title)}</option>`).join('')}</select></div>
-        <div class="story">
-            <nav class="toc" aria-label="Chapters"><h4>Chapters</h4>${toc}</nav>
-            <div class="chapters">${chapters.map((c, k) => `
-                <article class="chapter" id="${id(k)}">
-                    ${c.label ? `<div class="num">${esc(c.label)}</div>` : ''}
-                    <h2>${esc(c.title)}</h2>
-                    ${c.html.join('\n')}
-                </article>`).join('')}
-            </div>
-        </div>` : '<div class="bsoon">The chapters of this book are on their way.</div>';
+        const body = chapters.length
+            ? reader(b.key, chapters, (k) => dwmAsset(`story/${b.key}/chapter-${String(k + 1).padStart(2, '0')}.webp`))
+            : '<div class="bsoon">The chapters of this book are on their way.</div>';
         return `
-    <div class="bpanel" id="${b.key}" style="--bc:${b.color}"${i === 0 ? '' : ' hidden'}>
-        <div class="bcover" style="${coverStyle(b)}"></div>
+    <div class="bpanel" id="book-${b.key}" style="--bc:${b.color}"${i === 0 ? '' : ' hidden'}>
+        <div class="bcover"><img src="${dwmAsset(`books/${b.cover}`)}" alt="${esc(b.title)}"${i === 0 ? '' : ' loading="lazy"'}></div>
         <div class="bsyn"><h2><small>Book ${b.n}</small>${esc(b.title)}</h2>${b.synopsis.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
-        ${reader}
+        ${body}
     </div>`;
     }).join('');
     const body = `
 <section class="page-head"><div class="wrap"><span class="eyebrow">The Story</span><h1>The books of <span class="grad-bv">Dark Within Me</span></h1>
-<p class="lead">Read the saga in order: La Sua Origine, The Army of Light, Ricardo Monteoro and After Dawn.</p></div></section>
+<p class="lead">The saga in order, chapter by chapter: La Sua Origine, The Army of Light, Ricardo Monteoro and After Dawn.</p></div></section>
 <section style="padding-top:24px"><div class="wrap">
     <div class="btabs" id="btabs">${tabs}</div>
     ${panels}
@@ -168,25 +197,64 @@ async function storyPage() {
     const show = (key) => {
         const btn = bar.querySelector('[data-book="' + key + '"]'); if (!btn) return false;
         bar.querySelectorAll('.btab').forEach((b) => { const on = b === btn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-        document.querySelectorAll('.bpanel').forEach((p) => { p.hidden = p.id !== key; });
+        document.querySelectorAll('.bpanel').forEach((p) => { p.hidden = p.id !== 'book-' + key; });
         return true;
     };
-    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-book]'); if (!b) return; show(b.dataset.book); history.replaceState(null, '', '#' + b.dataset.book); bar.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    // #book or #book-<chapter>: open that book (and scroll to the chapter).
+    // The tabs stay in view with the whole cover under them.
+    const toTabs = (smooth) => bar.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-book]'); if (!b) return; show(b.dataset.book); history.replaceState(null, '', '#' + b.dataset.book); toTabs(true); });
+    // #book opens that book at its tabs; #book-<n> opens it at chapter n.
     const h = decodeURIComponent(location.hash.slice(1));
-    if (h) { const key = [...bar.querySelectorAll('[data-book]')].map((b) => b.dataset.book).find((k) => h === k || h.startsWith(k + '-')); if (key) { show(key); const t = document.getElementById(h); t && setTimeout(() => t.scrollIntoView(), 50); } }
-    document.querySelectorAll('.tocsel').forEach((sel) => sel.addEventListener('change', () => { const t = document.getElementById(sel.value); t && t.scrollIntoView({ behavior: 'smooth' }); }));
-    if (!('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver((es) => es.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const panel = e.target.closest('.bpanel'); const id = e.target.id;
-        panel.querySelectorAll('.toc a').forEach((a) => a.classList.toggle('on', a.dataset.ch === id));
-        const sel = panel.querySelector('.tocsel'); if (sel) sel.value = id;
-    }), { rootMargin: '-30% 0px -60% 0px' });
-    document.querySelectorAll('.chapter').forEach((c) => io.observe(c));
+    if (h) {
+        const key = [...bar.querySelectorAll('[data-book]')].map((b) => b.dataset.book).find((k) => h === k || h.startsWith(k + '-'));
+        if (key) { show(key); const t = h === key ? null : document.getElementById(h); setTimeout(() => (t ? t.scrollIntoView() : toTabs(false)), 60); }
+    }
+    ${READER_JS}
 })();
 </script>`;
-    return page({ title: `The Story · ${DWM.title}`, description: `Read Dark Within Me, an original saga by ${DWM.author}: La Sua Origine, The Army of Light, Ricardo Monteoro and After Dawn.`, path: `${DWM_BASE}/story`, active: 'story', body });
+    return page({ title: `The Story · ${DWM.title}`, description: `The story of Dark Within Me, an original saga by ${DWM.author}, chapter by chapter: La Sua Origine, The Army of Light, Ricardo Monteoro and After Dawn.`, path: `${DWM_BASE}/story`, active: 'story', body });
+}
+
+// ---------------------------------------------------------------- legends
+async function legendsPage() {
+    const chapters = parseBook(await loadText('legends.md'));
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">The Legends</span><h1>Before the <span class="grad-bv">first book</span></h1>
+<p class="lead">How light and darkness were born, why a god has no soul, and how the demons lost their names. The legends every character in the saga grew up with.</p></div></section>
+<section style="padding-top:24px"><div class="wrap">
+    ${chapters.length ? reader('legend', chapters, (k) => dwmAsset(`legends/legend-${String(k + 1).padStart(2, '0')}.webp`)) : '<div class="bsoon">The legends are on their way.</div>'}
+</div></section>
+<script>(() => {${READER_JS}
+})();</script>`;
+    return page({ title: `Legends · ${DWM.title}`, description: `The legends of Dark Within Me: the Prism, Vita and Éres, and the War between Light and Darkness.`, path: `${DWM_BASE}/legends`, active: 'legends', body });
+}
+
+// ---------------------------------------------------------------- universe
+function universePage() {
+    const ranks = (list, cls) => `<ol class="ranks ${cls}">${list.map((r, i) => `<li class="reveal"><span class="rn">${i + 1}</span><div><b>${esc(r.name)}</b><small>${esc(r.n)}</small><p>${esc(r.t)}</p></div></li>`).join('')}</ol>`;
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">The Universe</span><h1>How the world of <span class="grad-bv">Dark Within Me</span> works</h1>
+<p class="lead">The Prism, the gods and the demons, the Celestial Union and the Army of Light, the ranks of both sides and the arts they fight with.</p></div></section>
+<section style="padding-top:28px"><div class="wrap">
+    <div class="lore">${DWM_LORE.map((l) => `
+        <div class="card reveal" id="${l.key}" style="--tc:${l.c}">
+            ${DWM_UNIVERSE_ART.includes(l.key) ? `<div class="art" style="background-image:url('${dwmAsset(`universe/${l.key}.webp`)}')"></div>` : ''}
+            <div class="txt"><h3>${esc(l.name)}</h3>${l.text.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+        </div>`).join('')}
+    </div>
+</div></section>
+<section style="padding-top:10px"><div class="wrap">
+    ${head('The Ranks', 'Six steps of light, <span class="grad-bv">six of darkness</span>')}
+    <div class="rank-cols">
+        <div><h3 class="rank-h light">The ranks of the gods</h3>${ranks(DWM_GOD_RANKS, 'light')}</div>
+        <div><h3 class="rank-h dark">The ranks of the demons</h3>${ranks(DWM_DEMON_RANKS, 'dark')}<p class="count-note">${esc(DWM_COUNT)}</p></div>
+    </div>
+</div></section>
+<section style="padding-top:10px"><div class="wrap">
+    ${head('Timeline', 'From before time <span class="grad-bv">to the Tuscany of 1492</span>')}
+    <ol class="timeline">${DWM_TIMELINE.map((e) => `<li class="reveal"><b>${esc(e.y)}</b><p>${esc(e.t)}</p></li>`).join('')}</ol>
+</div></section>`;
+    return page({ title: `The Universe · ${DWM.title}`, description: `The world of Dark Within Me: the Prism, gods and demons, the Celestial Union, the Army of Light, the ranks and the timeline.`, path: `${DWM_BASE}/universe`, active: 'universe', body });
 }
 
 // ---------------------------------------------------------------- routes
@@ -200,8 +268,7 @@ export async function handleDarkWithinMe(request) {
     const rest = path.slice(DWM_BASE.length);
     if (rest === '') return html(mainPage());
     if (rest === '/story') return html(await storyPage());
+    if (rest === '/universe') return html(universePage());
+    if (rest === '/legends') return html(await legendsPage());
     return Response.redirect(`${url.origin}${DWM_BASE}`, 302);
 }
-
-
-

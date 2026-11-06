@@ -67,14 +67,15 @@ for (const [file, route] of Object.entries(mmxPages)) {
 import { handleDarkWithinMe } from '../worker/dwm.js';
 const fetchMmx = globalThis.fetch;
 globalThis.fetch = async (u, o) => {
-    const m = String(u).match(/\/projects\/dwm\/(story\/[^?]+)/);
+    const m = String(u).match(/\/projects\/dwm\/([^?]+\.md)/);
     return m ? new Response(await readFile(join(out, '..', 'assets/projects/dwm/', m[1])).catch(() => '')) : fetchMmx(u, o);
 };
-const dwmPages = { 'dwm.html': '', 'dwm-story.html': '/story' };
+const dwmPages = { 'dwm.html': '', 'dwm-story.html': '/story', 'dwm-universe.html': '/universe', 'dwm-legends.html': '/legends' };
 for (const [file, route] of Object.entries(dwmPages)) {
     const res = await handleDarkWithinMe(new Request(`https://danloudlabs.com/dark-within-me-la-sua-origine${route}`));
     let h = (await res.text()).split(SITE_ASSETS).join('../assets');
-    h = h.split('href="/dark-within-me-la-sua-origine/story').join('href="dwm-story.html').split('href="/dark-within-me-la-sua-origine"').join('href="dwm.html"');
+    for (const r of ['story', 'universe', 'legends']) h = h.split(`href="/dark-within-me-la-sua-origine/${r}`).join(`href="dwm-${r}.html`);
+    h = h.split('href="/dark-within-me-la-sua-origine"').join('href="dwm.html"');
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }

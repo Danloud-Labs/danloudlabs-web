@@ -63,3 +63,9 @@ Create `mmx9-soundtrack.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-styl
 3. **Deploy**, then open https://danloudlabs.com/dark-within-me-la-sua-origine
 
 The chapters live in `assets/projects/dwm/story/<book>.md` and are read live: new chapters only need a git push.
+
+### Dark Within Me: Universe and Legends (one-time)
+
+Create `dwm-universe.js`, then paste `dwm.js`, `dwm-data.js` and `dwm-styles.js` over the old ones and Deploy.
+Chapter art goes in `assets/projects/dwm/story/<book>/chapter-01.webp`… (legends: `assets/projects/dwm/legends/legend-01.webp`…):
+an empty frame shows until the image is pushed.

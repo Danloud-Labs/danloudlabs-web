@@ -56,9 +56,11 @@ danloudlabs-web/
 │   ├── mmx9-styles.js       MMX9-only CSS (blue / dark violet)
 │   ├── dwm.js               Dark Within Me pages + handleDarkWithinMe(request) router
 │   ├── dwm-data.js          Dark Within Me texts: the four books, synopses, premise, sections
+│   ├── dwm-universe.js      Dark Within Me Universe page: Prism, gods, demons, ranks, timeline
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest
-├── assets/projects/dwm/story/*.md  the Dark Within Me books, read live (## Chapter: Title, *** = scene break)
+├── assets/projects/dwm/story/*.md  Dark Within Me chapter summaries per book, read live (## Chapter N: Title)
+├── assets/projects/dwm/legends.md  Dark Within Me legends, read live (art: legends/legend-01.webp…)
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```
