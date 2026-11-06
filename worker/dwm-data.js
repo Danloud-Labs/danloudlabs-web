@@ -66,9 +66,9 @@ export const DWM_PREMISE = [
 // Sections (main page and sub-navigation). Only 'live' ones are linked.
 export const DWM_SECTIONS = [
     { key: 'story', name: 'The Story', nav: 'Story', status: 'live', text: 'Four books, from the Tuscany of 1492 to a war between the three worlds.' },
-    { key: 'characters', name: 'Characters', status: 'soon', text: 'Cristian, Elizabeth, the Celestial Union, the Demon Union and the four souls of the Assassination List.' },
+    { key: 'characters', name: 'Characters', nav: 'Characters', status: 'live', text: 'Cristian, Elizabeth, the House of Siena, the Celestial Union, the Demon Union and the four souls of the Assassination List.' },
     { key: 'universe', name: 'The Universe', nav: 'Universe', status: 'live', text: 'The Prism, gods and demons, the Celestial Union, the Army of Light, the ranks of both sides and the timeline.' },
     { key: 'legends', name: 'Legends', nav: 'Legends', status: 'live', text: 'Before the first book: the birth of light and darkness, and the war that sent the demons into the shadows.' },
-    { key: 'locations', name: 'Locations', status: 'soon', text: 'Siena, Tuscany, Japan, Newfoundland, Egypt, the lost city of Romania, Heaven and the Underworld.' },
+    { key: 'locations', name: 'Locations', nav: 'Locations', status: 'live', text: 'Siena, Tuscany, Japan, Newfoundland, Egypt, the lost city of Romania, Heaven and the Underworld.' },
     { key: 'soundtrack', name: 'Soundtrack', nav: 'Soundtrack', status: 'live', text: 'The original music of Dark Within Me, composed by the author since 2011.' },
 ];

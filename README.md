@@ -57,7 +57,10 @@ danloudlabs-web/
 │   ├── dwm.js               Dark Within Me pages + handleDarkWithinMe(request) router
 │   ├── dwm-data.js          Dark Within Me texts: the four books, synopses, premise, sections
 │   ├── dwm-universe.js      Dark Within Me Universe page: Prism, gods, demons, ranks, timeline
+│   ├── dwm-characters.js    Dark Within Me characters, in groups
+│   ├── dwm-locations.js     Dark Within Me locations, by region
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
+├── tools/dwm_art_list.mjs   writes assets/projects/dwm/ART.md: every image the DWM pages have a frame for
 ├── tools/dwm_soundtrack.mjs  uploads the Dark Within Me soundtrack to R2 and writes assets/projects/dwm/soundtrack.json
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest
 ├── assets/projects/dwm/story/*.md  Dark Within Me chapter summaries per book, read live (## Chapter N: Title)

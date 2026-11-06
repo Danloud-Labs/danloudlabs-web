@@ -3,6 +3,8 @@
 //   /dark-within-me-la-sua-origine            main page (logo hero, books, premise, sections)
 //   /dark-within-me-la-sua-origine/story      the four books, one tab each (#la-sua-origine …), chapter summaries
 //   /dark-within-me-la-sua-origine/universe   how the world works: Prism, gods, demons, ranks, timeline
+//   /dark-within-me-la-sua-origine/characters every group and its members (tabs: #main …)
+//   /dark-within-me-la-sua-origine/locations  the places of the saga, by region
 //   /dark-within-me-la-sua-origine/legends    the legends told before the books
 //   /dark-within-me-la-sua-origine/soundtrack the original soundtrack (assets/projects/dwm/soundtrack.json)
 //   /dark-within-me, /dwm                     -> main page
@@ -20,11 +22,18 @@
 
 import { DWM, DWM_BASE, DWM_BOOKS, DWM_PREMISE, DWM_SECTIONS, dwmAsset } from './dwm-data.js';
 import { DWM_CSS } from './dwm-styles.js';
+import { DWM_GROUPS } from './dwm-characters.js';
+import { DWM_REGIONS } from './dwm-locations.js';
 import { DWM_COUNT, DWM_DEMON_RANKS, DWM_GOD_RANKS, DWM_LORE, DWM_TIMELINE } from './dwm-universe.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
+
+// An image frame: shows the art when the file exists, an empty labeled frame until it does,
+// so art can be added later with a git push only. `cls` sets the shape (see dwm-styles.js).
+const frame = (path, label, cls) => `<figure class="ph ${cls}"><img src="${dwmAsset(path)}" alt="${esc(label)}" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()"><figcaption>${esc(label)}</figcaption></figure>`;
+const bookTag = (n) => `<span class="btag">${n ? `Book ${n}` : 'Legends'}</span>`;
 const LOGO = dwmAsset('brand/logo.webp');
 const COVER_OG = dwmAsset('books/la-sua-origine.webp');
 const HERO = dwmAsset('brand/hero.webp');
@@ -161,7 +170,7 @@ function mainPage() {
         ${head('Explore', 'The world of Dark Within Me')}
         <div class="mmx-sections">${DWM_SECTIONS.map((s) => {
             const live = s.status === 'live';
-            const art = s.key === 'story' ? `<div class="art" style="background-image:url('${dwmAsset('books/la-sua-origine.webp')}')"></div>` : '<div class="art none"></div>';
+            const art = s.key === 'story' ? `<div class="art" style="background-image:url('${dwmAsset('books/la-sua-origine.webp')}')"></div>` : frame(`sections/${s.key}.webp`, s.name, 'wide sec-art');
             const inner = `${art}<div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st"${live ? '' : ' style="background:rgba(255,255,255,.08);color:var(--muted)"'}>${live ? 'Explore' : 'Coming soon'}</span></div>`;
             return live ? `<a class="mmx-section reveal" href="${DWM_BASE}/${s.key}">${inner}</a>` : `<div class="mmx-section reveal">${inner}</div>`;
         }).join('')}</div>
@@ -233,14 +242,14 @@ async function legendsPage() {
 
 // ---------------------------------------------------------------- universe
 function universePage() {
-    const ranks = (list, cls) => `<ol class="ranks ${cls}">${list.map((r, i) => `<li class="reveal"><span class="rn">${i + 1}</span><div><b>${esc(r.name)}</b><small>${esc(r.n)}</small><p>${esc(r.t)}</p></div></li>`).join('')}</ol>`;
+    const ranks = (list, side) => `<ol class="ranks ${side === 'god' ? 'light' : 'dark'}">${list.map((r, i) => `<li class="reveal"><div class="rimg">${frame(`universe/ranks/${side}-${r.key}.webp`, r.name, 'square')}<span class="rn">${i + 1}</span></div><div><b>${esc(r.name)}</b><small>${esc(r.n)}</small><p>${esc(r.t)}</p></div></li>`).join('')}</ol>`;
     const body = `
 <section class="page-head"><div class="wrap"><span class="eyebrow">The Universe</span><h1>How the world of <span class="grad-bv">Dark Within Me</span> works</h1>
 <p class="lead">The Prism, the gods and the demons, the Celestial Union and the Army of Light, the ranks of both sides and the arts they fight with.</p></div></section>
 <section style="padding-top:28px"><div class="wrap">
     <div class="lore">${DWM_LORE.map((l) => `
         <div class="card reveal" id="${l.key}" style="--tc:${l.c}">
-            <figure class="u-art"><img src="${dwmAsset(`universe/${l.key}.webp`)}" alt="${esc(l.name)}" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()"><figcaption>${esc(l.name)}</figcaption></figure>
+            ${frame(`universe/${l.key}.webp`, l.name, 'wide')}
             <div class="txt"><h3>${esc(l.name)}</h3>${l.text.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
         </div>`).join('')}
     </div>
@@ -248,15 +257,74 @@ function universePage() {
 <section style="padding-top:10px"><div class="wrap">
     ${head('The Ranks', 'Six steps of light, <span class="grad-bv">six of darkness</span>')}
     <div class="rank-cols">
-        <div><h3 class="rank-h light">The ranks of the gods</h3>${ranks(DWM_GOD_RANKS, 'light')}</div>
-        <div><h3 class="rank-h dark">The ranks of the demons</h3>${ranks(DWM_DEMON_RANKS, 'dark')}<p class="count-note">${esc(DWM_COUNT)}</p></div>
+        <div><h3 class="rank-h light">The ranks of the gods</h3>${ranks(DWM_GOD_RANKS, 'god')}</div>
+        <div><h3 class="rank-h dark">The ranks of the demons</h3>${ranks(DWM_DEMON_RANKS, 'demon')}<p class="count-note">${esc(DWM_COUNT)}</p></div>
     </div>
 </div></section>
 <section style="padding-top:10px"><div class="wrap">
     ${head('Timeline', 'From before time <span class="grad-bv">to the Tuscany of 1492</span>')}
-    <ol class="timeline">${DWM_TIMELINE.map((e) => `<li class="reveal"><b>${esc(e.y)}</b><p>${esc(e.t)}</p></li>`).join('')}</ol>
+    <ol class="timeline">${DWM_TIMELINE.map((e) => `<li class="reveal">${frame(`universe/timeline/${e.key}.webp`, e.y, 'wide tl-art')}<div><b>${esc(e.y)}</b><p>${esc(e.t)}</p></div></li>`).join('')}</ol>
 </div></section>`;
     return page({ title: `The Universe · ${DWM.title}`, description: `The world of Dark Within Me: the Prism, gods and demons, the Celestial Union, the Army of Light, the ranks and the timeline.`, path: `${DWM_BASE}/universe`, active: 'universe', body });
+}
+
+// ---------------------------------------------------------------- characters
+function charactersPage() {
+    const total = DWM_GROUPS.reduce((a, g) => a + g.members.length, 0);
+    const tabs = DWM_GROUPS.map((g, i) => `<button type="button" class="gtab${i === 0 ? ' on' : ''}" data-group="${g.key}" aria-pressed="${i === 0}" style="--gc:${g.color}"><b>${esc(g.name)}</b><small>${g.members.length}</small></button>`).join('');
+    const panels = DWM_GROUPS.map((g, i) => `
+    <div class="gpanel" id="group-${g.key}" style="--gc:${g.color}"${i === 0 ? '' : ' hidden'}>
+        <div class="ghead">${frame(`characters/groups/${g.key}.webp`, g.name, 'wide')}<div><h2>${esc(g.name)}</h2><p>${esc(g.text)}</p></div></div>
+        <div class="people">${g.members.map((c) => `
+            <article class="person" id="${c.key}">
+                ${frame(`characters/${c.key}.webp`, c.name, 'portrait')}
+                <div class="pi">${bookTag(c.book)}<h3>${esc(c.name)}</h3>${c.alias ? `<span class="alias">${esc(c.alias)}</span>` : ''}<small>${esc(c.role)}</small><p>${esc(c.bio)}</p></div>
+            </article>`).join('')}
+        </div>
+    </div>`).join('');
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">Characters</span><h1>The people of <span class="grad-bv">Dark Within Me</span></h1>
+<p class="lead">${total} characters in ${DWM_GROUPS.length} groups: the pact and the people it binds, the House of Siena, the gods of the Celestial Union, the demons, the four souls of the list and those who stood beside Cristian.</p></div></section>
+<section style="padding-top:24px"><div class="wrap">
+    <div class="gtabs" id="gtabs">${tabs}</div>
+    ${panels}
+</div></section>
+<script>
+(() => {
+    const bar = document.getElementById('gtabs');
+    const show = (key) => {
+        const btn = bar.querySelector('[data-group="' + key + '"]'); if (!btn) return false;
+        bar.querySelectorAll('.gtab').forEach((b) => { const on = b === btn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+        document.querySelectorAll('.gpanel').forEach((p) => { p.hidden = p.id !== 'group-' + key; });
+        return true;
+    };
+    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-group]'); if (!b) return; show(b.dataset.group); history.replaceState(null, '', '#' + b.dataset.group); bar.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    // #group opens that group; #character opens its group and scrolls to the card.
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (h && !show(h)) { const c = document.getElementById(h); const p = c && c.closest('.gpanel'); if (p) { show(p.id.slice(6)); setTimeout(() => c.scrollIntoView({ block: 'center' }), 60); } }
+    else if (h) setTimeout(() => bar.scrollIntoView(), 60);
+})();
+</script>`;
+    return page({ title: `Characters · ${DWM.title}`, description: `The characters of Dark Within Me: Cristian, Elizabeth, Dionisio, Azazel, the House of Siena, the Celestial Union, the Demon Union and the Assassination List.`, path: `${DWM_BASE}/characters`, active: 'characters', body });
+}
+
+// ---------------------------------------------------------------- locations
+function locationsPage() {
+    const body = `
+<section class="page-head"><div class="wrap"><span class="eyebrow">Locations</span><h1>The places of <span class="grad-bv">Dark Within Me</span></h1>
+<p class="lead">From the valleys of Tuscany to the frozen seas, the deserts of Egypt and the lost city of Romania, and the worlds beyond.</p>
+<div class="rjump">${DWM_REGIONS.map((g) => `<a href="#${g.key}" style="--rc:${g.color}">${esc(g.name)}</a>`).join('')}</div></div></section>
+${DWM_REGIONS.map((g) => `
+<section class="region" id="${g.key}" style="--rc:${g.color}"><div class="wrap">
+    <h2 class="region-h">${esc(g.name)}<small>${g.places.length} places</small></h2>
+    <div class="places">${g.places.map((l) => `
+        <article class="place reveal" id="${l.key}">
+            ${frame(`locations/${l.key}.webp`, l.name, 'wide')}
+            <div class="pi">${bookTag(l.book)}<h3>${esc(l.name)}</h3><small>${esc(l.where)}</small><p>${esc(l.text)}</p></div>
+        </article>`).join('')}
+    </div>
+</div></section>`).join('')}`;
+    return page({ title: `Locations · ${DWM.title}`, description: `The locations of Dark Within Me: Tuscany, Siena, London, Owari, Newfoundland, Egypt, the lost city of Brașov, Heaven and the Underworld.`, path: `${DWM_BASE}/locations`, active: 'locations', body });
 }
 
 // ---------------------------------------------------------------- soundtrack
@@ -286,6 +354,8 @@ export async function handleDarkWithinMe(request) {
     const rest = path.slice(DWM_BASE.length);
     if (rest === '') return html(mainPage());
     if (rest === '/story') return html(await storyPage());
+    if (rest === '/characters') return html(charactersPage());
+    if (rest === '/locations') return html(locationsPage());
     if (rest === '/universe') return html(universePage());
     if (rest === '/legends') return html(await legendsPage());
     if (rest === '/soundtrack') return html(await soundtrackPage());

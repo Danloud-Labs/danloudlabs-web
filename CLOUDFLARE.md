@@ -74,3 +74,8 @@ an empty frame shows until the image is pushed.
 
 Paste `dwm.js`, `dwm-data.js`, `dwm-styles.js` and `mmx9-soundtrack.js` (the player, now shared by both sites) over the old ones and Deploy.
 Upload the music from the Mac with `node tools/dwm_soundtrack.mjs`, then commit and push `assets/projects/dwm/soundtrack.json`.
+
+### Dark Within Me: Characters and Locations (one-time)
+
+Create `dwm-characters.js` and `dwm-locations.js`, then paste `dwm.js`, `dwm-data.js`, `dwm-styles.js` and `dwm-universe.js` over the old ones and Deploy.
+The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `node tools/dwm_art_list.mjs`).
