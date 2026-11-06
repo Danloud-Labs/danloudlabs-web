@@ -6,7 +6,7 @@ import { htmlPrincipal } from './home.js';
 import { htmlMyncha } from './myncha.js';
 import { handleAmaphest } from './amaphest.js';          // Amaphest: principal, personajes y galería
 import { handleMMX9 } from './mmx9.js';                  // Mega Man X9: principal, story, personajes, bosses, universe
-import { htmlDarkWithinMe } from './darkwithinme.js';
+import { handleDarkWithinMe } from './dwm.js';           // Dark Within Me: principal y story (4 libros)
 import { htmlIOS } from './ios.js';
 import { htmlAndroid } from './android.js';
 import { htmlSoftware } from './software.js';
@@ -49,10 +49,15 @@ const mmx = await handleMMX9(request);
 if (mmx) return mmx;
 
 // ==========================================
+// DARK WITHIN ME (/dark-within-me-la-sua-origine, /story, /dark-within-me, /dwm)
+// ==========================================
+const dwm = await handleDarkWithinMe(request);
+if (dwm) return dwm;
+
+// ==========================================
 // ENRUTADORES
 // ==========================================
 // Proyectos Creativos, Videojuegos y Trailers
-if (path === '/dark-within-me-la-sua-origine') return new Response(htmlDarkWithinMe, { headers });
 if (path === '/myncha-vampires-of-exius') return new Response(htmlMyncha, { headers });
 if (path === '/fftii') return new Response(htmlFFTII, { headers }); 
 // Categorías Principales

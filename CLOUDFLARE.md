@@ -54,3 +54,12 @@ Create `mmx9-locations.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-style
 ### Mega Man X9: Soundtrack (one-time)
 
 Create `mmx9-soundtrack.js`, then paste `mmx9.js`, `mmx9-data.js` and `mmx9-styles.js` over the old ones and Deploy.
+
+## Dark Within Me (one-time)
+
+1. Create `dwm.js`, `dwm-data.js` and `dwm-styles.js`.
+2. Paste `worker/worker.js` over the dashboard's `worker.js` (it imports `handleDarkWithinMe`, calls it right
+   after MMX9 and drops the old `/dark-within-me-la-sua-origine` route line). `darkwithinme.js` is no longer used.
+3. **Deploy**, then open https://danloudlabs.com/dark-within-me-la-sua-origine
+
+The chapters live in `assets/projects/dwm/story/<book>.md` and are read live: new chapters only need a git push.

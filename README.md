@@ -53,8 +53,12 @@ danloudlabs-web/
 │   ├── mmx9-weapons.js      MMX9 special weapons of X, Zero, Axl and Gamma, by boss
 │   ├── mmx9-locations.js    MMX9 locations: the eight stations and the story places
 │   ├── mmx9-soundtrack.js   MMX9 soundtrack player (page body + CSS)
-│   └── mmx9-styles.js       MMX9-only CSS (blue / dark violet)
+│   ├── mmx9-styles.js       MMX9-only CSS (blue / dark violet)
+│   ├── dwm.js               Dark Within Me pages + handleDarkWithinMe(request) router
+│   ├── dwm-data.js          Dark Within Me texts: the four books, synopses, premise, sections
+│   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
 ├── tools/mmx9_assets.py  converts the MMX9 art in iCloud and writes its manifest
+├── assets/projects/dwm/story/*.md  the Dark Within Me books, read live (## Chapter: Title, *** = scene break)
 ├── tools/preview.mjs   renders the pages to preview/ with the local images
 └── CLOUDFLARE.md       how to install / update the Worker
 ```

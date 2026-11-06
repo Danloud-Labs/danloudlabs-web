@@ -62,3 +62,19 @@ for (const [file, route] of Object.entries(mmxPages)) {
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }
+
+// Dark Within Me pages: the book texts are read live, so serve them from disk.
+import { handleDarkWithinMe } from '../worker/dwm.js';
+const fetchMmx = globalThis.fetch;
+globalThis.fetch = async (u, o) => {
+    const m = String(u).match(/\/projects\/dwm\/(story\/[^?]+)/);
+    return m ? new Response(await readFile(join(out, '..', 'assets/projects/dwm/', m[1])).catch(() => '')) : fetchMmx(u, o);
+};
+const dwmPages = { 'dwm.html': '', 'dwm-story.html': '/story' };
+for (const [file, route] of Object.entries(dwmPages)) {
+    const res = await handleDarkWithinMe(new Request(`https://danloudlabs.com/dark-within-me-la-sua-origine${route}`));
+    let h = (await res.text()).split(SITE_ASSETS).join('../assets');
+    h = h.split('href="/dark-within-me-la-sua-origine/story').join('href="dwm-story.html').split('href="/dark-within-me-la-sua-origine"').join('href="dwm.html"');
+    await writeFile(join(out, file), h);
+    console.log(file, `${Math.round(h.length / 1024)} KB`);
+}
