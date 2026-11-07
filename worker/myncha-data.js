@@ -63,8 +63,19 @@ export const MY_GROUPS = [
         text: 'The people of the real world on the night that changed everything.',
         members: [
             { key: 'bryan', name: 'Bryan', role: 'The boy from the dance floor', bio: 'The stranger Myncha fell in love with at first sight. They danced for hours and walked into the woods to see the moon, and then the shadows tore open. All she found the next morning were his car keys. Later, in the crypt of a ruined cathedral, she found a torn strap of his leather jacket.', facts: [['Origin', 'The real world']] },
-            { key: 'sire', name: 'The Sire', role: 'Vampire patriarch', bio: 'A vampire of immense, suffocating power who took Bryan, and who, moved by a twisted pity, remade Myncha instead of killing her. The pendant he wore led her to an ancient book, and the book to Exius.' },
-            { key: 'dark-ladies', name: 'The Dark Ladies', role: 'The Sire’s companions', bio: 'The two vampire women who came out of the shadows at his side that night.' },
+        ],
+    },
+    {
+        key: 'old-vampires', name: 'The Old Vampires', color: '#d6334f',
+        text: 'Ancient vampires of the real world. They came out of the shadows on the night Myncha was turned.',
+        members: [
+            {
+                key: 'sire', name: 'The Sire', role: 'Vampire patriarch',
+                bio: 'A vampire of immense, suffocating power who took Bryan, and who, moved by a twisted pity, remade Myncha instead of killing her. The pendant he wore led her to an ancient book, and the book to Exius.',
+                forms: [{ suffix: '', name: 'Vampire form' }, { suffix: '-true', name: 'True form' }],
+            },
+            { key: 'deborah', name: 'Deborah', role: 'The Sire’s companion', bio: 'One of the two vampire women who came out of the shadows at the Sire’s side that night.' },
+            { key: 'beatrix', name: 'Beatrix', role: 'The Sire’s companion', bio: 'One of the two vampire women who came out of the shadows at the Sire’s side that night.' },
         ],
     },
     {
