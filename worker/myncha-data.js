@@ -72,7 +72,7 @@ export const MY_GROUPS = [
             {
                 key: 'sire', name: 'The Sire', role: 'Vampire patriarch',
                 bio: 'A vampire of immense, suffocating power who took Bryan, and who, moved by a twisted pity, remade Myncha instead of killing her. The pendant he wore led her to an ancient book, and the book to Exius.',
-                forms: [{ suffix: '', name: 'Vampire form' }, { suffix: '-true', name: 'True form' }],
+                forms: [{ suffix: '-true', name: 'True form' }, { suffix: '', name: 'Human form' }],
             },
             { key: 'deborah', name: 'Deborah', role: 'The Sire’s companion', bio: 'One of the two vampire women who came out of the shadows at the Sire’s side that night.' },
             { key: 'beatrix', name: 'Beatrix', role: 'The Sire’s companion', bio: 'One of the two vampire women who came out of the shadows at the Sire’s side that night.' },
