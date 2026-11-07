@@ -62,7 +62,7 @@ export const MY_GROUPS = [
         key: 'night', name: 'The Night It Began', color: '#5fd6e6',
         text: 'The people of the real world on the night that changed everything.',
         members: [
-            { key: 'kiki', name: 'Kiki', role: 'Myncha’s roommate', bio: 'Myncha’s roommate and her opposite in almost every way: outgoing, always on her way to a party, friends with everyone on campus. Every weekend she tried to bring Myncha along, and on the night Myncha finally decided to go out, Kiki was the one who did her makeup and cheered her on.', facts: [['Origin', 'The real world']] },
+            { key: 'kiki', name: 'Kiki', role: 'Myncha’s roommate', bio: 'Myncha’s roommate and best friend: a math lover with round glasses, a messy bun and a T-shirt for every equation. Together they turned their dorm room into a fortress of notebooks, consoles and anime nights. On the night Myncha finally decided to go out, Kiki helped her get ready and offered to come along, but Myncha wanted to take that first step on her own.', facts: [['Origin', 'The real world']] },
             { key: 'bryan', name: 'Bryan', role: 'The boy from the dance floor', bio: 'The stranger Myncha fell in love with at first sight. They danced for hours and walked into the woods to see the moon, and then the shadows tore open. All she found the next morning were his car keys. Later, in the crypt of a ruined cathedral, she found a torn strap of his leather jacket.', facts: [['Origin', 'The real world']] },
         ],
     },
