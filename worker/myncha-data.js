@@ -32,7 +32,7 @@ export const MY_SECTIONS = [
     { key: 'exius', name: 'Exius', nav: 'Exius', text: 'The world on the other side of the mirror: our Earth, rolled back into a magical past.' },
     { key: 'bestiary', name: 'Bestiary', nav: 'Bestiary', text: 'The creatures that hunt the woods of Exius, and the ones waiting at the end of the road.' },
     { key: 'locations', name: 'Locations', nav: 'Locations', text: 'From The Basement and the university to the lake cathedral and the primeval forest.' },
-    { key: 'gallery', name: 'Gallery', nav: 'Gallery', text: 'Concept art, key art and wallpapers of Myncha and Exius.' },
+    { key: 'gallery', name: 'Gallery', nav: 'Gallery', text: 'Videos, key art and scenes from the world of Exius.' },
     { key: 'soundtrack', name: 'Soundtrack', nav: 'Soundtrack', text: 'The music of Myncha: Vampires of Exius.' },
 ];
 

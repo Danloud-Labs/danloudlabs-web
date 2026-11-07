@@ -106,3 +106,9 @@ The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `n
 
 Create `myncha-layout.js` and `myncha-characters.js`, then paste `myncha.js`, `myncha-data.js` and `myncha-styles.js`
 over the old ones and Deploy. Character art: `python3 tools/myncha_assets.py`, then commit and push (no paste needed).
+
+### Myncha: Gallery with videos (one-time)
+
+Create `myncha-gallery.js`, then paste `myncha.js`, `myncha-layout.js` and `myncha-data.js` over the old ones and Deploy.
+Gallery content: put images in `Website Resourses/Images` and videos in `Website Resourses/videos`
+(~/Developer/Myncha Vampires of Exius), run `node tools/myncha_gallery.mjs`, then commit and push (no paste needed).

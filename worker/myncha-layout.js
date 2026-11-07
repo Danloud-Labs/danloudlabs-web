@@ -32,3 +32,12 @@ export function page({ title, description, path, active, body, css = '', ogImage
 
 export const head = (eyebrow, title, link) => `<div class="section-head reveal"><div><span class="eyebrow">${esc(eyebrow)}</span><h2>${title}</h2></div>${link ? `<a class="btn btn-ghost btn-sm" href="${link[0]}">${esc(link[1])} ${small(ICONS.arrow)}</a>` : ''}</div>`;
 export const pageHead = (eyebrow, h1, lead) => `<section class="page-head"><div class="wrap"><span class="eyebrow">${esc(eyebrow)}</span><h1>${h1}</h1><p class="lead">${lead}</p></div></section>`;
+
+// Text or JSON from assets/projects/myncha, read live from GitHub (cached for a minute).
+export async function loadLive(file, json) {
+    try {
+        const res = await fetch(`${myAsset(file)}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+        if (res.ok) return json ? await res.json() : await res.text();
+    } catch (_) { /* the page shows what it can without it */ }
+    return json ? {} : '';
+}

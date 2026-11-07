@@ -8,7 +8,7 @@
 //   /myncha-vampires-of-exius/exius         the world beyond the Mirror of Fate
 //   /myncha-vampires-of-exius/bestiary      enemies, mini-bosses and bosses
 //   /myncha-vampires-of-exius/locations     the places, real world and Exius
-//   /myncha-vampires-of-exius/gallery       the art (assets/projects/myncha/gallery.json, read live)
+//   /myncha-vampires-of-exius/gallery       videos and images (myncha-gallery.js, gallery.json read live)
 //   /myncha-vampires-of-exius/soundtrack    the music (assets/projects/myncha/soundtrack.json, MP3s in R2)
 //   /myncha, /myncha-vampires, /exius        -> main page
 // The Worker's fetch() calls handleMyncha(request) first; it returns null for other paths.
@@ -16,7 +16,8 @@
 // =====================================================================================
 
 import { MY, MY_ARTS, MY_BASE, MY_BESTIARY, MY_CURSE, MY_EXIUS, MY_POWERS, MY_REGIONS, MY_SECTIONS, findCharacter, myAsset } from './myncha-data.js';
-import { LOGO, frame, head, page, pageHead } from './myncha-layout.js';
+import { LOGO, frame, head, loadLive, page, pageHead } from './myncha-layout.js';
+import { galleryPage } from './myncha-gallery.js';
 import { characterPage, charactersPage } from './myncha-characters.js';
 import { esc } from './site-layout.js';
 import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
@@ -24,13 +25,6 @@ import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 // Kept so an older worker.js that still imports it keeps deploying; the pages come from handleMyncha.
 export const htmlMyncha = '';
 
-async function loadLive(file, json) {
-    try {
-        const res = await fetch(`${myAsset(file)}?m=${Math.floor(Date.now() / 60000)}`, { cf: { cacheTtl: 60, cacheEverything: true } });
-        if (res.ok) return json ? await res.json() : await res.text();
-    } catch (_) { /* the page shows what it can without it */ }
-    return json ? {} : '';
-}
 
 function parseStory(md) {
     const acts = [];
@@ -172,29 +166,6 @@ ${MY_REGIONS.map((g) => `
     </div>
 </div></section>`).join('')}`;
     return page({ title: `Locations · ${MY.title}`, description: `The locations of ${MY.title}.`, path: `${MY_BASE}/locations`, active: 'locations', body });
-}
-
-// ---------------------------------------------------------------- gallery
-// Images: assets/projects/myncha/gallery/, listed in gallery.json by tools/myncha_gallery.mjs.
-async function galleryPage() {
-    const items = (await loadLive('gallery.json', true)).images || [];
-    const grid = items.length
-        ? `<div class="my-gallery">${items.map((g) => `<figure data-zoom="${myAsset(g.src)}"><img src="${myAsset(g.src)}" alt="${esc(g.caption || MY.title)}" loading="lazy">${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('')}</div>`
-        : '<div class="gallery-empty"><h3>The gallery opens soon.</h3><p>The art of Myncha and Exius is being created right now.</p></div>';
-    const body = `
-${pageHead('Gallery', `The art of <span class="grad-bv">Myncha</span>`, 'Concept art, key art and wallpapers. Click an image to see it full size.')}
-<section style="padding-top:24px"><div class="wrap">${grid}</div></section>
-<div class="lb" id="lb"><img alt=""></div>
-<script>
-document.addEventListener('click', (e) => {
-    const lb = document.getElementById('lb');
-    const t = e.target.closest('[data-zoom]');
-    if (t) { lb.querySelector('img').src = t.dataset.zoom; lb.classList.add('open'); return; }
-    lb.classList.remove('open');
-});
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('open'); });
-</script>`;
-    return page({ title: `Gallery · ${MY.title}`, description: `Art from ${MY.title}.`, path: `${MY_BASE}/gallery`, active: 'gallery', body });
 }
 
 // ---------------------------------------------------------------- soundtrack
