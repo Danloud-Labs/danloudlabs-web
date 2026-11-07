@@ -43,7 +43,7 @@ FOLDERS = {
     'aurelius': 'Humans/Church/Small Parish/Aurelius',
     'father-andrew': 'Humans/Church/Small Parish/Father Andrew',
     'sister-camelia': 'Humans/Church/Small Parish/Sister Camelia',
-    'antoanette': 'Humans/Church/Church Emissaries/Antoanette',
+    'antoinette': 'Humans/Church/Church Emissaries/Antoinette',
     'awilda': 'Humans/Church/Church Emissaries/Awilda',
     'cardinal-gabriel': 'Humans/Church/Church Emissaries/Cardinal Gabriel',
     'georgina': 'Humans/Church/Church Emissaries/Georgina',

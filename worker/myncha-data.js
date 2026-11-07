@@ -108,7 +108,7 @@ export const MY_GROUPS = [
         text: 'The seven emissaries of the Church. Myncha’s search for the one she loves will bring her face to face with each of them, one by one.',
         members: [
             { key: 'cardinal-gabriel', name: 'Cardinal Gabriel', role: 'Church Emissary', bio: null },
-            { key: 'antoanette', name: 'Antoanette', role: 'Church Emissary', bio: null },
+            { key: 'antoinette', name: 'Antoinette', role: 'Church Emissary', bio: null },
             { key: 'awilda', name: 'Awilda', role: 'Church Emissary', bio: null },
             { key: 'georgina', name: 'Georgina', role: 'Church Emissary', bio: null },
             { key: 'hortense', name: 'Hortense', role: 'Church Emissary', bio: null },
