@@ -65,9 +65,12 @@ danloudlabs-web/
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
 │   ├── myncha.js            Myncha: Vampires of Exius pages + handleMyncha(request) router (/myncha-vampires-of-exius)
 │   ├── myncha-data.js       Myncha texts: characters, the curse, Exius, bestiary, locations
+│   ├── myncha-layout.js     Myncha page shell shared by the Myncha pages (sub-nav, frames, headings)
+│   ├── myncha-characters.js Myncha Characters page (group tabs) and character profiles (/characters/<key>)
 │   ├── myncha-styles.js     Myncha CSS (gothic night: amethyst, diamond cyan, blood crimson)
 ├── tools/fft2_assets.py    converts the FFT2 art (~/Downloads/FFT2 and the iCloud project) into assets/projects/fft2
 ├── tools/fft2_media.mjs    uploads the FFT2 trailer and music to R2 and writes assets/projects/fft2/soundtrack.json
+├── tools/myncha_assets.py   converts the Myncha character art (~/Downloads/Myncha Art/Characters ) into assets/projects/myncha/characters
 ├── tools/myncha_gallery.mjs lists assets/projects/myncha/gallery/ into gallery.json (the Gallery page reads it live)
 ├── tools/myncha_media.mjs  uploads the Myncha music (iCloud project, MP3 folder) to R2 and writes assets/projects/myncha/soundtrack.json
 ├── tools/dwm_art_list.mjs   writes assets/projects/dwm/ART.md: every image the DWM pages have a frame for

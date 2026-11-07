@@ -37,22 +37,32 @@ export const MY_SECTIONS = [
 ];
 
 // ---------------------------------------------------------------- characters
-// `bio: null` shows MY.soon. `beast: true` adds a second frame for the transformation.
+// Each character has a profile page (/characters/<key>) with a banner and a portrait.
+// Art (tools/myncha_assets.py): characters/<key>.webp (3:4 portrait) and characters/<key>-banner.webp (16:9).
+// `bio: null` shows MY.soon. `forms`: extra looks with their own art, e.g. a werewolf's wolf form
+// (characters/<key>-beast.webp). The first form is the character's main look.
+const WOLF = [{ suffix: '', name: 'Human' }, { suffix: '-beast', name: 'Wolf form' }];
+
 export const MY_GROUPS = [
     {
         key: 'vampires', name: 'Vampires', color: '#b48cff',
         text: 'Humans who were turned. Myncha is the only one who came from the real world; the others have only ever known Exius.',
         members: [
-            { key: 'myncha', name: 'Myncha', role: 'The girl from the real world', bio: 'A university student who had lived a quiet, ordinary life until the night she fell in love on a dance floor. Turned by a vampire patriarch before her first kiss, she is the only human from the real world in Exius. In the sun her skin turns to diamond; in her chest burns a hunger she fights with everything she has left of herself. She crossed the Mirror of Fate to find the one she lost.' },
-            { key: 'vickie', name: 'Vickie', role: 'Vampire of Exius · ally', bio: 'Like Myncha, she was human once and was turned. Unlike Myncha, she has only ever existed in Exius. She becomes one of Myncha’s allies.' },
-            { key: 'rita', name: 'Rita', role: 'Vampire of Exius · ally', bio: 'A human turned vampire who belongs to Exius alone. She becomes one of Myncha’s allies.' },
+            {
+                key: 'myncha', name: 'Myncha', role: 'The girl from the real world',
+                bio: 'A university student who had lived a quiet, ordinary life until the night she fell in love on a dance floor. Turned by a vampire patriarch before her first kiss, she is the only human from the real world in Exius. In the sun her skin turns to diamond; in her chest burns a hunger she fights with everything she has left of herself. She crossed the Mirror of Fate to find the one she lost.',
+                facts: [['Origin', 'The real world'], ['Curse', 'Skin that turns to diamond in the sun'], ['Searching for', 'Bryan']],
+                forms: [{ suffix: '', name: 'Vampire' }, { suffix: '-human', name: 'Human' }],
+            },
+            { key: 'vickie', name: 'Vickie', role: 'Vampire of Exius · ally', bio: 'Like Myncha, she was human once and was turned. Unlike Myncha, she has only ever existed in Exius. She becomes one of Myncha’s allies.', facts: [['Origin', 'Exius']] },
+            { key: 'rita', name: 'Rita', role: 'Vampire of Exius · ally', bio: 'A human turned vampire who belongs to Exius alone. She becomes one of Myncha’s allies.', facts: [['Origin', 'Exius']] },
         ],
     },
     {
         key: 'night', name: 'The Night It Began', color: '#5fd6e6',
         text: 'The people of the real world on the night that changed everything.',
         members: [
-            { key: 'bryan', name: 'Bryan', role: 'The boy from the dance floor', bio: 'The stranger Myncha fell in love with at first sight. They danced for hours and walked into the woods to see the moon, and then the shadows tore open. All she found the next morning were his car keys. Later, in the crypt of a ruined cathedral, she found a torn strap of his leather jacket.' },
+            { key: 'bryan', name: 'Bryan', role: 'The boy from the dance floor', bio: 'The stranger Myncha fell in love with at first sight. They danced for hours and walked into the woods to see the moon, and then the shadows tore open. All she found the next morning were his car keys. Later, in the crypt of a ruined cathedral, she found a torn strap of his leather jacket.', facts: [['Origin', 'The real world']] },
             { key: 'sire', name: 'The Sire', role: 'Vampire patriarch', bio: 'A vampire of immense, suffocating power who took Bryan, and who, moved by a twisted pity, remade Myncha instead of killing her. The pendant he wore led her to an ancient book, and the book to Exius.' },
             { key: 'dark-ladies', name: 'The Dark Ladies', role: 'The Sire’s companions', bio: 'The two vampire women who came out of the shadows at his side that night.' },
         ],
@@ -61,9 +71,9 @@ export const MY_GROUPS = [
         key: 'werewolves', name: 'Werewolves', color: '#7aa6d8',
         text: 'Each one walks beside a wolf, and each one has another shape.',
         members: [
-            { key: 'wynclaw', name: 'Wynclaw', role: 'Werewolf', bio: null, beast: true },
-            { key: 'nightfang', name: 'Nightfang', role: 'Werewolf', bio: null, beast: true },
-            { key: 'lucian', name: 'Lucian', role: 'Werewolf', bio: null, beast: true },
+            { key: 'wynclaw', name: 'Wynclaw', role: 'Werewolf', bio: null, forms: WOLF },
+            { key: 'nightfang', name: 'Nightfang', role: 'Werewolf', bio: null, forms: WOLF },
+            { key: 'lucian', name: 'Lucian', role: 'Werewolf', bio: null, forms: WOLF },
         ],
     },
     {
@@ -86,11 +96,24 @@ export const MY_GROUPS = [
     },
     {
         key: 'church', name: 'The Church', color: '#e3c27a',
-        text: 'Myncha’s search for the one she loves will bring her face to face with the seven emissaries of the Church, one by one.',
+        text: 'The faithful of a small parish in Exius.',
         members: [
-            { key: 'georgina', name: 'Georgina', role: 'The Church', bio: null },
             { key: 'aurelius', name: 'Aurelius', role: 'The Church', bio: null },
             { key: 'father-andrew', name: 'Father Andrew', role: 'The Church', bio: null },
+            { key: 'sister-camelia', name: 'Sister Camelia', role: 'The Church', bio: null },
+        ],
+    },
+    {
+        key: 'emissaries', name: 'The Church Emissaries', color: '#f0a33c',
+        text: 'The seven emissaries of the Church. Myncha’s search for the one she loves will bring her face to face with each of them, one by one.',
+        members: [
+            { key: 'cardinal-gabriel', name: 'Cardinal Gabriel', role: 'Church Emissary', bio: null },
+            { key: 'antoanette', name: 'Antoanette', role: 'Church Emissary', bio: null },
+            { key: 'awilda', name: 'Awilda', role: 'Church Emissary', bio: null },
+            { key: 'georgina', name: 'Georgina', role: 'Church Emissary', bio: null },
+            { key: 'hortense', name: 'Hortense', role: 'Church Emissary', bio: null },
+            { key: 'jake', name: 'Jake', role: 'Church Emissary', bio: null },
+            { key: 'troy', name: 'Troy', role: 'Church Emissary', bio: null },
         ],
     },
     {
@@ -103,6 +126,10 @@ export const MY_GROUPS = [
         ],
     },
 ];
+
+// Every character in order, with its group (for profiles and Previous / Next).
+export const MY_CHARACTERS = MY_GROUPS.flatMap((g) => g.members.map((c) => ({ ...c, group: g })));
+export const findCharacter = (key) => MY_CHARACTERS.find((c) => c.key === key);
 
 // ---------------------------------------------------------------- the curse
 // Art: curse/<key>.webp (16:9).

@@ -3,6 +3,7 @@
 //   /myncha-vampires-of-exius               main page (logo, logline, sections)
 //   /myncha-vampires-of-exius/story         the story, act by act (assets/projects/myncha/story.md, read live)
 //   /myncha-vampires-of-exius/characters    the characters, by group (#vampires …)
+//   /myncha-vampires-of-exius/characters/x  a character's profile (myncha-characters.js)
 //   /myncha-vampires-of-exius/curse         the diamond curse, the hunger, the guilt, her powers and arts
 //   /myncha-vampires-of-exius/exius         the world beyond the Mirror of Fate
 //   /myncha-vampires-of-exius/bestiary      enemies, mini-bosses and bosses
@@ -14,20 +15,14 @@
 // Story format: "## Label: Title" starts an act, *text* is italic, *** is a scene break.
 // =====================================================================================
 
-import { MY, MY_ARTS, MY_BASE, MY_BESTIARY, MY_CURSE, MY_EXIUS, MY_GROUPS, MY_POWERS, MY_REGIONS, MY_SECTIONS, myAsset } from './myncha-data.js';
-import { MY_CSS } from './myncha-styles.js';
-import { ICONS, esc, sitePage } from './site-layout.js';
+import { MY, MY_ARTS, MY_BASE, MY_BESTIARY, MY_CURSE, MY_EXIUS, MY_POWERS, MY_REGIONS, MY_SECTIONS, findCharacter, myAsset } from './myncha-data.js';
+import { LOGO, frame, head, page, pageHead } from './myncha-layout.js';
+import { characterPage, charactersPage } from './myncha-characters.js';
+import { esc } from './site-layout.js';
 import { MMX_SOUNDTRACK_CSS, soundtrackBody } from './mmx9-soundtrack.js';
 
 // Kept so an older worker.js that still imports it keeps deploying; the pages come from handleMyncha.
 export const htmlMyncha = '';
-
-const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
-const LOGO = myAsset('brand/logo.webp');
-
-// An image frame: the art when the file exists, a labeled night frame until it does.
-// `cls`: wide (16:9) or portrait (3:4).
-const frame = (path, label, cls) => `<figure class="ph ${cls}"><img src="${myAsset(path)}" alt="${esc(label)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(label)}</figcaption></figure>`;
 
 async function loadLive(file, json) {
     try {
@@ -63,25 +58,6 @@ function parseStory(md) {
     flush();
     return acts;
 }
-
-function myNav(active) {
-    const links = [['', 'Home'], ...MY_SECTIONS.map((s) => [s.key, s.nav || s.name])];
-    return `<div class="mmx-nav"><div class="wrap"><a href="${MY_BASE}" style="padding:0;border:0;background:none"><img src="${LOGO}" alt="${esc(MY.title)}"></a>${links.map(([k, n]) => `<a href="${MY_BASE}${k ? `/${k}` : ''}"${active === k ? ' class="on"' : ''}>${esc(n)}</a>`).join('')}</div></div>`;
-}
-
-function page({ title, description, path, active, body, css = '' }) {
-    return sitePage({
-        title, description, path, ogImage: LOGO,
-        icon: LOGO,
-        active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
-        head: `<style>${MY_CSS}${css}</style>`,
-        body: `<div class="mmx my">${myNav(active)}${body}<section style="padding-top:0"><div class="wrap"><p class="fan-note">${esc(MY.note)}</p></div></section></div>`,
-    });
-}
-
-const head = (eyebrow, title, link) => `<div class="section-head reveal"><div><span class="eyebrow">${esc(eyebrow)}</span><h2>${title}</h2></div>${link ? `<a class="btn btn-ghost btn-sm" href="${link[0]}">${esc(link[1])} ${small(ICONS.arrow)}</a>` : ''}</div>`;
-const pageHead = (eyebrow, h1, lead) => `<section class="page-head"><div class="wrap"><span class="eyebrow">${esc(eyebrow)}</span><h1>${h1}</h1><p class="lead">${lead}</p></div></section>`;
 
 // ---------------------------------------------------------------- main page
 function mainPage() {
@@ -135,47 +111,6 @@ ${pageHead('The Story', `The story of <span class="grad-bv">Myncha</span>`, 'Fro
 })();
 </script>`;
     return page({ title: `The Story · ${MY.title}`, description: `The story of ${MY.title}, an original story by ${MY.author}.`, path: `${MY_BASE}/story`, active: 'story', body });
-}
-
-// ---------------------------------------------------------------- characters
-function charactersPage() {
-    const total = MY_GROUPS.reduce((a, g) => a + g.members.length, 0);
-    const tabs = MY_GROUPS.map((g, i) => `<button type="button" class="gtab${i === 0 ? ' on' : ''}" data-group="${g.key}" aria-pressed="${i === 0}" style="--gc:${g.color}"><b>${esc(g.name)}</b><small>${g.members.length}</small></button>`).join('');
-    const art = (c) => c.beast
-        ? `<div class="forms">${frame(`characters/${c.key}.webp`, c.name, 'portrait')}${frame(`characters/${c.key}-beast.webp`, `${c.name} · Wolf form`, 'portrait')}</div>`
-        : frame(`characters/${c.key}.webp`, c.name, 'portrait');
-    const panels = MY_GROUPS.map((g, i) => `
-    <div class="gpanel" id="group-${g.key}" style="--gc:${g.color}"${i === 0 ? '' : ' hidden'}>
-        <div class="ghead"><h2>${esc(g.name)}</h2><p>${esc(g.text)}</p></div>
-        <div class="people">${g.members.map((c) => `
-            <article class="person" id="${c.key}">
-                ${art(c)}
-                <div class="pi"><h3>${esc(c.name)}</h3><small>${esc(c.role)}</small>${c.bio ? `<p>${esc(c.bio)}</p>` : `<p class="soon">${esc(MY.soon)}</p>`}</div>
-            </article>`).join('')}
-        </div>
-    </div>`).join('');
-    const body = `
-${pageHead('Characters', `The people of <span class="grad-bv">Exius</span>`, `${total} characters, and more to come. Myncha is the only one who came from the real world.`)}
-<section style="padding-top:24px"><div class="wrap">
-    <div class="gtabs" id="gtabs">${tabs}</div>
-    ${panels}
-</div></section>
-<script>
-(() => {
-    const bar = document.getElementById('gtabs');
-    const show = (key) => {
-        const btn = bar.querySelector('[data-group="' + key + '"]'); if (!btn) return false;
-        bar.querySelectorAll('.gtab').forEach((b) => { const on = b === btn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-        document.querySelectorAll('.gpanel').forEach((p) => { p.hidden = p.id !== 'group-' + key; });
-        return true;
-    };
-    bar.addEventListener('click', (e) => { const b = e.target.closest('[data-group]'); if (!b) return; show(b.dataset.group); history.replaceState(null, '', '#' + b.dataset.group); bar.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    const h = decodeURIComponent(location.hash.slice(1));
-    if (h && !show(h)) { const c = document.getElementById(h); const p = c && c.closest('.gpanel'); if (p) { show(p.id.slice(6)); setTimeout(() => c.scrollIntoView({ block: 'center' }), 60); } }
-    else if (h) setTimeout(() => bar.scrollIntoView(), 60);
-})();
-</script>`;
-    return page({ title: `Characters · ${MY.title}`, description: `The characters of ${MY.title}: Myncha, Vickie, Rita and the peoples of Exius.`, path: `${MY_BASE}/characters`, active: 'characters', body });
 }
 
 // ---------------------------------------------------------------- the curse
@@ -284,6 +219,10 @@ export async function handleMyncha(request) {
     if (rest === '') return html(mainPage());
     if (rest === '/story') return html(await storyPage());
     if (rest === '/characters') return html(charactersPage());
+    if (rest.startsWith('/characters/')) {
+        const c = findCharacter(rest.slice('/characters/'.length));
+        return c ? html(characterPage(c)) : Response.redirect(`${url.origin}${MY_BASE}/characters`, 302);
+    }
     if (rest === '/curse') return html(cursePage());
     if (rest === '/exius') return html(exiusPage());
     if (rest === '/bestiary') return html(bestiaryPage());

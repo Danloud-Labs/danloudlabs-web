@@ -101,3 +101,8 @@ The list of images to create is `assets/projects/dwm/ART.md` (refresh it with `n
    `story/act-01.webp`…, `curse/`, `exius/`, `bestiary/`, `locations/`, `sections/` (16:9). Keys are in `worker/myncha-data.js`.
 6. Gallery: put images in `assets/projects/myncha/gallery/` ("01 Title.webp"), run `node tools/myncha_gallery.mjs`,
    then commit and push. No Cloudflare paste needed.
+
+### Myncha: character profiles (one-time)
+
+Create `myncha-layout.js` and `myncha-characters.js`, then paste `myncha.js`, `myncha-data.js` and `myncha-styles.js`
+over the old ones and Deploy. Character art: `python3 tools/myncha_assets.py`, then commit and push (no paste needed).

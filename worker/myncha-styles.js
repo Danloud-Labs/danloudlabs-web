@@ -44,6 +44,13 @@ body::before {
 .continues h3 { margin: 0 0 6px; font-size: 20px; }
 .continues p { margin: 0; }
 
+/* Character cards and profiles (the rest comes from the MMX9 CSS) */
+.my .char .pic, .my .char .meta { display: block; }
+.my .char .pic img ~ .mono, .my .ch-hero .avatar img ~ .mono { display: none; }
+.my .ch-hero .stage img.wp { transition: opacity .5s; }
+.my .ch-body .bio p.soon { color: var(--dim); font-style: italic; }
+.my .gpanel .chars { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+
 /* Character tabs and cards */
 .gtabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; scroll-margin-top: 132px; }
 .gtab { --gc: var(--blue); display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); color: var(--muted); font: inherit; font-size: 14px; cursor: pointer; transition: .2s; }
