@@ -78,5 +78,18 @@
       "caption": "Myncha's nightmare"
     }
   ],
-  "videos": []
+  "videos": [
+    {
+      "title": "Nightfang’s transformation",
+      "url": "https://store.danloudlabs.com/myncha/videos/nightfangs-transformation-f953032c.mp4",
+      "poster": "gallery/posters/nightfangs-transformation-f953032c.jpg",
+      "duration": 15
+    },
+    {
+      "title": "Wynclaw’s transformation",
+      "url": "https://store.danloudlabs.com/myncha/videos/wynclaws-transformation-a4caa1a6.mp4",
+      "poster": "gallery/posters/wynclaws-transformation-a4caa1a6.jpg",
+      "duration": 15
+    }
+  ]
 }
