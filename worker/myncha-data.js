@@ -1,7 +1,7 @@
 // =====================================================================================
 // Myncha: Vampires of Exius — website content. An original story by David Gomez Valerio.
 // The story is still being written: only what exists is here, and every character without a
-// story yet says so kindly. Source: David's "Narrative" (Acts I–IX), his notes and the
+// story yet says so kindly. Source: David's "Narrative" (Acts I–X), his notes and the
 // design blueprints, told as the story's own rules (the curse, the hunger, the guilt).
 // Art lives in assets/projects/myncha/ and is added later (CGI versions are on their way):
 //   characters/<key>.webp (3:4) and characters/<key>-beast.webp for werewolf transformations,
@@ -50,7 +50,7 @@ export const MY_GROUPS = [
         members: [
             {
                 key: 'myncha', name: 'Myncha', role: 'The girl from the real world',
-                bio: 'A university student who had lived a quiet, ordinary life until the night she fell in love on a dance floor. Turned by a vampire patriarch before her first kiss, she is the only human from the real world in Exius. In the sun her skin turns to diamond; in her chest burns a hunger she fights with everything she has left of herself. She crossed the Mirror of Fate to find the one she lost.',
+                bio: 'A shy, brilliant university student who loved her books, her video games, her anime and her colorful clothes, and who finally decided to step out into the world and live. That same night she fell in love on a dance floor. Turned by a vampire patriarch before her first kiss, she is the only human from the real world in Exius. In the sun her skin turns to diamond; in her chest burns a hunger she fights with everything she has left of herself. She crossed the Mirror of Fate to find the one she lost.',
                 facts: [['Origin', 'The real world'], ['Curse', 'Skin that turns to diamond in the sun'], ['Searching for', 'Bryan']],
                 forms: [{ suffix: '', name: 'Vampire' }, { suffix: '-human', name: 'Human' }],
             },
@@ -62,6 +62,7 @@ export const MY_GROUPS = [
         key: 'night', name: 'The Night It Began', color: '#5fd6e6',
         text: 'The people of the real world on the night that changed everything.',
         members: [
+            { key: 'kiki', name: 'Kiki', role: 'Myncha’s roommate', bio: 'Myncha’s roommate and her opposite in almost every way: outgoing, always on her way to a party, friends with everyone on campus. Every weekend she tried to bring Myncha along, and on the night Myncha finally decided to go out, Kiki was the one who did her makeup and cheered her on.', facts: [['Origin', 'The real world']] },
             { key: 'bryan', name: 'Bryan', role: 'The boy from the dance floor', bio: 'The stranger Myncha fell in love with at first sight. They danced for hours and walked into the woods to see the moon, and then the shadows tore open. All she found the next morning were his car keys. Later, in the crypt of a ruined cathedral, she found a torn strap of his leather jacket.', facts: [['Origin', 'The real world']] },
         ],
     },

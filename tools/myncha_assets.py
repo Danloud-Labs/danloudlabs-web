@@ -28,6 +28,7 @@ FOLDERS = {
     'vickie': 'vampires/Vickie',
     'rita': 'vampires/Rita',
     'bryan': 'Humans/School/Bryan',
+    'kiki': 'Humans/School/Kiki',
     'sire': 'vampires/The Old Vampires/Exius/Vampire Form',
     'sire-true': 'vampires/The Old Vampires/Exius/True Vampire Form',
     'deborah': 'vampires/The Old Vampires/Deborah',

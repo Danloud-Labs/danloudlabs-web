@@ -3,27 +3,39 @@
 The story so far, act by act. Written by David Gomez Valerio.
 Art: assets/projects/myncha/story/act-01.webp, act-02.webp… in this order. A missing image shows an empty frame.
 
-## Act I: The Midnight Spark and the Shadow
+## Act I: Pixels, Pages and Pastel Colors
 
-Myncha had always lived a quiet, ordinary life, entirely untouched by the dizzying rush of romance. That changed on a crowded, pulsing dance floor. For the first time in her life, her gaze locked onto a stranger, and she was struck by the undeniable lightning of love at first sight.
+Myncha was the kind of student professors remembered for the right reasons: front row, color-coded notes, the first hand in the air and the last one out of the library. She loved to learn the way other people loved to travel, and she could lose an entire Sunday to a single book without noticing the sun go down.
+
+When she wasn't studying, she lived in her own bright little universe. Long gaming nights with a controller in her lap and a headset with cat ears; anime marathons under a blanket covered in stars; a shelf of plushies that kept growing every semester. Her wardrobe looked like a candy shop: pastel hoodies, rainbow stockings, sneakers in every color, and twin tails that bounced when she laughed. She was sweet, a little shy, and perfectly happy in the small world she had built for herself.
+
+Her roommate, Kiki, was her opposite in almost every way. Kiki knew everyone on campus, was always on her way to some party, and came home at dawn with stories Myncha could barely believe. Every weekend she tried to drag Myncha out with her, and every weekend Myncha smiled and said, "Next time." Then she would curl up in front of another romance anime, watch two strangers fall in love on a crowded street, and wonder, quietly, whether something like that could ever happen to her.
+
+## Act II: The Night She Chose to Live
+
+One night, after finishing the last episode of a series and finding the dorm silent and empty, Myncha realized she was tired of watching life happen to other people. She wanted to go out, to make friends, to dance, to fall in love. She wanted a life that didn't fit on a screen.
+
+So she decided to change. She folded her pastel hoodies into a drawer, set her cat-ear headset on the shelf with her plushies, and stood in front of the mirror in a simple black dress with bare shoulders and a velvet choker. Kiki did her makeup, laughing and cheering her on, but Myncha insisted on going alone. If she was going to become someone new, she wanted to take that first step on her own. For the first time, she walked out into the night not as the shy girl hiding in her dorm room, but as a young woman ready to meet the world.
+
+Her steps led her to The Basement, a crowded, pulsing club full of music and strangers. That night, on the dance floor, her gaze locked onto a stranger, and she was struck by the undeniable lightning of love at first sight.
 
 They danced for hours, lost in each other’s rhythm, until the suffocating heat of the club drove them out into the cool, whispering woods to admire the moon. Beneath the silver canopy, the boy began to flirt, his breath warm against her skin. But just as they leaned in to share what would have been Myncha’s very first kiss, the shadows tore open.
 
 A vampire patriarch of immense, suffocating power, flanked by two of his dark ladies, ambushed them. With brutal, terrifying speed, they slaughtered the boy, devouring him before Myncha's horrified eyes. Yet, when the master vampire turned his gaze to Myncha, he paused. Moved by a twisted sense of pity for her pure, arresting beauty, he chose not to end her life. Instead, he tore into her flesh and remade her.
 
-## Act II: The Shattered Dawn
+## Act III: The Shattered Dawn
 
 Myncha awoke the next morning alone in the dirt, her mind a fractured blur of confusion and terror. As she stumbled into the open, the rising sun struck her skin—but it didn't burn. Instead, it cast an eerie, diamond-like reflection, slowly calcifying her flesh into rigid, fragile crystal. Realizing the sunlight was turning her to stone, she scrambled desperately back into the deep shadows of the trees.
 
 Hoping against hope, she searched the blood-stained clearing for the boy. There was nothing left of him but a pair of car keys glinting in the dirt. Shaking, she took his car and drove back to her university campus, a sanctuary that now felt entirely alien.
 
-## Act III: The Hunger Awakes
+## Act IV: The Hunger Awakes
 
 Locking herself in her dorm bathroom, Myncha finally dared to look in the mirror. Trembling hands pulled back her collar to reveal the definitive, terrifying truth: twin puncture wounds carved into her neck. Panic seized her, closely followed by a hollow, agonizing ache deep within her chest. It was an insatiable, monstrous hunger for blood.
 
-Terrified of what she might do, she locked herself away in her bedroom. Her roommate watched her with growing alarm, entirely unable to comprehend Myncha's sudden, erratic behavior or the feral desperation in her eyes. To protect the campus from the monster she was becoming, Myncha skipped her classes, barricaded behind closed doors.
+Terrified of what she might do, she locked herself away in her bedroom. Kiki watched her with growing alarm, entirely unable to comprehend Myncha's sudden, erratic behavior or the feral desperation in her eyes. To protect the campus from the monster she was becoming, Myncha skipped her classes, barricaded behind closed doors.
 
-## Act IV: The Sigil and the Sire
+## Act V: The Sigil and the Sire
 
 By afternoon, driven by a desperate need for answers, Myncha risked the shadows to slip into the university’s archives. Burying herself in the dust of ancient, forbidden texts, she desperately researched the lore of the undead.
 
@@ -31,15 +43,15 @@ Then, she found it. Hidden within the pages of an old text was an illustration m
 
 Armed with a name and a clue, Myncha's fear crystallized into burning purpose. This was no longer just a nightmare to survive—it was the beginning of a dark odyssey. She would leave her old life behind and venture into the shadows of Exius to hunt down her master, the sire who stole her humanity.
 
-## Act V: The Lake Cathedral
+## Act VI: The Lake Cathedral
 
-Driven by a desperate impulse, Myncha snatched the ancient text from the university archives and fled into the blinding daytime. To shield her fragile flesh from the calcifying rays of the sun, she wrapped herself in a sweeping black mantle taken from her roommate's wardrobe—a dark shroud against the crystal curse. Before cutting ties with her old life completely, she stopped at a local coffee shop, sipping her favorite drink one last time as a final, bittersweet farewell to her humanity.
+Driven by a desperate impulse, Myncha snatched the ancient text from the university archives and fled into the blinding daytime. To shield her fragile flesh from the calcifying rays of the sun, she wrapped herself in a sweeping black mantle taken from Kiki's wardrobe—a dark shroud against the crystal curse. Before cutting ties with her old life completely, she stopped at a local coffee shop, sipping her favorite drink one last time as a final, bittersweet farewell to her humanity.
 
 Returning to the haunted woods, she noticed the stolen book reacting to the dense canopy. As she stepped deeper into the trees, a strange, volatile magic erupted from the pages, emitting bright, pulsing sparks that intensified with every step she took.
 
 Following the guiding light of the book, Myncha emerged at the edge of a hidden, mist-shrouded lake. In the dead center sat an ancient, decaying cathedral. Shadowy, dark beings glided across the water and into the ruins. Stepping into the gloom, Myncha followed them. Though the dark entities immediately sensed her presence, they did not attack; they remained eerily still, recognizing the raw, newborn vampire essence coursing through her veins. Acknowledging one of their own, the silent beings parted, revealing a hidden, downward path into the deep, subterranean crypts of the cathedral.
 
-## Act VI: The Mirror of Fate
+## Act VII: The Mirror of Fate
 
 At the end of the secret descent, Myncha found herself in a chamber dominated by an enormous, peculiar mirror etched with ancient, glowing markings. But it wasn't the mirror that made her breath catch—it was what lay directly in front of it.
 
@@ -51,7 +63,7 @@ She stepped squarely in front of the glass. Instead of showing her face, her ref
 
 As Myncha boldly stepped forward, passing straight through the glass into the unknown, the ancient book slipped from her fingers. Immune to the mirror's shifting reality, the text was left behind, clattering onto the stone floor of the human world as the gateway sealed behind her.
 
-## Act VII: The Echo of a Bygone Realm
+## Act VIII: The Echo of a Bygone Realm
 
 The space within the Mirror of Fate did not merely lead to another room; it dissolved into a howling cosmic rift. Myncha fell through a localized wormhole, a celestial bridge tearing through the fabric of time and space that tethered the modern human woods to something far older.
 
@@ -59,7 +71,7 @@ When her feet finally slammed into solid ground, the air tasted entirely differe
 
 Myncha looked around and realized she was still in the woods, yet everything had shifted. This was the realm of Exius. Geographically, the terrain mirrored the Earth she knew, but the world had been violently rolled back into the distant past. There were no distant highway hums, no city lights breaking the horizon, and no modern structures. Instead, ancient, towering fauna glowed with faint, bioluminescent essence, and the night sky bled with celestial colors unknown to human science. She was standing in an archaic, magical past, bound to her own timeline only by the cosmic tear hidden within these woods.
 
-## Act VIII: The Reanimated Terror
+## Act IX: The Reanimated Terror
 
 Drawing the stolen black mantle tightly around her shoulders, Myncha picked a direction and pushed deeper into the primeval wilds of Exius. Her immediate goal was to escape the oppressive, glowing canopy, climb to a high vantage point, and look for any landmark to orient herself in this archaic world.
 
@@ -101,7 +113,7 @@ The impact was cataclysmic. A shockwave of green magic detonated outward, shatte
 
 Myncha dropped to her feet in the center of the clearing, panting heavily. The explosive exertion of using her raw, unrefined vampire powers had burned through her reserves instantly. Her newborn metabolism spiked, and a sudden, agonizing ache flared deep within her chest—an insatiable, monstrous demand for fuel. She was starving, and her sanity was already beginning to slip.
 
-## Act IX: The Feral Feast
+## Act X: The Feral Feast
 
 Breathing heavily, Myncha stood over the shattered remnants of the beast. The explosive exertion of the fight had spiked her newborn metabolism, and a sudden, agonizing ache flared deep within her chest. She was starving, her body violently demanding fuel to sustain her new vampiric strength.
 
