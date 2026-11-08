@@ -38,6 +38,16 @@ a { color: inherit; }
 .topbar nav { display: flex; gap: 2px; }
 .topbar nav a { text-decoration: none; color: var(--muted); font-size: 14px; padding: 7px 12px; border-radius: 999px; transition: .2s; }
 .topbar nav a:hover, .topbar nav a.on { color: var(--fg); background: rgba(255, 255, 255, 0.06); }
+.menu-btn { display: none; width: 42px; height: 42px; flex: none; border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.05); color: var(--fg); align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.menu-btn svg { width: 22px; height: 22px; }
+.menu-btn .i-close, .topbar.open .menu-btn .i-open { display: none; }
+.topbar.open .menu-btn .i-close { display: inline-flex; }
+.topbar .mobile-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; padding: 8px 16px 18px; background: #08070d; border-bottom: 1px solid var(--line); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8); }
+.mobile-nav a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 12px; border-radius: 14px; color: var(--fg); text-decoration: none; font-size: 17px; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.mobile-nav a:last-child { border-bottom: 0; }
+.mobile-nav a:active { background: rgba(255, 255, 255, 0.06); }
+.mobile-nav a small { display: block; font-size: 13px; font-weight: 500; color: var(--dim); margin-top: 2px; }
+.mobile-nav a svg { color: var(--dim); flex: none; }
 .back-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; color: #0a84ff; text-decoration: none; border: 1px solid rgba(10, 132, 255, 0.6); font-weight: 500; font-size: 14px; transition: all .2s; background: rgba(0, 0, 0, .4); white-space: nowrap; }
 .back-btn:hover { background: #0a84ff; color: #fff; }
 
@@ -168,6 +178,8 @@ footer a:hover { color: var(--fg); }
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
     .topbar nav { display: none; }
+    .menu-btn { display: inline-flex; }
+    .topbar.open .mobile-nav { display: grid; gap: 0; }
     .apps.featured .app-card:first-child { flex-direction: column; }
     .apps.featured .app-card:first-child .banner { aspect-ratio: 16 / 9; min-height: 0; }
     .apps.featured .app-card:first-child .banner::after { inset: auto 0 0; width: auto; height: 45%; background: linear-gradient(0deg, var(--card), transparent); }
@@ -185,7 +197,10 @@ footer a:hover { color: var(--fg); }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .project, .project:nth-child(4), .project:nth-child(5) { grid-column: 1 / -1; }
     .contact .text { padding: 26px; }
-    .brand span { display: none; }
+}
+@media (max-width: 420px) {
+    /* Pages with a back button: the logo stays, the name goes, so everything fits on one line. */
+    .topbar .wrap:has(.back-btn) .brand span { display: none; }
 }
 
 /* ---------- Legal pages (Privacy, Terms…) ---------- */

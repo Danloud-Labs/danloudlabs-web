@@ -11,6 +11,9 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&a
 const stroke = (inner) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
 
 export const ICONS = {
+    mac: stroke('<rect x="4" y="4.5" width="16" height="11" rx="1.8"/><path d="M2.5 19h19M10 15.5h4"/>'),
+    menu: stroke('<path d="M4 7h16M4 12h16M4 17h16"/>'),
+    close: stroke('<path d="M6 6l12 12M18 6 6 18"/>'),
     arrow: stroke('<path d="M5 12h14M13 6l6 6-6 6"/>'),
     phone: stroke('<rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 18.5h3"/>'),
     android: stroke('<path d="M5.5 10.5h13v7a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2z"/><path d="M5.5 10.5a6.5 6.5 0 0 1 13 0"/><path d="m7.5 4.5 1.6 2.3M16.5 4.5l-1.6 2.3"/><circle cx="9.5" cy="8" r=".6" fill="currentColor"/><circle cx="14.5" cy="8" r=".6" fill="currentColor"/>'),
@@ -58,9 +61,20 @@ export const ICONS = {
 
 const NAV = [
     ['Apps', '/#apps', 'apps'],
+    ['Mac', '/macos-apps', 'mac'],
     ['Projects', '/#projects', 'projects'],
     ['Support', '/support', 'support'],
     ['Privacy', '/privacy', 'privacy'],
+];
+
+// The phone menu (the three-line button, under 980 px wide).
+const MOBILE_NAV = [
+    ['iOS Apps', '/ios-apps', 'iPhone, iPad, Apple TV'],
+    ['macOS Apps', '/macos-apps', 'Creative tools for the Mac'],
+    ['Android Apps', '/android-apps', 'Phones and tablets'],
+    ['Creative Projects', '/#projects', 'Games, fan projects, stories'],
+    ['Support', '/support', 'Help and contact'],
+    ['Privacy Policy', '/privacy', ''],
 ];
 
 // Copyright year. Pages built when the Worker loads run before any request, where Cloudflare's
@@ -71,6 +85,7 @@ const YEAR = () => Math.max(2026, new Date().getUTCFullYear());
 export function sitePage({ title, description, path = '/', ogImage, icon, active = '', back, head = '', body, since }) {
     const url = `https://danloudlabs.com${path}`;
     const nav = NAV.map(([label, href, key]) => `<a href="${href}"${key === active ? ' class="on"' : ''}>${label}</a>`).join('');
+    const mobileNav = MOBILE_NAV.map(([label, href, note]) => `<a href="${href}"><span>${label}${note ? `<small>${note}</small>` : ''}</span>${ICONS.arrow.replace('<svg', '<svg width="16" height="16"')}</a>`).join('');
     const backBtn = back ? `<a href="${back.href}" class="back-btn">&larr; ${esc(back.label)}</a>` : '';
     return `<!DOCTYPE html>
 <html lang="en">
@@ -99,7 +114,9 @@ ${head}
         <a class="brand" href="/"><img src="${asset('brand/logo-mark.webp')}" alt=""><span>Danloud Labs</span></a>
         <div class="spacer"></div>
         <nav>${nav}</nav>
+        <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav"><span class="i-open">${ICONS.menu}</span><span class="i-close">${ICONS.close}</span></button>
     </div>
+    <nav class="mobile-nav" id="mobile-nav">${mobileNav}</nav>
 </header>
 ${body}
 <footer>
@@ -108,7 +125,7 @@ ${body}
         <nav>
             <a href="/ios-apps">iOS</a>
             <a href="/android-apps">Android</a>
-            <a href="/software-tools">Software</a>
+            <a href="/macos-apps">macOS</a>
             <a href="/support">Support</a>
             <a href="/privacy">Privacy Policy</a>
             <a href="mailto:${SITE.email}">${SITE.email}</a>
@@ -116,6 +133,17 @@ ${body}
     </div>
 </footer>
 <script>
+(() => {
+    // Phone menu: the three-line button opens and closes it; a link or Escape closes it.
+    const bar = document.querySelector('.topbar');
+    const btn = bar && bar.querySelector('.menu-btn');
+    if (btn) {
+        const set = (open) => { bar.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); };
+        btn.addEventListener('click', () => set(!bar.classList.contains('open')));
+        bar.querySelectorAll('.mobile-nav a').forEach((a) => a.addEventListener('click', () => set(false)));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    }
+})();
 (() => {
     const els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }

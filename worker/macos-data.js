@@ -12,7 +12,7 @@
 import { asset } from './site-data.js';
 
 // While true, the pages carry <meta name="robots" content="noindex"> and nothing links to them.
-export const MAC_DRAFT = true;
+export const MAC_DRAFT = false;
 
 const A = (o) => ({
     ...o,

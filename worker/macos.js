@@ -61,7 +61,7 @@ function listPage() {
     return sitePage({
         title: 'macOS Applications · Danloud Labs',
         description: 'Creative tools for the Mac by Danloud Labs: CutOut Studio, UpRes Studio, AlphaCut and YT Converter.',
-        path: '/macos-apps', active: 'apps', back: { href: '/', label: 'Home' }, head: head(), body,
+        path: '/macos-apps', active: 'mac', back: { href: '/', label: 'Home' }, head: head(), body,
     });
 }
 
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return sitePage({
         title: `${a.name} for Mac · ${a.subtitle}`,
         description: `${a.name} for Mac: ${a.short}`,
-        path: a.href, ogImage: a.banner, icon: a.icon, active: 'apps',
+        path: a.href, ogImage: a.banner, icon: a.icon, active: 'mac',
         back: { href: '/macos-apps', label: 'macOS Apps' },
         head: head(script), body,
     });

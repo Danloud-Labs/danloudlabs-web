@@ -4,6 +4,7 @@
 
 import { SITE, SITE_APPS, SITE_PLATFORMS, SITE_PROJECTS, asset } from './site-data.js';
 import { ICONS, appCard, esc, sitePage } from './site-layout.js';
+import { MAC_APPS } from './macos-data.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="16" height="16"');
 
@@ -37,8 +38,8 @@ const body = `
             </div>
             <div class="stats">
                 <div class="stat"><b class="grad-text">${SITE_APPS.length}</b><span>iOS apps</span></div>
+                <div class="stat"><b class="grad-text">${MAC_APPS.length}</b><span>Mac apps</span></div>
                 <div class="stat"><b>${SITE_PROJECTS.length}</b><span>creative projects</span></div>
-                <div class="stat"><b>${SITE_PLATFORMS.length}</b><span>platforms</span></div>
                 <div class="stat"><b>FL</b><span>made in Florida, USA</span></div>
             </div>
         </div>
@@ -51,11 +52,25 @@ const body = `
             <div>
                 <span class="eyebrow">Technology &amp; Apps</span>
                 <h2>Our apps</h2>
-                <p class="lead">Native software for iPhone, iPad and Apple TV, designed and built by Danloud Labs.</p>
+                <p class="lead">Native software for iPhone, iPad, Apple TV and Mac, designed and built by Danloud Labs.</p>
             </div>
             <a class="btn btn-ghost btn-sm" href="/ios-apps">All iOS apps ${small(ICONS.arrow)}</a>
         </div>
         <div class="apps featured">${SITE_APPS.map(appCard).join('')}</div>
+    </div>
+</section>
+
+<section id="mac-apps" style="padding-top:0">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">For the Mac</span>
+                <h2>macOS apps</h2>
+                <p class="lead">Creative tools that run entirely on your Mac: fast, native and private by design.</p>
+            </div>
+            <a class="btn btn-ghost btn-sm" href="/macos-apps">All macOS apps ${small(ICONS.arrow)}</a>
+        </div>
+        <div class="apps">${MAC_APPS.map(appCard).join('')}</div>
     </div>
 </section>
 

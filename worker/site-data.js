@@ -64,7 +64,7 @@ export const SITE_APPS = [
 export const SITE_PLATFORMS = [
     { name: 'iOS Apps', href: '/ios-apps', color: '#0a84ff', text: 'Native apps for iPhone, iPad and Apple TV, built in Swift.', icon: 'phone' },
     { name: 'Android Apps', href: '/android-apps', color: '#32de84', text: 'Our apps and tools for Android phones and tablets.', icon: 'android' },
-    { name: 'Software & Tools', href: '/software-tools', color: '#ff9f0a', text: 'Desktop software and utilities for creators and professionals.', icon: 'tools' },
+    { name: 'macOS Apps', href: '/macos-apps', color: '#a855f7', text: 'Creative tools for the Mac: background removal, AI upscaling, video and more.', icon: 'mac' },
 ];
 
 // Creative projects: logos with transparency, shown on a glowing card in each project's color.

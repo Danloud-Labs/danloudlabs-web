@@ -4,7 +4,7 @@
 // ==========================================
 import { htmlPrincipal } from './home.js';
 import { handleMyncha } from './myncha.js';
-import { handleMacOS } from './macos.js';             // macOS apps (/macos-apps, /macos/<app>), draft           // Myncha: Vampires of Exius (story, characters, curse, Exius, bestiary…)
+import { handleMacOS } from './macos.js';             // macOS apps (/macos-apps, /macos/<app>)           // Myncha: Vampires of Exius (story, characters, curse, Exius, bestiary…)
 import { handleAmaphest } from './amaphest.js';          // Amaphest: principal, personajes y galería
 import { handleMMX9 } from './mmx9.js';                  // Mega Man X9: principal, story, personajes, bosses, universe
 import { handleDarkWithinMe } from './dwm.js';           // Dark Within Me: principal y story (4 libros)
@@ -68,7 +68,7 @@ const myncha = await handleMyncha(request);
 if (myncha) return myncha;
 
 // ==========================================
-// MACOS APPS (/macos-apps, /macos/cutout-studio, /macos/alphacut, /macos/yt-converter)
+// MACOS APPS (/macos-apps, /macos/cutout-studio, /macos/upres-studio, /macos/alphacut, /macos/yt-converter)
 // ==========================================
 const macos = await handleMacOS(request);
 if (macos) return macos;
@@ -80,7 +80,7 @@ if (macos) return macos;
 // Categorías Principales
 if (path === '/ios-apps' || path === '/ios') return new Response(htmlIOS, { headers });
 if (path === '/android-apps' || path === '/android') return new Response(htmlAndroid, { headers });
-if (path === '/software-tools' || path === '/software') return new Response(htmlSoftware, { headers });
+if (path === '/software-tools' || path === '/software') return Response.redirect(`${url.origin}/macos-apps`, 301); // Software & Tools are the macOS apps now
 
 // Sub-páginas de iOS / Apps Dedicadas
 if (path === '/ios/fedlog' || path === '/fedlog') return new Response(htmlFedLog, { headers });
