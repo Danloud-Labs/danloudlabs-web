@@ -63,6 +63,9 @@ danloudlabs-web/
 │   ├── fft2-data.js         FFT2 texts: characters, houses, games, relics, jobs, locations
 │   ├── fft2-styles.js       FFT2 CSS (night blue and parchment, moon silver and solar gold)
 │   └── dwm-styles.js        Dark Within Me CSS (crimson / silver over the MMX9 components)
+│   ├── macos.js             macOS apps: list (/macos-apps) and app pages (/macos/<slug>) + handleMacOS(request); draft
+│   ├── macos-data.js        macOS apps content: CutOut Studio, AlphaCut, YT Converter (MAC_DRAFT = noindex)
+│   ├── macos-styles.js      macOS pages CSS (Mac window frame)
 │   ├── myncha.js            Myncha: Vampires of Exius pages + handleMyncha(request) router (/myncha-vampires-of-exius)
 │   ├── myncha-data.js       Myncha texts: characters, the curse, Exius, bestiary, locations
 │   ├── myncha-layout.js     Myncha page shell shared by the Myncha pages (sub-nav, frames, headings)

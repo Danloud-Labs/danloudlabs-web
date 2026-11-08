@@ -105,7 +105,7 @@ globalThis.fetch = async (u, o) => {
     return m ? new Response(await readFile(join(out, '..', 'assets/projects/myncha/', m[1])).catch(() => '{}')) : fetchFft(u, o);
 };
 const myRoutes = ['story', 'characters', 'curse', 'exius', 'bestiary', 'locations', 'gallery', 'soundtrack'];
-const myProfiles = ['myncha', 'wynclaw', 'cardinal-gabriel'];
+const myProfiles = ['myncha', 'wynclaw', 'cardinal-gabriel', 'sire'];
 for (const route of ['', ...myRoutes, ...myProfiles.map((k) => `characters/${k}`)]) {
     const file = route ? `myncha-${route.replace('/', '-')}.html` : 'myncha.html';
     const res = await handleMyncha(new Request(`https://danloudlabs.com/myncha-vampires-of-exius${route ? `/${route}` : ''}`));
@@ -113,6 +113,17 @@ for (const route of ['', ...myRoutes, ...myProfiles.map((k) => `characters/${k}`
     for (const k of myProfiles) h = h.split(`href="/myncha-vampires-of-exius/characters/${k}"`).join(`href="myncha-characters-${k}.html"`);
     for (const r of myRoutes) h = h.split(`href="/myncha-vampires-of-exius/${r}`).join(`href="myncha-${r}.html`);
     h = h.split('href="/myncha-vampires-of-exius"').join('href="myncha.html"');
+    await writeFile(join(out, file), h);
+    console.log(file, `${Math.round(h.length / 1024)} KB`);
+}
+
+// macOS app pages.
+import { handleMacOS } from '../worker/macos.js';
+for (const route of ['macos-apps', 'macos/cutout-studio', 'macos/alphacut', 'macos/yt-converter']) {
+    const res = await handleMacOS(new Request(`https://danloudlabs.com/${route}`));
+    let h = (await res.text()).split(SITE_ASSETS).join('../assets');
+    for (const r of ['cutout-studio', 'alphacut', 'yt-converter']) h = h.split(`href="/macos/${r}"`).join(`href="macos-${r}.html"`);
+    const file = `${route.replace('/', '-')}.html`;
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
 }

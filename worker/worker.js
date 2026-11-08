@@ -3,7 +3,8 @@
 // Entry file of the Cloudflare Worker (named worker.js in the dashboard).
 // ==========================================
 import { htmlPrincipal } from './home.js';
-import { handleMyncha } from './myncha.js';           // Myncha: Vampires of Exius (story, characters, curse, Exius, bestiary…)
+import { handleMyncha } from './myncha.js';
+import { handleMacOS } from './macos.js';             // macOS apps (/macos-apps, /macos/<app>), draft           // Myncha: Vampires of Exius (story, characters, curse, Exius, bestiary…)
 import { handleAmaphest } from './amaphest.js';          // Amaphest: principal, personajes y galería
 import { handleMMX9 } from './mmx9.js';                  // Mega Man X9: principal, story, personajes, bosses, universe
 import { handleDarkWithinMe } from './dwm.js';           // Dark Within Me: principal y story (4 libros)
@@ -65,6 +66,12 @@ if (fft) return fft;
 // ==========================================
 const myncha = await handleMyncha(request);
 if (myncha) return myncha;
+
+// ==========================================
+// MACOS APPS (/macos-apps, /macos/cutout-studio, /macos/alphacut, /macos/yt-converter)
+// ==========================================
+const macos = await handleMacOS(request);
+if (macos) return macos;
 
 // ==========================================
 // ENRUTADORES
