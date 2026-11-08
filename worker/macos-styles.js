@@ -30,6 +30,12 @@ export const MAC_CSS = `
 .mac .feat-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .mac .feat-cards .split-feature { margin: 0; background: radial-gradient(420px 260px at 100% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), var(--win); }
 .mac .feat-cards .split-feature:nth-child(4n+2), .mac .feat-cards .split-feature:nth-child(4n+3) { background: radial-gradient(420px 260px at 0% 0%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 70%), var(--win); }
+.mac .feat-cards .split-feature { align-items: start; align-content: start; }
+/* An odd number of cards: the first one (the headline feature) spans the whole row. */
+.mac .feat-cards > .split-feature:first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+.mac .feat-cards > .split-feature:first-child:nth-last-child(odd) > div { display: grid; grid-template-columns: 1.1fr 1fr; column-gap: 44px; align-items: start; }
+.mac .feat-cards > .split-feature:first-child:nth-last-child(odd) > div > .eyebrow, .mac .feat-cards > .split-feature:first-child:nth-last-child(odd) > div > h3 { grid-column: 1 / -1; }
+.mac .feat-cards > .split-feature:first-child:nth-last-child(odd) .checks, .mac .feat-cards > .split-feature:first-child:nth-last-child(odd) .lead { margin-top: 4px; }
 .mac .feat-cards .split-feature h3 { font-size: clamp(22px, 2.4vw, 27px); }
 .mac .btn-soon { cursor: default; opacity: .85; }
 .mac .reqs { margin: 10px 0 0; padding: 0; list-style: none; }
@@ -43,6 +49,8 @@ export const MAC_CSS = `
     .mac .p-hero .hero-banner { max-height: 520px; }
     .mac .p-hero .hero-banner::after { background: linear-gradient(180deg, rgba(8, 7, 12, .35), rgba(8, 7, 12, .85)); }
     .mac .feat-cards { grid-template-columns: 1fr; }
+    .mac .feat-cards > .split-feature:first-child:nth-last-child(odd) > div { grid-template-columns: 1fr; }
+    .mac .feat-cards > .split-feature:first-child:nth-last-child(odd) .checks { margin-top: 16px; }
     .mac .p-hero .wrap, .mac .split-feature, .mac .split-feature.flip { grid-template-columns: 1fr; }
     .mac .split-feature.flip .macwin { order: 0; }
     .mac .p-hero .macwin { transform: none; }

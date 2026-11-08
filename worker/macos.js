@@ -99,7 +99,7 @@ ${a.shots.some(([n]) => isReady(a, n)) ? `<section id="screens" style="padding-t
     <div class="mac-shots">${a.shots.filter(([n]) => isReady(a, n)).map(([n, cap]) => macwin(a, n, cap, true)).join('')}</div>
 </div></section>` : ''}
 
-${a.notice ? `<section style="padding-top:0"><div class="wrap"><div class="disclaimer">${ICONS.diamond}<span>${esc(a.notice)}</span></div></div></section>` : ''}
+${a.notice ? `<section style="padding-top:0;padding-bottom:0"><div class="wrap"><div class="disclaimer">${ICONS.diamond}<span>${esc(a.notice)}</span></div></div></section>` : ''}
 
 <section><div class="wrap duo">
     <div class="card">
