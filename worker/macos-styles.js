@@ -11,6 +11,7 @@ export const MAC_CSS = `
 .macwin .bar i:nth-child(3) { background: #28c840; }
 .macwin .bar span { margin-left: 10px; font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, 0.55); }
 .macwin .scr { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; background: radial-gradient(70% 70% at 50% 40%, color-mix(in srgb, var(--c) 22%, #1a1822), #0d0c12 90%); }
+.macwin .scr video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .macwin .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .macwin .scr figcaption { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.35); }
 .mac .p-hero .wrap { grid-template-columns: 1fr 1.05fr; }

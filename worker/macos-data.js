@@ -3,7 +3,8 @@
 // Facts come from each app's source and README (CutOutStudio, AlphaCut, yt-converter).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
-// screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). List a screenshot in `ready` once its
+// screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). `videos` maps a shot to a short .mp4 loop
+// in the same folder, served through /media/… by macos.js (the .webp is its poster). List a screenshot in `ready` once its
 // file is in assets/apps/<slug>/: only ready screenshots are shown, and the page adapts until then
 // (banner in the hero window, text-only feature cards, no gallery).
 // =====================================================================================
@@ -76,7 +77,9 @@ export const MAC_APPS = [
         short: 'Remove the background from videos and export real transparency: APNG, spritesheets, ProRes 4444, HEVC.',
         platforms: 'macOS 14+',
         download: '',
-        ready: [],
+        ready: ['main', 'methods', 'edges', 'export', 'color', 'mask'],
+        // Shots that play a short silent loop (assets/apps/alphacut/<file>.mp4); their .webp is the poster.
+        videos: { main: 'main', methods: 'removal' },
         title: 'Cut the background', hot: 'out of any video.',
         lead: 'AlphaCut removes the background from your videos and exports them with real transparency: animated PNG, PNG sequences, game-ready spritesheets, ProRes 4444 and HEVC with alpha. Color grading and audio extraction included, all on your Mac.',
         badges: ['Real alpha', 'ProRes 4444', 'Spritesheets for Godot', 'Offline'],
@@ -114,7 +117,7 @@ export const MAC_APPS = [
             ['offline', 'Fully offline', 'Chroma on all CPU cores, AI on the Neural Engine. Nothing is uploaded.'],
             ['device', 'Native Mac app', 'Built in Swift and SwiftUI.'],
         ],
-        shots: [['main', 'AlphaCut'], ['methods', 'Removal methods'], ['color', 'Filters and color'], ['export', 'Exports']],
+        shots: [['main', 'Chroma key'], ['methods', 'Hybrid AI + chroma'], ['mask', 'Mask view'], ['color', 'Filters and color'], ['export', 'Exports'], ['edges', 'Edge cleanup']],
         requirements: ['macOS 14 Sonoma or later', 'Apple Silicon recommended for the AI modes'],
         privacy: 'Your videos are processed entirely on your Mac. AlphaCut has no accounts and sends nothing anywhere.',
     }),

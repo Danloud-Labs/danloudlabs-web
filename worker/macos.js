@@ -13,12 +13,15 @@ import { ICONS, appCard, esc, sitePage } from './site-layout.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
 const shot = (a, name) => asset(`apps/${a.slug}/${name}.webp`);
+const clip = (a, name) => (a.videos && a.videos[name] ? `/media/apps/${a.slug}/${a.videos[name]}.mp4` : '');
 const head = (extra = '') => `${MAC_DRAFT ? '<meta name="robots" content="noindex">' : ''}<style>${MAC_CSS}</style>${extra}`;
 
 // A Mac window with a screenshot; a labeled empty window until the art exists.
-const macwin = (a, name, label, zoom = false) => `<figure class="macwin"${zoom ? ` data-zoom="${shot(a, name)}" data-caption="${esc(label)}"` : ''} style="margin:0">
+const macwin = (a, name, label, zoom = false) => `<figure class="macwin"${zoom && !clip(a, name) ? ` data-zoom="${shot(a, name)}" data-caption="${esc(label)}"` : ''} style="margin:0">
     <div class="bar"><i></i><i></i><i></i><span>${esc(a.name)}</span></div>
-    <div class="scr"><figcaption>${esc(label)}</figcaption><img src="${shot(a, name)}" alt="${esc(label)}" loading="lazy" onerror="this.remove()"></div>
+    <div class="scr"><figcaption>${esc(label)}</figcaption>${clip(a, name)
+        ? `<video src="${clip(a, name)}" poster="${asset(`apps/${a.slug}/${a.videos[name]}.webp`)}" autoplay muted loop playsinline preload="metadata" aria-label="${esc(label)}"></video>`
+        : `<img src="${shot(a, name)}" alt="${esc(label)}" loading="lazy" onerror="this.remove()">`}</div>
 </figure>`;
 
 const isReady = (a, name) => (a.ready || []).includes(name);
@@ -136,8 +139,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const html = (body) => new Response(body, { headers: { 'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=300' } });
 
+// The app videos live in the repo (assets/apps/<slug>/*.mp4). GitHub serves them as plain bytes,
+// so they pass through here with the right type and Range support, which Safari needs to play them.
+async function media(request, rel) {
+    const headers = {};
+    const range = request.headers.get('range');
+    if (range) headers.range = range;
+    const res = await fetch(asset(rel), { headers, cf: { cacheTtl: 86400, cacheEverything: true } });
+    if (res.status !== 200 && res.status !== 206) return new Response('Not found', { status: 404 });
+    const out = new Headers();
+    for (const k of ['content-length', 'content-range', 'etag', 'last-modified']) if (res.headers.get(k)) out.set(k, res.headers.get(k));
+    out.set('content-type', 'video/mp4');
+    out.set('accept-ranges', 'bytes');
+    out.set('cache-control', 'public, max-age=86400');
+    return new Response(res.body, { status: res.status, headers: out });
+}
+
 export async function handleMacOS(request) {
     const url = new URL(request.url);
+    if (/^\/media\/apps\/[a-z0-9-]+\/[a-z0-9-]+\.mp4$/.test(url.pathname)) return media(request, url.pathname.slice('/media/'.length));
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
     if (path === '/macos-apps' || path === '/macos' || path === '/mac-apps') return html(listPage());
     if (path.startsWith('/macos/')) {
