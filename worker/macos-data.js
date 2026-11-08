@@ -28,7 +28,7 @@ export const MAC_APPS = [
         short: 'AI background removal for single images or whole folders, 100% on your Mac. PNG or WebP.',
         platforms: 'macOS 14+ · Apple Silicon',
         download: '',
-        ready: [],
+        ready: ['main', 'quality', 'editor', 'batch', 'edges', 'settings'],
         title: 'Remove any background.', hot: 'Keep every hair.',
         lead: 'CutOut Studio removes the background of your images right on your Mac: one at a time with brush touch-ups, or a whole folder in one click. No uploads, no accounts, no internet.',
         badges: ['100% offline', 'Apple Silicon', 'Batch folders', 'PNG & WebP'],
