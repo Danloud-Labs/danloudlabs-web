@@ -57,6 +57,7 @@ function appPage(a) {
 <main class="product mac" style="--c:${a.color};--c2:${a.c2}">
 <section class="p-hero">
     <div class="bg"></div>
+    <div class="hero-banner" style="background-image:url('${a.banner}')" aria-hidden="true"></div>
     <div class="wrap">
         <div>
             <div class="who"><img src="${a.icon}" alt="${esc(a.name)} icon" onerror="this.classList.add('noicon')"><div><b style="font-size:17px">${esc(a.name)}</b><small>${esc(a.subtitle)}</small></div></div>

@@ -15,6 +15,13 @@ export const MAC_CSS = `
 .macwin .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .macwin .scr figcaption { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.35); }
 .mac .p-hero .wrap { grid-template-columns: 1fr 1.05fr; }
+/* The app's banner behind the hero, fading out toward the bottom and darker behind the text. */
+.mac .p-hero .hero-banner { position: absolute; inset: 0 0 auto 0; height: 100%; max-height: 760px; background-size: cover; background-position: center 30%; opacity: .55; pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .75) 35%, transparent 92%); mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .75) 35%, transparent 92%);
+    animation: mac-drift 30s ease-in-out infinite alternate; }
+.mac .p-hero .hero-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 7, 12, .92) 0%, rgba(8, 7, 12, .7) 38%, rgba(8, 7, 12, .25) 70%, rgba(8, 7, 12, .15) 100%); }
+@keyframes mac-drift { from { transform: scale(1.02); } to { transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .mac .p-hero .hero-banner { animation: none; } }
 .mac .p-hero .macwin { transform: perspective(1600px) rotateY(-6deg); }
 .mac .split-feature { grid-template-columns: 1fr 1.15fr; }
 .mac .split-feature.flip { grid-template-columns: 1.15fr 1fr; }
@@ -33,6 +40,8 @@ export const MAC_CSS = `
 .mac .who img.noicon { visibility: hidden; }
 .lb figcaption { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: #fff; font-size: 15px; }
 @media (max-width: 980px) {
+    .mac .p-hero .hero-banner { max-height: 520px; }
+    .mac .p-hero .hero-banner::after { background: linear-gradient(180deg, rgba(8, 7, 12, .35), rgba(8, 7, 12, .85)); }
     .mac .feat-cards { grid-template-columns: 1fr; }
     .mac .p-hero .wrap, .mac .split-feature, .mac .split-feature.flip { grid-template-columns: 1fr; }
     .mac .split-feature.flip .macwin { order: 0; }
