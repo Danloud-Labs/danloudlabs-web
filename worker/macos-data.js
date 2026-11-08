@@ -77,7 +77,7 @@ export const MAC_APPS = [
         short: 'Remove the background from videos and export real transparency: APNG, spritesheets, ProRes 4444, HEVC.',
         platforms: 'macOS 14+',
         download: '',
-        ready: ['main', 'methods', 'edges', 'export', 'color', 'mask'],
+        ready: ['main', 'methods', 'methods-menu', 'edges', 'export', 'color', 'mask'],
         // Shots that play a short silent loop (assets/apps/alphacut/<file>.mp4); their .webp is the poster.
         videos: { main: 'main', methods: 'removal' },
         title: 'Cut the background', hot: 'out of any video.',
@@ -117,7 +117,7 @@ export const MAC_APPS = [
             ['offline', 'Fully offline', 'Chroma on all CPU cores, AI on the Neural Engine. Nothing is uploaded.'],
             ['device', 'Native Mac app', 'Built in Swift and SwiftUI.'],
         ],
-        shots: [['main', 'Chroma key'], ['methods', 'Hybrid AI + chroma'], ['mask', 'Mask view'], ['color', 'Filters and color'], ['export', 'Exports'], ['edges', 'Edge cleanup']],
+        shots: [['main', 'Chroma key'], ['methods-menu', 'Four removal methods'], ['methods', 'Hybrid AI + chroma'], ['mask', 'Mask view'], ['color', 'Filters and color'], ['export', 'Exports'], ['edges', 'Edge cleanup']],
         requirements: ['macOS 14 Sonoma or later', 'Apple Silicon recommended for the AI modes'],
         privacy: 'Your videos are processed entirely on your Mac. AlphaCut has no accounts and sends nothing anywhere.',
     }),
