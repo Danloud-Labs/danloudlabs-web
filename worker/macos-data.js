@@ -3,7 +3,9 @@
 // Facts come from each app's source and README (CutOutStudio, AlphaCut, yt-converter).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
-// screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). A missing image shows a labeled frame.
+// screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). List a screenshot in `ready` once its
+// file is in assets/apps/<slug>/: only ready screenshots are shown, and the page adapts until then
+// (banner in the hero window, text-only feature cards, no gallery).
 // =====================================================================================
 
 import { asset } from './site-data.js';
@@ -26,6 +28,7 @@ export const MAC_APPS = [
         short: 'AI background removal for single images or whole folders, 100% on your Mac. PNG or WebP.',
         platforms: 'macOS 14+ · Apple Silicon',
         download: '',
+        ready: [],
         title: 'Remove any background.', hot: 'Keep every hair.',
         lead: 'CutOut Studio removes the background of your images right on your Mac: one at a time with brush touch-ups, or a whole folder in one click. No uploads, no accounts, no internet.',
         badges: ['100% offline', 'Apple Silicon', 'Batch folders', 'PNG & WebP'],
@@ -73,6 +76,7 @@ export const MAC_APPS = [
         short: 'Remove the background from videos and export real transparency: APNG, spritesheets, ProRes 4444, HEVC.',
         platforms: 'macOS 14+',
         download: '',
+        ready: [],
         title: 'Cut the background', hot: 'out of any video.',
         lead: 'AlphaCut removes the background from your videos and exports them with real transparency: animated PNG, PNG sequences, game-ready spritesheets, ProRes 4444 and HEVC with alpha. Color grading and audio extraction included, all on your Mac.',
         badges: ['Real alpha', 'ProRes 4444', 'Spritesheets for Godot', 'Offline'],
@@ -120,6 +124,7 @@ export const MAC_APPS = [
         short: 'Paste a link and save it as MP4 video, MP3 audio, or MIDI transcribed by AI, instrument by instrument.',
         platforms: 'macOS',
         download: '',
+        ready: [],
         title: 'From a link to', hot: 'MP4, MP3 or MIDI.',
         lead: 'Paste a video link and YT Converter saves it as an MP4 video, an MP3 audio file, or turns the music into MIDI you can open in your DAW. Everything is processed on your Mac and lands in your Downloads folder.',
         badges: ['MP4 · MP3 · MIDI', 'AI transcription', 'Saves to Downloads', 'ffmpeg included'],

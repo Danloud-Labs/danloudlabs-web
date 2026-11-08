@@ -21,6 +21,13 @@ const macwin = (a, name, label, zoom = false) => `<figure class="macwin"${zoom ?
     <div class="scr"><figcaption>${esc(label)}</figcaption><img src="${shot(a, name)}" alt="${esc(label)}" loading="lazy" onerror="this.remove()"></div>
 </figure>`;
 
+const isReady = (a, name) => (a.ready || []).includes(name);
+
+// The hero window: the main screenshot when ready, otherwise the app's banner.
+const heroWindow = (a) => (isReady(a, a.hero)
+    ? macwin(a, a.hero, a.name)
+    : `<figure class="macwin" style="margin:0"><div class="bar"><i></i><i></i><i></i><span>${esc(a.name)}</span></div><div class="scr"><img src="${a.banner}" alt="${esc(a.name)}" onerror="this.remove()"></div></figure>`);
+
 const button = (a) => (a.download
     ? `<a class="btn btn-store" href="${esc(a.download)}">${ICONS.apple}<span class="two"><small>Download for</small>Mac</span></a>`
     : `<span class="btn btn-primary btn-soon">${ICONS.apple} Coming soon to Mac</span>`);
@@ -55,24 +62,25 @@ function appPage(a) {
             <div class="badges"><span class="hot">macOS</span>${a.badges.map((b) => `<span>${esc(b)}</span>`).join('')}</div>
             <div class="cta-row" style="margin-top:24px">${button(a)}<a class="btn btn-ghost" href="#features">See what it does</a></div>
         </div>
-        ${macwin(a, a.hero, a.name)}
+        ${heroWindow(a)}
     </div>
     <div class="wrap" style="display:block">
         <div class="p-stats">${a.stats.map(([n, t]) => `<div><b>${esc(n)}</b><span>${esc(t)}</span></div>`).join('')}</div>
     </div>
 </section>
 
-<section id="features"><div class="wrap">
-    ${a.blocks.map((b) => `
-    <div class="split-feature reveal${b.flip ? ' flip' : ''}">
-        <div>
+<section id="features"><div class="wrap${a.blocks.some((b) => isReady(a, b.shot)) ? '' : ' feat-cards'}">
+    ${a.blocks.map((b) => {
+        const text = `<div>
             <span class="eyebrow">${esc(b.eyebrow)}</span>
             <h3>${esc(b.title)}</h3>
             <p class="lead">${esc(b.text)}</p>
             <ul class="checks">${b.list.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
-        </div>
-        ${macwin(a, b.shot, b.eyebrow)}
-    </div>`).join('')}
+        </div>`;
+        return isReady(a, b.shot)
+            ? `<div class="split-feature reveal${b.flip ? ' flip' : ''}">${text}${macwin(a, b.shot, b.eyebrow)}</div>`
+            : `<div class="split-feature solo reveal">${text}</div>`;
+    }).join('')}
 </div></section>
 
 <section style="padding-top:10px"><div class="wrap">
@@ -82,10 +90,10 @@ function appPage(a) {
     </div>
 </div></section>
 
-<section id="screens" style="padding-top:20px"><div class="wrap">
+${a.shots.some(([n]) => isReady(a, n)) ? `<section id="screens" style="padding-top:20px"><div class="wrap">
     <div class="section-head"><div><span class="eyebrow">Screenshots</span><h2>A closer look</h2></div></div>
-    <div class="mac-shots">${a.shots.map(([n, cap]) => macwin(a, n, cap, true)).join('')}</div>
-</div></section>
+    <div class="mac-shots">${a.shots.filter(([n]) => isReady(a, n)).map(([n, cap]) => macwin(a, n, cap, true)).join('')}</div>
+</div></section>` : ''}
 
 ${a.notice ? `<section style="padding-top:0"><div class="wrap"><div class="disclaimer">${ICONS.diamond}<span>${esc(a.notice)}</span></div></div></section>` : ''}
 

@@ -18,6 +18,11 @@ export const MAC_CSS = `
 .mac .split-feature { grid-template-columns: 1fr 1.15fr; }
 .mac .split-feature.flip { grid-template-columns: 1.15fr 1fr; }
 .mac .split-feature.flip .macwin { order: -1; }
+.mac .split-feature.solo { grid-template-columns: 1fr; }
+.mac .feat-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.mac .feat-cards .split-feature { margin: 0; background: radial-gradient(420px 260px at 100% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), var(--win); }
+.mac .feat-cards .split-feature:nth-child(4n+2), .mac .feat-cards .split-feature:nth-child(4n+3) { background: radial-gradient(420px 260px at 0% 0%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 70%), var(--win); }
+.mac .feat-cards .split-feature h3 { font-size: clamp(22px, 2.4vw, 27px); }
 .mac .btn-soon { cursor: default; opacity: .85; }
 .mac .reqs { margin: 10px 0 0; padding: 0; list-style: none; }
 .mac .reqs li { padding: 7px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
@@ -27,6 +32,7 @@ export const MAC_CSS = `
 .mac .who img.noicon { visibility: hidden; }
 .lb figcaption { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: #fff; font-size: 15px; }
 @media (max-width: 980px) {
+    .mac .feat-cards { grid-template-columns: 1fr; }
     .mac .p-hero .wrap, .mac .split-feature, .mac .split-feature.flip { grid-template-columns: 1fr; }
     .mac .split-feature.flip .macwin { order: 0; }
     .mac .p-hero .macwin { transform: none; }
