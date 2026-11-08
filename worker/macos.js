@@ -1,7 +1,7 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps.
 //   /macos-apps          the list (also /macos, /mac-apps)
-//   /macos/<slug>        one page per app (cutout-studio, alphacut, yt-converter)
+//   /macos/<slug>        one page per app (cutout-studio, upres-studio, alphacut, yt-converter)
 // Content: macos-data.js. While MAC_DRAFT is true the pages are noindex and nothing links to them.
 // The Worker's fetch() calls handleMacOS(request); it returns null for other paths.
 // =====================================================================================
@@ -26,6 +26,19 @@ const macwin = (a, name, label, zoom = false) => `<figure class="macwin"${zoom &
 
 const isReady = (a, name) => (a.ready || []).includes(name);
 
+// Interactive before / after (optional `compare` in macos-data.js; images apps/<slug>/before.webp and after.webp).
+const compareSection = (a) => (a.compare ? `<section id="compare" style="padding-top:10px"><div class="wrap">
+    <div class="section-head reveal"><div><span class="eyebrow">${esc(a.compare.eyebrow)}</span><h2>${esc(a.compare.title)}</h2></div></div>
+    <div class="ba reveal" style="--pos:50%">
+        <img src="${shot(a, 'before')}" alt="Before: plain enlargement" loading="lazy">
+        <img class="ba-after" src="${shot(a, 'after')}" alt="After: ${esc(a.name)}" loading="lazy">
+        <span class="ba-line"></span>
+        <span class="ba-tag l">Before</span><span class="ba-tag r">${esc(a.name)}</span>
+        <input type="range" min="0" max="100" value="50" step="0.1" aria-label="Compare before and after">
+    </div>
+    <p class="ba-cap">${esc(a.compare.caption)}</p>
+</div></section>` : '');
+
 // The hero window: the main screenshot when ready, otherwise the app's banner.
 const heroWindow = (a) => (isReady(a, a.hero)
     ? macwin(a, a.hero, a.name)
@@ -47,7 +60,7 @@ function listPage() {
 </main>`;
     return sitePage({
         title: 'macOS Applications · Danloud Labs',
-        description: 'Creative tools for the Mac by Danloud Labs: CutOut Studio, AlphaCut and YT Converter.',
+        description: 'Creative tools for the Mac by Danloud Labs: CutOut Studio, UpRes Studio, AlphaCut and YT Converter.',
         path: '/macos-apps', active: 'apps', back: { href: '/', label: 'Home' }, head: head(), body,
     });
 }
@@ -72,6 +85,8 @@ function appPage(a) {
         <div class="p-stats">${a.stats.map(([n, t]) => `<div><b>${esc(n)}</b><span>${esc(t)}</span></div>`).join('')}</div>
     </div>
 </section>
+
+${compareSection(a)}
 
 <section id="features"><div class="wrap${a.blocks.some((b) => isReady(a, b.shot)) ? '' : ' feat-cards'}">
     ${a.blocks.map((b) => {
@@ -126,6 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lb.classList.remove('open');
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
+    document.querySelectorAll('.ba input').forEach((range) => range.addEventListener('input', () => {
+        range.parentElement.style.setProperty('--pos', range.value + '%');
+    }));
 });
 </script>`;
 
@@ -165,6 +183,6 @@ export async function handleMacOS(request) {
         const a = findMacApp(path.slice('/macos/'.length));
         return a ? html(appPage(a)) : Response.redirect(`${url.origin}/macos-apps`, 302);
     }
-    if (path === '/cutout-studio' || path === '/alphacut' || path === '/yt-converter') return Response.redirect(`${url.origin}/macos${path}`, 301);
+    if (path === '/cutout-studio' || path === '/upres-studio' || path === '/alphacut' || path === '/yt-converter') return Response.redirect(`${url.origin}/macos${path}`, 301);
     return null;
 }

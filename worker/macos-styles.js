@@ -44,6 +44,16 @@ export const MAC_CSS = `
 .mac .mac-shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .mac .mac-shots .macwin { cursor: zoom-in; }
 .mac .who img.noicon { visibility: hidden; }
+.mac .ba { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; background: #fff; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.8), 0 0 60px -24px color-mix(in srgb, var(--c) 50%, transparent); user-select: none; }
+.mac .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.mac .ba .ba-after { clip-path: inset(0 0 0 var(--pos)); }
+.mac .ba .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); pointer-events: none; }
+.mac .ba .ba-line::after { content: "‹ ›"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 2px; background: linear-gradient(135deg, var(--c2), var(--c)); border: 2px solid #fff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
+.mac .ba .ba-tag { position: absolute; top: 14px; padding: 5px 11px; border-radius: 99px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(0, 0, 0, 0.55); pointer-events: none; }
+.mac .ba .ba-tag.l { left: 14px; }
+.mac .ba .ba-tag.r { right: 14px; }
+.mac .ba input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.mac .ba-cap { color: var(--muted); font-size: 14px; margin: 12px 2px 0; }
 .lb figcaption { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: #fff; font-size: 15px; }
 @media (max-width: 980px) {
     .mac .p-hero .hero-banner { max-height: 520px; }

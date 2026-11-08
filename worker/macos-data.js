@@ -1,6 +1,6 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps (content). Pages: worker/macos.js.
-// Facts come from each app's source and README (CutOutStudio, AlphaCut, yt-converter).
+// Facts come from each app's source and README (CutOutStudio, UpResStudio, AlphaCut, yt-converter).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
 // screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). `videos` maps a shot to a short .mp4 loop
@@ -70,6 +70,48 @@ export const MAC_APPS = [
         shots: [['main', 'Single Image editor'], ['batch', 'Batch Folder'], ['quality', 'High Quality result'], ['settings', 'Settings']],
         requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon', 'About 1 GB of space (the AI model is inside the app)'],
         privacy: 'Your images never leave your Mac. CutOut Studio has no accounts, no analytics and needs no internet connection to work.',
+    }),
+    A({
+        slug: 'upres-studio', name: 'UpRes Studio', color: '#8b5cf6', c2: '#22d3ee', glow: 'rgba(139, 92, 246, 0.38)',
+        subtitle: 'AI image upscaler',
+        short: 'Upscale images 2×, 4× or all the way to 8K with AI, 100% on your Mac. Before / after slider, whole folders, transparency kept.',
+        platforms: 'macOS 14+ · Apple Silicon',
+        download: '',
+        ready: ['main', 'sizes', 'batch', 'settings'],
+        title: 'Every pixel,', hot: 'up to 8K.',
+        lead: 'UpRes Studio enlarges your images with AI right on your Mac: sharper lines, cleaner detail, no blur and no compression blocks. Compare before and after with a slider, or upscale a whole folder at once. No uploads, no accounts, no internet.',
+        badges: ['Up to 8K', '100% offline', 'Apple Silicon', 'Batch folders'],
+        stats: [['8K', 'maximum output'], ['16×', 'largest scale'], ['2', 'AI models'], ['3', 'export formats'], ['0', 'uploads']],
+        hero: 'main',
+        // Interactive before / after on the page (assets/apps/upres-studio/before.webp and after.webp).
+        compare: {
+            eyebrow: 'Before and after', title: 'See the difference.',
+            caption: 'A 896 × 1200 character from WarDecks, enlarged 4×. Left: a plain enlargement. Right: UpRes Studio. Drag the slider.',
+        },
+        blocks: [
+            {
+                shot: 'sizes', eyebrow: 'Two AI models, three sizes', title: 'Sharper, without changing your art.',
+                text: 'Choose Illustration & Photo to keep painted shading and texture, or Anime & Bold Lines for crisp outlines. Each size shows the exact result before you start: 2×, 4×, or 8K, which takes two AI passes so the detail is drawn, not stretched.',
+                list: ['Real-ESRGAN models, running on the Neural Engine and GPU', '2×, 4× or 8K (7680 px on the long side, up to 16×)', 'Transparent PNGs stay transparent, with clean edges', 'Nothing runs until you press Upscale'],
+            },
+            {
+                shot: 'batch', eyebrow: 'Batch Folder', title: 'A whole folder, in one click.',
+                text: 'Drop a folder and every image in it is upscaled with the same model and size. The results go into a new folder inside it, named with their size, and the originals are never touched.',
+                list: ['Live progress on every image', 'Results named Hero@4x.png or Hero 8K.png', 'Double-click any result to compare it with its original', 'Skip an image, or upscale one again'],
+                flip: true,
+            },
+        ],
+        features: [
+            ['search', 'Pinch to zoom', 'Zoom from 5% to 800% with the trackpad, or ⌘+ / ⌘− / ⌘0 / ⌘1.'],
+            ['eye', 'Before / after slider', 'Drag across the image to compare the original and the result at any zoom.'],
+            ['photo', 'Image facts', 'Size, megapixels, aspect, format, color profile and transparency at a glance.'],
+            ['offline', 'Fully offline', 'Every image is processed on your Mac. Nothing is uploaded, ever.'],
+            ['device', 'Native Mac app', 'Built in Swift and SwiftUI for Apple Silicon, with the Neural Engine.'],
+            ['doc', 'PNG, WebP or JPEG', 'Export with transparency, adjustable quality or lossless WebP.'],
+        ],
+        shots: [['main', 'Before / after at any zoom'], ['sizes', 'Models and sizes'], ['batch', 'Batch Folder'], ['settings', 'Settings']],
+        requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon', 'About 200 MB of space (the AI models are inside the app)'],
+        privacy: 'Your images never leave your Mac. UpRes Studio has no accounts, no analytics and needs no internet connection to work.',
     }),
     A({
         slug: 'alphacut', name: 'AlphaCut', color: '#22c55e', c2: '#38bdf8', glow: 'rgba(34, 197, 94, 0.35)',
