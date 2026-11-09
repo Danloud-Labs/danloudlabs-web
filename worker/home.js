@@ -3,10 +3,14 @@
 // =====================================================================================
 
 import { SITE, SITE_APPS, SITE_PLATFORMS, SITE_PROJECTS, asset } from './site-data.js';
-import { ICONS, appCard, esc, sitePage } from './site-layout.js';
+import { ICONS, appCard, esc, projectCard, sitePage } from './site-layout.js';
 import { MAC_APPS } from './macos-data.js';
 
 const small = (svg) => svg.replace('<svg', '<svg width="16" height="16"');
+
+// How many of each the main page shows (the first ones in each list). The rest are only on
+// /ios-apps, /macos-apps and /projects, so new apps and projects go at the end of their list.
+const HOME_COUNT = { ios: 4, mac: 4, projects: 5 };
 
 const platformTiles = SITE_PLATFORMS.map((p) => `
 <a class="platform reveal" href="${p.href}" style="--c:${p.color}">
@@ -16,11 +20,7 @@ const platformTiles = SITE_PLATFORMS.map((p) => `
     <span class="go">Explore ${small(ICONS.arrow)}</span>
 </a>`).join('');
 
-const projectCards = SITE_PROJECTS.map((p) => `
-<a class="project reveal${p.cover ? ' cover' : ''}" href="${p.href}" style="--c:${p.color}">
-    <div class="art"><img src="${p.logo}" alt="${esc(p.name)}" loading="lazy"></div>
-    <div class="label"><b>${esc(p.name)}</b><span>${small(ICONS.arrow)}</span></div>
-</a>`).join('');
+const projectCards = SITE_PROJECTS.slice(0, HOME_COUNT.projects).map(projectCard).join('');
 
 const body = `
 <main>
@@ -56,7 +56,7 @@ const body = `
             </div>
             <a class="btn btn-ghost btn-sm" href="/ios-apps">All iOS apps ${small(ICONS.arrow)}</a>
         </div>
-        <div class="apps featured">${SITE_APPS.map(appCard).join('')}</div>
+        <div class="apps featured">${SITE_APPS.slice(0, HOME_COUNT.ios).map(appCard).join('')}</div>
     </div>
 </section>
 
@@ -70,7 +70,7 @@ const body = `
             </div>
             <a class="btn btn-ghost btn-sm" href="/macos-apps">All macOS apps ${small(ICONS.arrow)}</a>
         </div>
-        <div class="apps">${MAC_APPS.map(appCard).join('')}</div>
+        <div class="apps">${MAC_APPS.slice(0, HOME_COUNT.mac).map(appCard).join('')}</div>
     </div>
 </section>
 
@@ -88,6 +88,7 @@ const body = `
                 <h2>Worlds we are building</h2>
                 <p class="lead">Games, fan projects and original stories from the Danloud Labs universe.</p>
             </div>
+            <a class="btn btn-ghost btn-sm" href="/projects">All projects ${small(ICONS.arrow)}</a>
         </div>
         <div class="projects">${projectCards}</div>
     </div>

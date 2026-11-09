@@ -72,7 +72,7 @@ const MOBILE_NAV = [
     ['iOS Apps', '/ios-apps', 'iPhone, iPad, Apple TV'],
     ['macOS Apps', '/macos-apps', 'Creative tools for the Mac'],
     ['Android Apps', '/android-apps', 'Phones and tablets'],
-    ['Creative Projects', '/#projects', 'Games, fan projects, stories'],
+    ['Creative Projects', '/projects', 'Games, fan projects, stories'],
     ['Support', '/support', 'Help and contact'],
     ['Privacy Policy', '/privacy', ''],
 ];
@@ -154,6 +154,13 @@ ${body}
 </body>
 </html>`;
 }
+
+// One creative project card (main page and /projects).
+export const projectCard = (p) => `
+<a class="project reveal${p.cover ? ' cover' : ''}" href="${p.href}" style="--c:${p.color}">
+    <div class="art"><img src="${p.logo}" alt="${esc(p.name)}" loading="lazy"></div>
+    <div class="label"><b>${esc(p.name)}</b><span>${ICONS.arrow.replace('<svg', '<svg width="16" height="16"')}</span></div>
+</a>`;
 
 // One app card (main page and /ios-apps).
 export const appCard = (a) => `

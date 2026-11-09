@@ -9,6 +9,7 @@ import { handleAmaphest } from './amaphest.js';          // Amaphest: principal,
 import { handleMMX9 } from './mmx9.js';                  // Mega Man X9: principal, story, personajes, bosses, universe
 import { handleDarkWithinMe } from './dwm.js';           // Dark Within Me: principal y story (4 libros)
 import { htmlIOS } from './ios.js';
+import { htmlProjects } from './projects.js';       // all creative projects (/projects)
 import { htmlAndroid } from './android.js';
 import { htmlSoftware } from './software.js';
 
@@ -79,6 +80,7 @@ if (macos) return macos;
 // Proyectos Creativos, Videojuegos y Trailers
 // Categorías Principales
 if (path === '/ios-apps' || path === '/ios') return new Response(htmlIOS, { headers });
+if (path === '/projects' || path === '/creative-projects') return new Response(htmlProjects, { headers });
 if (path === '/android-apps' || path === '/android') return new Response(htmlAndroid, { headers });
 if (path === '/software-tools' || path === '/software') return Response.redirect(`${url.origin}/macos-apps`, 301); // Software & Tools are the macOS apps now
 

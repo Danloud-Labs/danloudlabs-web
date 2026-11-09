@@ -60,7 +60,7 @@ function listPage() {
 </main>`;
     return sitePage({
         title: 'macOS Applications · Danloud Labs',
-        description: 'Creative tools for the Mac by Danloud Labs: CutOut Studio, UpRes Studio, AlphaCut and YT Converter.',
+        description: `Creative tools for the Mac by Danloud Labs: ${MAC_APPS.map((a) => a.name).join(', ')}.`,
         path: '/macos-apps', active: 'mac', back: { href: '/', label: 'Home' }, head: head(), body,
     });
 }
