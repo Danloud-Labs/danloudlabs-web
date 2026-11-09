@@ -1,6 +1,6 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps (content). Pages: worker/macos.js.
-// Facts come from each app's source and README (CutOutStudio, UpResStudio, AlphaCut, yt-converter).
+// Facts come from each app's source and README (CutOutStudio, UpResStudio, WaveSmithStudio, AlphaCut, yt-converter).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
 // screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). `videos` maps a shot to a short .mp4 loop
@@ -112,6 +112,54 @@ export const MAC_APPS = [
         shots: [['main', 'Before / after at any zoom'], ['sizes', 'Models and sizes'], ['batch', 'Batch Folder'], ['settings', 'Settings']],
         requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon', 'About 200 MB of space (the AI models are inside the app)'],
         privacy: 'Your images never leave your Mac. UpRes Studio has no accounts, no analytics and needs no internet connection to work.',
+    }),
+    A({
+        slug: 'wavesmith-studio', name: 'WaveSmith Studio', color: '#3b82f6', c2: '#f59e0b', glow: 'rgba(59, 130, 246, 0.38)',
+        subtitle: 'Audio editor and mixer',
+        short: 'Trim, extract, fade and mix sounds into one file, 100% on your Mac. WAV, AIFF, M4A and FLAC.',
+        platforms: 'macOS 14+ · Apple Silicon',
+        download: '',
+        ready: ['main', 'playing', 'tools', 'zoom', 'mix', 'settings'],
+        title: 'Shape any sound.', hot: 'Cut, fade, mix.',
+        lead: 'WaveSmith Studio is a simple, fast audio editor for your Mac. Select a part of the waveform and trim it, extract it, fade it or change its speed and pitch, then layer two sounds into a single file. No uploads, no accounts, no internet.',
+        badges: ['Trim & extract', 'Fades & mixing', '100% offline', 'WAV · AIFF · M4A · FLAC'],
+        stats: [['4', 'fade curves'], ['2', 'mix modes'], ['40', 'undo steps'], ['4', 'export formats'], ['0', 'uploads']],
+        hero: 'main',
+        blocks: [
+            {
+                shot: 'main', eyebrow: 'Trim and extract', title: 'Take out a piece. Your way.',
+                text: 'Drag across the waveform to select, then drag the edges to fine-tune it. Trim keeps only the selection. Extract removes it and lets you choose what happens to the hole: close the gap so the rest joins up, or leave silence so the timing stays the same.',
+                list: ['Close the gap, with a 10 ms cross-fade so the cut never clicks', 'Or leave silence in its place', 'Save just the selected piece as its own file', 'Cut, copy and paste inside the sound, with 40 steps of undo'],
+            },
+            {
+                shot: 'tools', eyebrow: 'Fades, volume and effects', title: 'Everything a sound needs, one click away.',
+                text: 'Fade in and out with four curves, each drawn on its button, over the selection or a length you set. Change the volume, normalize the peaks, reverse, insert silence, switch between mono and stereo, or change the sample rate.',
+                list: ['Linear, S-Curve, Exponential and Logarithmic fades', 'Gain from −24 to +24 dB, and Normalize to a target peak', 'Speed without changing the pitch, pitch without changing the length', 'Edits apply to the selection, or to the whole sound'],
+                flip: true,
+            },
+            {
+                shot: 'mix', eyebrow: 'Mix', title: 'Two sounds, one file.',
+                text: 'Load two sounds and choose how they meet. Layer plays them at the same time: drag the second one on the timeline to decide when it comes in. Join plays one after the other, with a gap or a smooth cross-fade. Each track has its own volume and fades.',
+                list: ['Layer: both at once, B starts where you drop it', 'Join: one after the other, with silence or a cross-fade', 'Different sample rates and channels are matched automatically', 'Clipping protection, preview, then export or keep editing'],
+            },
+            {
+                shot: 'zoom', eyebrow: 'Down to the sample', title: 'Zoom in until you see every sample.',
+                text: 'Pinch on the trackpad to zoom from the whole sound to single samples, and use the overview strip to move around. The playhead follows the sound while it plays.',
+                list: ['Pinch, ⌘+ / ⌘− and zoom to selection', 'Overview strip of the whole sound', 'Time ruler down to the millisecond'],
+                flip: true,
+            },
+        ],
+        features: [
+            ['wave', 'Opens your sounds', 'WAV, AIFF, MP3, M4A, AAC, FLAC and CAF, in mono or stereo.'],
+            ['doc', 'Exports cleanly', 'WAV up to 32-bit float, AIFF, FLAC, or M4A from 128 to 320 kbps.'],
+            ['eye', 'Levels at a glance', 'Length, sample rate, channels, peak and RMS loudness for every sound.'],
+            ['wrench', 'Keyboard friendly', 'Space to play, Delete to extract, and a Sound menu with shortcuts.'],
+            ['offline', 'Fully offline', 'Every sound is processed on your Mac with Apple’s AVFoundation. Nothing is uploaded.'],
+            ['device', 'Native Mac app', 'Built in Swift and SwiftUI for Apple Silicon.'],
+        ],
+        shots: [['main', 'Select, trim and extract'], ['playing', 'Playback'], ['tools', 'Fades, volume and effects'], ['zoom', 'Zoomed to single samples'], ['mix', 'Mixing two sounds'], ['settings', 'Settings']],
+        requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon'],
+        privacy: 'Your sounds never leave your Mac. WaveSmith Studio has no accounts, no analytics and needs no internet connection to work.',
     }),
     A({
         slug: 'alphacut', name: 'AlphaCut', color: '#22c55e', c2: '#38bdf8', glow: 'rgba(34, 197, 94, 0.35)',

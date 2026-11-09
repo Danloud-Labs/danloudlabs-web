@@ -1,7 +1,7 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps.
 //   /macos-apps          the list (also /macos, /mac-apps)
-//   /macos/<slug>        one page per app (cutout-studio, upres-studio, alphacut, yt-converter)
+//   /macos/<slug>        one page per app (cutout-studio, upres-studio, wavesmith-studio, alphacut, yt-converter)
 // Content: macos-data.js. While MAC_DRAFT is true the pages are noindex and nothing links to them.
 // The Worker's fetch() calls handleMacOS(request); it returns null for other paths.
 // =====================================================================================
@@ -183,6 +183,6 @@ export async function handleMacOS(request) {
         const a = findMacApp(path.slice('/macos/'.length));
         return a ? html(appPage(a)) : Response.redirect(`${url.origin}/macos-apps`, 302);
     }
-    if (path === '/cutout-studio' || path === '/upres-studio' || path === '/alphacut' || path === '/yt-converter') return Response.redirect(`${url.origin}/macos${path}`, 301);
+    if (path === '/cutout-studio' || path === '/upres-studio' || path === '/wavesmith-studio' || path === '/alphacut' || path === '/yt-converter') return Response.redirect(`${url.origin}/macos${path}`, 301);
     return null;
 }

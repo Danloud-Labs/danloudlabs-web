@@ -119,10 +119,10 @@ for (const route of ['', ...myRoutes, ...myProfiles.map((k) => `characters/${k}`
 
 // macOS app pages.
 import { handleMacOS } from '../worker/macos.js';
-for (const route of ['macos-apps', 'macos/cutout-studio', 'macos/upres-studio', 'macos/alphacut', 'macos/yt-converter']) {
+for (const route of ['macos-apps', 'macos/cutout-studio', 'macos/upres-studio', 'macos/wavesmith-studio', 'macos/alphacut', 'macos/yt-converter']) {
     const res = await handleMacOS(new Request(`https://danloudlabs.com/${route}`));
     let h = (await res.text()).split(SITE_ASSETS).join('../assets');
-    for (const r of ['cutout-studio', 'upres-studio', 'alphacut', 'yt-converter']) h = h.split(`href="/macos/${r}"`).join(`href="macos-${r}.html"`);
+    for (const r of ['cutout-studio', 'upres-studio', 'wavesmith-studio', 'alphacut', 'yt-converter']) h = h.split(`href="/macos/${r}"`).join(`href="macos-${r}.html"`);
     const file = `${route.replace('/', '-')}.html`;
     await writeFile(join(out, file), h);
     console.log(file, `${Math.round(h.length / 1024)} KB`);
