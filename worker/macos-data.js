@@ -124,7 +124,7 @@ export const MAC_APPS = [
         lead: 'WaveSmith Studio is a simple, fast audio editor for your Mac. Select a part of the waveform and trim it, extract it, fade it or change its speed and pitch, then layer two sounds into a single file. No uploads, no accounts, no internet.',
         badges: ['Trim & extract', 'Fades & mixing', '100% offline', 'WAV · AIFF · M4A · FLAC'],
         stats: [['4', 'fade curves'], ['2', 'mix modes'], ['40', 'undo steps'], ['4', 'export formats'], ['0', 'uploads']],
-        hero: 'main',
+        hero: 'playing',
         blocks: [
             {
                 shot: 'main', eyebrow: 'Trim and extract', title: 'Take out a piece. Your way.',
