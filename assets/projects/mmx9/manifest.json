@@ -215,7 +215,9 @@
     "characters": "sections/characters.webp",
     "mavericks": "sections/mavericks.webp",
     "weapons": "sections/weapons.webp",
-    "universe": "sections/universe.webp"
+    "universe": "sections/universe.webp",
+    "locations": "sections/locations.webp",
+    "soundtrack": "sections/soundtrack.webp"
   },
   "locations": {
     "toxic-overgrown-greenhouse": "locations/toxic-overgrown-greenhouse.webp",
@@ -229,7 +231,10 @@
     "destroyed-desalinization-facility": "locations/destroyed-desalinization-facility.webp",
     "deep-sea-research-lab": "locations/deep-sea-research-lab.webp",
     "sky-citadel": "locations/sky-citadel.webp",
-    "collapsed-volcano-mining-facility": "locations/collapsed-volcano-mining-facility.webp"
+    "collapsed-volcano-mining-facility": "locations/collapsed-volcano-mining-facility.webp",
+    "maverick-hunter-base": "locations/maverick-hunter-base.webp",
+    "dr-clarks-laboratory": "locations/dr-clarks-laboratory.webp",
+    "dynamos-stronghold": "locations/dynamos-stronghold.webp"
   },
   "brand": {
     "banner": "brand/banner.webp"

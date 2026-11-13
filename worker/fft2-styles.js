@@ -42,7 +42,7 @@ body::before {
 
 /* The two paths */
 .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.path { --pc: var(--blue); display: grid; grid-template-columns: 200px 1fr; gap: 18px; align-items: center; padding: 16px; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--pc) 40%, var(--line)); background: radial-gradient(400px 200px at 0% 0%, color-mix(in srgb, var(--pc) 16%, transparent), transparent 70%), var(--card); }
+.path { --pc: var(--blue); display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; padding: 16px; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--pc) 40%, var(--line)); background: radial-gradient(400px 200px at 0% 0%, color-mix(in srgb, var(--pc) 16%, transparent), transparent 70%), var(--card); }
 .path .ph { border-radius: 14px; }
 .path small { display: block; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--pc); }
 .path h3 { font-size: 24px; margin: 4px 0 2px; }
@@ -144,7 +144,6 @@ body::before {
 @media (max-width: 640px) {
     .people, .jobs, .houses { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .places, .trials { grid-template-columns: 1fr; }
-    .path { grid-template-columns: 110px 1fr; gap: 12px; }
     .person .pi, .job .pi { padding: 12px; }
     .person p, .job p { font-size: 13.5px; }
 }

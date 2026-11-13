@@ -25,9 +25,9 @@ export const FFT = {
 
 // The two journeys of the game (main page).
 export const FFT_PATHS = [
-    { key: 'moon', name: 'The Path of the Moon', hero: 'Prince Lucius Bourdeaux', img: 'characters/lucius.webp', color: '#8fa3ff',
+    { key: 'moon', name: 'The Path of the Moon', hero: 'Prince Lucius Bourdeaux', img: 'paths/lucius.webp', color: '#8fa3ff',
         text: 'The second prince of Ordallia, brilliant and overshadowed, who wears his late mother’s crest of the Crescent Moon. His father sends him to Lesalia as a royal envoy, to sign peace with Ivalice and to compete for its crown.' },
-    { key: 'light', name: 'The Path of Light', hero: 'Aveline Bunansa Oaks', img: 'characters/aveline.webp', color: '#f2b84b',
+    { key: 'light', name: 'The Path of Light', hero: 'Aveline Bunansa Oaks', img: 'paths/aveline.webp', color: '#f2b84b',
         text: 'The hidden daughter of the Holy Knight Agrias Oaks and the machinist Mustadio Bunansa. When her father’s compass wakes and points to the heart of Ivalice, she puts on her mother’s armor and follows a light from her dreams.' },
 ];
 

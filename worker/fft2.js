@@ -80,7 +80,7 @@ const pageHead = (eyebrow, h1, lead) => `<section class="page-head"><div class="
 const fullTitle = `${FFT.title}: ${FFT.subtitle}`;
 
 // Main page Explore cards reuse art the site already has (a sections/<key>.webp would need adding here).
-const SECTION_ART = { story: 'story/chapter-04.webp', characters: 'story/chapter-06.webp', world: 'locations/the-continent.webp', relics: 'relics/aethelgard.webp', jobs: 'jobs/red-mage.webp', locations: 'locations/verminhan.webp', soundtrack: 'brand/poster.webp' };
+const SECTION_ART = { story: 'story/chapter-04.webp', characters: 'story/chapter-06.webp', world: 'locations/the-continent.webp', relics: 'relics/aethelgard.webp', jobs: 'sections/jobs.webp', locations: 'locations/verminhan.webp', soundtrack: 'brand/poster.webp' };
 
 // ---------------------------------------------------------------- main page
 function mainPage() {
@@ -101,7 +101,7 @@ function mainPage() {
     ${head('Two Paths', 'Two journeys. <span class="grad-bv">One city.</span>')}
     <div class="paths">${FFT_PATHS.map((p) => `
         <a class="path reveal" href="${FFT_BASE}/characters#${p.key === 'moon' ? 'lucius' : 'aveline'}" style="--pc:${p.color};text-decoration:none;color:inherit">
-            ${frame(p.img, p.hero, 'portrait fit')}
+            ${frame(p.img, p.hero, 'wide')}
             <div><small>${esc(p.name)}</small><h3>${esc(p.hero)}</h3><p>${esc(p.text)}</p></div>
         </a>`).join('')}
     </div>
@@ -109,7 +109,7 @@ function mainPage() {
 
 <section style="padding-top:10px"><div class="wrap">
     ${head('Explore', `The world of <span class="grad-bv">${esc(FFT.subtitle)}</span>`)}
-    <div class="mmx-sections">${FFT_SECTIONS.map((s) => `<a class="mmx-section reveal" href="${FFT_BASE}/${s.key}">${frame(SECTION_ART[s.key] || `sections/${s.key}.webp`, s.name, `wide sec-art${/relics|jobs/.test(s.key) ? ' fit' : ''}`)}<div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></div></a>`).join('')}</div>
+    <div class="mmx-sections">${FFT_SECTIONS.map((s) => `<a class="mmx-section reveal" href="${FFT_BASE}/${s.key}">${frame(SECTION_ART[s.key] || `sections/${s.key}.webp`, s.name, `wide sec-art${/relics/.test(s.key) ? ' fit' : ''}`)}<div class="txt"><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p><span class="st">Explore</span></div></a>`).join('')}</div>
 </div></section>`;
     return page({ title: `${fullTitle} · Danloud Labs`, description: FFT.logline, path: FFT_BASE, active: '', body });
 }
