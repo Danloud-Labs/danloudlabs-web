@@ -1,0 +1,15 @@
+// The danloudlabs.com Worker. Deploy with: npm run deploy  (tools/deploy.sh)
+// Sources: worker/ here + worker/ of ../aura-calendar-web (AURA Calendar pages), joined in .deploy/.
+// The domains (danloudlabs.com, www) are Custom Domains managed in Cloudflare; deploying a version
+// does not touch them.
+{
+  "name": "danloudlabs",
+  "main": ".deploy/worker.js",
+  "compatibility_date": "2024-09-23",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": false,
+    "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 1, "persist": true }
+  }
+}

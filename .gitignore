@@ -1,3 +1,7 @@
-preview/
-node_modules/
 .DS_Store
+.deploy-bundle/
+.deploy/
+.live-worker/
+.wrangler/
+node_modules/
+preview/
