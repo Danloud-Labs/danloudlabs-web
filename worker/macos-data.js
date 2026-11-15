@@ -263,7 +263,7 @@ export const MAC_APPS = [
         ready: ['fill', 'viewer', 'comment', 'organize', 'protect', 'tools', 'settings'],
         title: 'Every PDF job.', hot: 'Free, on your Mac.',
         lead: 'PDF Studio reads, marks up, fills, signs, protects and organizes PDFs, and makes scans searchable, all without leaving your Mac. Its own PDF engine saves only what changed, so a small edit keeps a big file small. No uploads, no accounts, no subscription.',
-        badges: ['Free', '100% offline', 'Fill & Sign', 'Text recognition (OCR)'],
+        badges: ['Free', '100% offline', 'Fill & Sign', 'OCR built in'],
         stats: [['8', 'workspaces'], ['14', 'signature fonts'], ['AES-256', 'passwords'], ['100', 'undo steps'], ['0', 'uploads']],
         hero: 'fill',
         blocks: [
@@ -298,7 +298,7 @@ export const MAC_APPS = [
             ['offline', 'Fully offline', 'Every PDF is opened, edited and saved on your Mac. Nothing is uploaded.'],
             ['device', 'Native Mac app', 'Built in Swift and SwiftUI for Apple Silicon.'],
         ],
-        shots: [['fill', 'Fill & Sign'], ['viewer', 'Viewer'], ['comment', 'Comments'], ['organize', 'Organize pages'], ['protect', 'Passwords and redaction'], ['tools', 'Recognize Text and other tools'], ['settings', 'Settings']],
+        shots: [['fill', 'Fill & Sign'], ['viewer', 'Viewer'], ['comment', 'Comments'], ['organize', 'Organize pages'], ['protect', 'Passwords and redaction'], ['tools', 'Recognize Text and other tools']],
         requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon'],
         privacy: 'Your PDFs never leave your Mac. PDF Studio has no accounts, no analytics and needs no internet connection to work.',
     }),

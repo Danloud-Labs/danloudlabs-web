@@ -69,7 +69,7 @@ const myncha = await handleMyncha(request);
 if (myncha) return myncha;
 
 // ==========================================
-// MACOS APPS (/macos-apps, /macos/cutout-studio, /macos/upres-studio, /macos/wavesmith-studio, /macos/alphacut, /macos/yt-converter)
+// MACOS APPS (/macos-apps, /macos/cutout-studio, /macos/upres-studio, /macos/wavesmith-studio, /macos/alphacut, /macos/yt-converter, /macos/pdf-studio)
 // ==========================================
 const macos = await handleMacOS(request);
 if (macos) return macos;
