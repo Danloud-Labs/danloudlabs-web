@@ -1,6 +1,6 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps (content). Pages: worker/macos.js.
-// Facts come from each app's source and README (CutOutStudio, UpResStudio, WaveSmithStudio, AlphaCut, yt-converter).
+// Facts come from each app's source and README (CutOutStudio, UpResStudio, WaveSmithStudio, AlphaCut, yt-converter, PDFStudio).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
 // screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). `videos` maps a shot to a short .mp4 loop
@@ -253,6 +253,54 @@ export const MAC_APPS = [
         requirements: ['macOS (Apple Silicon or Intel)', 'About 1 GB of space (AI models included)', 'An internet connection to fetch the video'],
         privacy: 'YT Converter has no accounts. The only connection it makes is to fetch the link you paste.',
         notice: 'Use YT Converter only with your own content, public-domain content, or content whose license allows downloading. Respect the terms of the sites you use it with.',
+    }),
+    A({
+        slug: 'pdf-studio', name: 'PDF Studio', color: '#ff3b4e', c2: '#ff6fb0', glow: 'rgba(255, 59, 78, 0.38)',
+        subtitle: 'PDF editor',
+        short: 'A free alternative to Acrobat Pro: edit, sign, protect, OCR and organize PDFs, 100% on your Mac.',
+        platforms: 'macOS 14+ · Apple Silicon',
+        download: '',
+        ready: ['fill', 'viewer', 'comment', 'organize', 'protect', 'tools', 'settings'],
+        title: 'Every PDF job.', hot: 'Free, on your Mac.',
+        lead: 'PDF Studio reads, marks up, fills, signs, protects and organizes PDFs, and makes scans searchable, all without leaving your Mac. Its own PDF engine saves only what changed, so a small edit keeps a big file small. No uploads, no accounts, no subscription.',
+        badges: ['Free', '100% offline', 'Fill & Sign', 'Text recognition (OCR)'],
+        stats: [['8', 'workspaces'], ['14', 'signature fonts'], ['AES-256', 'passwords'], ['100', 'undo steps'], ['0', 'uploads']],
+        hero: 'fill',
+        blocks: [
+            {
+                shot: 'fill', eyebrow: 'Fill & Sign', title: 'Fill any form. Sign it in seconds.',
+                text: 'Type into the form’s own fields on the page, or fill them from a list on the side. Draw your signature, type it in one of 14 handwriting fonts, or import a photo of it, then click where it goes. Add text, today’s date or a check mark anywhere.',
+                list: ['Text, check boxes, radio buttons and choice lists', 'Signatures saved once, ready for every PDF', 'Filled values show in every other PDF app too', 'Every change can be undone'],
+            },
+            {
+                shot: 'comment', eyebrow: 'Comment', title: 'Mark it up like paper.',
+                text: 'Highlight, underline and strike out text, add notes and text boxes, draw by hand, or point things out with shapes and arrows. Every comment is listed on the side: click one to jump to it, edit its text or change its color.',
+                list: ['12 tools, from highlighter to arrows', 'Six colors, line width and text size', 'Select, move and delete with the mouse', 'Saved as standard PDF comments'],
+                flip: true,
+            },
+            {
+                shot: 'protect', eyebrow: 'Protect', title: 'Passwords and real redaction.',
+                text: 'Lock a PDF with AES-256, the strongest PDF encryption, and decide whether it can be printed, copied or changed. To hide something for good, mark it or find every place a word appears and black it out: the content underneath is removed from the file, not just covered.',
+                list: ['Password to open, and limits on printing, copying and changes', 'Mark areas, or every occurrence of a word', 'Redacted pages keep nothing that was under the boxes', 'Clean copy without old versions or document info'],
+            },
+            {
+                shot: 'tools', eyebrow: 'Tools', title: 'Scans you can search. Files you can send.',
+                text: 'Recognize Text reads scanned pages with Apple’s Vision and adds the words as invisible text, so the scan looks the same but can be searched and copied. Reduce Size shrinks oversized pictures, and Flatten, Watermark, Page Numbers and Export cover the rest.',
+                list: ['Text recognition in several languages, page rotation included', 'Smaller files at 220, 150 or 100 dpi', 'Watermarks and page numbers, upright on every page', 'Pages as PNG or JPEG, or all the text as a file'],
+                flip: true,
+            },
+        ],
+        features: [
+            ['doc', 'Organize pages', 'Reorder by dragging, rotate, delete, insert blank pages or another PDF, and extract pages to a new file.'],
+            ['copy', 'Combine', 'Merge PDFs and images into one PDF, choosing the pages of each.'],
+            ['search', 'Find anything', 'Search the whole document, with every match listed by page.'],
+            ['shield', 'Small, safe saves', 'Only what changed is written: the original bytes stay as they were.'],
+            ['offline', 'Fully offline', 'Every PDF is opened, edited and saved on your Mac. Nothing is uploaded.'],
+            ['device', 'Native Mac app', 'Built in Swift and SwiftUI for Apple Silicon.'],
+        ],
+        shots: [['fill', 'Fill & Sign'], ['viewer', 'Viewer'], ['comment', 'Comments'], ['organize', 'Organize pages'], ['protect', 'Passwords and redaction'], ['tools', 'Recognize Text and other tools'], ['settings', 'Settings']],
+        requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon'],
+        privacy: 'Your PDFs never leave your Mac. PDF Studio has no accounts, no analytics and needs no internet connection to work.',
     }),
 ];
 
