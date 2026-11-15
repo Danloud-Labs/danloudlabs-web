@@ -257,13 +257,13 @@ export const MAC_APPS = [
     A({
         slug: 'pdf-studio', name: 'PDF Studio', color: '#ff3b4e', c2: '#ff6fb0', glow: 'rgba(255, 59, 78, 0.38)',
         subtitle: 'PDF editor',
-        short: 'A free alternative to Acrobat Pro: edit, sign, protect, OCR and organize PDFs, 100% on your Mac.',
+        short: 'An alternative to Acrobat Pro without the subscription: edit, sign, protect, OCR and organize PDFs, 100% on your Mac.',
         platforms: 'macOS 14+ · Apple Silicon',
         download: '',
         ready: ['fill', 'viewer', 'comment', 'organize', 'protect', 'tools', 'settings'],
-        title: 'Every PDF job.', hot: 'Free, on your Mac.',
+        title: 'Every PDF job.', hot: 'All on your Mac.',
         lead: 'PDF Studio reads, marks up, fills, signs, protects and organizes PDFs, and makes scans searchable, all without leaving your Mac. Its own PDF engine saves only what changed, so a small edit keeps a big file small. No uploads, no accounts, no subscription.',
-        badges: ['Free', '100% offline', 'Fill & Sign', 'OCR built in'],
+        badges: ['No subscription', '100% offline', 'Fill & Sign', 'OCR built in'],
         stats: [['8', 'workspaces'], ['14', 'signature fonts'], ['AES-256', 'passwords'], ['100', 'undo steps'], ['0', 'uploads']],
         hero: 'fill',
         blocks: [
