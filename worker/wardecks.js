@@ -12,6 +12,7 @@ import { ICONS, esc, sitePage } from './site-layout.js';
 import { WD_FACTIONS, WD_ROLES, WD_FIGHTERS } from './wardecks-data.js';
 import { WD_CSS } from './wardecks-styles.js';
 import { WD_EMBERS_CSS, WD_EMBERS_SCRIPT } from './wardecks-embers.js';
+import { rosterSection, ROSTER_CSS, ROSTER_SCRIPT, roleIconName, SPOTLIGHT_START } from './wardecks-roster.js';
 
 const APP_STORE = '';
 const app = SITE_APPS.find((a) => a.slug === 'wardecks');
@@ -119,14 +120,6 @@ const roleCard = (r) => `
             <div class="pas">Passive: <strong>${rolePassives(r.key).map(esc).join(' · ')}</strong></div>
         </div>
     </article>`;
-
-const fighterCard = (f) => `
-        <button class="wd-fighter" type="button" data-key="${f.key}" data-faction="${f.faction}" data-role="${f.role}" style="--fc:${FACTION[f.faction].color}" aria-label="${esc(`${f.name}, ${ROLE[f.role].name}`)}">
-            <span class="art"><img src="${img(`fighters/${f.key}`)}" alt="" loading="lazy"></span>
-            <span class="meta"><b>${esc(f.first)}</b><small>${esc(ROLE[f.role].name)}</small></span>
-        </button>`;
-
-const chip = (attr, value, label, color) => `<button type="button" data-${attr}="${value}"${value === 'all' ? ' class="on"' : ''}${color ? ` style="--fc:${color}"` : ''}>${color ? '<i></i>' : ''}${esc(label)}</button>`;
 
 const factionCard = (f) => `
     <article class="wd-faction reveal" style="--fc:${f.color}">
@@ -268,17 +261,7 @@ const body = `
     </div>
 </section>
 
-<section id="fighters" style="padding-top:20px">
-    <div class="wrap">
-        ${head('Roster', 'Forty-eight fighters.', 'Every role under all six banners, each with their own stats, Offensive and Defensive powers and passive. Tap a fighter to see their sheet.')}
-        <div class="wd-filters">
-            <div class="wd-chips" data-group="faction">${chip('faction', 'all', 'All kingdoms')}${WD_FACTIONS.map((f) => chip('faction', f.key, f.name, f.color)).join('')}</div>
-            <div class="wd-chips" data-group="role">${chip('role', 'all', 'All roles')}${WD_ROLES.map((r) => chip('role', r.key, r.name)).join('')}</div>
-            <span class="wd-count" id="wd-count">48 fighters</span>
-        </div>
-        <div class="wd-roster" id="wd-roster">${WD_FIGHTERS.map(fighterCard).join('')}</div>
-    </div>
-</section>
+${rosterSection(img, head)}
 
 <section id="factions" style="padding-top:20px">
     <div class="wrap">
@@ -350,6 +333,10 @@ const SHEET_DATA = {
     fighters: WD_FIGHTERS,
     art: img('fighters/KEY'),
     attrs: ATTRS.map(([k, c]) => [k, c]),
+    start: SPOTLIGHT_START,
+    crest: img('crests/KEY'),
+    icon: img('role-icons/KEY'),
+    iconNames: Object.fromEntries(WD_ROLES.map((r) => [r.key, roleIconName(r.key)])),
 };
 
 const script = `<script type="application/json" id="wd-data">${JSON.stringify(SHEET_DATA).replace(/</g, '\\u003c')}</script>
@@ -367,28 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lb.classList.contains('open') && e.target.closest('#lb')) lb.classList.remove('open');
     });
 
-    // Roster filters.
-    const roster = document.getElementById('wd-roster'), count = document.getElementById('wd-count');
-    const filter = { faction: 'all', role: 'all' };
-    const apply = () => {
-        let n = 0;
-        roster.querySelectorAll('.wd-fighter').forEach((b) => {
-            const show = (filter.faction === 'all' || b.dataset.faction === filter.faction) && (filter.role === 'all' || b.dataset.role === filter.role);
-            b.hidden = !show; if (show) n++;
-        });
-        count.textContent = n + (n === 1 ? ' fighter' : ' fighters');
-    };
-    document.querySelectorAll('.wd-chips').forEach((group) => group.addEventListener('click', (e) => {
-        const b = e.target.closest('button'); if (!b) return;
-        const kind = group.dataset.group; filter[kind] = b.dataset[kind];
-        group.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
-        apply();
-    }));
-
     // Fighter sheet.
     const sheet = document.getElementById('wd-sheet');
     const behavior = { streak: 'Streak', decay: 'Decay', persistent: 'Persistent' };
-    const visible = () => [...roster.querySelectorAll('.wd-fighter:not([hidden])')].map((b) => b.dataset.key);
+    const roster = document.getElementById('wd-roster');
+    const visible = () => [...roster.querySelectorAll('.wr-card:not([hidden])')].map((b) => b.dataset.key);
     const power = (cls, label, p, isDef) => '<div class="wd-pow"><div class="h"><span class="tag ' + cls + '">' + label + '</span><b>' + esc(p.name) + '</b>'
         + (p.threshold ? '<span class="meta">Charge ' + p.threshold + ' · ' + behavior[p.behavior] + '</span>' : '') + '</div><p>' + esc(p.text) + '</p></div>';
     const open = (key) => {
@@ -405,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sheet.open) sheet.showModal();
         sheet.scrollTop = 0;
     };
-    roster.addEventListener('click', (e) => { const b = e.target.closest('.wd-fighter'); if (b) open(b.dataset.key); });
+    window.WD_openSheet = open; // the roster (wardecks-roster.js) opens the sheet on phones
     document.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => open(b.dataset.open)));
     sheet.addEventListener('click', (e) => {
         if (e.target === sheet || e.target.closest('.x')) { sheet.close(); return; }
@@ -437,6 +407,6 @@ export const htmlWarDecks = sitePage({
     icon: app.icon,
     active: 'apps',
     back: { href: '/ios-apps', label: 'iOS Apps' },
-    head: `<style>${WD_CSS}${WD_EMBERS_CSS}</style>${script}${WD_EMBERS_SCRIPT}`,
+    head: `<style>${WD_CSS}${ROSTER_CSS}${WD_EMBERS_CSS}</style>${script}${ROSTER_SCRIPT}${WD_EMBERS_SCRIPT}`,
     body,
 });

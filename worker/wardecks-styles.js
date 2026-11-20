@@ -82,24 +82,6 @@ export const WD_CSS = `
 .wd-role .pas { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--dim); }
 .wd-role .pas strong { color: var(--gold); font-weight: 700; }
 
-/* Roster */
-.wd-filters { display: grid; gap: 10px; margin-bottom: 18px; }
-.wd-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.wd-chips button { font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line2); display: inline-flex; align-items: center; gap: 7px; transition: .15s; }
-.wd-chips button:hover { color: var(--fg); }
-.wd-chips button.on { color: #fff; border-color: var(--fc, var(--c)); background: color-mix(in srgb, var(--fc, var(--c)) 20%, transparent); }
-.wd-chips button i { width: 9px; height: 9px; border-radius: 50%; background: var(--fc); box-shadow: 0 0 8px var(--fc); }
-.wd-count { font-size: 13px; color: var(--dim); }
-.wd-roster { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
-.wd-fighter { --fc: var(--c); position: relative; display: flex; flex-direction: column; text-align: left; font: inherit; color: inherit; cursor: pointer; padding: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--card); transition: transform .2s, border-color .2s, box-shadow .2s; }
-.wd-fighter:hover, .wd-fighter:focus-visible { transform: translateY(-3px); border-color: color-mix(in srgb, var(--fc) 60%, transparent); box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--fc) 70%, transparent); outline: none; }
-.wd-fighter .art { aspect-ratio: 3 / 4; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(80% 60% at 50% 55%, color-mix(in srgb, var(--fc) 34%, transparent), transparent 75%), linear-gradient(180deg, #17131d, #0c0a10); }
-.wd-fighter .art img { width: 92%; height: 96%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.6)); }
-.wd-fighter .meta { padding: 8px 9px 10px; border-top: 2px solid var(--fc); }
-.wd-fighter b { display: block; font-size: 13.5px; line-height: 1.2; }
-.wd-fighter small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
-.wd-fighter[hidden] { display: none; }
-
 /* Fighter sheet (dialog) */
 .wd-sheet { width: min(860px, calc(100% - 24px)); max-height: calc(100% - 24px); padding: 0; border: 1px solid var(--line2); border-radius: 26px; background: var(--win); color: var(--fg); overflow: auto; }
 .wd-sheet::backdrop { background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(4px); }
@@ -156,14 +138,12 @@ export const WD_CSS = `
 .wd-deck em { display: inline-block; margin-top: 8px; font-style: normal; font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--gold); }
 
 @media (max-width: 1100px) {
-    .wd-roster { grid-template-columns: repeat(6, 1fr); }
     .wd-path { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 980px) {
     .wd .p-stats { grid-template-columns: repeat(3, 1fr); }
     .wd-rules { grid-template-columns: 1fr; }
     .wd-roles { grid-template-columns: repeat(2, 1fr); }
-    .wd-roster { grid-template-columns: repeat(4, 1fr); }
     .wd-mech { grid-template-columns: repeat(2, 1fr); }
     .wd-status { grid-template-columns: repeat(2, 1fr); }
     .wd-factions { grid-template-columns: repeat(2, 1fr); }
@@ -176,9 +156,6 @@ export const WD_CSS = `
     .wd .p-stats div:last-child { grid-column: auto; }
     .wd-path { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .wd-roles { grid-template-columns: 1fr; }
-    .wd-roster { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .wd-fighter .meta { padding: 6px 7px 8px; }
-    .wd-fighter b { font-size: 12.5px; }
     .wd-mech, .wd-status, .wd-factions, .wd-bars, .wd-attrs, .wd-deck-list { grid-template-columns: 1fr; }
     .wd-charge { grid-template-columns: 1fr; }
     .wd-rule { padding: 20px; }
