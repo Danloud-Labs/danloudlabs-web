@@ -56,7 +56,7 @@ export const SITE_APPS = [
         banner: asset('apps/wardecks-banner.webp'),
         color: '#d1964a',
         glow: 'rgba(209, 150, 74, 0.35)',
-        short: 'Strategic medieval card battle game powered by native Swift & SpriteKit engines.',
+        short: 'The card game of War, reborn as a medieval battle: 48 fighters, six kingdoms and Power Duels.',
         platforms: 'iOS',
     },
 ];
