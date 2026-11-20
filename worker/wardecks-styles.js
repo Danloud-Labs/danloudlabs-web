@@ -129,18 +129,23 @@ export const WD_CSS = `
 .wd-pow p { margin: 0; color: #d3cfdf; font-size: 13.8px; line-height: 1.5; }
 .wd-sheet .nav { display: flex; justify-content: space-between; gap: 10px; margin-top: auto; }
 
-/* Factions */
+/* Kingdoms: the crest card from the game's faction select, and the faction's eight fighters */
 .wd-factions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.wd-faction { --fc: var(--c); border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; }
-.wd-faction > img { width: 100%; height: auto; }
-.wd-faction .body { padding: 14px 16px 16px; border-top: 2px solid var(--fc); }
-.wd-faction h3 { margin: 0; font-size: 19px; }
-.wd-faction h3 small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--fc); margin-bottom: 2px; }
-.wd-squad { display: flex; margin-top: 12px; }
-.wd-squad button { flex: 1; min-width: 0; padding: 0; border: 0; background: none; cursor: pointer; margin-left: -6px; transition: transform .2s; }
-.wd-squad button:first-child { margin-left: 0; }
-.wd-squad button:hover { transform: translateY(-4px); }
-.wd-squad img { width: 100%; height: 64px; object-fit: contain; object-position: bottom; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7)); }
+.wd-faction { --fc: var(--c); display: grid; grid-template-columns: 44% 1fr; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(260px 200px at 100% 100%, color-mix(in srgb, var(--fc) 14%, transparent), transparent 75%), var(--card); transition: border-color .25s, box-shadow .25s; }
+.wd-faction:hover { border-color: color-mix(in srgb, var(--fc) 55%, transparent); box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--fc) 80%, transparent); }
+.wd-faction .crest { position: relative; margin: 10px 0 10px 10px; border-radius: 16px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fc) 55%, rgba(255, 255, 255, 0.2)); box-shadow: 0 10px 26px -10px color-mix(in srgb, var(--fc) 75%, transparent); aspect-ratio: 3 / 4; }
+.wd-faction .crest img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.wd-faction:hover .crest img { transform: scale(1.05); }
+.wd-faction .plate { position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 6px 6px 7px; border-radius: 10px; text-align: center; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 12.5px; letter-spacing: .6px; text-transform: uppercase; color: #fff; background: rgba(8, 6, 10, 0.82); border: 1px solid color-mix(in srgb, var(--fc) 60%, transparent); }
+.wd-faction .plate small { display: block; font-family: var(--ui); font-size: 8.5px; letter-spacing: 1.4px; color: var(--fc); }
+.wd-faction .body { padding: 16px 14px 14px; display: flex; flex-direction: column; min-width: 0; }
+.wd-faction h3 { margin: 0; font-size: 19px; line-height: 1.2; }
+.wd-faction h3 small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--fc); margin-bottom: 3px; }
+.wd-squad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: auto; padding-top: 12px; }
+.wd-squad button { min-width: 0; padding: 4px 0 3px; border: 1px solid transparent; border-radius: 10px; background: none; color: inherit; font: inherit; cursor: pointer; transition: transform .2s, background .2s, border-color .2s; }
+.wd-squad button:hover { transform: translateY(-3px); background: color-mix(in srgb, var(--fc) 10%, transparent); border-color: color-mix(in srgb, var(--fc) 35%, transparent); }
+.wd-squad img { width: 100%; height: 58px; object-fit: contain; object-position: bottom; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7)); }
+.wd-squad span { display: block; font-size: 10.5px; color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
 
 /* Decks */
 .wd-decks { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: center; }

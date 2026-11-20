@@ -11,6 +11,7 @@ import { SITE, SITE_APPS, asset } from './site-data.js';
 import { ICONS, esc, sitePage } from './site-layout.js';
 import { WD_FACTIONS, WD_ROLES, WD_FIGHTERS } from './wardecks-data.js';
 import { WD_CSS } from './wardecks-styles.js';
+import { WD_EMBERS_CSS, WD_EMBERS_SCRIPT } from './wardecks-embers.js';
 
 const APP_STORE = '';
 const app = SITE_APPS.find((a) => a.slug === 'wardecks');
@@ -129,10 +130,10 @@ const chip = (attr, value, label, color) => `<button type="button" data-${attr}=
 
 const factionCard = (f) => `
     <article class="wd-faction reveal" style="--fc:${f.color}">
-        <img src="${img(`factions/${f.key}`)}" alt="${esc(f.title)}" loading="lazy">
+        <div class="crest"><img src="${img(`crests/${f.key}`)}" alt="${esc(f.title)} emblem" loading="lazy"></div>
         <div class="body">
             <h3><small>${esc(f.name)} faction</small>${esc(f.title)}</h3>
-            <div class="wd-squad">${WD_FIGHTERS.filter((x) => x.faction === f.key).map((x) => `<button type="button" data-open="${x.key}" title="${esc(`${x.name} · ${ROLE[x.role].name}`)}"><img src="${img(`fighters/${x.key}`)}" alt="${esc(x.first)}" loading="lazy"></button>`).join('')}</div>
+            <div class="wd-squad">${WD_FIGHTERS.filter((x) => x.faction === f.key).map((x) => `<button type="button" data-open="${x.key}" title="${esc(`${x.name} · ${ROLE[x.role].name}`)}"><img src="${img(`fighters/${x.key}`)}" alt="${esc(x.first)}" loading="lazy"><span>${esc(x.first)}</span></button>`).join('')}</div>
         </div>
     </article>`;
 
@@ -436,6 +437,6 @@ export const htmlWarDecks = sitePage({
     icon: app.icon,
     active: 'apps',
     back: { href: '/ios-apps', label: 'iOS Apps' },
-    head: `<style>${WD_CSS}</style>${script}`,
+    head: `<style>${WD_CSS}${WD_EMBERS_CSS}</style>${script}${WD_EMBERS_SCRIPT}`,
     body,
 });
