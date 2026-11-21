@@ -1,6 +1,6 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps (content). Pages: worker/macos.js.
-// Facts come from each app's source and README (CutOutStudio, UpResStudio, WaveSmithStudio, AlphaCut, yt-converter, PDFStudio).
+// Facts come from each app's source and README (CutOutStudio, UpResStudio, WaveSmithStudio, AlphaCut, yt-converter, PDFStudio, VitalSmith).
 // `download: ''` shows "Coming soon"; set it to the .dmg / store URL when the app is out.
 // Art (assets/apps/): <slug>-icon.webp (1024 square), <slug>-banner.webp (16:9) and the
 // screenshots apps/<slug>/<shot>.webp (Mac window, 16:10). `videos` maps a shot to a short .mp4 loop
@@ -301,6 +301,59 @@ export const MAC_APPS = [
         shots: [['fill', 'Fill & Sign'], ['viewer', 'Viewer'], ['comment', 'Comments'], ['organize', 'Organize pages'], ['protect', 'Passwords and redaction'], ['tools', 'Recognize Text and other tools']],
         requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon'],
         privacy: 'Your PDFs never leave your Mac. PDF Studio has no accounts, no analytics and needs no internet connection to work.',
+    }),
+    A({
+        slug: 'vitalsmith', name: 'VitalSmith', color: '#16a34a', c2: '#2f5bea', glow: 'rgba(22, 163, 74, 0.35)',
+        subtitle: 'Storage, memory and automation',
+        short: 'Keeps your Mac healthy: a live heartbeat of its state, safe storage cleanup, memory and leak tracking, duplicate cloning and folder automations.',
+        platforms: 'macOS 14+ · Apple Silicon',
+        download: 'https://store.danloudlabs.com/vitalsmith/VitalSmith.dmg',
+        ready: [],
+        title: 'Your Mac’s vital signs.', hot: 'Kept healthy.',
+        lead: 'VitalSmith shows how your Mac is doing at a glance, with a live heartbeat that speeds up and changes color when memory or disk get tight. It finds the space you can safely get back, tracks which apps are eating memory, turns duplicate files into free space and processes the files you drop in a folder. Nothing is removed without your click.',
+        badges: ['Live heartbeat', 'Safe cleanup', 'Leak detection', 'Folder automations'],
+        stats: [['3', 'health states'], ['7 days', 'to restore a cleanup'], ['1 hour', 'of memory history'], ['APFS', 'clones for duplicates'], ['0', 'accounts']],
+        hero: 'overview',
+        blocks: [
+            {
+                shot: 'overview', eyebrow: 'Vital signs', title: 'One look tells you how your Mac is doing.',
+                text: 'The heartbeat monitor runs all the time. Green and calm when everything is fine, amber and faster when memory pressure, swap or CPU climb, red when the disk is nearly full or memory is critical. Thick colored bars show what fills the disk and the memory.',
+                list: ['Normal, Elevated and Critical, with the reasons spelled out', 'Disk split into in use, recoverable, purgeable and free', 'Memory split into apps, compressed and available', 'Updates every few seconds'],
+            },
+            {
+                shot: 'storage', eyebrow: 'Storage', title: 'Get space back without breaking anything.',
+                text: 'VitalSmith measures the caches, logs, Xcode leftovers and other folders that rebuild themselves, and shows you each one before anything moves. Cleaned items go to a quarantine first, so you can restore them for seven days.',
+                list: ['A plan with every path and size before you confirm', 'Protected folders it will never touch', 'Quarantine with one-click restore', 'A log of every change it made'],
+                flip: true,
+            },
+            {
+                shot: 'memory', eyebrow: 'Memory', title: 'See who is using it, and who keeps growing.',
+                text: 'Every process with its real memory footprint, CPU and disk activity. VitalSmith watches the last hour and flags apps whose memory keeps climbing, a sign of a leak, so you can restart them before your Mac starts swapping.',
+                list: ['Ranked bars of the biggest memory users', 'Leak detection over the last hour', 'Power draw of the CPU, GPU and Neural Engine', 'Quit or force quit, always after you ask'],
+            },
+            {
+                shot: 'duplicates', eyebrow: 'Duplicates', title: 'Identical files, stored once.',
+                text: 'VitalSmith finds files with exactly the same content and turns the copies into APFS clones of the original. Every file stays where it is, with its name, dates and tags, but they share the same space on disk.',
+                list: ['Content compared byte for byte, not by name', 'Nothing deleted: copies become clones', 'Each copy is checked again right before it changes', 'iCloud files that are not downloaded are left alone'],
+                flip: true,
+            },
+            {
+                shot: 'automation', eyebrow: 'Automation', title: 'Drop a file in a folder. It gets processed.',
+                text: 'Watch a folder and run steps on whatever lands in it: convert images to WebP, convert videos, extract audio, rename with the date, move or copy the results. Work happens on a copy, and a background runner keeps it going even with the app closed.',
+                list: ['Ready-made templates, or build your own steps', 'Test on a file before turning it on', 'Originals are never touched', 'Runs in the background, turned on by you'],
+            },
+        ],
+        features: [
+            ['shield', 'Your permission first', 'Every cleanup, clone and quit shows what will happen and waits for your click.'],
+            ['lock', 'Careful helper', 'System-level tasks go through a small helper with a fixed list of commands, approved by you.'],
+            ['chart', 'Live history', 'The last hour of memory, compressed memory and swap, always on screen.'],
+            ['copy', 'Undo with quarantine', 'Cleaned items wait seven days before they are deleted for good.'],
+            ['offline', 'Fully local', 'Everything is measured and changed on your Mac. Nothing is uploaded.'],
+            ['device', 'Native Mac app', 'Built in Swift and SwiftUI for Apple Silicon, with automatic updates.'],
+        ],
+        shots: [['overview', 'Vital signs'], ['storage', 'Storage'], ['memory', 'Memory'], ['duplicates', 'Duplicates'], ['automation', 'Automation'], ['activity', 'Activity']],
+        requirements: ['macOS 14 Sonoma or later', 'Mac with Apple Silicon', 'Full Disk Access, to measure every folder (you turn it on)'],
+        privacy: 'VitalSmith works only on your Mac. It has no accounts and no analytics; its only connection is the check for app updates.',
     }),
 ];
 

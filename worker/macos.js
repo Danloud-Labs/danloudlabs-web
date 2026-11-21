@@ -1,7 +1,7 @@
 // =====================================================================================
 // Danloud Labs website: the macOS apps.
 //   /macos-apps          the list (also /macos, /mac-apps)
-//   /macos/<slug>        one page per app (cutout-studio, upres-studio, wavesmith-studio, alphacut, yt-converter, pdf-studio)
+//   /macos/<slug>        one page per app (cutout-studio, upres-studio, wavesmith-studio, alphacut, yt-converter, pdf-studio, vitalsmith)
 // Content: macos-data.js. While MAC_DRAFT is true the pages are noindex and nothing links to them.
 // The Worker's fetch() calls handleMacOS(request); it returns null for other paths.
 // =====================================================================================
