@@ -17,6 +17,7 @@ import { htmlSoftware } from './software.js';
 import { htmlFedLog } from './fedlog.js';
 import { handleAuraCalendar } from './aura-routes.js';   // AURA Calendar: página principal + 7 páginas de temas
 import { htmlWarDecks } from './wardecks.js';
+import { htmlAuraSign } from './aurasign.js';           // AuraSign: signature studio
 import { htmlHazMat } from './hazmat.js';
 
 // Soporte, Privacidad y Herramientas Pro
@@ -87,6 +88,7 @@ if (path === '/software-tools' || path === '/software') return Response.redirect
 // Sub-páginas de iOS / Apps Dedicadas
 if (path === '/ios/fedlog' || path === '/fedlog') return new Response(htmlFedLog, { headers });
 if (path === '/ios/wardecks' || path === '/wardecks') return new Response(htmlWarDecks, { headers });
+if (path === '/ios/aurasign' || path === '/aurasign') return new Response(htmlAuraSign, { headers });
 if (path === '/ios/hazmat-scanner' || path === '/hazmat' || path === '/hazmat-scanner') return new Response(htmlHazMat, { headers });
 
 // Soporte, Privacidad y Herramientas

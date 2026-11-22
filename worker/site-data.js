@@ -59,6 +59,17 @@ export const SITE_APPS = [
         short: 'The card game of War, reborn as a medieval battle: 48 fighters, six kingdoms and Power Duels.',
         platforms: 'iOS',
     },
+    {
+        slug: 'aurasign',
+        name: 'AuraSign',
+        href: '/ios/aurasign',
+        icon: asset('apps/aurasign-icon.webp'),
+        banner: asset('apps/aurasign-banner.webp'),
+        color: '#8b6bff',
+        glow: 'rgba(139, 107, 255, 0.40)',
+        short: 'Design, practice and sign: executive signatures from your name, drawn with a pen that feels real.',
+        platforms: 'iPhone · iPad',
+    },
 ];
 
 export const SITE_PLATFORMS = [
