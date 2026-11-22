@@ -11,6 +11,11 @@ export const WD_CSS = `
 .wd .badges .hot { color: #1a1005; }
 
 /* Sticky section links */
+.wd-trailer { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 56px; align-items: center; }
+.wd-trailer .vid { aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden; background: #000; border: 1px solid color-mix(in srgb, #f3cf86 35%, var(--line)); box-shadow: 0 30px 80px -30px rgba(243, 207, 134, 0.35); }
+.wd-trailer video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.wd-trailer h2 .hot { background: linear-gradient(135deg, #f3cf86, #d6a04f 55%, #b8742c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (max-width: 820px) { .wd-trailer { grid-template-columns: 1fr; gap: 28px; } .wd-trailer .vid { width: min(340px, 100%); margin: 0 auto; } }
 .wd-nav { position: sticky; top: 62px; z-index: 40; background: rgba(6, 5, 10, 0.78); backdrop-filter: saturate(160%) blur(16px); -webkit-backdrop-filter: saturate(160%) blur(16px); border-bottom: 1px solid var(--line); }
 .wd-nav .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 9px; padding-bottom: 9px; scrollbar-width: none; }
 .wd-nav .wrap::-webkit-scrollbar { display: none; }

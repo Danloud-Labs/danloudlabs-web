@@ -101,7 +101,7 @@ const GALLERY = [
     ['hero-select', 'Campaign heroes'], ['story-bridge', 'Story'], ['story-sword', 'Story'], ['story-cards', 'Story'], ['story-sorceress', 'Story'],
 ];
 
-const SECTIONS = [['modes', 'Modes'], ['rules', 'Rules'], ['power-duels', 'Power Duels'], ['roles', 'Roles'], ['fighters', 'Fighters'], ['factions', 'Kingdoms'], ['battlefields', 'Battlefields'], ['campaign', 'Campaign'], ['screens', 'Screenshots']];
+const SECTIONS = [['trailer', 'Trailer'], ['modes', 'Modes'], ['rules', 'Rules'], ['power-duels', 'Power Duels'], ['roles', 'Roles'], ['fighters', 'Fighters'], ['factions', 'Kingdoms'], ['battlefields', 'Battlefields'], ['campaign', 'Campaign'], ['screens', 'Screenshots']];
 
 // ---------- pieces ----------
 
@@ -161,6 +161,16 @@ const body = `
 </section>
 
 <nav class="wd-nav" aria-label="On this page"><div class="wrap">${SECTIONS.map(([id, label]) => `<a href="#${id}">${label}</a>`).join('')}</div></nav>
+
+<section id="trailer">
+    <div class="wrap wd-trailer">
+        <div class="vid reveal"><video controls playsinline preload="none" poster="${img('trailer-poster')}" aria-label="WarDecks: Leagues trailer"><source src="/media/apps/wardecks/trailer.mp4" type="video/mp4"></video></div>
+        <div>
+            ${head('Trailer', 'Six kingdoms. 48 fighters. <span class="hot">One deck in your hands.</span>', 'Unleash legendary powers, declare WAR when the cards tie, swap heroes mid-battle, and challenge a friend across the table or the world online.')}
+            <p class="note" style="margin-top:18px">The beta opens on TestFlight this Christmas 2026.</p>
+        </div>
+    </div>
+</section>
 
 <section id="modes">
     <div class="wrap">
