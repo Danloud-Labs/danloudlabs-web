@@ -35,9 +35,9 @@ const STATS = [['48', 'fighters'], ['8', 'roles'], ['6', 'kingdoms'], ['12', 'ba
 const MODES = [
     ['Local 2P · Pass & Play', 'Head-to-head on one device, each player at their own end of the screen.', true],
     ['Local 1P · vs CPU', 'The same board, rules and powers, against the CPU.', true],
+    ['Online · Game Center', 'Real-time duels with friends and players worldwide through Game Center.', true],
     ['Campaign', 'Single-player levels and bosses, led by one of six heroes.', false],
     ['Competitive League', 'Ranked battles from Beginner to Mythic.', false],
-    ['GameKit Multiplayer', 'Challenge players worldwide through Game Center.', false],
 ];
 
 // From the menu to the first card (the Local 2P / vs CPU flow).
@@ -142,7 +142,7 @@ const body = `
             <h1 style="font-size:clamp(32px,5vw,54px);margin-top:10px">A deck of cards. <span class="hot">An army at war.</span></h1>
             <p class="lead">The classic card game of War, reborn as a medieval battle. Pick one of 48 fighters from six kingdoms, set your rules and your battlefield, and turn the war with Offensive and Defensive powers that charge as every round is won and lost.</p>
             <div class="badges">
-                <span class="hot">In beta</span><span>iPhone &amp; iPad</span><span>Pass &amp; Play</span><span>vs CPU</span><span>Power Duels</span>
+                <span class="hot">In beta</span><span>iPhone &amp; iPad</span><span>Online</span><span>Pass &amp; Play</span><span>vs CPU</span><span>Power Duels</span>
             </div>
             <div class="cta-row" style="margin-top:24px">
                 ${primaryButton}
@@ -164,7 +164,7 @@ const body = `
 
 <section id="modes">
     <div class="wrap">
-        ${head('Game modes', 'Five ways to go to war.', 'Both local modes are playable in the beta; the rest are on their way.')}
+        ${head('Game modes', 'Five ways to go to war.', 'Local and online play are live in the beta; Campaign and the Competitive League are on their way.')}
         <div class="modes">${MODES.map(([t, d, on]) => `<div class="mode reveal"><b>${esc(t)}</b><p>${esc(d)}</p><span class="st ${on ? 'on' : 'soon'}">${on ? 'Playable in beta' : 'Coming soon'}</span></div>`).join('')}</div>
         <div style="margin-top:44px">
             ${head('From the menu', 'Six steps to the first card.')}
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export const htmlWarDecks = sitePage({
     title: 'WarDecks: Leagues · The card game of War, at war',
-    description: 'WarDecks: Leagues for iPhone and iPad: the classic card game of War reborn as a medieval battle, with 48 fighters, 8 roles, 6 kingdoms, Power Duels, 12 battlefields, 4 card decks and Pass & Play. Now in beta.',
+    description: 'WarDecks: Leagues for iPhone and iPad: the classic card game of War reborn as a medieval battle, with 48 fighters, 8 roles, 6 kingdoms, Power Duels, 12 battlefields, 4 card decks, Pass & Play and online duels through Game Center. Now in beta.',
     path: '/ios/wardecks',
     ogImage: img('screens/title'),
     icon: app.icon,
