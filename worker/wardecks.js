@@ -15,15 +15,21 @@ import { WD_EMBERS_CSS, WD_EMBERS_SCRIPT } from './wardecks-embers.js';
 import { rosterSection, ROSTER_CSS, ROSTER_SCRIPT, roleIconName, SPOTLIGHT_START } from './wardecks-roster.js';
 
 const APP_STORE = '';
+// Public beta (TestFlight). Used for the main button while APP_STORE is empty.
+const TESTFLIGHT = 'https://testflight.apple.com/join/JaSnZGmV';
 const app = SITE_APPS.find((a) => a.slug === 'wardecks');
 const img = (path) => asset(`apps/wardecks/${path}.webp`);
 const small = (svg) => svg.replace('<svg', '<svg width="15" height="15"');
 const chevron = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
 
 const FOLLOW_MAIL = `mailto:${SITE.email}?subject=${encodeURIComponent('[WarDecks: Leagues] Keep me posted')}&body=${encodeURIComponent('Hi Danloud Labs,\n\nPlease let me know when WarDecks: Leagues is available.\n')}`;
+const testFlightButton = `<a class="btn btn-store" href="${TESTFLIGHT}" target="_blank" rel="noopener">${ICONS.apple}<span class="two"><small>Join the beta on</small>TestFlight</span></a>`;
+const notifyButton = `<a class="btn btn-ghost btn-sm" href="${FOLLOW_MAIL}">${small(ICONS.mail)} Tell me when it reaches the App Store</a>`;
 const primaryButton = APP_STORE
     ? `<a class="btn btn-store" href="${APP_STORE}" target="_blank" rel="noopener">${ICONS.apple}<span class="two"><small>Download on the</small>App Store</span></a>`
-    : `<a class="btn btn-primary" href="${FOLLOW_MAIL}">${ICONS.mail} Get notified at launch</a>`;
+    : TESTFLIGHT
+        ? testFlightButton
+        : `<a class="btn btn-primary" href="${FOLLOW_MAIL}">${ICONS.mail} Get notified at launch</a>`;
 
 const phone = (name, alt, cls = '') => `<span class="phone ${cls}" data-zoom="${img(`screens/${name}`)}" data-caption="${esc(alt)}"><img src="${img(`screens/${name}`)}" alt="${esc(alt)}" loading="lazy"></span>`;
 
@@ -157,13 +163,13 @@ const body = `
             <h1 style="font-size:clamp(32px,5vw,54px);margin-top:10px">A deck of cards. <span class="hot">An army at war.</span></h1>
             <p class="lead">The classic card game of War, reborn as a medieval battle. Pick one of 48 fighters from six kingdoms, set your rules and your battlefield, and turn the war with Offensive and Defensive powers that charge as every round is won and lost.</p>
             <div class="badges">
-                <span class="hot">In beta</span><span>iPhone &amp; iPad</span><span>Online</span><span>Pass &amp; Play</span><span>vs CPU</span><span>Power Duels</span>
+                <span class="hot">${APP_STORE ? 'Out now' : 'Public beta'}</span><span>iPhone &amp; iPad</span><span>Online</span><span>Pass &amp; Play</span><span>vs CPU</span><span>Power Duels</span>
             </div>
             <div class="cta-row" style="margin-top:24px">
                 ${primaryButton}
                 <a class="btn btn-ghost" href="#power-duels">How Power Duels works</a>
             </div>
-            <p class="note">${APP_STORE ? 'Available on the App Store.' : 'WarDecks: Leagues is in beta testing and coming to the App Store.'}</p>
+            <p class="note">${APP_STORE ? 'Available on the App Store.' : 'The public beta is open on TestFlight for iPhone and iPad. Install TestFlight from the App Store, then tap Join.'}</p>
         </div>
         <div class="devices" aria-hidden="true">
             ${phone('character-select', '', 'back')}
@@ -182,7 +188,7 @@ const body = `
         <div class="vid reveal"><video controls playsinline preload="none" poster="${img('trailer-poster')}" aria-label="WarDecks: Leagues trailer"><source src="/media/apps/wardecks/trailer.mp4" type="video/mp4"></video></div>
         <div>
             ${head('Trailer', 'Six kingdoms. 48 fighters. <span class="hot">One deck in your hands.</span>', 'Unleash legendary powers, declare WAR when the cards tie, swap heroes mid-battle, and challenge a friend across the table or the world online.')}
-            <p class="note" style="margin-top:18px">The beta opens on TestFlight this Christmas 2026.</p>
+            <p class="note" style="margin-top:18px">The public beta is open now. <a href="${TESTFLIGHT}" target="_blank" rel="noopener" style="color:var(--gold)">Join it on TestFlight</a>.</p>
         </div>
     </div>
 </section>
@@ -335,10 +341,10 @@ ${rosterSection(img, head)}
 <section>
     <div class="wrap duo">
         <div class="card">
-            <span class="eyebrow">Launch</span>
-            <h3 style="font-size:22px;margin:8px 0 10px">Be there on day one</h3>
-            <p style="color:var(--muted);margin:0 0 14px">WarDecks: Leagues is in beta testing. Write to us and we will let you know when it reaches the App Store.</p>
-            ${primaryButton.replace('btn btn-primary', 'btn btn-ghost btn-sm')}
+            <span class="eyebrow">Public beta</span>
+            <h3 style="font-size:22px;margin:8px 0 10px">Play it today</h3>
+            <p style="color:var(--muted);margin:0 0 14px">The WarDecks: Leagues beta is open to everyone on TestFlight. Want to hear when it reaches the App Store? Write to us.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">${testFlightButton}${notifyButton}</div>
         </div>
         <div class="card">
             <span class="eyebrow">Help</span>
@@ -435,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export const htmlWarDecks = sitePage({
     title: 'WarDecks: Leagues · The card game of War, at war',
-    description: 'WarDecks: Leagues for iPhone and iPad: the classic card game of War reborn as a medieval battle, with 48 fighters, 8 roles, 6 kingdoms, Power Duels, 12 battlefields, 4 card decks, Pass & Play and online duels through Game Center. Now in beta.',
+    description: 'WarDecks: Leagues for iPhone and iPad: the classic card game of War reborn as a medieval battle, with 48 fighters, 8 roles, 6 kingdoms, Power Duels, 12 battlefields, 4 card decks, Pass & Play and online duels through Game Center. Public beta now open on TestFlight.',
     path: '/ios/wardecks',
     ogImage: img('screens/title'),
     icon: app.icon,
