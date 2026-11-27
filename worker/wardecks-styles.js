@@ -169,4 +169,14 @@ export const WD_CSS = `
     .wd-sheet .info { padding: 18px; }
     .wd-sheet .who h3 { font-size: 23px; }
 }
+/* Screenshot tabs: a hidden device row must win over .shots.phones { display: flex } */
+.product.wd .shots.phones[hidden] { display: none; }
+.product.wd .shots .phone.dev-ipad { width: 400px; padding: 9px; border-radius: 30px; }
+.product.wd .shots .phone.dev-ipad img { border-radius: 22px; }
+.product.wd .shots .phone.dev-duo { width: 330px; border-radius: 40px; }
+.product.wd .shots .phone.dev-duo img { border-radius: 33px; }
+@media (max-width: 560px) {
+    .product.wd .shots .phone.dev-ipad { width: 300px; }
+    .product.wd .shots .phone.dev-duo { width: 260px; }
+}
 `;

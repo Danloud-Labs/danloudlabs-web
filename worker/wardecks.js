@@ -101,6 +101,21 @@ const GALLERY = [
     ['hero-select', 'Campaign heroes'], ['story-bridge', 'Story'], ['story-sword', 'Story'], ['story-cards', 'Story'], ['story-sorceress', 'Story'],
 ];
 
+// Screenshots by device (simulator captures of the current build, Marketing mode:
+// no debug buttons). The iPhone tab also keeps the curated story and battle shots above.
+const DEVICES = [['iphone', 'iPhone'], ['ipad', 'iPad'], ['duo', 'iPhone Duo']];
+const DEVICE_SHOTS = [
+    ['title', 'Title screen'], ['menu', 'Main menu'], ['decks', 'Choose your deck'], ['rules', 'Battle rules: Power Duels'],
+    ['select', 'Kingdom select'], ['online', 'Online lobby'], ['campaign', 'Campaign heroes'], ['duel', 'Power Duels against the CPU'],
+];
+const deviceShot = (dev, n, cap) => `<span class="phone dev-${dev}" data-zoom="${img(`screens/${dev}/${n}`)}" data-caption="${esc(cap)}"><img src="${img(`screens/${dev}/${n}`)}" alt="${esc(cap)}" loading="lazy"></span>`;
+const deviceRow = (dev, i) => {
+    const shots = DEVICE_SHOTS.map(([n, cap]) => deviceShot(dev, n, cap));
+    // The old curated iPhone shots, minus the two the new captures replace.
+    const extra = dev === 'iphone' ? GALLERY.filter(([n]) => n !== 'title' && n !== 'start').map(([n, cap]) => phone(n, cap)) : [];
+    return `<div class="shots phones" data-dev="${dev}"${i ? ' hidden' : ''}>${[...shots, ...extra].join('')}</div>`;
+};
+
 const SECTIONS = [['trailer', 'Trailer'], ['modes', 'Modes'], ['rules', 'Rules'], ['power-duels', 'Power Duels'], ['roles', 'Roles'], ['fighters', 'Fighters'], ['factions', 'Kingdoms'], ['battlefields', 'Battlefields'], ['campaign', 'Campaign'], ['screens', 'Screenshots']];
 
 // ---------- pieces ----------
@@ -312,7 +327,8 @@ ${rosterSection(img, head)}
 <section id="screens" style="padding-top:20px">
     <div class="wrap">
         <div class="section-head"><div><span class="eyebrow">Screenshots</span><h2>From the war table</h2></div></div>
-        <div class="shots phones">${GALLERY.map(([n, cap]) => phone(n, cap)).join('')}</div>
+        <div class="shots-bar" id="shots-bar">${DEVICES.map(([d, label], i) => `<button type="button" data-dev="${d}"${i ? '' : ' class="on"'}>${label}</button>`).join('')}</div>
+        ${DEVICES.map(([d], i) => deviceRow(d, i)).join('')}
     </div>
 </section>
 
@@ -355,6 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const D = JSON.parse(document.getElementById('wd-data').textContent);
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const art = (key, power) => D.art.replace('KEY', key + (power ? '-power' : ''));
+
+    // Screenshot tabs: iPhone / iPad / iPhone Duo.
+    const bar = document.getElementById('shots-bar');
+    bar.addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        bar.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
+        document.querySelectorAll('#screens .shots').forEach((s) => { s.hidden = s.dataset.dev !== b.dataset.dev; s.scrollLeft = 0; });
+    });
 
     // Lightbox for screenshots and battlefields.
     const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
