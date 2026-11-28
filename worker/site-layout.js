@@ -60,9 +60,9 @@ export const ICONS = {
 };
 
 const NAV = [
-    ['Apps', '/#apps', 'apps'],
+    ['Apps', '/ios-apps', 'apps'],
     ['Mac', '/macos-apps', 'mac'],
-    ['Projects', '/#projects', 'projects'],
+    ['Projects', '/projects', 'projects'],
     ['Support', '/support', 'support'],
     ['Privacy', '/privacy', 'privacy'],
 ];

@@ -69,7 +69,7 @@ function page({ title, description, path, active, body, css = '' }) {
         title, description, path, ogImage: OG,
         icon: LOGO,
         active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
+        back: { href: '/projects', label: 'Projects' },
         head: `<style>${FFT_CSS}${css}</style>`,
         body: `<div class="mmx fft">${fftNav(active)}${body}<section style="padding-top:0"><div class="wrap"><p class="fan-note">${esc(FFT.note)}</p></div></section></div>`,
     });

@@ -24,7 +24,7 @@ export function page({ title, description, path, active, body, css = '', ogImage
         title, description, path, ogImage: ogImage || LOGO,
         icon: LOGO,
         active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
+        back: { href: '/projects', label: 'Projects' },
         head: `<style>${MY_CSS}${css}</style>`,
         body: `<div class="mmx my">${myNav(active)}${body}<section style="padding-top:0"><div class="wrap"><p class="fan-note">${esc(MY.note)}</p></div></section></div>`,
     });

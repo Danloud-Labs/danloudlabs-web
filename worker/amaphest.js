@@ -85,7 +85,7 @@ function page({ title, description, path, active, manifest, ogImage, body, css =
         title, description, path, ogImage,
         icon: manifest.brand && manifest.brand.logo ? amaAsset(manifest.brand.logo) : undefined,
         active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
+        back: { href: '/projects', label: 'Projects' },
         head: `<style>${AMA_CSS}${css}</style>`,
         body: `<div class="ama">${amaNav(active, manifest)}${body}</div>${lightbox}`,
     });

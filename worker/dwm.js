@@ -126,7 +126,7 @@ function page({ title, description, path, active, body, ogImage, css = '' }) {
         icon: LOGO,
         since: DWM.since,
         active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
+        back: { href: '/projects', label: 'Projects' },
         head: `<style>${DWM_CSS}${css}</style>`,
         body: `<div class="mmx dwm">${dwmNav(active)}${body}${note}</div>`,
     });

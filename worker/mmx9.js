@@ -122,7 +122,7 @@ function page({ title, description, path, active, m, ogImage, body, css = '' }) 
         title, description, path, ogImage: ogImage || brandArt(m).banner,
         icon: MMX_FALLBACK.icon,
         active: 'projects',
-        back: { href: '/#projects', label: 'Projects' },
+        back: { href: '/projects', label: 'Projects' },
         head: `<style>${MMX_CSS}${css}</style>`,
         body: `<div class="mmx">${mmxNav(active, m)}${body}${fanNote}</div>${lightbox}`,
     });
