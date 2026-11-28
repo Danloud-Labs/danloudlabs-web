@@ -109,13 +109,19 @@ const GALLERY = [
 
 // Screenshots by device (simulator captures of the current build, Marketing mode:
 // no debug buttons). The iPhone tab also keeps the curated story and battle shots above.
-const DEVICES = [['iphone', 'iPhone'], ['ipad', 'iPad'], ['duo', 'iPhone Duo']];
+const DEVICES = [['iphone', 'iPhone'], ['ipad', 'iPad'], ['duo', 'iPhone Duo'], ['videos', 'Videos']];
+// Earlier videos (the current trailer is in the Trailer section at the top).
+const VIDEOS = [['trailer-v1', 'First trailer']];
 const DEVICE_SHOTS = [
     ['title', 'Title screen'], ['menu', 'Main menu'], ['decks', 'Choose your deck'], ['rules', 'Battle rules: Power Duels'],
     ['select', 'Kingdom select'], ['online', 'Online lobby'], ['campaign', 'Campaign heroes'], ['duel', 'Power Duels against the CPU'],
 ];
 const deviceShot = (dev, n, cap) => `<span class="phone dev-${dev}" data-zoom="${img(`screens/${dev}/${n}`)}" data-caption="${esc(cap)}"><img src="${img(`screens/${dev}/${n}`)}" alt="${esc(cap)}" loading="lazy"></span>`;
 const deviceRow = (dev, i) => {
+    if (dev === 'videos') {
+        const clips = VIDEOS.map(([n, cap]) => `<figure class="wd-clip"><div class="vid"><video controls playsinline preload="none" poster="${img(`${n}-poster`)}" aria-label="${esc(cap)}"><source src="/media/apps/wardecks/${n}.mp4" type="video/mp4"></video></div><figcaption>${esc(cap)}</figcaption></figure>`);
+        return `<div class="shots wd-videos" data-dev="videos"${i ? ' hidden' : ''}>${clips.join('')}</div>`;
+    }
     const shots = DEVICE_SHOTS.map(([n, cap]) => deviceShot(dev, n, cap));
     // The old curated iPhone shots, minus the two the new captures replace.
     const extra = dev === 'iphone' ? GALLERY.filter(([n]) => n !== 'title' && n !== 'start').map(([n, cap]) => phone(n, cap)) : [];
@@ -384,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const b = e.target.closest('button'); if (!b) return;
         bar.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
         document.querySelectorAll('#screens .shots').forEach((s) => { s.hidden = s.dataset.dev !== b.dataset.dev; s.scrollLeft = 0; });
+        document.querySelectorAll('#screens video').forEach((v) => v.pause());
     });
 
     // Lightbox for screenshots and battlefields.

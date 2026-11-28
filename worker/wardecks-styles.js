@@ -171,6 +171,12 @@ export const WD_CSS = `
 }
 /* Screenshot tabs: a hidden device row must win over .shots.phones { display: flex } */
 .product.wd .shots.phones[hidden] { display: none; }
+.product.wd .shots[hidden] { display: none; }
+.wd-videos { display: flex; gap: 28px; flex-wrap: wrap; justify-content: flex-start; padding: 6px 0 18px; }
+.wd-clip { margin: 0; width: min(300px, 100%); }
+.wd-clip .vid { aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; background: #000; border: 1px solid color-mix(in srgb, #f3cf86 35%, var(--line)); box-shadow: 0 24px 60px -30px rgba(243, 207, 134, 0.35); }
+.wd-clip video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.wd-clip figcaption { margin-top: 10px; text-align: center; color: var(--muted); font-size: 14px; }
 .product.wd .shots .phone.dev-ipad { width: 400px; padding: 9px; border-radius: 30px; }
 .product.wd .shots .phone.dev-ipad img { border-radius: 22px; }
 .product.wd .shots .phone.dev-duo { width: 330px; border-radius: 40px; }
